@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Zone
+  - Main Panel
+  - Wearable
+  - Persist
+  - UI
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Overworld
+    uniqueID: 1766457561
+    locked: 0
+  - name: Foreground
+    uniqueID: 1226597283
+    locked: 0
+  - name: Battle Background
+    uniqueID: 2190843115
+    locked: 0
+  - name: Battle Middle
+    uniqueID: 1131683083
+    locked: 0
+  - name: Battle Characters
+    uniqueID: 2603937523
+    locked: 0
+  - name: Battle Foreground
+    uniqueID: 4063836987
+    locked: 0
+  - name: Filter
+    uniqueID: 2453617913
+    locked: 0
+  - name: GUI
+    uniqueID: 1990046331
+    locked: 0

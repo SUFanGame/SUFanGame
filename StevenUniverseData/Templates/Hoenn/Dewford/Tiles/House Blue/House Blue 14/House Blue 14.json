@@ -1,0 +1,11 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "House Blue 14"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.0,
+    "tileModeName": "Collidable",
+    "tileLayerName": "Main",
+    "isGrounded": false
+}

@@ -1,0 +1,11 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Gate"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.0,
+    "tileModeName": "Transitional",
+    "tileLayerName": "GroundOverlay",
+    "isGrounded": false
+}

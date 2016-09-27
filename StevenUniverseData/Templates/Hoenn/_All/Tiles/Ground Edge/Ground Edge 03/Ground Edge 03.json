@@ -1,0 +1,11 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Ground Edge 03"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.0,
+    "tileModeName": "Normal",
+    "tileLayerName": "GroundOverlay",
+    "isGrounded": true
+}

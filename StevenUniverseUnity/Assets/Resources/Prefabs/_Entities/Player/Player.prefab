@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &119594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 457010}
+  - 50: {fileID: 5043376}
+  - 61: {fileID: 6192322}
+  - 114: {fileID: 11428854}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &457010
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!50 &5043376
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119594}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &6192322
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119594}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+--- !u!114 &11428854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c630027c2b50424382cf8be1d143a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: party.members.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: party.members.Array.data[0].moves.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: outfit.bodySpriteSheet
+      value: 
+      objectReference: {fileID: 21300000, guid: 918bbfa820677af45be361b304898fdb,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: outfit.hatSpriteSheet
+      value: 
+      objectReference: {fileID: 21300000, guid: e7c50ea4b0f1bbe41b481c14119b851f,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: outfit.eyesSpriteSheet
+      value: 
+      objectReference: {fileID: 21300000, guid: 2fd245da7cfd7f7489ae836e76a8e4e6,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: outfit.shirtspriteSheet
+      value: 
+      objectReference: {fileID: 21300000, guid: 7eae3dc4fa2f3ae4bbfd793bad61afff,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: party.members.Array.data[0].nickname
+      value: Charmander
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: party.members.Array.data[0].kindName
+      value: Charmander
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: party.members.Array.data[0].genderName
+      value: Male
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: party.members.Array.data[0].level
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: party.members.Array.data[0].moves.Array.data[0].baseMoveName
+      value: Pound
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: party.members.Array.data[0].natureName
+      value: Calm
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: party.members.Array.data[0].moves.Array.data[1].baseMoveName
+      value: Fire Punch
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: party.members.Array.data[0].moves.Array.data[2].baseMoveName
+      value: Scratch
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 119594}
+  m_IsPrefabParent: 1

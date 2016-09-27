@@ -1,0 +1,3824 @@
+{
+    "serializedType": "Chunk",
+    "tileInstances": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 00/Cliff Red 00",
+            "x": 23,
+            "y": 39,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 00/Cliff Red 00",
+            "x": 22,
+            "y": 36,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 00/Cliff Red 00",
+            "x": 24,
+            "y": 39,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 00/Cliff Red 00",
+            "x": 25,
+            "y": 39,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 00/Cliff Red 00",
+            "x": 26,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 01/Cliff Red 01",
+            "x": 32,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 01/Cliff Red 01",
+            "x": 37,
+            "y": 20,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 01/Cliff Red 01",
+            "x": 35,
+            "y": 21,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 01/Cliff Red 01",
+            "x": 39,
+            "y": 20,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 01/Cliff Red 01",
+            "x": 33,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 01/Cliff Red 01",
+            "x": 38,
+            "y": 20,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 02/Cliff Red 02",
+            "x": 32,
+            "y": 29,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 02/Cliff Red 02",
+            "x": 33,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 02/Cliff Red 02",
+            "x": 34,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 02/Cliff Red 02",
+            "x": 36,
+            "y": 21,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 23,
+            "y": 37,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 23,
+            "y": 38,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 23,
+            "y": 25,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 26,
+            "y": 20,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 23,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 26,
+            "y": 21,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 23,
+            "y": 26,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 22,
+            "y": 35,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 22,
+            "y": 29,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 22,
+            "y": 33,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 22,
+            "y": 32,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 22,
+            "y": 34,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 22,
+            "y": 28,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 22,
+            "y": 30,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 22,
+            "y": 31,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 31,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 34,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 29,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 36,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 33,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 27,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 28,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 38,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 35,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 32,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 37,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 30,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 27,
+            "y": 22,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 24,
+            "y": 26,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 27,
+            "y": 21,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 25,
+            "y": 24,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 27,
+            "y": 20,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 25,
+            "y": 33,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 25,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 25,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 25,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 25,
+            "y": 38,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 26,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 26,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 25,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 25,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 27,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 29,
+            "y": 22,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 27,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 27,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 29,
+            "y": 21,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 26,
+            "y": 33,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 26,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 26,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 28,
+            "y": 28,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 27,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 26,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 27,
+            "y": 30,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 26,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 26,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 28,
+            "y": 27,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 28,
+            "y": 26,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 30,
+            "y": 23,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 03/Cliff Red 03",
+            "x": 30,
+            "y": 22,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 37,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 29,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 23,
+            "y": 29,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 35,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 38,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 32,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 34,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 31,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 23,
+            "y": 31,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 30,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 23,
+            "y": 35,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 33,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 23,
+            "y": 28,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 36,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 23,
+            "y": 32,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 23,
+            "y": 34,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 27,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 28,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 23,
+            "y": 30,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 23,
+            "y": 33,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 23,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 24,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 21,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 23,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 25,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 22,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 20,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 24,
+            "y": 26,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 30,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 32,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 30,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 27,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 38,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 29,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 27,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 33,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 36,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 37,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 35,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 28,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 29,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 31,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 34,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 28,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 27,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 23,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 24,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 21,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 22,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 25,
+            "y": 26,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 24,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 22,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 26,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 21,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 20,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 26,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 25,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 25,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 20,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 33,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 26,
+            "y": 38,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 21,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 20,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 22,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 33,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 33,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 32,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 32,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 27,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 34,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 30,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 28,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 33,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 32,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 27,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 30,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 33,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 32,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 29,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 32,
+            "y": 33,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 33,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 34,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 28,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 28,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 33,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 30,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 27,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 27,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 33,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 32,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 29,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 28,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 33,
+            "y": 24,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 23,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 32,
+            "y": 22,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 26,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 33,
+            "y": 21,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 33,
+            "y": 20,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 34,
+            "y": 20,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 33,
+            "y": 23,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 35,
+            "y": 20,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 32,
+            "y": 21,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 32,
+            "y": 24,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 24,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 26,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 31,
+            "y": 22,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 30,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 32,
+            "y": 23,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 33,
+            "y": 22,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 04/Cliff Red 04",
+            "x": 29,
+            "y": 26,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 32,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 33,
+            "y": 33,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 31,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 31,
+            "y": 30,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 32,
+            "y": 28,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 35,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 32,
+            "y": 27,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 32,
+            "y": 26,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 34,
+            "y": 22,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 34,
+            "y": 24,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 05/Cliff Red 05",
+            "x": 34,
+            "y": 23,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 23,
+            "y": 24,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 24,
+            "y": 22,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 22,
+            "y": 27,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 25,
+            "y": 23,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 24,
+            "y": 25,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 25,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 26,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 29,
+            "y": 20,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 28,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 27,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 26,
+            "y": 32,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 27,
+            "y": 29,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 28,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 29,
+            "y": 24,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 30,
+            "y": 21,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 06/Cliff Red 06",
+            "x": 31,
+            "y": 20,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 07/Cliff Red 07",
+            "x": 25,
+            "y": 22,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 07/Cliff Red 07",
+            "x": 26,
+            "y": 23,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 07/Cliff Red 07",
+            "x": 34,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 07/Cliff Red 07",
+            "x": 33,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 08/Cliff Red 08",
+            "x": 36,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 08/Cliff Red 08",
+            "x": 32,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 08/Cliff Red 08",
+            "x": 33,
+            "y": 32,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 08/Cliff Red 08",
+            "x": 35,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 09/Cliff Red 09",
+            "x": 23,
+            "y": 36,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 09/Cliff Red 09",
+            "x": 24,
+            "y": 39,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 09/Cliff Red 09",
+            "x": 25,
+            "y": 39,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 09/Cliff Red 09",
+            "x": 26,
+            "y": 39,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 09/Cliff Red 09",
+            "x": 27,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 10/Cliff Red 10",
+            "x": 31,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 10/Cliff Red 10",
+            "x": 31,
+            "y": 29,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 10/Cliff Red 10",
+            "x": 36,
+            "y": 20,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 10/Cliff Red 10",
+            "x": 32,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 10/Cliff Red 10",
+            "x": 34,
+            "y": 21,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 23,
+            "y": 27,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 24,
+            "y": 24,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 26,
+            "y": 22,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 27,
+            "y": 23,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 25,
+            "y": 25,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 26,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 27,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 29,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 30,
+            "y": 20,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 28,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 27,
+            "y": 32,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 28,
+            "y": 29,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 32,
+            "y": 20,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 31,
+            "y": 21,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 29,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 11/Cliff Red 11",
+            "x": 30,
+            "y": 24,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 12/Cliff Red 12",
+            "x": 35,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 12/Cliff Red 12",
+            "x": 31,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 12/Cliff Red 12",
+            "x": 31,
+            "y": 32,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Cliff Red/Cliff Red 12/Cliff Red 12",
+            "x": 32,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Fence Wood/Fence Wood 11/Fence Wood 11",
+            "x": 38,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Fence Wood/Fence Wood 12/Fence Wood 12",
+            "x": 38,
+            "y": 26,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 00/Flower 00",
+            "x": 38,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 00/Flower 00",
+            "x": 38,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 00/Flower 00",
+            "x": 35,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 00/Flower 00",
+            "x": 34,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 02/Flower 02",
+            "x": 39,
+            "y": 21,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 02/Flower 02",
+            "x": 39,
+            "y": 22,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 02/Flower 02",
+            "x": 37,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 02/Flower 02",
+            "x": 39,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 02/Flower 02",
+            "x": 38,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 02/Flower 02",
+            "x": 38,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Flower/Flower 02/Flower 02",
+            "x": 38,
+            "y": 22,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 33,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 39,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 33,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 32,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 32,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 32,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 31,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 38,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 38,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 32,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 39,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 32,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 38,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 39,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 31,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 38,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 32,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 39,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 32,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 31,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 32,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 31,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 32,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 38,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 22,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 21,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 22,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 33,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 21,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 21,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 21,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 22,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 22,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 34,
+            "y": 22,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 36,
+            "y": 22,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 21,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 35,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 20,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 23,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 37,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 38,
+            "y": 20,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 32,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Grass/Grass 00/Grass 00",
+            "x": 39,
+            "y": 20,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Rock/Rock 00/Rock 00",
+            "x": 25,
+            "y": 29,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Rock/Rock 00/Rock 00",
+            "x": 26,
+            "y": 25,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Rock/Rock 00/Rock 00",
+            "x": 36,
+            "y": 38,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Rock/Rock 00/Rock 00",
+            "x": 33,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 23,
+            "y": 38,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 23,
+            "y": 39,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 23,
+            "y": 37,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 23,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 26,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 21,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 25,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 22,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 21,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 25,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 24,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 20,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 24,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 24,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 22,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 26,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 23,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 25,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 22,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 20,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 20,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 26,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 23,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 21,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 23,
+            "y": 22,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 23,
+            "y": 23,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 23,
+            "y": 20,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 24,
+            "y": 21,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 23,
+            "y": 24,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 24,
+            "y": 22,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 24,
+            "y": 23,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 25,
+            "y": 22,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 24,
+            "y": 20,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 23,
+            "y": 21,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 23,
+            "y": 25,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 23,
+            "y": 26,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 26,
+            "y": 21,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 26,
+            "y": 20,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 25,
+            "y": 21,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 25,
+            "y": 20,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 32,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 30,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 38,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 34,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 31,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 28,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 36,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 33,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 32,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 27,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 39,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 34,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 38,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 32,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 29,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 36,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 29,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 30,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 37,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 31,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 35,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 30,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 35,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 38,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 37,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 27,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 29,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 36,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 33,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 28,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 39,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 37,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 27,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 33,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 39,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 28,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 22,
+            "y": 34,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 20,
+            "y": 35,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 21,
+            "y": 31,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 38,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 35,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 39,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 37,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 36,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 38,
+            "y": 33,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 38,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 39,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 39,
+            "y": 33,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 39,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 39,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 38,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 34,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 35,
+            "y": 33,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 38,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 37,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 33,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 35,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 36,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 39,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 04/Sand 04",
+            "x": 35,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 13/Sand 13",
+            "x": 34,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 13/Sand 13",
+            "x": 37,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 13/Sand 13",
+            "x": 39,
+            "y": 27,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 13/Sand 13",
+            "x": 39,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 14/Sand 14",
+            "x": 38,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 14/Sand 14",
+            "x": 36,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 14/Sand 14",
+            "x": 39,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 14/Sand 14",
+            "x": 35,
+            "y": 35,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 14/Sand 14",
+            "x": 32,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 15/Sand 15",
+            "x": 33,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 16/Sand 16",
+            "x": 34,
+            "y": 33,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 16/Sand 16",
+            "x": 37,
+            "y": 36,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 16/Sand 16",
+            "x": 39,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 16/Sand 16",
+            "x": 32,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 16/Sand 16",
+            "x": 34,
+            "y": 34,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 16/Sand 16",
+            "x": 34,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 16/Sand 16",
+            "x": 39,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 17/Sand 17",
+            "x": 33,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 17/Sand 17",
+            "x": 33,
+            "y": 33,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 18/Sand 18",
+            "x": 32,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 18/Sand 18",
+            "x": 39,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 18/Sand 18",
+            "x": 39,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 18/Sand 18",
+            "x": 39,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 19/Sand 19",
+            "x": 38,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 19/Sand 19",
+            "x": 37,
+            "y": 31,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 19/Sand 19",
+            "x": 35,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 19/Sand 19",
+            "x": 33,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 19/Sand 19",
+            "x": 34,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sand/Sand 20/Sand 20",
+            "x": 36,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Sign/Sign 00/Sign 00",
+            "x": 36,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Stair/Stair 00/Stair 00",
+            "x": 32,
+            "y": 32,
+            "elevation": 4
+        }
+    ],
+    "groupInstances": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Dewford/Tile Groups/House Blue/House Blue",
+            "x": 37,
+            "y": 37,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Dewford/Tile Groups/House Blue/House Blue Small",
+            "x": 35,
+            "y": 32,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tile Groups/Log Bridge/Log Bridge",
+            "x": 26,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tile Groups/Log Bridge/Log Bridge",
+            "x": 25,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tile Groups/Log Bridge/Log Bridge",
+            "x": 24,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tile Groups/Log Bridge/Log Bridge",
+            "x": 27,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tile Groups/Log Bridge/Log Bridge",
+            "x": 23,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tile Groups/Log Bridge/Log Bridge",
+            "x": 22,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tile Groups/Log Bridge/Log Bridge",
+            "x": 20,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tile Groups/Log Bridge/Log Bridge",
+            "x": 21,
+            "y": 31,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 34,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 36,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 36,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 37,
+            "y": 30,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 38,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 37,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 37,
+            "y": 28,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 33,
+            "y": 29,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 37,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 37,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 36,
+            "y": 26,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 35,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 36,
+            "y": 25,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 36,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 35,
+            "y": 24,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 32,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 28,
+            "y": 33,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 29,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 27,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 34,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 33,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 27,
+            "y": 33,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 28,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 29,
+            "y": 29,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 28,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 28,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 28,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 27,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 29,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 27,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 29,
+            "y": 28,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 32,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 33,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 28,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 29,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 29,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 29,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 29,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 28,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 34,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 30,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 27,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 39,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 27,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 27,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 34,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 36,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 29,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 29,
+            "y": 27,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 38,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 27,
+            "y": 35,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 28,
+            "y": 37,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 33,
+            "y": 23,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 32,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 32,
+            "y": 22,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 33,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 26,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 23,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 32,
+            "y": 23,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 26,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 30,
+            "y": 25,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 29,
+            "y": 26,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 31,
+            "y": 24,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tile Groups/Tree Small/Tree Small",
+            "x": 33,
+            "y": 24,
+            "elevation": 4
+        }
+    ],
+    "changed": false
+}

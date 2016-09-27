@@ -1,0 +1,11 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "House Blue 13"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.0,
+    "tileModeName": "Transitional",
+    "tileLayerName": "Main",
+    "isGrounded": false
+}
