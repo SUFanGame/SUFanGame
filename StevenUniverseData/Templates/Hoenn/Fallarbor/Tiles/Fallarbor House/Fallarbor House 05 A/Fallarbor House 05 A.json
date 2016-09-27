@@ -1,0 +1,11 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Fallarbor House 05 A"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.0,
+    "tileModeName": "Collidable",
+    "tileLayerName": "Main",
+    "isGrounded": true
+}

@@ -1,0 +1,11 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Jungle Hut 02"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.0,
+    "tileModeName": "Surface",
+    "tileLayerName": "GroundOverlay",
+    "isGrounded": true
+}

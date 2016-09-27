@@ -1,0 +1,77 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 00/Ocean Museum Table 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 01/Ocean Museum Table 01",
+            "x": 1,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 01/Ocean Museum Table 01",
+            "x": 2,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 02/Ocean Museum Table 02",
+            "x": 3,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 09/Ocean Museum Table 09",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 10/Ocean Museum Table 10",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 11/Ocean Museum Table 11",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 12/Ocean Museum Table 12",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 13/Ocean Museum Table 13",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 13/Ocean Museum Table 13",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 14/Ocean Museum Table 14",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Table/Ocean Museum Table 14/Ocean Museum Table 14",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

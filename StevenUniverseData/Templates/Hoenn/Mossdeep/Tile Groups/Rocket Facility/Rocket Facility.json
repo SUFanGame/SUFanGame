@@ -1,0 +1,437 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 00/Rocket Facility 00",
+            "x": 0,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 01/Rocket Facility 01",
+            "x": 1,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 02/Rocket Facility 02",
+            "x": 2,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 03/Rocket Facility 03",
+            "x": 3,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 04/Rocket Facility 04",
+            "x": 4,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 05/Rocket Facility 05",
+            "x": 5,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 06/Rocket Facility 06",
+            "x": 6,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 07/Rocket Facility 07",
+            "x": 7,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 08/Rocket Facility 08",
+            "x": 8,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 09/Rocket Facility 09",
+            "x": 0,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 10/Rocket Facility 10",
+            "x": 1,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 11/Rocket Facility 11",
+            "x": 2,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 12/Rocket Facility 12",
+            "x": 3,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 13/Rocket Facility 13",
+            "x": 4,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 14/Rocket Facility 14",
+            "x": 5,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 15/Rocket Facility 15",
+            "x": 6,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 16/Rocket Facility 16",
+            "x": 7,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 17/Rocket Facility 17",
+            "x": 8,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 18/Rocket Facility 18",
+            "x": 0,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 19/Rocket Facility 19",
+            "x": 1,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 20/Rocket Facility 20",
+            "x": 2,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 21/Rocket Facility 21",
+            "x": 3,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 22/Rocket Facility 22",
+            "x": 4,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 23/Rocket Facility 23",
+            "x": 5,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 24/Rocket Facility 24",
+            "x": 6,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 25/Rocket Facility 25",
+            "x": 7,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 26/Rocket Facility 26",
+            "x": 8,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 27/Rocket Facility 27",
+            "x": 0,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 28/Rocket Facility 28",
+            "x": 1,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 28/Rocket Facility 28",
+            "x": 2,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 29/Rocket Facility 29",
+            "x": 3,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 30/Rocket Facility 30",
+            "x": 4,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 31/Rocket Facility 31",
+            "x": 5,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 32/Rocket Facility 32",
+            "x": 6,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 32/Rocket Facility 32",
+            "x": 7,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 33/Rocket Facility 33",
+            "x": 8,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 34/Rocket Facility 34",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 35/Rocket Facility 35",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 35/Rocket Facility 35",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 36/Rocket Facility 36",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 30/Rocket Facility 30",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 37/Rocket Facility 37",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 38/Rocket Facility 38",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 38/Rocket Facility 38",
+            "x": 7,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 39/Rocket Facility 39",
+            "x": 8,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 40/Rocket Facility 40",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 41/Rocket Facility 41",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 41/Rocket Facility 41",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 42/Rocket Facility 42",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 30/Rocket Facility 30",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 43/Rocket Facility 43",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 44/Rocket Facility 44",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 44/Rocket Facility 44",
+            "x": 7,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 45/Rocket Facility 45",
+            "x": 8,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 46/Rocket Facility 46",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 47/Rocket Facility 47",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 47/Rocket Facility 47",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 48/Rocket Facility 48",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 49/Rocket Facility 49",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 50/Rocket Facility 50",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 51/Rocket Facility 51",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 51/Rocket Facility 51",
+            "x": 7,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 52/Rocket Facility 52",
+            "x": 8,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 53/Rocket Facility 53",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 54/Rocket Facility 54",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 54/Rocket Facility 54",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 55/Rocket Facility 55",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 56/Rocket Facility 56",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 57/Rocket Facility 57",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 58/Rocket Facility 58",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 58/Rocket Facility 58",
+            "x": 7,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Facility/Rocket Facility 59/Rocket Facility 59",
+            "x": 8,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

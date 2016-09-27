@@ -1,0 +1,53 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Lighthouse/Lighthouse 00/Lighthouse 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Lighthouse/Lighthouse 01/Lighthouse 01",
+            "x": 1,
+            "y": 3,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Lighthouse/Lighthouse 02/Lighthouse 02",
+            "x": 0,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Lighthouse/Lighthouse 03/Lighthouse 03",
+            "x": 1,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Lighthouse/Lighthouse 04/Lighthouse 04",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Lighthouse/Lighthouse 05/Lighthouse 05",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Lighthouse/Lighthouse 06/Lighthouse 06",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Lighthouse/Lighthouse 07/Lighthouse 07",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,215 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 02/Lab 02",
+            "x": 2,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 11/Lab 11",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 11/Lab 11",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 10/Lab 10",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 01/Lab 01",
+            "x": 1,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 07/Lab 07",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 06/Lab 06",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 04/Lab 04",
+            "x": 6,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 03/Lab 03",
+            "x": 4,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 03/Lab 03",
+            "x": 3,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 03/Lab 03",
+            "x": 5,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 15/Lab 15",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 14/Lab 14",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 13/Lab 13",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 12/Lab 12",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 00/Lab 00",
+            "x": 0,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 21/Lab 21",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 20/Lab 20",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 19/Lab 19",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 18/Lab 18",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 17/Lab 17",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 17/Lab 17",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 08/Lab 08",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 08/Lab 08",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 08/Lab 08",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 08/Lab 08",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 08/Lab 08",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 08/Lab 08",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 08/Lab 08",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 08/Lab 08",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 05/Lab 05",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 05/Lab 05",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 09/Lab 09",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 09/Lab 09",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Littleroot/Tiles/Lab/Lab 16/Lab 16",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

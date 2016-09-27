@@ -1,0 +1,257 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 00/Terminal 00",
+            "x": 0,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 01/Terminal 01",
+            "x": 1,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 01/Terminal 01",
+            "x": 2,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 01/Terminal 01",
+            "x": 3,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 01/Terminal 01",
+            "x": 4,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 01/Terminal 01",
+            "x": 5,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 02/Terminal 02",
+            "x": 6,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 03/Terminal 03",
+            "x": 0,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 04/Terminal 04",
+            "x": 1,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 04/Terminal 04",
+            "x": 2,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 04/Terminal 04",
+            "x": 3,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 04/Terminal 04",
+            "x": 4,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 04/Terminal 04",
+            "x": 5,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 05/Terminal 05",
+            "x": 6,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 03/Terminal 03",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 04/Terminal 04",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 04/Terminal 04",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 04/Terminal 04",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 04/Terminal 04",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 04/Terminal 04",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 05/Terminal 05",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 06/Terminal 06",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 07/Terminal 07",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 07/Terminal 07",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 07/Terminal 07",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 07/Terminal 07",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 07/Terminal 07",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 08/Terminal 08",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 09/Terminal 09",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 10/Terminal 10",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 11/Terminal 11",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 12/Terminal 12",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 13/Terminal 13",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 14/Terminal 14",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 15/Terminal 15",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 16/Terminal 16",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 17/Terminal 17",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 18/Terminal 18",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 19/Terminal 19",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 20/Terminal 20",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 17/Terminal 17",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Terminal/Terminal 21/Terminal 21",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

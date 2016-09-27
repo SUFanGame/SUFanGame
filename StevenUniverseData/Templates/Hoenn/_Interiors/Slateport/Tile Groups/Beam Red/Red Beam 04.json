@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Beam Red/Beam Red 00/Beam Red 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Beam Red/Beam Red 01/Beam Red 01",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Beam Red/Beam Red 01/Beam Red 01",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Beam Red/Beam Red 03/Beam Red 03",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

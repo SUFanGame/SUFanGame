@@ -1,0 +1,11 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Desert Sand 06"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.0,
+    "tileModeName": "Normal",
+    "tileLayerName": "GroundOverlay",
+    "isGrounded": true
+}

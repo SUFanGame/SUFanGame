@@ -1,0 +1,17 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Mat Salmon/Mat Salmon 00/Mat Salmon 00",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Mat Salmon/Mat Salmon 01/Mat Salmon 01",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

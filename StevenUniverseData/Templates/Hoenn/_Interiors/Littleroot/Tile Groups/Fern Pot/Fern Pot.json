@@ -1,0 +1,17 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Fern Pot/Fern Pot 00/Fern Pot 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Fern Pot/Fern Pot 01/Fern Pot 01",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

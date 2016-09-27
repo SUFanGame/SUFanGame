@@ -1,0 +1,11 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Quicksand 01"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.0,
+    "tileModeName": "Transitional",
+    "tileLayerName": "GroundOverlay",
+    "isGrounded": true
+}

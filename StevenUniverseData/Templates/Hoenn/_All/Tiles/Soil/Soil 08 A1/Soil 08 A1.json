@@ -1,0 +1,11 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Soil 08 A1"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.0,
+    "tileModeName": "Normal",
+    "tileLayerName": "GroundOverlay",
+    "isGrounded": true
+}

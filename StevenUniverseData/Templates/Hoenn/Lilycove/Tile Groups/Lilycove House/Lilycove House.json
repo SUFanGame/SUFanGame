@@ -1,0 +1,101 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 00/Lilycove House 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 01/Lilycove House 01",
+            "x": 1,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 01/Lilycove House 01",
+            "x": 2,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 02/Lilycove House 02",
+            "x": 3,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 03/Lilycove House 03",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 04/Lilycove House 04",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 04/Lilycove House 04",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 05/Lilycove House 05",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 06/Lilycove House 06",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 07/Lilycove House 07",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 08/Lilycove House 08",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 09/Lilycove House 09",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 10/Lilycove House 10",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 11/Lilycove House 11",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 12/Lilycove House 12",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove House/Lilycove House 13/Lilycove House 13",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

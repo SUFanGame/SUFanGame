@@ -1,0 +1,47 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Tree Jungle/Tree Jungle 00/Tree Jungle 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Tree Jungle/Tree Jungle 01/Tree Jungle 01",
+            "x": 1,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Tree Jungle/Tree Jungle 02/Tree Jungle 02",
+            "x": 2,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Tree Jungle/Tree Jungle 03/Tree Jungle 03",
+            "x": 0,
+            "y": 1,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Tree Jungle/Tree Jungle 04/Tree Jungle 04",
+            "x": 1,
+            "y": 1,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Tree Jungle/Tree Jungle 05/Tree Jungle 05",
+            "x": 2,
+            "y": 1,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Tree Jungle/Tree Jungle 06/Tree Jungle 06",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

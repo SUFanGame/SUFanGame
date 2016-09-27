@@ -1,0 +1,11 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Wall Mahogany 13"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.0,
+    "tileModeName": "Normal",
+    "tileLayerName": "GroundOverlay",
+    "isGrounded": true
+}

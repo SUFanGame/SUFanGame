@@ -1,0 +1,185 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 00/Game Corner 00",
+            "x": 0,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 01/Game Corner 01",
+            "x": 1,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 01/Game Corner 01",
+            "x": 2,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 01/Game Corner 01",
+            "x": 3,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 01/Game Corner 01",
+            "x": 4,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 01/Game Corner 01",
+            "x": 5,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 02/Game Corner 02",
+            "x": 6,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 03/Game Corner 03",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 04/Game Corner 04",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 04/Game Corner 04",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 04/Game Corner 04",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 04/Game Corner 04",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 04/Game Corner 04",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 05/Game Corner 05",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 06/Game Corner 06",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 07/Game Corner 07",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 08/Game Corner 08",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 09/Game Corner 09",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 10/Game Corner 10",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 07/Game Corner 07",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 11/Game Corner 11",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 12/Game Corner 12",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 13/Game Corner 13",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 14/Game Corner 14",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 15/Game Corner 15",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 16/Game Corner 16",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 13/Game Corner 13",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 17/Game Corner 17",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 18/Game Corner 18",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mauville/Tiles/Game Corner/Game Corner 19/Game Corner 19",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

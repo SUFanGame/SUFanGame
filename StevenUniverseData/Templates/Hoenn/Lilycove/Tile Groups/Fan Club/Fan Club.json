@@ -1,0 +1,173 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 00/Fan Club 00",
+            "x": 1,
+            "y": 4,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 01/Fan Club 01",
+            "x": 2,
+            "y": 4,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 01/Fan Club 01",
+            "x": 3,
+            "y": 4,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 02/Fan Club 02",
+            "x": 4,
+            "y": 4,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 00/Fan Club 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 03/Fan Club 03",
+            "x": 1,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 04/Fan Club 04",
+            "x": 2,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 04/Fan Club 04",
+            "x": 3,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 05/Fan Club 05",
+            "x": 4,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 02/Fan Club 02",
+            "x": 5,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 06/Fan Club 06",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 07/Fan Club 07",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 08/Fan Club 08",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 08/Fan Club 08",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 09/Fan Club 09",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 10/Fan Club 10",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 11/Fan Club 11",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 12/Fan Club 12",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 13/Fan Club 13",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 14/Fan Club 14",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 14/Fan Club 14",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 15/Fan Club 15",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 16/Fan Club 16",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 17/Fan Club 17",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 18/Fan Club 18",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 19/Fan Club 19",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 19/Fan Club 19",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Fan Club/Fan Club 20/Fan Club 20",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,101 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 00/House Green 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 01/House Green 01",
+            "x": 1,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 01/House Green 01",
+            "x": 2,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 02/House Green 02",
+            "x": 3,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 03/House Green 03",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 04/House Green 04",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 04/House Green 04",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 05/House Green 05",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 06/House Green 06",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 07/House Green 07",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 08/House Green 08",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 09/House Green 09",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 10/House Green 10",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 11/House Green 11",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 12/House Green 12",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Verdanturf/Tiles/House Green/House Green 13/House Green 13",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

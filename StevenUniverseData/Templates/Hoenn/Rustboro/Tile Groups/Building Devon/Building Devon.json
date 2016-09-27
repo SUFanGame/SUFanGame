@@ -1,0 +1,509 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 00/Building Devon 00",
+            "x": 0,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 01/Building Devon 01",
+            "x": 1,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 01/Building Devon 01",
+            "x": 2,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 02/Building Devon 02",
+            "x": 3,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 03/Building Devon 03",
+            "x": 4,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 03/Building Devon 03",
+            "x": 5,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 04/Building Devon 04",
+            "x": 6,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 01/Building Devon 01",
+            "x": 7,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 01/Building Devon 01",
+            "x": 8,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 05/Building Devon 05",
+            "x": 9,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 06/Building Devon 06",
+            "x": 0,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 07/Building Devon 07",
+            "x": 1,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 07/Building Devon 07",
+            "x": 2,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 08/Building Devon 08",
+            "x": 3,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 09/Building Devon 09",
+            "x": 4,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 09/Building Devon 09",
+            "x": 5,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 10/Building Devon 10",
+            "x": 6,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 07/Building Devon 07",
+            "x": 7,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 07/Building Devon 07",
+            "x": 8,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 11/Building Devon 11",
+            "x": 9,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 12/Building Devon 12",
+            "x": 0,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 13/Building Devon 13",
+            "x": 1,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 14/Building Devon 14",
+            "x": 2,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 15/Building Devon 15",
+            "x": 3,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 16/Building Devon 16",
+            "x": 4,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 17/Building Devon 17",
+            "x": 5,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 18/Building Devon 18",
+            "x": 6,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 14/Building Devon 14",
+            "x": 7,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 14/Building Devon 14",
+            "x": 8,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 19/Building Devon 19",
+            "x": 9,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 20/Building Devon 20",
+            "x": 0,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 21/Building Devon 21",
+            "x": 1,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 25/Building Devon 25",
+            "x": 2,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 22/Building Devon 22",
+            "x": 3,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 23/Building Devon 23",
+            "x": 4,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 23/Building Devon 23",
+            "x": 5,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 24/Building Devon 24",
+            "x": 6,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 25/Building Devon 25",
+            "x": 7,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 25/Building Devon 25",
+            "x": 8,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 26/Building Devon 26",
+            "x": 9,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 12/Building Devon 12",
+            "x": 0,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 13/Building Devon 13",
+            "x": 1,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 14/Building Devon 14",
+            "x": 2,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 27/Building Devon 27",
+            "x": 3,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 28/Building Devon 28",
+            "x": 4,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 28/Building Devon 28",
+            "x": 5,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 29/Building Devon 29",
+            "x": 6,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 14/Building Devon 14",
+            "x": 7,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 14/Building Devon 14",
+            "x": 8,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 19/Building Devon 19",
+            "x": 9,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 20/Building Devon 20",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 21/Building Devon 21",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 25/Building Devon 25",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 22/Building Devon 22",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 23/Building Devon 23",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 23/Building Devon 23",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 24/Building Devon 24",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 25/Building Devon 25",
+            "x": 7,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 25/Building Devon 25",
+            "x": 8,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 26/Building Devon 26",
+            "x": 9,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 30/Building Devon 30",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 31/Building Devon 31",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 31/Building Devon 31",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 32/Building Devon 32",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 33/Building Devon 33",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 33/Building Devon 33",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 34/Building Devon 34",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 35/Building Devon 35",
+            "x": 7,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 35/Building Devon 35",
+            "x": 8,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 36/Building Devon 36",
+            "x": 9,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 37/Building Devon 37",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 38/Building Devon 38",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 38/Building Devon 38",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 39/Building Devon 39",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 40/Building Devon 40",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 40/Building Devon 40",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 41/Building Devon 41",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 38/Building Devon 38",
+            "x": 7,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 38/Building Devon 38",
+            "x": 8,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 42/Building Devon 42",
+            "x": 9,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 43/Building Devon 43",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 44/Building Devon 44",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 44/Building Devon 44",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Building Devon/Building Devon 45/Building Devon 45",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

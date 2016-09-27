@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Computer/Ocean Museum Computer 00/Ocean Museum Computer 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Computer/Ocean Museum Computer 01/Ocean Museum Computer 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Computer/Ocean Museum Computer 02/Ocean Museum Computer 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Computer/Ocean Museum Computer 03/Ocean Museum Computer 03",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

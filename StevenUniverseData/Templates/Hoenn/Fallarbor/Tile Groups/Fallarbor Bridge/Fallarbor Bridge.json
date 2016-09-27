@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fallarbor/Tiles/Fallarbor Bridge/Fallarbor Bridge 00/Fallarbor Bridge 00",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fallarbor/Tiles/Fallarbor Bridge/Fallarbor Bridge 01/Fallarbor Bridge 01",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fallarbor/Tiles/Fallarbor Bridge/Fallarbor Bridge 01/Fallarbor Bridge 01",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fallarbor/Tiles/Fallarbor Bridge/Fallarbor Bridge 02/Fallarbor Bridge 02",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

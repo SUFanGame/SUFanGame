@@ -1,0 +1,41 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower Door/Battle Tower Door 00/Battle Tower Door 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower Door/Battle Tower Door 01/Battle Tower Door 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower Door/Battle Tower Door 02/Battle Tower Door 02",
+            "x": 2,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower Door/Battle Tower Door 03/Battle Tower Door 03",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower Door/Battle Tower Door 04/Battle Tower Door 04",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower Door/Battle Tower Door 05/Battle Tower Door 05",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

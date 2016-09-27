@@ -1,0 +1,185 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 00/Rocket Platform 00",
+            "x": 0,
+            "y": 5,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 01/Rocket Platform 01",
+            "x": 1,
+            "y": 5,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 04/Rocket Platform 04",
+            "x": 2,
+            "y": 5,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 05/Rocket Platform 05",
+            "x": 3,
+            "y": 5,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 03/Rocket Platform 03",
+            "x": 4,
+            "y": 5,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 00/Rocket Platform 00",
+            "x": 5,
+            "y": 5,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 0,
+            "y": 4,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 06/Rocket Platform 06",
+            "x": 2,
+            "y": 4,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 07/Rocket Platform 07",
+            "x": 3,
+            "y": 4,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 5,
+            "y": 4,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 0,
+            "y": 3,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 01/Rocket Platform 01",
+            "x": 1,
+            "y": 3,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 08/Rocket Platform 08",
+            "x": 2,
+            "y": 3,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 09/Rocket Platform 09",
+            "x": 3,
+            "y": 3,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 03/Rocket Platform 03",
+            "x": 4,
+            "y": 3,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 5,
+            "y": 3,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 0,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 10/Rocket Platform 10",
+            "x": 2,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 11/Rocket Platform 11",
+            "x": 3,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 5,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 00/Rocket Platform 00",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 12/Rocket Platform 12",
+            "x": 2,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 13/Rocket Platform 13",
+            "x": 3,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 5,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 14/Rocket Platform 14",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 15/Rocket Platform 15",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Rocket Platform/Rocket Platform 02/Rocket Platform 02",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

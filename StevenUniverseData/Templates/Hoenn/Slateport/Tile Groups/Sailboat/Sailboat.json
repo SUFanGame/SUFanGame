@@ -1,0 +1,53 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Sailboat/Sailboot 00/Sailboot 00",
+            "x": 1,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Sailboat/Sailboot 01/Sailboot 01",
+            "x": 2,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Sailboat/Sailboot 02/Sailboot 02",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Sailboat/Sailboot 03/Sailboot 03",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Sailboat/Sailboot 04/Sailboot 04",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Sailboat/Sailboot 05/Sailboot 05",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Sailboat/Sailboot 06/Sailboot 06",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Sailboat/Sailboot 07/Sailboot 07",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

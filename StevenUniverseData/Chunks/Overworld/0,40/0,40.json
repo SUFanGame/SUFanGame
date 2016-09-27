@@ -1,0 +1,1447 @@
+{
+    "serializedType": "Chunk",
+    "tileInstances": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 0,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 2,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 1,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 41,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 45,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 46,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 42,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 44,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 40,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 43,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 10,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 6,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 12,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 18,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 16,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 50,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 7,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 5,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 15,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 3,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 47,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 4,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 9,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 17,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 8,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 19,
+            "y": 51,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 11,
+            "y": 48,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 13,
+            "y": 49,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Salt Water/Salt Water 00/Salt Water 00",
+            "x": 14,
+            "y": 50,
+            "elevation": 0
+        }
+    ],
+    "groupInstances": [],
+    "changed": true
+}

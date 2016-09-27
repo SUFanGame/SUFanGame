@@ -1,0 +1,17 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/Harbor Window/Harbor Window 00/Harbor Window 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/Harbor Window/Harbor Window 01/Harbor Window 01",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

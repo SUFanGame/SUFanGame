@@ -1,0 +1,41 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Display Case/Ocean Museum Display Case 00/Ocean Museum Display Case 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Display Case/Ocean Museum Display Case 01/Ocean Museum Display Case 01",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Display Case/Ocean Museum Display Case 02/Ocean Museum Display Case 02",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Display Case/Ocean Museum Display Case 03/Ocean Museum Display Case 03",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Display Case/Ocean Museum Display Case 04/Ocean Museum Display Case 04",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Ocean Museum Display Case/Ocean Museum Display Case 05/Ocean Museum Display Case 05",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

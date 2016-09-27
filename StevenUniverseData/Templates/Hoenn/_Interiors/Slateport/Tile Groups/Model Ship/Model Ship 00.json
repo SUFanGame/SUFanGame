@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Model Ship/Model Ship 00/Model Ship 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Model Ship/Model Ship 01/Model Ship 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Model Ship/Model Ship 02/Model Ship 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Slateport/Tiles/Model Ship/Model Ship 03/Model Ship 03",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

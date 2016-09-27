@@ -1,0 +1,17 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Store Roof Bench/Store Roof Bench 00/Store Roof Bench 00",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Store Roof Bench/Store Roof Bench 01/Store Roof Bench 01",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

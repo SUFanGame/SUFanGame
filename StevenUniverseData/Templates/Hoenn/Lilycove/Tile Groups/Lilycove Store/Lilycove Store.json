@@ -1,0 +1,911 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 00/Lilycove Store 00",
+            "x": 0,
+            "y": 15,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 01/Lilycove Store 01",
+            "x": 1,
+            "y": 15,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 01/Lilycove Store 01",
+            "x": 2,
+            "y": 15,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 01/Lilycove Store 01",
+            "x": 3,
+            "y": 15,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 01/Lilycove Store 01",
+            "x": 4,
+            "y": 15,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 01/Lilycove Store 01",
+            "x": 5,
+            "y": 15,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 01/Lilycove Store 01",
+            "x": 6,
+            "y": 15,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 01/Lilycove Store 01",
+            "x": 7,
+            "y": 15,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 02/Lilycove Store 02",
+            "x": 8,
+            "y": 15,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 03/Lilycove Store 03",
+            "x": 0,
+            "y": 14,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 04/Lilycove Store 04",
+            "x": 1,
+            "y": 14,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 04/Lilycove Store 04",
+            "x": 2,
+            "y": 14,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 04/Lilycove Store 04",
+            "x": 3,
+            "y": 14,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 04/Lilycove Store 04",
+            "x": 4,
+            "y": 14,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 04/Lilycove Store 04",
+            "x": 5,
+            "y": 14,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 04/Lilycove Store 04",
+            "x": 6,
+            "y": 14,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 04/Lilycove Store 04",
+            "x": 7,
+            "y": 14,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 05/Lilycove Store 05",
+            "x": 8,
+            "y": 14,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 40/Lilycove Store 40",
+            "x": 0,
+            "y": 13,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 1,
+            "y": 13,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 2,
+            "y": 13,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 3,
+            "y": 13,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 4,
+            "y": 13,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 5,
+            "y": 13,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 6,
+            "y": 13,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 7,
+            "y": 13,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 41/Lilycove Store 41",
+            "x": 8,
+            "y": 13,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 40/Lilycove Store 40",
+            "x": 0,
+            "y": 12,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 1,
+            "y": 12,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 2,
+            "y": 12,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 3,
+            "y": 12,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 4,
+            "y": 12,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 5,
+            "y": 12,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 6,
+            "y": 12,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 7,
+            "y": 12,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 41/Lilycove Store 41",
+            "x": 8,
+            "y": 12,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 06/Lilycove Store 06",
+            "x": 0,
+            "y": 11,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 07/Lilycove Store 07",
+            "x": 1,
+            "y": 11,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 1,
+            "y": 11,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 07/Lilycove Store 07",
+            "x": 2,
+            "y": 11,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 2,
+            "y": 11,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 07/Lilycove Store 07",
+            "x": 3,
+            "y": 11,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 3,
+            "y": 11,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 07/Lilycove Store 07",
+            "x": 4,
+            "y": 11,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 4,
+            "y": 11,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 07/Lilycove Store 07",
+            "x": 5,
+            "y": 11,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 5,
+            "y": 11,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 07/Lilycove Store 07",
+            "x": 6,
+            "y": 11,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 6,
+            "y": 11,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 07/Lilycove Store 07",
+            "x": 7,
+            "y": 11,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 42/Lilycove Store 42",
+            "x": 7,
+            "y": 11,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 08/Lilycove Store 08",
+            "x": 8,
+            "y": 11,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 09/Lilycove Store 09",
+            "x": 0,
+            "y": 10,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 10/Lilycove Store 10",
+            "x": 1,
+            "y": 10,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 10/Lilycove Store 10",
+            "x": 2,
+            "y": 10,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 10/Lilycove Store 10",
+            "x": 3,
+            "y": 10,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 10/Lilycove Store 10",
+            "x": 4,
+            "y": 10,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 10/Lilycove Store 10",
+            "x": 5,
+            "y": 10,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 10/Lilycove Store 10",
+            "x": 6,
+            "y": 10,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 10/Lilycove Store 10",
+            "x": 7,
+            "y": 10,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 11/Lilycove Store 11",
+            "x": 8,
+            "y": 10,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 12/Lilycove Store 12",
+            "x": 0,
+            "y": 9,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 13/Lilycove Store 13",
+            "x": 1,
+            "y": 9,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 13/Lilycove Store 13",
+            "x": 2,
+            "y": 9,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 13/Lilycove Store 13",
+            "x": 3,
+            "y": 9,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 13/Lilycove Store 13",
+            "x": 4,
+            "y": 9,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 13/Lilycove Store 13",
+            "x": 5,
+            "y": 9,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 13/Lilycove Store 13",
+            "x": 6,
+            "y": 9,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 13/Lilycove Store 13",
+            "x": 7,
+            "y": 9,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 14/Lilycove Store 14",
+            "x": 8,
+            "y": 9,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 15/Lilycove Store 15",
+            "x": 0,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 16/Lilycove Store 16",
+            "x": 1,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 17/Lilycove Store 17",
+            "x": 2,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 3,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 38/Lilycove Store 38",
+            "x": 4,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 5,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 16/Lilycove Store 16",
+            "x": 6,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 17/Lilycove Store 17",
+            "x": 7,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 19/Lilycove Store 19",
+            "x": 8,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 15/Lilycove Store 15",
+            "x": 0,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 1,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 2,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 3,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 4,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 5,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 6,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 7,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 19/Lilycove Store 19",
+            "x": 8,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 15/Lilycove Store 15",
+            "x": 0,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 16/Lilycove Store 16",
+            "x": 1,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 17/Lilycove Store 17",
+            "x": 2,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 3,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 38/Lilycove Store 38",
+            "x": 4,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 5,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 16/Lilycove Store 16",
+            "x": 6,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 17/Lilycove Store 17",
+            "x": 7,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 19/Lilycove Store 19",
+            "x": 8,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 15/Lilycove Store 15",
+            "x": 0,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 1,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 2,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 3,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 4,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 5,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 6,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 7,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 19/Lilycove Store 19",
+            "x": 8,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 15/Lilycove Store 15",
+            "x": 0,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 16/Lilycove Store 16",
+            "x": 1,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 17/Lilycove Store 17",
+            "x": 2,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 3,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 38/Lilycove Store 38",
+            "x": 4,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 5,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 16/Lilycove Store 16",
+            "x": 6,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 17/Lilycove Store 17",
+            "x": 7,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 19/Lilycove Store 19",
+            "x": 8,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 15/Lilycove Store 15",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 18/Lilycove Store 18",
+            "x": 7,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 19/Lilycove Store 19",
+            "x": 8,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 15/Lilycove Store 15",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 16/Lilycove Store 16",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 17/Lilycove Store 17",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 20/Lilycove Store 20",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 21/Lilycove Store 21",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 22/Lilycove Store 22",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 16/Lilycove Store 16",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 17/Lilycove Store 17",
+            "x": 7,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 19/Lilycove Store 19",
+            "x": 8,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 23/Lilycove Store 23",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 24/Lilycove Store 24",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 25/Lilycove Store 25",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 26/Lilycove Store 26",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 27/Lilycove Store 27",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 28/Lilycove Store 28",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 29/Lilycove Store 29",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 24/Lilycove Store 24",
+            "x": 7,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 30/Lilycove Store 30",
+            "x": 8,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 31/Lilycove Store 31",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 33/Lilycove Store 33",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 34/Lilycove Store 34",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 35/Lilycove Store 35",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 36/Lilycove Store 36",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 37/Lilycove Store 37",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 32/Lilycove Store 32",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 33/Lilycove Store 33",
+            "x": 7,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Lilycove Store/Lilycove Store 39/Lilycove Store 39",
+            "x": 8,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

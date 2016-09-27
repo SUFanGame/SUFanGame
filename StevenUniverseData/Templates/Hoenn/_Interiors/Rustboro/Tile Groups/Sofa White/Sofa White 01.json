@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Sofa White/Sofa White 00/Sofa White 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Sofa White/Sofa White 02/Sofa White 02",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Sofa White/Sofa White 03/Sofa White 03",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Sofa White/Sofa White 05/Sofa White 05",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

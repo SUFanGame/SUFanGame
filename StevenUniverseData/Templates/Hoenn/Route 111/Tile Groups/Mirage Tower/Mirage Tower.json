@@ -1,0 +1,113 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 00/Mirage Tower 00",
+            "x": 0,
+            "y": 5,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 01/Mirage Tower 01",
+            "x": 1,
+            "y": 5,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 02/Mirage Tower 02",
+            "x": 2,
+            "y": 5,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 03/Mirage Tower 03",
+            "x": 0,
+            "y": 4,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 04/Mirage Tower 04",
+            "x": 1,
+            "y": 4,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 05/Mirage Tower 05",
+            "x": 2,
+            "y": 4,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 06/Mirage Tower 06",
+            "x": 0,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 07/Mirage Tower 07",
+            "x": 1,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 08/Mirage Tower 08",
+            "x": 2,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 09/Mirage Tower 09",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 10/Mirage Tower 10",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 11/Mirage Tower 11",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 12/Mirage Tower 12",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 13/Mirage Tower 13",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 14/Mirage Tower 14",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 15/Mirage Tower 15",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 16/Mirage Tower 16",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Mirage Tower/Mirage Tower 17/Mirage Tower 17",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Front Desk/Front Desk 00/Front Desk 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Front Desk/Front Desk 01/Front Desk 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Front Desk/Front Desk 02/Front Desk 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Front Desk/Front Desk 03/Front Desk 03",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

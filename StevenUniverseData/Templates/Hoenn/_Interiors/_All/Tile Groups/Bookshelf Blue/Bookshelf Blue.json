@@ -1,0 +1,41 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Bookshelf Blue/Bookshelf Blue 00/Bookshelf Blue 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Bookshelf Blue/Bookshelf Blue 01/Bookshelf Blue 01",
+            "x": 1,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Bookshelf Blue/Bookshelf Blue 02/Bookshelf Blue 02",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Bookshelf Blue/Bookshelf Blue 03/Bookshelf Blue 03",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Bookshelf Blue/Bookshelf Blue 04/Bookshelf Blue 04",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Bookshelf Blue/Bookshelf Blue 05/Bookshelf Blue 05",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,59 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep Tree Big/Mossdeep Tree Big 00/Mossdeep Tree Big 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep Tree Big/Mossdeep Tree Big 01/Mossdeep Tree Big 01",
+            "x": 1,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep Tree Big/Mossdeep Tree Big 02/Mossdeep Tree Big 02",
+            "x": 2,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep Tree Big/Mossdeep Tree Big 03/Mossdeep Tree Big 03",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep Tree Big/Mossdeep Tree Big 04/Mossdeep Tree Big 04",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep Tree Big/Mossdeep Tree Big 05/Mossdeep Tree Big 05",
+            "x": 2,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep Tree Big/Mossdeep Tree Big 06/Mossdeep Tree Big 06",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep Tree Big/Mossdeep Tree Big 07/Mossdeep Tree Big 07",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep Tree Big/Mossdeep Tree Big 08/Mossdeep Tree Big 08",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

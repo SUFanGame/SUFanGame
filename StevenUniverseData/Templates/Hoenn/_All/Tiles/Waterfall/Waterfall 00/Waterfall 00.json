@@ -1,0 +1,14 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Waterfall 00 00",
+        "Waterfall 00 01",
+        "Waterfall 00 02",
+        "Waterfall 00 03"
+    ],
+    "syncAnimation": true,
+    "secondsPerFrame": 0.15000000596046449,
+    "tileModeName": "Surface",
+    "tileLayerName": "Water",
+    "isGrounded": true
+}

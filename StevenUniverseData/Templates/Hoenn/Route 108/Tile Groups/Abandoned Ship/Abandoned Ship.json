@@ -1,0 +1,119 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 00/Abandoned Ship 00",
+            "x": 1,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 01/Abandoned Ship 01",
+            "x": 2,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 02/Abandoned Ship 02",
+            "x": 3,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 03/Abandoned Ship 03",
+            "x": 4,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 04/Abandoned Ship 04",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 05/Abandoned Ship 05",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 06/Abandoned Ship 06",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 07/Abandoned Ship 07",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 08/Abandoned Ship 08",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 09/Abandoned Ship 09",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 10/Abandoned Ship 10",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 11/Abandoned Ship 11",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 12/Abandoned Ship 12",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 13/Abandoned Ship 13",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 14/Abandoned Ship 14",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 15/Abandoned Ship 15",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 16/Abandoned Ship 16",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 17/Abandoned Ship 17",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 108/Tiles/Abandoned Ship/Abandoned Ship 18/Abandoned Ship 18",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Machine Gray/Machine Gray 00/Machine Gray 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Machine Gray/Machine Gray 01/Machine Gray 01",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

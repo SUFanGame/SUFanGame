@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Pokemon Center/Tiles/Map Poster Hoenn/Map Poster Hoenn 00/Map Poster Hoenn 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Pokemon Center/Tiles/Map Poster Hoenn/Map Poster Hoenn 01/Map Poster Hoenn 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Pokemon Center/Tiles/Map Poster Hoenn/Map Poster Hoenn 02/Map Poster Hoenn 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Pokemon Center/Tiles/Map Poster Hoenn/Map Poster Hoenn 03/Map Poster Hoenn 03",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/Harbor Crate/Harbor Crate 00/Harbor Crate 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/Harbor Crate/Harbor Crate 01/Harbor Crate 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/Harbor Crate/Harbor Crate 02/Harbor Crate 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/Harbor Crate/Harbor Crate 03/Harbor Crate 03",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

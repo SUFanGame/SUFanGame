@@ -1,0 +1,41 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Blue Umbrella/Blue Umbrella 04/Blue Umbrella 04",
+            "x": 0,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Blue Umbrella/Blue Umbrella 05/Blue Umbrella 05",
+            "x": 1,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Blue Umbrella/Blue Umbrella 02/Blue Umbrella 02",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Blue Umbrella/Blue Umbrella 03/Blue Umbrella 03",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Blue Umbrella/Blue Umbrella 00/Blue Umbrella 00",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Blue Umbrella/Blue Umbrella 01/Blue Umbrella 01",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

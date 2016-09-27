@@ -1,0 +1,17 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Pokemon Center/Tiles/Mat Red Center/Mat Red Center 00/Mat Red Center 00",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Pokemon Center/Tiles/Mat Red Center/Mat Red Center 01/Mat Red Center 01",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,101 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 00/Shack 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 01/Shack 01",
+            "x": 1,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 01/Shack 01",
+            "x": 2,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 02/Shack 02",
+            "x": 3,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 03/Shack 03",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 04/Shack 04",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 04/Shack 04",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 05/Shack 05",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 06/Shack 06",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 07/Shack 07",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 08/Shack 08",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 09/Shack 09",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 10/Shack 10",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 11/Shack 11",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 12/Shack 12",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Oldale/Tiles/Shack/Shack 13/Shack 13",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

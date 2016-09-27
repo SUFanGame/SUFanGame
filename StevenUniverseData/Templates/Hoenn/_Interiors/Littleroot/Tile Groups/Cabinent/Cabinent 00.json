@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Cabinent/Cabinent 00/Cabinent 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Cabinent/Cabinent 01/Cabinent 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Cabinent/Cabinent 02/Cabinent 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Cabinent/Cabinent 03/Cabinent 03",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

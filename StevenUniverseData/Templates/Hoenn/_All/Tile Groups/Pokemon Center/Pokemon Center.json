@@ -1,0 +1,101 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 00/Pokemon Center 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 01/Pokemon Center 01",
+            "x": 1,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 02/Pokemon Center 02",
+            "x": 2,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 03/Pokemon Center 03",
+            "x": 3,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 04/Pokemon Center 04",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 05/Pokemon Center 05",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 06/Pokemon Center 06",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 07/Pokemon Center 07",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 08/Pokemon Center 08",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 09/Pokemon Center 09",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 10/Pokemon Center 10",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 11/Pokemon Center 11",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 12/Pokemon Center 12",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 13/Pokemon Center 13",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 14/Pokemon Center 14",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Pokemon Center/Pokemon Center 15/Pokemon Center 15",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

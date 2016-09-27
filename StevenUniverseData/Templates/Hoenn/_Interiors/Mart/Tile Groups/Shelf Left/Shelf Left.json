@@ -1,0 +1,23 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Mart/Tiles/Shelf Left/Shelf Left 00/Shelf Left 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Mart/Tiles/Shelf Left/Shelf Left 01/Shelf Left 01",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Mart/Tiles/Shelf Left/Shelf Left 02/Shelf Left 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

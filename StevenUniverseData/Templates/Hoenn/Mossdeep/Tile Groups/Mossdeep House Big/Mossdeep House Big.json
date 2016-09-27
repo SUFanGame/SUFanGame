@@ -1,0 +1,155 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 00/Mossdeep House Big 00",
+            "x": 0,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 01/Mossdeep House Big 01",
+            "x": 1,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 01/Mossdeep House Big 01",
+            "x": 2,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 01/Mossdeep House Big 01",
+            "x": 3,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 02/Mossdeep House Big 02",
+            "x": 4,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 05/Mossdeep House Big 05",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 04/Mossdeep House Big 04",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 04/Mossdeep House Big 04",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 04/Mossdeep House Big 04",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 03/Mossdeep House Big 03",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 06/Mossdeep House Big 06",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 07/Mossdeep House Big 07",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 07/Mossdeep House Big 07",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 07/Mossdeep House Big 07",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 08/Mossdeep House Big 08",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 09/Mossdeep House Big 09",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 10/Mossdeep House Big 10",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 11/Mossdeep House Big 11",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 12/Mossdeep House Big 12",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 13/Mossdeep House Big 13",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 14/Mossdeep House Big 14",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 15/Mossdeep House Big 15",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 16/Mossdeep House Big 16",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 17/Mossdeep House Big 17",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mossdeep/Tiles/Mossdeep House Big/Mossdeep House Big 18/Mossdeep House Big 18",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

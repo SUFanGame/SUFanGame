@@ -1,0 +1,77 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 00/Market Tent 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 01/Market Tent 01",
+            "x": 1,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 04/Market Tent 04",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 05/Market Tent 05",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 06/Market Tent 06",
+            "x": 3,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 03/Market Tent 03",
+            "x": 3,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 09/Market Tent 09",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 10/Market Tent 10",
+            "x": 2,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 08/Market Tent 08",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 08/Market Tent 08",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 07/Market Tent 07",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Market Tent/Market Tent 02/Market Tent 02",
+            "x": 2,
+            "y": 2,
+            "elevation": 2
+        }
+    ]
+}

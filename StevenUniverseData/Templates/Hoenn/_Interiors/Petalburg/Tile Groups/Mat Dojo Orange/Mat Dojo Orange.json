@@ -1,0 +1,173 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 00/Mat Dojo Orange 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 01/Mat Dojo Orange 01",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 02/Mat Dojo Orange 02",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 02/Mat Dojo Orange 02",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 02/Mat Dojo Orange 02",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 03/Mat Dojo Orange 03",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 04/Mat Dojo Orange 04",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 05/Mat Dojo Orange 05",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 06/Mat Dojo Orange 06",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 07/Mat Dojo Orange 07",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 02/Mat Dojo Orange 02",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 08/Mat Dojo Orange 08",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 09/Mat Dojo Orange 09",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 10/Mat Dojo Orange 10",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 00/Mat Dojo Orange 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 11/Mat Dojo Orange 11",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 12/Mat Dojo Orange 12",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 02/Mat Dojo Orange 02",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 13/Mat Dojo Orange 13",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 14/Mat Dojo Orange 14",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 04/Mat Dojo Orange 04",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 05/Mat Dojo Orange 05",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 15/Mat Dojo Orange 15",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 02/Mat Dojo Orange 02",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 16/Mat Dojo Orange 16",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 02/Mat Dojo Orange 02",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 17/Mat Dojo Orange 17",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Orange/Mat Dojo Orange 10/Mat Dojo Orange 10",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

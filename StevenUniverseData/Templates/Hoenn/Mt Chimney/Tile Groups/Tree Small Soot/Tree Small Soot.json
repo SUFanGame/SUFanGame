@@ -1,0 +1,17 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Tree Small Soot/Tree Small Soot 00/Tree Small Soot 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Tree Small Soot/Tree Small Soot 01/Tree Small Soot 01",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

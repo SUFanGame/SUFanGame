@@ -1,0 +1,23 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Route 104/Tiles/Crate Flower/Crate Flower 00/Crate Flower 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Route 104/Tiles/Crate Flower/Crate Flower 03/Crate Flower 03",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Route 104/Tiles/Crate Flower/Crate Flower 01/Crate Flower 01",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

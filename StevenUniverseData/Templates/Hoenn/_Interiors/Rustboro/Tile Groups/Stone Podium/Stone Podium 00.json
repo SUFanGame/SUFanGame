@@ -1,0 +1,65 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Stone Podium/Stone Podium 00/Stone Podium 00",
+            "x": 3,
+            "y": 17,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Stone Podium/Stone Podium 01/Stone Podium 01",
+            "x": 4,
+            "y": 17,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Stone Podium/Stone Podium 02/Stone Podium 02",
+            "x": 5,
+            "y": 17,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Stone Podium/Stone Podium 03/Stone Podium 03",
+            "x": 6,
+            "y": 17,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Stone Podium/Stone Podium 04/Stone Podium 04",
+            "x": 7,
+            "y": 17,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Stone Podium/Stone Podium 05/Stone Podium 05",
+            "x": 3,
+            "y": 16,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Stone Podium/Stone Podium 06/Stone Podium 06",
+            "x": 4,
+            "y": 16,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Stone Podium/Stone Podium 07/Stone Podium 07",
+            "x": 5,
+            "y": 16,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Stone Podium/Stone Podium 08/Stone Podium 08",
+            "x": 6,
+            "y": 16,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Stone Podium/Stone Podium 09/Stone Podium 09",
+            "x": 7,
+            "y": 16,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,329 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 00/Warehouse Brown 00",
+            "x": -1,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 01/Warehouse Brown 01",
+            "x": 0,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 01/Warehouse Brown 01",
+            "x": 1,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 01/Warehouse Brown 01",
+            "x": 2,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 01/Warehouse Brown 01",
+            "x": 3,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 01/Warehouse Brown 01",
+            "x": 4,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 01/Warehouse Brown 01",
+            "x": 5,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 02/Warehouse Brown 02",
+            "x": 6,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 03/Warehouse Brown 03",
+            "x": 7,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 05/Warehouse Brown 05",
+            "x": -1,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 06/Warehouse Brown 06",
+            "x": 0,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 06/Warehouse Brown 06",
+            "x": 1,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 06/Warehouse Brown 06",
+            "x": 2,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 06/Warehouse Brown 06",
+            "x": 3,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 06/Warehouse Brown 06",
+            "x": 4,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 06/Warehouse Brown 06",
+            "x": 5,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 07/Warehouse Brown 07",
+            "x": 6,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 08/Warehouse Brown 08",
+            "x": 7,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 10/Warehouse Brown 10",
+            "x": -1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 11/Warehouse Brown 11",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 11/Warehouse Brown 11",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 11/Warehouse Brown 11",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 11/Warehouse Brown 11",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 11/Warehouse Brown 11",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 11/Warehouse Brown 11",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 11/Warehouse Brown 11",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 12/Warehouse Brown 12",
+            "x": 7,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 13/Warehouse Brown 13",
+            "x": -1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 14/Warehouse Brown 14",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 21/Warehouse Brown 21",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 14/Warehouse Brown 14",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 21/Warehouse Brown 21",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 14/Warehouse Brown 14",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 21/Warehouse Brown 21",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 14/Warehouse Brown 14",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 16/Warehouse Brown 16",
+            "x": 7,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 13/Warehouse Brown 13",
+            "x": -1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 14/Warehouse Brown 14",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 21/Warehouse Brown 21",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 21/Warehouse Brown 21",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 15/Warehouse Brown 15",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 21/Warehouse Brown 21",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 21/Warehouse Brown 21",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 14/Warehouse Brown 14",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 16/Warehouse Brown 16",
+            "x": 7,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 17/Warehouse Brown 17",
+            "x": -1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 18/Warehouse Brown 18",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 18/Warehouse Brown 18",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 18/Warehouse Brown 18",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 19/Warehouse Brown 19",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 18/Warehouse Brown 18",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 18/Warehouse Brown 18",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 18/Warehouse Brown 18",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Brown/Warehouse Brown 20/Warehouse Brown 20",
+            "x": 7,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

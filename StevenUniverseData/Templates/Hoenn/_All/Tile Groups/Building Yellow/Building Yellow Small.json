@@ -1,0 +1,125 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 00/Building Yellow 00",
+            "x": 0,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 01/Building Yellow 01",
+            "x": 1,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 01/Building Yellow 01",
+            "x": 2,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 02/Building Yellow 02",
+            "x": 3,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 03/Building Yellow 03",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 04/Building Yellow 04",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 04/Building Yellow 04",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 05/Building Yellow 05",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 06/Building Yellow 06",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 07/Building Yellow 07",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 07/Building Yellow 07",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 08/Building Yellow 08",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 09/Building Yellow 09",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 10/Building Yellow 10",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 10/Building Yellow 10",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 12/Building Yellow 12",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 13/Building Yellow 13",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 14/Building Yellow 14",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 14/Building Yellow 14",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_All/Tiles/Building Yellow/Building Yellow 16/Building Yellow 16",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

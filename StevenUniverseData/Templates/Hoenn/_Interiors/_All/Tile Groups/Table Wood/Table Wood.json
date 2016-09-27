@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Table Wood/Table Wood 00/Table Wood 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Table Wood/Table Wood 01/Table Wood 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Table Wood/Table Wood 02/Table Wood 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Table Wood/Table Wood 03/Table Wood 03",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

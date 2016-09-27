@@ -1,0 +1,155 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 06/Desk Black Gold 06",
+            "x": 0,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 07/Desk Black Gold 07",
+            "x": 1,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 07/Desk Black Gold 07",
+            "x": 2,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 07/Desk Black Gold 07",
+            "x": 3,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 08/Desk Black Gold 08",
+            "x": 4,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 09/Desk Black Gold 09",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 10/Desk Black Gold 10",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 10/Desk Black Gold 10",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 10/Desk Black Gold 10",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 11/Desk Black Gold 11",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 12/Desk Black Gold 12",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 13/Desk Black Gold 13",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 13/Desk Black Gold 13",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 13/Desk Black Gold 13",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 14/Desk Black Gold 14",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 15/Desk Black Gold 15",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 16/Desk Black Gold 16",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 16/Desk Black Gold 16",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 16/Desk Black Gold 16",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 17/Desk Black Gold 17",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 18/Desk Black Gold 18",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 19/Desk Black Gold 19",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 19/Desk Black Gold 19",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 19/Desk Black Gold 19",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Desk Black Gold/Desk Black Gold 20/Desk Black Gold 20",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

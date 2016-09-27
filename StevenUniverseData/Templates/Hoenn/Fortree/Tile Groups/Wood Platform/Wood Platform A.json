@@ -1,0 +1,119 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 00/Wood Platform 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 01/Wood Platform 01",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 01/Wood Platform 01",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 01/Wood Platform 01",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 02/Wood Platform 02",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 03/Wood Platform 03",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 04/Wood Platform 04",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 04/Wood Platform 04",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 04/Wood Platform 04",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 05/Wood Platform 05",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 03/Wood Platform 03",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 04/Wood Platform 04",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 04 A/Wood Platform 04 A",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 04/Wood Platform 04",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 05 A/Wood Platform 05 A",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 06/Wood Platform 06",
+            "x": 0,
+            "y": -1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 07/Wood Platform 07",
+            "x": 1,
+            "y": -1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 07/Wood Platform 07",
+            "x": 3,
+            "y": -1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Wood Platform/Wood Platform 08/Wood Platform 08",
+            "x": 4,
+            "y": -1,
+            "elevation": 0
+        }
+    ]
+}

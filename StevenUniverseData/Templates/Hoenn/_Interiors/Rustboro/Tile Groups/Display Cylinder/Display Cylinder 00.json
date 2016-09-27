@@ -1,0 +1,17 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Display Cylinder/Display Cylinder 00/Display Cylinder 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Rustboro/Tiles/Display Cylinder/Display Cylinder 01/Display Cylinder 01",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

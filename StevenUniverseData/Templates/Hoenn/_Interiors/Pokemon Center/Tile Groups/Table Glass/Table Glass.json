@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Pokemon Center/Tiles/Table Glass/Table Glass 00/Table Glass 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Pokemon Center/Tiles/Table Glass/Table Glass 01/Table Glass 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Pokemon Center/Tiles/Table Glass/Table Glass 02/Table Glass 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Pokemon Center/Tiles/Table Glass/Table Glass 03/Table Glass 03",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

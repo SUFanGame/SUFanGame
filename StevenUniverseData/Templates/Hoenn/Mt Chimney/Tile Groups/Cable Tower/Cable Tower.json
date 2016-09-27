@@ -1,0 +1,23 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable Tower/Cable Tower 00/Cable Tower 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable Tower/Cable Tower 01/Cable Tower 01",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable Tower/Cable Tower 02/Cable Tower 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

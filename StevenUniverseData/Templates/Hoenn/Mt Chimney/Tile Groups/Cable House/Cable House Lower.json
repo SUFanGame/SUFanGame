@@ -1,0 +1,179 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 23/Cable House 23",
+            "x": 0,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 01/Cable House 01",
+            "x": 1,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 01/Cable House 01",
+            "x": 2,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 24/Cable House 24",
+            "x": 3,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 25/Cable House 25",
+            "x": 4,
+            "y": 4,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 26/Cable House 26",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 27/Cable House 27",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 27/Cable House 27",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 28/Cable House 28",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 29/Cable House 29",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 30/Cable House 30",
+            "x": 5,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 31/Cable House 31",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 10/Cable House 10",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 10/Cable House 10",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 32/Cable House 32",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 33/Cable House 33",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 34/Cable House 34",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 35/Cable House 35",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 14/Cable House 14",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 15/Cable House 15",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 36/Cable House 36",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 37/Cable House 37",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 34/Cable House 34",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 38/Cable House 38",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 20/Cable House 20",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 21/Cable House 21",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 39/Cable House 39",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 40/Cable House 40",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Mt Chimney/Tiles/Cable House/Cable House 41/Cable House 41",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

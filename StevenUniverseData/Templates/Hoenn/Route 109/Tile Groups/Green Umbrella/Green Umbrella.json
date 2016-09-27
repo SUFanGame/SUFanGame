@@ -1,0 +1,41 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Green Umbrella/Green Umbrella 04/Green Umbrella 04",
+            "x": 0,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Green Umbrella/Green Umbrella 05/Green Umbrella 05",
+            "x": 1,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Green Umbrella/Green Umbrella 02/Green Umbrella 02",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Green Umbrella/Green Umbrella 03/Green Umbrella 03",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Green Umbrella/Green Umbrella 00/Green Umbrella 00",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 109/Tiles/Green Umbrella/Green Umbrella 01/Green Umbrella 01",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

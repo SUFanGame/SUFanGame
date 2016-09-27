@@ -1,0 +1,479 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 00/Weather Institute 00",
+            "x": 1,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 01/Weather Institute 01",
+            "x": 2,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 02/Weather Institute 02",
+            "x": 3,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 03/Weather Institute 03",
+            "x": 4,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 04/Weather Institute 04",
+            "x": 5,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 02/Weather Institute 02",
+            "x": 6,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 03/Weather Institute 03",
+            "x": 7,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 05/Weather Institute 05",
+            "x": 8,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 06/Weather Institute 06",
+            "x": 9,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 07/Weather Institute 07",
+            "x": 0,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 08/Weather Institute 08",
+            "x": 1,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 09/Weather Institute 09",
+            "x": 2,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 10/Weather Institute 10",
+            "x": 3,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 11/Weather Institute 11",
+            "x": 4,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 11/Weather Institute 11",
+            "x": 5,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 11/Weather Institute 11",
+            "x": 6,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 12/Weather Institute 12",
+            "x": 7,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 13/Weather Institute 13",
+            "x": 8,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 14/Weather Institute 14",
+            "x": 9,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 15/Weather Institute 15",
+            "x": 10,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 16/Weather Institute 16",
+            "x": 0,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 17/Weather Institute 17",
+            "x": 1,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 18/Weather Institute 18",
+            "x": 2,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 19/Weather Institute 19",
+            "x": 3,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 11/Weather Institute 11",
+            "x": 4,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 11/Weather Institute 11",
+            "x": 5,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 11/Weather Institute 11",
+            "x": 6,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 20/Weather Institute 20",
+            "x": 7,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 21/Weather Institute 21",
+            "x": 8,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 22/Weather Institute 22",
+            "x": 9,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 23/Weather Institute 23",
+            "x": 10,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 24/Weather Institute 24",
+            "x": 0,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 25/Weather Institute 25",
+            "x": 1,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 26/Weather Institute 26",
+            "x": 2,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 27/Weather Institute 27",
+            "x": 3,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 28/Weather Institute 28",
+            "x": 4,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 29/Weather Institute 29",
+            "x": 5,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 27/Weather Institute 27",
+            "x": 6,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 28/Weather Institute 28",
+            "x": 7,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 30/Weather Institute 30",
+            "x": 8,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 31/Weather Institute 31",
+            "x": 9,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 32/Weather Institute 32",
+            "x": 10,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 33/Weather Institute 33",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 34/Weather Institute 34",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 35/Weather Institute 35",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 36/Weather Institute 36",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 37/Weather Institute 37",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 38/Weather Institute 38",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 36/Weather Institute 36",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 37/Weather Institute 37",
+            "x": 7,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 39/Weather Institute 39",
+            "x": 8,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 40/Weather Institute 40",
+            "x": 9,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 41/Weather Institute 41",
+            "x": 10,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 42/Weather Institute 42",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 43/Weather Institute 43",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 44/Weather Institute 44",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 45/Weather Institute 45",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 46/Weather Institute 46",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 47/Weather Institute 47",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 45/Weather Institute 45",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 46/Weather Institute 46",
+            "x": 7,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 48/Weather Institute 48",
+            "x": 8,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 49/Weather Institute 49",
+            "x": 9,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 50/Weather Institute 50",
+            "x": 10,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 51/Weather Institute 51",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 52/Weather Institute 52",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 53/Weather Institute 53",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 54/Weather Institute 54",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 55/Weather Institute 55",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 53/Weather Institute 53",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 54/Weather Institute 54",
+            "x": 7,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 56/Weather Institute 56",
+            "x": 8,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 57/Weather Institute 57",
+            "x": 9,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 58/Weather Institute 58",
+            "x": 10,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 59/Weather Institute 59",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 60/Weather Institute 60",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 61/Weather Institute 61",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 59/Weather Institute 59",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 119/Tiles/Weather Institute/Weather Institute 60/Weather Institute 60",
+            "x": 7,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Salt Water 00 00",
+        "Salt Water 00 01",
+        "Salt Water 00 02",
+        "Salt Water 00 03",
+        "Salt Water 00 04",
+        "Salt Water 00 05",
+        "Salt Water 00 06",
+        "Salt Water 00 07"
+    ],
+    "syncAnimation": true,
+    "secondsPerFrame": 0.15000000596046449,
+    "tileModeName": "Normal",
+    "tileLayerName": "Water",
+    "isGrounded": true
+}

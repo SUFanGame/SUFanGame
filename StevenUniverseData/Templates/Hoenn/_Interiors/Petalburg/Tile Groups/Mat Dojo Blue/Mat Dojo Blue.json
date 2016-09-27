@@ -1,0 +1,173 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 00/Mat Dojo Blue 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 01/Mat Dojo Blue 01",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 02/Mat Dojo Blue 02",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 02/Mat Dojo Blue 02",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 02/Mat Dojo Blue 02",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 03/Mat Dojo Blue 03",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 04/Mat Dojo Blue 04",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 05/Mat Dojo Blue 05",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 06/Mat Dojo Blue 06",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 07/Mat Dojo Blue 07",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 02/Mat Dojo Blue 02",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 08/Mat Dojo Blue 08",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 09/Mat Dojo Blue 09",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 10/Mat Dojo Blue 10",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 00/Mat Dojo Blue 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 11/Mat Dojo Blue 11",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 12/Mat Dojo Blue 12",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 02/Mat Dojo Blue 02",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 13/Mat Dojo Blue 13",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 14/Mat Dojo Blue 14",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 04/Mat Dojo Blue 04",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 05/Mat Dojo Blue 05",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 15/Mat Dojo Blue 15",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 02/Mat Dojo Blue 02",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 16/Mat Dojo Blue 16",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 02/Mat Dojo Blue 02",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 17/Mat Dojo Blue 17",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Mat Dojo Blue/Mat Dojo Blue 10/Mat Dojo Blue 10",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

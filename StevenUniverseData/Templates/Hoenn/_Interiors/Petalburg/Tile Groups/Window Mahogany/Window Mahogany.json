@@ -1,0 +1,29 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Window Mahogany/Window Mahogany 00/Window Mahogany 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Window Mahogany/Window Mahogany 01/Window Mahogany 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Window Mahogany/Window Mahogany 02/Window Mahogany 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Window Mahogany/Window Mahogany 03/Window Mahogany 03",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

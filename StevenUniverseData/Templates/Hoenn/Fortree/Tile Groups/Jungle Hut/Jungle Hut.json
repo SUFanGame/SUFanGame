@@ -1,0 +1,59 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Jungle Hut/Jungle Hut 00/Jungle Hut 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Jungle Hut/Jungle Hut 01/Jungle Hut 01",
+            "x": 1,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Jungle Hut/Jungle Hut 02/Jungle Hut 02",
+            "x": 2,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Jungle Hut/Jungle Hut 03/Jungle Hut 03",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Jungle Hut/Jungle Hut 04/Jungle Hut 04",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Jungle Hut/Jungle Hut 05/Jungle Hut 05",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Jungle Hut/Jungle Hut 06/Jungle Hut 06",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Jungle Hut/Jungle Hut 07/Jungle Hut 07",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Fortree/Tiles/Jungle Hut/Jungle Hut 08/Jungle Hut 08",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

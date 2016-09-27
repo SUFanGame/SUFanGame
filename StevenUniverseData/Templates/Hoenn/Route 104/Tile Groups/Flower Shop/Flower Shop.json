@@ -1,0 +1,149 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 00/Flower Shop 00",
+            "x": 0,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 01/Flower Shop 01",
+            "x": 1,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 01/Flower Shop 01",
+            "x": 2,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 01/Flower Shop 01",
+            "x": 3,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 01/Flower Shop 01",
+            "x": 4,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 02/Flower Shop 02",
+            "x": 5,
+            "y": 3,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 03/Flower Shop 03",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 04/Flower Shop 04",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 04/Flower Shop 04",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 04/Flower Shop 04",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 04/Flower Shop 04",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 05/Flower Shop 05",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 06/Flower Shop 06",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 07/Flower Shop 07",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 08/Flower Shop 08",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 09/Flower Shop 09",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 10/Flower Shop 10",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 11/Flower Shop 11",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 12/Flower Shop 12",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 13/Flower Shop 13",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 14/Flower Shop 14",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 15/Flower Shop 15",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 16/Flower Shop 16",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 104/Tiles/Flower Shop/Flower Shop 17/Flower Shop 17",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

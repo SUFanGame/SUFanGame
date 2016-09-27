@@ -1,0 +1,173 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 00/Club 00",
+            "x": 0,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 01/Club 01",
+            "x": 1,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 01/Club 01",
+            "x": 2,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 01/Club 01",
+            "x": 3,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 02/Club 02",
+            "x": 4,
+            "y": 5,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 03/Club 03",
+            "x": 0,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 04/Club 04",
+            "x": 1,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 04/Club 04",
+            "x": 2,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 04/Club 04",
+            "x": 3,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 05/Club 05",
+            "x": 4,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 06/Club 06",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 07/Club 07",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 07/Club 07",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 07/Club 07",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 08/Club 08",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 09/Club 09",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 10/Club 10",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 11/Club 11",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 12/Club 12",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 13/Club 13",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 14/Club 14",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 15/Club 15",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 16/Club 16",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 17/Club 17",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 18/Club 18",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 19/Club 19",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 20/Club 20",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Slateport/Tiles/Club/Club 21/Club 21",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

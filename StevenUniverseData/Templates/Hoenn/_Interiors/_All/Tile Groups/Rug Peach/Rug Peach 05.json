@@ -1,0 +1,125 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 00/Rug Peach 00",
+            "x": 7,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 01/Rug Peach 01",
+            "x": 8,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 01/Rug Peach 01",
+            "x": 9,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 01/Rug Peach 01",
+            "x": 10,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 02/Rug Peach 02",
+            "x": 11,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 03/Rug Peach 03",
+            "x": 7,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 04/Rug Peach 04",
+            "x": 8,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 04/Rug Peach 04",
+            "x": 9,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 04/Rug Peach 04",
+            "x": 10,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 05/Rug Peach 05",
+            "x": 11,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 03/Rug Peach 03",
+            "x": 7,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 04/Rug Peach 04",
+            "x": 8,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 04/Rug Peach 04",
+            "x": 9,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 04/Rug Peach 04",
+            "x": 10,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 05/Rug Peach 05",
+            "x": 11,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 06/Rug Peach 06",
+            "x": 7,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 07/Rug Peach 07",
+            "x": 8,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 07/Rug Peach 07",
+            "x": 9,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 07/Rug Peach 07",
+            "x": 10,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Rug Peach/Rug Peach 08/Rug Peach 08",
+            "x": 11,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

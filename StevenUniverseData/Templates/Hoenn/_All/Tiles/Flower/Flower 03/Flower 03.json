@@ -1,0 +1,14 @@
+{
+    "serializedType": "TileTemplate",
+    "animationSpriteNames": [
+        "Flower 03 00",
+        "Flower 03 01",
+        "Flower 03 00",
+        "Flower 03 02"
+    ],
+    "syncAnimation": false,
+    "secondsPerFrame": 0.25,
+    "tileModeName": "Normal",
+    "tileLayerName": "Main",
+    "isGrounded": true
+}

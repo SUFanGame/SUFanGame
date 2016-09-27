@@ -1,0 +1,191 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 00/Battle Tower 00",
+            "x": 2,
+            "y": 6,
+            "elevation": 7
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 01/Battle Tower 01",
+            "x": 0,
+            "y": 5,
+            "elevation": 6
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 02/Battle Tower 02",
+            "x": 1,
+            "y": 5,
+            "elevation": 6
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 03/Battle Tower 03",
+            "x": 2,
+            "y": 5,
+            "elevation": 6
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 04/Battle Tower 04",
+            "x": 3,
+            "y": 5,
+            "elevation": 6
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 05/Battle Tower 05",
+            "x": 4,
+            "y": 5,
+            "elevation": 6
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 06/Battle Tower 06",
+            "x": 0,
+            "y": 4,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 07/Battle Tower 07",
+            "x": 1,
+            "y": 4,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 08/Battle Tower 08",
+            "x": 2,
+            "y": 4,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 09/Battle Tower 09",
+            "x": 3,
+            "y": 4,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 10/Battle Tower 10",
+            "x": 4,
+            "y": 4,
+            "elevation": 5
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 11/Battle Tower 11",
+            "x": 0,
+            "y": 3,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 12/Battle Tower 12",
+            "x": 1,
+            "y": 3,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 13/Battle Tower 13",
+            "x": 2,
+            "y": 3,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 14/Battle Tower 14",
+            "x": 3,
+            "y": 3,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 15/Battle Tower 15",
+            "x": 4,
+            "y": 3,
+            "elevation": 4
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 16/Battle Tower 16",
+            "x": 0,
+            "y": 2,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 17/Battle Tower 17",
+            "x": 1,
+            "y": 2,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 18/Battle Tower 18",
+            "x": 2,
+            "y": 2,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 19/Battle Tower 19",
+            "x": 3,
+            "y": 2,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 20/Battle Tower 20",
+            "x": 4,
+            "y": 2,
+            "elevation": 3
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 21/Battle Tower 21",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 22/Battle Tower 22",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 23/Battle Tower 23",
+            "x": 2,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 24/Battle Tower 24",
+            "x": 3,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 25/Battle Tower 25",
+            "x": 4,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 21/Battle Tower 21",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 22/Battle Tower 22",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 23/Battle Tower 23",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 24/Battle Tower 24",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Route 111/Tiles/Battle Tower/Battle Tower 25/Battle Tower 25",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

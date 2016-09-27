@@ -1,0 +1,65 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Podium Mahogany/Podium Mahogany 00/Podium Mahogany 00",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Podium Mahogany/Podium Mahogany 01/Podium Mahogany 01",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Podium Mahogany/Podium Mahogany 02/Podium Mahogany 02",
+            "x": 2,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Podium Mahogany/Podium Mahogany 03/Podium Mahogany 03",
+            "x": 3,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Podium Mahogany/Podium Mahogany 04/Podium Mahogany 04",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Podium Mahogany/Podium Mahogany 05/Podium Mahogany 05",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Podium Mahogany/Podium Mahogany 06/Podium Mahogany 06",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Podium Mahogany/Podium Mahogany 07/Podium Mahogany 07",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Podium Mahogany/Podium Mahogany 08/Podium Mahogany 08",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Petalburg/Tiles/Podium Mahogany/Podium Mahogany 09/Podium Mahogany 09",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

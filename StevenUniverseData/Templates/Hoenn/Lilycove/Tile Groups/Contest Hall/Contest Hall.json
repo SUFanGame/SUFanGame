@@ -1,0 +1,299 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 00/Contest Hall 00",
+            "x": 0,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 01/Contest Hall 01",
+            "x": 1,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 01/Contest Hall 01",
+            "x": 2,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 01/Contest Hall 01",
+            "x": 3,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 01/Contest Hall 01",
+            "x": 4,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 01/Contest Hall 01",
+            "x": 5,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 02/Contest Hall 02",
+            "x": 6,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 03/Contest Hall 03",
+            "x": 0,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 1,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 2,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 3,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 4,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 5,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 05/Contest Hall 05",
+            "x": 6,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 03/Contest Hall 03",
+            "x": 0,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 1,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 2,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 3,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 4,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 5,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 05/Contest Hall 05",
+            "x": 6,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 03/Contest Hall 03",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 04/Contest Hall 04",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 05/Contest Hall 05",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 06/Contest Hall 06",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 07/Contest Hall 07",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 07/Contest Hall 07",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 07/Contest Hall 07",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 07/Contest Hall 07",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 07/Contest Hall 07",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 08/Contest Hall 08",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 09/Contest Hall 09",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 10/Contest Hall 10",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 11/Contest Hall 11",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 12/Contest Hall 12",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 13/Contest Hall 13",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 10/Contest Hall 10",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 14/Contest Hall 14",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 15/Contest Hall 15",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 16/Contest Hall 16",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 17/Contest Hall 17",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 18/Contest Hall 18",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 19/Contest Hall 19",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 16/Contest Hall 16",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Lilycove/Tiles/Contest Hall/Contest Hall 20/Contest Hall 20",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Clock Pink/Clock Pink 00/Clock Pink 00",
+            "x": 3,
+            "y": 7,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Clock Pink/Clock Pink 01/Clock Pink 01",
+            "x": 3,
+            "y": 6,
+            "elevation": 0
+        }
+    ]
+}

@@ -1,0 +1,383 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 00/Warehouse Gray 00",
+            "x": 0,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 01/Warehouse Gray 01",
+            "x": 1,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 01/Warehouse Gray 01",
+            "x": 2,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 01/Warehouse Gray 01",
+            "x": 3,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 01/Warehouse Gray 01",
+            "x": 4,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 01/Warehouse Gray 01",
+            "x": 5,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 02/Warehouse Gray 02",
+            "x": 6,
+            "y": 8,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 03/Warehouse Gray 03",
+            "x": 0,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 04/Warehouse Gray 04",
+            "x": 1,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 04/Warehouse Gray 04",
+            "x": 2,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 04/Warehouse Gray 04",
+            "x": 3,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 04/Warehouse Gray 04",
+            "x": 4,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 04/Warehouse Gray 04",
+            "x": 5,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 05/Warehouse Gray 05",
+            "x": 6,
+            "y": 7,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 06/Warehouse Gray 06",
+            "x": 0,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 07/Warehouse Gray 07",
+            "x": 1,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 07/Warehouse Gray 07",
+            "x": 2,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 07/Warehouse Gray 07",
+            "x": 3,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 07/Warehouse Gray 07",
+            "x": 4,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 07/Warehouse Gray 07",
+            "x": 5,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 08/Warehouse Gray 08",
+            "x": 6,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 09/Warehouse Gray 09",
+            "x": 0,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 1,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 2,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 3,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 4,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 5,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 12/Warehouse Gray 12",
+            "x": 6,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 09/Warehouse Gray 09",
+            "x": 0,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 1,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 2,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 3,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 4,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 5,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 12/Warehouse Gray 12",
+            "x": 6,
+            "y": 4,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 09/Warehouse Gray 09",
+            "x": 0,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 1,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 2,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 3,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 4,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 5,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 12/Warehouse Gray 12",
+            "x": 6,
+            "y": 3,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 09/Warehouse Gray 09",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 1,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 2,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 3,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 4,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 5,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 12/Warehouse Gray 12",
+            "x": 6,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 09/Warehouse Gray 09",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 11/Warehouse Gray 11",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 13/Warehouse Gray 13",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 10/Warehouse Gray 10",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 12/Warehouse Gray 12",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 14/Warehouse Gray 14",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 15/Warehouse Gray 15",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 16/Warehouse Gray 16",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 15/Warehouse Gray 15",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 15/Warehouse Gray 15",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 15/Warehouse Gray 15",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/Rustboro/Tiles/Warehouse Gray/Warehouse Gray 17/Warehouse Gray 17",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

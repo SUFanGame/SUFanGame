@@ -1,0 +1,53 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Door/Door 00/Door 00",
+            "x": 6,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Door/Door 01/Door 01",
+            "x": 7,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Door/Door 02/Door 02",
+            "x": 8,
+            "y": 7,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Door/Door 03/Door 03",
+            "x": 6,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Door/Door 08/Door 08",
+            "x": 7,
+            "y": 6,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Door/Door 05/Door 05",
+            "x": 8,
+            "y": 6,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Door/Door 06/Door 06",
+            "x": 6,
+            "y": 5,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Littleroot/Tiles/Door/Door 07/Door 07",
+            "x": 8,
+            "y": 5,
+            "elevation": 0
+        }
+    ]
+}

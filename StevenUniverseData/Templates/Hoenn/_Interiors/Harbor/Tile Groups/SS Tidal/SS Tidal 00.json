@@ -1,0 +1,119 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 00/SS Tidal 00",
+            "x": 1,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 01/SS Tidal 01",
+            "x": 2,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 02/SS Tidal 02",
+            "x": 3,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 03/SS Tidal 03",
+            "x": 4,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 04/SS Tidal 04",
+            "x": 5,
+            "y": 2,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 05/SS Tidal 05",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 06/SS Tidal 06",
+            "x": 1,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 07/SS Tidal 07",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 08/SS Tidal 08",
+            "x": 3,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 09/SS Tidal 09",
+            "x": 4,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 10/SS Tidal 10",
+            "x": 5,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 11/SS Tidal 11",
+            "x": 6,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 12/SS Tidal 12",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 13/SS Tidal 13",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 14/SS Tidal 14",
+            "x": 2,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 15/SS Tidal 15",
+            "x": 3,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 16/SS Tidal 16",
+            "x": 4,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 17/SS Tidal 17",
+            "x": 5,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Harbor/Tiles/SS Tidal/SS Tidal 18/SS Tidal 18",
+            "x": 6,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

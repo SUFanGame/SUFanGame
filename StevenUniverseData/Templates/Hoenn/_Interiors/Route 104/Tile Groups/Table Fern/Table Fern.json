@@ -1,0 +1,23 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Route 104/Tiles/Table Fern/Table Fern 00/Table Fern 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Route 104/Tiles/Table Fern/Table Fern 01/Table Fern 01",
+            "x": 0,
+            "y": 1,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/Route 104/Tiles/Table Fern/Table Fern 02/Table Fern 02",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}

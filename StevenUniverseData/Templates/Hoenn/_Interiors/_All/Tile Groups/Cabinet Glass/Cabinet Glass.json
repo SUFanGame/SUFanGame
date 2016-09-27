@@ -1,0 +1,41 @@
+{
+    "serializedType": "GroupTemplate",
+    "tiles": [
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Cabinet Glass/Cabinet Glass 00/Cabinet Glass 00",
+            "x": 0,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Cabinet Glass/Cabinet Glass 01/Cabinet Glass 01",
+            "x": 1,
+            "y": 2,
+            "elevation": 2
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Cabinet Glass/Cabinet Glass 02/Cabinet Glass 02",
+            "x": 0,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Cabinet Glass/Cabinet Glass 03/Cabinet Glass 03",
+            "x": 1,
+            "y": 1,
+            "elevation": 1
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Cabinet Glass/Cabinet Glass 04/Cabinet Glass 04",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+        },
+        {
+            "templateAppDataPath": "Templates/Hoenn/_Interiors/_All/Tiles/Cabinet Glass/Cabinet Glass 05/Cabinet Glass 05",
+            "x": 1,
+            "y": 0,
+            "elevation": 0
+        }
+    ]
+}
