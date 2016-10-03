@@ -6,6 +6,8 @@ using System.IO;
 using StevenUniverse.FanGame.OverworldEditor;
 using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Instances;
+using StevenUniverse.FanGameEditor.Tools;
+using System.Linq;
 
 // TODO: We'll have to be able to load existing world data
 //       into the system so we know our world bounds and can poll
@@ -31,15 +33,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         // Currently selected tile
         [SerializeField]
-        int selectedTile_ = 0;
+        int selectedTileIndex_ = 0;
 
         // Scroll Pos, used by the sprite grid.
         [SerializeField]
         Vector2 scrollPos_;
 
         static MapEditor instance_;
-
-        CoordinatedList<Instance> tileInstances_ = new CoordinatedList<Instance>();
 
         /// <summary>
         /// Object in the scene that all map-editor-generated objects will be parented to.
@@ -50,9 +50,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         [SerializeField]
         int currentElevation_ = 0;
 
+        PositionMap<TileInstanceEditor> positionMap_ = new PositionMap<TileInstanceEditor>();
+
+        System.Predicate<TileInstanceEditor> elevationPredicate_ = null;
+
         protected override void OnEnable()
         {
             base.OnEnable();
+            titleContent.text = "MapEditor";
             instance_ = this;
 
             tileInstanceParent_ = GameObject.Find("MapEditorTiles");
@@ -69,6 +74,16 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         protected override void OnSceneGUI(SceneView view)
         {
             base.OnSceneGUI(view);
+
+            if (!SceneEditorUtil.EditMode_)
+                return;
+
+            Handles.BeginGUI();
+            
+            GUILayout.Label("Raise/Lower Elevation: Shift W/S");
+            GUILayout.Label("Next/Previous Tile: Shift E/Q");
+
+            Handles.EndGUI();
         }
 
         void OnFocus()
@@ -104,12 +119,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             // Can't use gui functions to draw directly into the scene view.
             Handles.BeginGUI();
 
-            instance_.selectedTile_ = Mathf.Clamp(instance_.selectedTile_, 0, instance_.sprites_.Count - 1);
+            instance_.selectedTileIndex_ = Mathf.Clamp(instance_.selectedTileIndex_, 0, instance_.sprites_.Count - 1);
 
             // Draw a semi-transparent image of our current tile on the cursor.
             col.a = .25f;
             GUI.color = col;
-            SceneEditorUtil.DrawSprite(Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y), instance_.sprites_[instance_.selectedTile_]);
+            SceneEditorUtil.DrawSprite(Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y), instance_.sprites_[instance_.selectedTileIndex_]);
             GUI.color = oldColor;
 
             // Draw a label showing the cursor's current elevation.
@@ -137,11 +152,21 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 }
             }
 
+            if( GUILayout.Button("WriteToJSON") )
+            {
+                Debug.Log("Whoops, I'm not implemented yet!");
+            }
+
+            if ( GUILayout.Button("Clear") )
+            {
+                Clear();
+            }
+
             if( instances_.Count > 0 )
             {
                 // Draw our sprite grid from our cached list.
-                selectedTile_ = SceneEditorUtil.DrawSpriteGrid(
-                    selectedTile_, sprites_, 50f, 
+                selectedTileIndex_ = SceneEditorUtil.DrawSpriteGrid(
+                    selectedTileIndex_, sprites_, 50f, 
                     Screen.height - 75,
                     Color.white,
                     new Color(.25f, .25f, .25f),
@@ -198,6 +223,45 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             if (instances_.Count == 0)
                 return;
 
+            if( button ==  0 )
+            {
+                // floor position to grid
+                for (int i = 0; i < 2; ++i)
+                    cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
+                cursorWorldPos.z = 0;
+
+                // Get the list of instances at our cursor position
+                var listOfInstances = positionMap_.Get(cursorWorldPos);
+                // Cache our currently selected tile
+                var selected = instances_[selectedTileIndex_];
+
+
+                GameObject instanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
+                Undo.RegisterCreatedObjectUndo(instanceGO, "PaintedTileInstance");
+                // If there's a list
+                if (listOfInstances != null)
+                {
+                    // There is probably an easier/more efficient way to do this.
+                    System.Predicate<TileInstanceEditor> match = (a) => a.Elevation == currentElevation_;
+                    // Then we check to see if any tiles exist at our target elevation.
+                    var atElevation = listOfInstances.Find(match);
+                    if (atElevation != null)
+                    {
+                       // Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
+                        Undo.DestroyObjectImmediate(atElevation.gameObject);
+                        positionMap_.RemoveAll(cursorWorldPos, match);
+                    }
+                }
+
+                var instance = instanceGO.GetComponent<TileInstanceEditor>();
+                instance.transform.position = cursorWorldPos;
+                instance.Elevation = currentElevation_;
+                cursorWorldPos.z = currentElevation_;
+                instance.name = string.Join( ":", new string[] { cursorWorldPos.ToString(), instance.name } );
+                instance.transform.SetParent(tileInstanceParent_.transform);
+
+                positionMap_.AddValue(cursorWorldPos, instance);
+            }
 
         }
 
@@ -205,17 +269,55 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             base.OnKeyDown(key);
 
-            if (Event.current.shift && key == KeyCode.W)
+            if( Event.current.shift )
             {
-                ++currentElevation_;
-            }
-            else if (Event.current.shift && key == KeyCode.S)
-            {
-                --currentElevation_;
+                if (key == KeyCode.W)
+                {
+                    ++currentElevation_;
+                }
+                else if (key == KeyCode.S)
+                {
+                    --currentElevation_;
+                }
+                else if ( key == KeyCode.E )
+                {
+                    ++selectedTileIndex_;
+                }
+                else if ( key == KeyCode.Q )
+                {
+                    --selectedTileIndex_;
+                }
             }
 
             currentElevation_ = Mathf.Clamp(currentElevation_, 0, int.MaxValue);
+            selectedTileIndex_ = Mathf.Clamp(selectedTileIndex_, 0, instances_.Count - 1);
+            
+        }
 
+        // Clear all tile instances in the current scene. Right now the position map is not serializable so there's
+        // no way for unity to rebuild it if we tried to undo this.
+        void Clear()
+        {
+            if (!EditorUtility.DisplayDialog(
+                "Destroy all Tile Instances",
+                "Are you sure you want to destroy ALL TILE INSTANCES in the current scene? You can't undo this.",
+                "Yes", "No"))
+                return;
+
+            var instances = FindObjectsOfType<TileInstanceEditor>();
+            for (int i = instances.Length - 1; i >= 0; --i)
+            {
+                if( instances[i] != null && instances_[i].gameObject != null )
+                    DestroyImmediate(instances[i].transform.root.gameObject, false);
+            }
+
+            positionMap_.Clear();
+        }
+
+        void Update()
+        {
+            if (tileInstanceParent_ == null)
+                tileInstanceParent_ = new GameObject("MapEditorTiles");
         }
 
     }
