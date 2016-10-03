@@ -305,7 +305,7 @@ namespace StevenUniverse.FanGameEditor.Tools
         }
 
         [MenuItem("Tools/SUFanGame/Overworld/Save ALL Open Chunks")]
-        public static void SaveAllOpenChunks()
+        public static bool SaveAllOpenChunks()
         {
             //Verify that the user wants to perform this time consuming operation
             if (
@@ -313,7 +313,7 @@ namespace StevenUniverse.FanGameEditor.Tools
                     "This tool will save ALL open Chunks. This could take a very long time. Are you sure you wish to proceed?",
                     "Yes", "Cancel"))
             {
-                return;
+                return false;
             }
 
             //Sort the InstanceEditors into Chunks
@@ -324,6 +324,8 @@ namespace StevenUniverse.FanGameEditor.Tools
                 SaveChunk(child.gameObject);
                 //SaveChunk(child.name);
             }
+
+            return true;
         }
 
         [MenuItem("Tools/SUFanGame/Overworld/Sort All InstanceEditors Into Chunks")]

@@ -63,6 +63,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             {
                 SceneEditorUtil.EditMode_ = !SceneEditorUtil.EditMode_;
             }
+
+            if (!SceneEditorUtil.EditMode_)
+                return;
+
+            ProcessKeyboardInput();
         }
 
         protected virtual void OnSceneGUI(SceneView view)
@@ -78,7 +83,17 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
                 Handles.EndGUI();
             }
+            else
+                return;
 
+            ProcessKeyboardInput();
+            ProcessMouseInput();
+
+            Repaint();
+        }
+
+        void ProcessKeyboardInput()
+        {
             Event e = Event.current;
             if (e.isKey)
             {
@@ -89,6 +104,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 }
             }
 
+        }
+
+        void ProcessMouseInput()
+        {
+            Event e = Event.current;
             if (e.isMouse)
             {
                 Vector2 worldPos = HandleUtility.GUIPointToWorldRay(e.mousePosition).origin;
@@ -105,8 +125,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     OnMouseDrag(e.button, worldPos);
                 }
             }
-
-            Repaint();
         }
 
     }

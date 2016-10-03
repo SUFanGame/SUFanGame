@@ -4,7 +4,16 @@ using System.Collections.Generic;
 using UnityEditor;
 using System.IO;
 using StevenUniverse.FanGame.OverworldEditor;
+using StevenUniverse.FanGame.Overworld;
+using StevenUniverse.FanGame.Overworld.Instances;
 
+// TODO: We'll have to be able to load existing world data
+//       into the system so we know our world bounds and can poll
+//       tiles quickly. Maybe just a button that iterates through all chunks.
+//       As tiles are added we need to keep track as well - maybe use coordinated list?
+//       We can populate the list via TileEditorInstance.instance. But what about cases
+//       where We need to refer back to the TileEditorInstance from an instance in the coordinated list?
+//       May need to use a custom system to track editor instances by position, similar to coordinated list
 namespace StevenUniverse.FanGameEditor.SceneEditing
 {
     public class MapEditor : SceneEditorWindow
@@ -30,11 +39,16 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         static MapEditor instance_;
 
+        CoordinatedList<Instance> tileInstances_ = new CoordinatedList<Instance>();
+
         /// <summary>
         /// Object in the scene that all map-editor-generated objects will be parented to.
         /// </summary>
         [SerializeField]
         GameObject tileInstanceParent_;
+
+        [SerializeField]
+        int currentElevation_ = 0;
 
         protected override void OnEnable()
         {
@@ -82,23 +96,27 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             // Convert world space to gui space
             var bl = HandleUtility.WorldToGUIPoint(cursorPos);
             var tr = HandleUtility.WorldToGUIPoint(cursorPos + Vector3.right + Vector3.up);
+            var labelPos = HandleUtility.WorldToGUIPoint(cursorPos + Vector3.right + (Vector3.up));
 
             var oldColor = GUI.color;
             var col = GUI.color;
-            col.a = .25f;
-            GUI.color = col;
-
 
             // Can't use gui functions to draw directly into the scene view.
             Handles.BeginGUI();
 
             instance_.selectedTile_ = Mathf.Clamp(instance_.selectedTile_, 0, instance_.sprites_.Count - 1);
 
+            // Draw a semi-transparent image of our current tile on the cursor.
+            col.a = .25f;
+            GUI.color = col;
             SceneEditorUtil.DrawSprite(Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y), instance_.sprites_[instance_.selectedTile_]);
+            GUI.color = oldColor;
+
+            // Draw a label showing the cursor's current elevation.
+            EditorGUI.LabelField(new Rect(labelPos.x, labelPos.y, 100f, 100f), "Elevation " + instance_.currentElevation_ );
 
             Handles.EndGUI();
 
-            GUI.color = oldColor;
         }
         
         protected override void OnGUI()
@@ -177,7 +195,27 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             base.OnMouseDown(button, cursorWorldPos);
 
-            
+            if (instances_.Count == 0)
+                return;
+
+
+        }
+
+        protected override void OnKeyDown(KeyCode key)
+        {
+            base.OnKeyDown(key);
+
+            if (Event.current.shift && key == KeyCode.W)
+            {
+                ++currentElevation_;
+            }
+            else if (Event.current.shift && key == KeyCode.S)
+            {
+                --currentElevation_;
+            }
+
+            currentElevation_ = Mathf.Clamp(currentElevation_, 0, int.MaxValue);
+
         }
 
     }
