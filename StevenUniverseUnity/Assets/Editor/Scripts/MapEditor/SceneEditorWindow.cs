@@ -74,7 +74,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
                 Handles.BeginGUI();
 
-                GUILayout.Label("Currently in Edit mode. Click the button in the stage editor window or select a tool to exit.");
+                GUILayout.Label("Currently in Edit mode. Click the button in the map editor window or select a Unity tool to exit.");
 
                 Handles.EndGUI();
             }

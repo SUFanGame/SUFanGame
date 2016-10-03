@@ -30,10 +30,20 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         static MapEditor instance_;
 
+        /// <summary>
+        /// Object in the scene that all map-editor-generated objects will be parented to.
+        /// </summary>
+        [SerializeField]
+        GameObject tileInstanceParent_;
+
         protected override void OnEnable()
         {
             base.OnEnable();
             instance_ = this;
+
+            tileInstanceParent_ = GameObject.Find("MapEditorTiles");
+            if (tileInstanceParent_ == null)
+                tileInstanceParent_ = new GameObject("MapEditorTiles");
         }
 
         [MenuItem("Tools/SUFanGame/MapEditor")]
@@ -62,7 +72,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             var cursorPos = SceneEditorUtil.DrawCursor();
 
 
-            if (instance_ == null)
+            if ( instance_ == null )
+                return;
+
+
+            if (instance_.sprites_.Count == 0)
                 return;
 
             // Convert world space to gui space
@@ -74,8 +88,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             col.a = .25f;
             GUI.color = col;
 
+
             // Can't use gui functions to draw directly into the scene view.
             Handles.BeginGUI();
+
+            instance_.selectedTile_ = Mathf.Clamp(instance_.selectedTile_, 0, instance_.sprites_.Count - 1);
 
             SceneEditorUtil.DrawSprite(Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y), instance_.sprites_[instance_.selectedTile_]);
 
