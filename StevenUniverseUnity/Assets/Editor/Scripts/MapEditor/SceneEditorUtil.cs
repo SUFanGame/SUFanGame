@@ -87,7 +87,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     imageRect.position = toggleRect.position;
                     imageRect.size = toggleRect.size - Vector2.one * 2f;
 
-                    var texCoords = GetNormalizedSpriteRect(sprite);
 
                     var oldColor = GUI.color;
                     GUI.color = buttonColor;
@@ -100,8 +99,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     if (toggleState != (i == selectedID))
                         selectedID = i;
 
-
-
+                    var texCoords = GetNormalizedSpriteRect(sprite);
                     GUI.DrawTextureWithTexCoords(imageRect, sprite.texture, texCoords);
                     GUI.Label(imageRect, i.ToString());
 
@@ -117,10 +115,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             return selectedID;
         }
-        
-        public static void DrawSprite(Sprite sprite, float imageSize)
+
+        public static void DrawSprite(Sprite sprite, float imageSize )
         {
             var texCoords = GetNormalizedSpriteRect(sprite);
+
             var rect = EditorGUILayout.GetControlRect(GUILayout.Width(imageSize), GUILayout.Height(imageSize));
             GUI.DrawTextureWithTexCoords(rect, sprite.texture, texCoords);
 
@@ -140,9 +139,17 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             return normalizedRect;
         }
 
-        public static void DrawSprite( Rect rect, Sprite sprite )
+        public static void DrawSprite( Rect rect, Sprite sprite, bool horizontalFlip = false, bool verticalFlip = false )
         {
             var texCoords = GetNormalizedSpriteRect(sprite);
+
+            if (verticalFlip)
+            {
+                float y = texCoords.yMin;
+                texCoords.yMin = texCoords.yMax;
+                texCoords.yMax = y;
+            }
+
             GUI.DrawTextureWithTexCoords(rect, sprite.texture, texCoords);
         }
     }

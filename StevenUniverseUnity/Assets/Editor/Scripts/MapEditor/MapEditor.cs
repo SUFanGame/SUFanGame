@@ -11,11 +11,7 @@ using System.Linq;
 
 // TODO: We'll have to be able to load existing world data
 //       into the system so we know our world bounds and can poll
-//       tiles quickly. Maybe just a button that iterates through all chunks.
-//       As tiles are added we need to keep track as well - maybe use coordinated list?
-//       We can populate the list via TileEditorInstance.instance. But what about cases
-//       where We need to refer back to the TileEditorInstance from an instance in the coordinated list?
-//       May need to use a custom system to track editor instances by position, similar to coordinated list
+//       Position map needs to be serializable for obvious reasons
 namespace StevenUniverse.FanGameEditor.SceneEditing
 {
     public class MapEditor : SceneEditorWindow
@@ -50,9 +46,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         [SerializeField]
         int currentElevation_ = 0;
 
-        PositionMap<TileInstanceEditor> positionMap_ = new PositionMap<TileInstanceEditor>();
-
-        System.Predicate<TileInstanceEditor> elevationPredicate_ = null;
+        [SerializeField]
+        InstancesMap positionMap_ = new InstancesMap();
 
         protected override void OnEnable()
         {
@@ -124,7 +119,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             // Draw a semi-transparent image of our current tile on the cursor.
             col.a = .25f;
             GUI.color = col;
-            SceneEditorUtil.DrawSprite(Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y), instance_.sprites_[instance_.selectedTileIndex_]);
+            // Vertical UVs are flipped in the scene...?
+            SceneEditorUtil.DrawSprite(
+                Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y), 
+                instance_.sprites_[instance_.selectedTileIndex_], 
+                false, true);
             GUI.color = oldColor;
 
             // Draw a label showing the cursor's current elevation.
@@ -320,5 +319,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 tileInstanceParent_ = new GameObject("MapEditorTiles");
         }
 
+
+        // Wrapper class to allow unity to serialize our tile positions.
+        [System.Serializable]
+        class InstancesMap : PositionMap<TileInstanceEditor> { }
     }
 }

@@ -90,126 +90,24 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &454418018
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 735324667}
-    m_Modifications:
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010814218816, guid: 0ba3d3ffc1dd60f4f83f3a0559215682,
-        type: 2}
-      propertyPath: tileInstance.elevation
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011338716406, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_Name
-      value: (6.0, -2.0, 6.0):House Blue 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &454418019 stripped
+--- !u!4 &141119962 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682,
+  m_PrefabParentObject: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa,
     type: 2}
-  m_PrefabInternal: {fileID: 454418018}
---- !u!1001 &715451463
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 735324667}
-    m_Modifications:
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010814218816, guid: 0ba3d3ffc1dd60f4f83f3a0559215682,
-        type: 2}
-      propertyPath: tileInstance.elevation
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011338716406, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-      propertyPath: m_Name
-      value: (4.0, -1.0, 6.0):House Blue 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0ba3d3ffc1dd60f4f83f3a0559215682, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &715451464 stripped
+  m_PrefabInternal: {fileID: 1992455499}
+--- !u!4 &268682224 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4000012703119148, guid: 0ba3d3ffc1dd60f4f83f3a0559215682,
+  m_PrefabParentObject: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa,
     type: 2}
-  m_PrefabInternal: {fileID: 715451463}
---- !u!1 &735324666
+  m_PrefabInternal: {fileID: 1961319687}
+--- !u!1 &434595036
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 735324667}
+  - 4: {fileID: 434595037}
   m_Layer: 0
   m_Name: MapEditorTiles
   m_TagString: Untagged
@@ -217,21 +115,75 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &735324667
+--- !u!4 &434595037
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 735324666}
+  m_GameObject: {fileID: 434595036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 454418019}
-  - {fileID: 715451464}
+  - {fileID: 1049022007}
+  - {fileID: 268682224}
+  - {fileID: 1581425222}
+  - {fileID: 1492038300}
+  - {fileID: 141119962}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!1001 &912144258
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 434595037}
+    m_Modifications:
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011532387948, guid: 23a941ddf79f83f45bfbaf9b438b4faa,
+        type: 2}
+      propertyPath: tileInstance.elevation
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010217677208, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_Name
+      value: (10.0, -7.0, 6.0):House Blue 09
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &964531921
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,3 +271,222 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &1049022007 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1825066109}
+--- !u!4 &1492038300 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa,
+    type: 2}
+  m_PrefabInternal: {fileID: 2027885659}
+--- !u!4 &1581425222 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa,
+    type: 2}
+  m_PrefabInternal: {fileID: 912144258}
+--- !u!1001 &1825066109
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 434595037}
+    m_Modifications:
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011532387948, guid: 23a941ddf79f83f45bfbaf9b438b4faa,
+        type: 2}
+      propertyPath: tileInstance.elevation
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010217677208, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_Name
+      value: (8.0, -7.0, 6.0):House Blue 09
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1961319687
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 434595037}
+    m_Modifications:
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011532387948, guid: 23a941ddf79f83f45bfbaf9b438b4faa,
+        type: 2}
+      propertyPath: tileInstance.elevation
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010217677208, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_Name
+      value: (9.0, -7.0, 6.0):House Blue 09
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1992455499
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 434595037}
+    m_Modifications:
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011532387948, guid: 23a941ddf79f83f45bfbaf9b438b4faa,
+        type: 2}
+      propertyPath: tileInstance.elevation
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010217677208, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_Name
+      value: (12.0, -9.0, 6.0):House Blue 09
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &2027885659
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 434595037}
+    m_Modifications:
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012170086586, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011532387948, guid: 23a941ddf79f83f45bfbaf9b438b4faa,
+        type: 2}
+      propertyPath: tileInstance.elevation
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010217677208, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+      propertyPath: m_Name
+      value: (13.0, -7.0, 6.0):House Blue 09
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 23a941ddf79f83f45bfbaf9b438b4faa, type: 2}
+  m_IsPrefabParent: 0
