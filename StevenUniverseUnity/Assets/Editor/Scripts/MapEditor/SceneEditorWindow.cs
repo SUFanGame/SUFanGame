@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
-
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 namespace StevenUniverse.FanGameEditor.SceneEditing
 {
@@ -10,11 +11,15 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
     /// </summary>
     public class SceneEditorWindow : EditorWindow
     {
+        Scene lastScene_ = default(Scene);
 
         protected virtual void OnEnable()
         {
             SceneView.onSceneGUIDelegate += OnSceneGUI;
             autoRepaintOnSceneChange = true;
+            
+            EditorApplication.hierarchyWindowChanged -= OnSceneLoadedInternal;
+            EditorApplication.hierarchyWindowChanged += OnSceneLoadedInternal;
         }
 
         protected virtual void OnDisable()
@@ -125,6 +130,27 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     OnMouseDrag(e.button, worldPos);
                 }
             }
+        }
+
+        void OnSceneLoadedInternal()
+        {
+            if( EditorSceneManager.GetActiveScene() != lastScene_ )
+            {
+                lastScene_ = EditorSceneManager.GetActiveScene();
+                OnSceneLoaded();
+
+            }
+        }
+
+        /// <summary>
+        /// NOTE: Editorwindow does some weird stuff with serialization AFTER OnEnable.
+        /// This means any references set up in OnEnable - even ones not intended to be serialized -
+        /// will be erased if they aren't serializable. This will be called once and is guaranteed
+        /// to be called when the scene is ACTUALLY loaded, unlike OnEnable apparently. 
+        /// </summary>
+        protected virtual void OnSceneLoaded()
+        {
+
         }
 
     }

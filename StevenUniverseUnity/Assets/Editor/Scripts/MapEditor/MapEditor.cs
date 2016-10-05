@@ -9,9 +9,25 @@ using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGameEditor.Tools;
 using System.Linq;
 
-// TODO: We'll have to be able to load existing world data
-//       into the system so we know our world bounds and can poll
-//       Position map needs to be serializable for obvious reasons
+/// <summary>
+/// A user-friendly map editor window for painting tiles in a scene.
+/// </summary>
+
+//  TODO: We'll have to be able to load existing world data
+//       into the system from chunks. Is there a better way than polling all editor instances? Could be really slow on big maps.
+//       
+//       Support for multiple tiles on different layers at the same position/elevation
+//             Dust: Just realized I should clarify something about tiles. It's fine to place two tiles in the same position and 
+//                   same elevation as long as they're in different tile layers. That's how you get things like flowers on top of grass 
+//                   at the same elevation.  So what you really need to check for is tiles at the same position, elevation, and tile layer.
+//                   And then I guess we should decide if trying to place a conflicting tile results in an error or if it results in 
+//                   replacing the existing tile
+
+//       RE: Serialization of the positionmap. Editorwindows are pretty quirky, they can't serialize monobehaviours that are
+//       part of a scene and OnEnable occurs BEFORE serialization happens and the scene is loaded, so any set up in
+//       OnEnable is lost. For now I will do set up once when I know a scene is loaded using HierarchyChanged callbacks.
+//       Another possible solution for Serializing the PositionMap: Reference gameobjects instead of monobehaviours. Then getcomponent
+//       the scripts as needed. Editorwindows seem to be able to serialize gameobjects just fine.
 namespace StevenUniverse.FanGameEditor.SceneEditing
 {
     public class MapEditor : SceneEditorWindow
@@ -20,8 +36,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         [SerializeField]
         UnityEngine.Object currentFolder_ = null;
         // Cache of tile instances, built whenever our folder changes.
+        // The buttons in the Editor Window correspond back to these
         [SerializeField]
-        List<TileInstanceEditor> instances_ = new List<TileInstanceEditor>();
+        List<TileInstanceEditor> editorInstances_ = new List<TileInstanceEditor>();
         
         // Cache of sprites, built whenever our folder changes.
         [SerializeField]
@@ -46,18 +63,26 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         [SerializeField]
         int currentElevation_ = 0;
 
-        [SerializeField]
-        InstancesMap positionMap_ = new InstancesMap();
+        //[SerializeField]
+        TilePositionMap positionMap_;
 
         protected override void OnEnable()
         {
             base.OnEnable();
             titleContent.text = "MapEditor";
             instance_ = this;
+        }
+
+        protected override void OnSceneLoaded()
+        {
+            base.OnSceneLoaded();
 
             tileInstanceParent_ = GameObject.Find("MapEditorTiles");
             if (tileInstanceParent_ == null)
                 tileInstanceParent_ = new GameObject("MapEditorTiles");
+
+            var tiles = GameObject.FindObjectsOfType<TileInstanceEditor>();
+            positionMap_ = new TilePositionMap(tiles);
         }
 
         [MenuItem("Tools/SUFanGame/MapEditor")]
@@ -94,11 +119,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 return;
 
             var cursorPos = SceneEditorUtil.DrawCursor();
-
-
+            
             if ( instance_ == null )
                 return;
-
 
             if (instance_.sprites_.Count == 0)
                 return;
@@ -156,12 +179,17 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 Debug.Log("Whoops, I'm not implemented yet!");
             }
 
+            if( GUILayout.Button("Debug"))
+            {
+                positionMap_.Print();
+            }
+
             if ( GUILayout.Button("Clear") )
             {
                 Clear();
             }
 
-            if( instances_.Count > 0 )
+            if ( editorInstances_.Count > 0 )
             {
                 // Draw our sprite grid from our cached list.
                 selectedTileIndex_ = SceneEditorUtil.DrawSpriteGrid(
@@ -174,13 +202,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
         }
 
+
         /// <summary>
         /// Get all tile instances at the given path (assumes the given path begins at and excludes the assets folder)
         /// Caches the results in the instances/sprites lists
         /// </summary>
         void GetTileInstances( string path )
         {
-            instances_.Clear();
+            editorInstances_.Clear();
             sprites_.Clear();
             // AssetDatabase doesn't allow us to load all resources in a single folder.
             // So we have to iterate over each file, or use the Resources folder
@@ -202,7 +231,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 if( instance != null )
                 {
                     // Populate our lists if our instance is valid.
-                    instances_.Add(instance);
+                    editorInstances_.Add(instance);
                     var renderer = go.GetComponent<SpriteRenderer>();
                     if( renderer != null && renderer.sprite != null )
                         sprites_.Add( renderer.sprite );
@@ -219,7 +248,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             base.OnMouseDown(button, cursorWorldPos);
 
-            if (instances_.Count == 0)
+            if (editorInstances_.Count == 0)
                 return;
 
             if( button ==  0 )
@@ -232,25 +261,48 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 // Get the list of instances at our cursor position
                 var listOfInstances = positionMap_.Get(cursorWorldPos);
                 // Cache our currently selected tile
-                var selected = instances_[selectedTileIndex_];
+                var selected = editorInstances_[selectedTileIndex_];
 
 
-                GameObject instanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
-                Undo.RegisterCreatedObjectUndo(instanceGO, "PaintedTileInstance");
                 // If there's a list
                 if (listOfInstances != null)
                 {
+                    //Debug.LogFormat("Found list of tiles at location {0}", cursorWorldPos);
+
+                    //foreach ( var t in listOfInstances )
+                    //{
+                    //    if (t == null)
+                    //        Debug.LogFormat("Existing tile reference at location {0} is null...", cursorWorldPos);
+                    //}
+
+                    //var tileStrings = listOfInstances.Select(
+                    //    t => string.Format("Tile {0} at Pos {1}, Elevation {2}", 
+                    //    t.name, 
+                    //    t.transform.position.ToString(), 
+                    //    t.Elevation.ToString()) ).ToArray();
+
+                    //Debug.LogFormat("Tiles at {0}", cursorWorldPos);
+                    //foreach ( var str in tileStrings )
+                    //{
+                    //    Debug.Log(str);
+                    //}
+
                     // There is probably an easier/more efficient way to do this.
                     System.Predicate<TileInstanceEditor> match = (a) => a.Elevation == currentElevation_;
                     // Then we check to see if any tiles exist at our target elevation.
                     var atElevation = listOfInstances.Find(match);
                     if (atElevation != null)
                     {
-                       // Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
+                        //Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
+              
                         Undo.DestroyObjectImmediate(atElevation.gameObject);
                         positionMap_.RemoveAll(cursorWorldPos, match);
                     }
                 }
+
+                //Debug.LogFormat("Creating tile {0} at {1}", selected.name, cursorWorldPos);
+                GameObject instanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
+                Undo.RegisterCreatedObjectUndo(instanceGO, "PaintedTileInstance");
 
                 var instance = instanceGO.GetComponent<TileInstanceEditor>();
                 instance.transform.position = cursorWorldPos;
@@ -258,6 +310,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 cursorWorldPos.z = currentElevation_;
                 instance.name = string.Join( ":", new string[] { cursorWorldPos.ToString(), instance.name } );
                 instance.transform.SetParent(tileInstanceParent_.transform);
+                instance.Instance.X = (int)cursorWorldPos.x;
+                instance.Instance.Y = (int)cursorWorldPos.y;
 
                 positionMap_.AddValue(cursorWorldPos, instance);
             }
@@ -289,7 +343,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
 
             currentElevation_ = Mathf.Clamp(currentElevation_, 0, int.MaxValue);
-            selectedTileIndex_ = Mathf.Clamp(selectedTileIndex_, 0, instances_.Count - 1);
+            selectedTileIndex_ = Mathf.Clamp(selectedTileIndex_, 0, editorInstances_.Count - 1);
             
         }
 
@@ -304,24 +358,20 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 return;
 
             var instances = FindObjectsOfType<TileInstanceEditor>();
-            for (int i = instances.Length - 1; i >= 0; --i)
+            
+            if( instances.Length > 0 )
             {
-                if( instances[i] != null && instances_[i].gameObject != null )
-                    DestroyImmediate(instances[i].transform.root.gameObject, false);
+                for (int i = instances.Length - 1; i >= 0; --i)
+                {
+                    if (instances[i] != null && instances[i].gameObject != null)
+                        DestroyImmediate(instances[i].transform.root.gameObject, false);
+                }
+
+                if (positionMap_ != null)
+                    positionMap_.Clear();
             }
 
-            positionMap_.Clear();
         }
 
-        void Update()
-        {
-            if (tileInstanceParent_ == null)
-                tileInstanceParent_ = new GameObject("MapEditorTiles");
-        }
-
-
-        // Wrapper class to allow unity to serialize our tile positions.
-        [System.Serializable]
-        class InstancesMap : PositionMap<TileInstanceEditor> { }
     }
 }
