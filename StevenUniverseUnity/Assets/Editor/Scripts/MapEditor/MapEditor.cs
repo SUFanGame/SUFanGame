@@ -265,9 +265,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 var selected = editorInstances_[selectedTileIndex_];
 
                 //Debug.LogFormat("Creating tile {0} at {1}", selected.name, cursorWorldPos);
-                GameObject instanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
-                Undo.RegisterCreatedObjectUndo(instanceGO, "PaintedTileInstance");
-                var instance = instanceGO.GetComponent<TileInstanceEditor>();
+                // Get the layer from the prefab
+
+
+
+                GameObject instanceGO = null;
 
                 // If there's a list
                 if (listOfInstances != null)
@@ -276,19 +278,28 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     for( int i = listOfInstances.Count - 1; i >= 0; --i )
                     {
                         var existing = listOfInstances[i];
-                        //Debug.LogFormat("Existing Layer: {0}, Selected Layer {1}", existing.TileTemplate.TileLayerName, selected.TileTemplate.TileLayerName );
-                        if (existing.Elevation == currentElevation_ && existing.TileTemplate.TileLayer == instance.TileTemplate.TileLayer )
+                        //Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileTemplate.TileLayer.Name, selected.TileTemplate.TileLayer.Name);
+                        if (existing.Elevation == currentElevation_ && existing.TileTemplate.TileLayer == selected.TileTemplate.TileLayer )
                         {
                             //Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
+                            // At this point we know a tile exists at our target elevation/position/layer. If it's the same tile type as our
+                            // currently selected tile we can just bail out now and save the overhead of destroying/instantiating gameobjects
+                            //if (existing.TileInstance == selected.TileInstance)
+                            //    Debug.Log("Same Tile");
 
                             positionMap_.RemoveAt(cursorWorldPos, i);
                             Undo.DestroyObjectImmediate(existing.gameObject);
                         }
                     }
-
-
                 }
-                
+
+                instanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
+                Undo.RegisterCreatedObjectUndo(instanceGO, "PaintedTileInstance");
+                var instance = instanceGO.GetComponent<TileInstanceEditor>();
+
+
+                Debug.LogFormat("Prefab Layer: {0}. Instance Layer: {1}", selected.TileTemplate.TileLayerName, instance.TileTemplate.TileLayerName);
+
                 VerifyTileParent();
 
                 instance.transform.position = cursorWorldPos;
