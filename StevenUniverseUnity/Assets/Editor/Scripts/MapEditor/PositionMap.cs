@@ -55,6 +55,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             mapData_[pos].Add(val);
         }
 
+        public void RemoveAt( Vector2 pos, int index )
+        {
+            if (mapData_.ContainsKey(pos))
+                mapData_[pos].RemoveAt(index);
+        }
+
         /// <summary>
         /// Remove the given value from the given position.
         /// </summary>

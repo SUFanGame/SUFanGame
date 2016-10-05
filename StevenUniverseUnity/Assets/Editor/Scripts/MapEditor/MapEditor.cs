@@ -22,7 +22,9 @@ using System.Linq;
 //                   at the same elevation.  So what you really need to check for is tiles at the same position, elevation, and tile layer.
 //                   And then I guess we should decide if trying to place a conflicting tile results in an error or if it results in 
 //                   replacing the existing tile
-
+//
+//       Proper support for undo/redo, currently it doesn't update the positionmap
+//
 //       RE: Serialization of the positionmap. Editorwindows are pretty quirky, they can't serialize monobehaviours that are
 //       part of a scene and OnEnable occurs BEFORE serialization happens and the scene is loaded, so any set up in
 //       OnEnable is lost. For now I will do set up once when I know a scene is loaded using HierarchyChanged callbacks.
@@ -78,8 +80,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             base.OnSceneLoaded();
 
             tileInstanceParent_ = GameObject.Find("MapEditorTiles");
-            if (tileInstanceParent_ == null)
-                tileInstanceParent_ = new GameObject("MapEditorTiles");
+            VerifyTileParent();
 
             var tiles = GameObject.FindObjectsOfType<TileInstanceEditor>();
             positionMap_ = new TilePositionMap(tiles);
@@ -263,48 +264,33 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 // Cache our currently selected tile
                 var selected = editorInstances_[selectedTileIndex_];
 
+                //Debug.LogFormat("Creating tile {0} at {1}", selected.name, cursorWorldPos);
+                GameObject instanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
+                Undo.RegisterCreatedObjectUndo(instanceGO, "PaintedTileInstance");
+                var instance = instanceGO.GetComponent<TileInstanceEditor>();
 
                 // If there's a list
                 if (listOfInstances != null)
                 {
-                    //Debug.LogFormat("Found list of tiles at location {0}", cursorWorldPos);
-
-                    //foreach ( var t in listOfInstances )
-                    //{
-                    //    if (t == null)
-                    //        Debug.LogFormat("Existing tile reference at location {0} is null...", cursorWorldPos);
-                    //}
-
-                    //var tileStrings = listOfInstances.Select(
-                    //    t => string.Format("Tile {0} at Pos {1}, Elevation {2}", 
-                    //    t.name, 
-                    //    t.transform.position.ToString(), 
-                    //    t.Elevation.ToString()) ).ToArray();
-
-                    //Debug.LogFormat("Tiles at {0}", cursorWorldPos);
-                    //foreach ( var str in tileStrings )
-                    //{
-                    //    Debug.Log(str);
-                    //}
-
-                    // There is probably an easier/more efficient way to do this.
-                    System.Predicate<TileInstanceEditor> match = (a) => a.Elevation == currentElevation_;
-                    // Then we check to see if any tiles exist at our target elevation.
-                    var atElevation = listOfInstances.Find(match);
-                    if (atElevation != null)
+                    
+                    for( int i = listOfInstances.Count - 1; i >= 0; --i )
                     {
-                        //Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
-              
-                        Undo.DestroyObjectImmediate(atElevation.gameObject);
-                        positionMap_.RemoveAll(cursorWorldPos, match);
+                        var existing = listOfInstances[i];
+                        //Debug.LogFormat("Existing Layer: {0}, Selected Layer {1}", existing.TileTemplate.TileLayerName, selected.TileTemplate.TileLayerName );
+                        if (existing.Elevation == currentElevation_ && existing.TileTemplate.TileLayer == instance.TileTemplate.TileLayer )
+                        {
+                            //Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
+
+                            positionMap_.RemoveAt(cursorWorldPos, i);
+                            Undo.DestroyObjectImmediate(existing.gameObject);
+                        }
                     }
+
+
                 }
+                
+                VerifyTileParent();
 
-                //Debug.LogFormat("Creating tile {0} at {1}", selected.name, cursorWorldPos);
-                GameObject instanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
-                Undo.RegisterCreatedObjectUndo(instanceGO, "PaintedTileInstance");
-
-                var instance = instanceGO.GetComponent<TileInstanceEditor>();
                 instance.transform.position = cursorWorldPos;
                 instance.Elevation = currentElevation_;
                 cursorWorldPos.z = currentElevation_;
@@ -347,6 +333,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             
         }
 
+        void VerifyTileParent()
+        {
+            if (tileInstanceParent_ == null)
+                tileInstanceParent_ = new GameObject("MapEditorTiles");
+        }
+
         // Clear all tile instances in the current scene. Right now the position map is not serializable so there's
         // no way for unity to rebuild it if we tried to undo this.
         void Clear()
@@ -364,7 +356,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 for (int i = instances.Length - 1; i >= 0; --i)
                 {
                     if (instances[i] != null && instances[i].gameObject != null)
-                        DestroyImmediate(instances[i].transform.root.gameObject, false);
+                        DestroyImmediate(instances[i].gameObject, false);
                 }
 
                 if (positionMap_ != null)
