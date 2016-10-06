@@ -279,7 +279,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     {
                         var existing = listOfInstances[i];
                         //Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileTemplate.TileLayer.Name, selected.TileTemplate.TileLayer.Name);
-                        if (existing.Elevation == currentElevation_ && existing.TileTemplate.TileLayer == selected.TileTemplate.TileLayer )
+                        if (existing.Elevation == currentElevation_ && existing.TileInstance.TileTemplate.TileLayer == selected.TileInstance.TileTemplate.TileLayer )
                         {
                             //Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
                             // At this point we know a tile exists at our target elevation/position/layer. If it's the same tile type as our
@@ -297,8 +297,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 Undo.RegisterCreatedObjectUndo(instanceGO, "PaintedTileInstance");
                 var instance = instanceGO.GetComponent<TileInstanceEditor>();
 
-
-                Debug.LogFormat("Prefab Layer: {0}. Instance Layer: {1}", selected.TileTemplate.TileLayerName, instance.TileTemplate.TileLayerName);
+                Debug.LogFormat("Prefab Layer: {0}. Instance Layer: {1}. AppDataPath: {2}", selected.TileInstance.TileTemplate.TileLayerName, instance.TileInstance.TileTemplate.TileLayerName, instance.TileInstance.TileTemplate.AppDataPath);
 
                 VerifyTileParent();
 

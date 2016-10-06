@@ -59,8 +59,8 @@ namespace StevenUniverse.FanGame.Overworld
             if (template == null || !Application.isPlaying )
             {
                 template = Template.Get<T>(TemplateAppDataPath);
-                //Debug.Log(template.GetType());
             }
+
             return (T) template;
         }
 

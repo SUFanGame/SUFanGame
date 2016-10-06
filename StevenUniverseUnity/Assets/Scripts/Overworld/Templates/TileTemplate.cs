@@ -9,14 +9,6 @@ namespace StevenUniverse.FanGame.Overworld.Templates
     public class TileTemplate : Template
     {
         //Class
-        /*
-        private static readonly string localDirectory;
-
-        static TileTemplate()
-        {
-            localDirectory = Utilities.ExternalDataPath;
-        }*/
-
         public static TileTemplate GetTileTemplate(string tileTemplateAppDataPath)
         {
             return Get<TileTemplate>(tileTemplateAppDataPath);
@@ -26,8 +18,8 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         [SerializeField] private string[] animationSpriteNames;
         [SerializeField] private bool syncAnimation;
         [SerializeField] private float secondsPerFrame;
-        [SerializeField] private string tileModeName = "Normal";
-        [SerializeField] private string tileLayerName = "Main";
+        [SerializeField] private string tileModeName;
+        [SerializeField] private string tileLayerName;
         [SerializeField] private bool isGrounded;
 
         private Sprite[] animationSprites;
@@ -52,7 +44,7 @@ namespace StevenUniverse.FanGame.Overworld.Templates
             IsGrounded = isGrounded;
         }
 
-        public TileTemplate() : this(new Sprite[0], false, 0f, "Normal", "Main", false)
+        public TileTemplate()
         {
             //TODO why is this called whenever the code is saved?
         }

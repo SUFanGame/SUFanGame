@@ -30,6 +30,7 @@ namespace StevenUniverse.FanGame.OverworldEditor
             set { tileInstance = value; }
         }
 
+        /*
         public TileTemplate TileTemplate
         {
             get
@@ -41,7 +42,7 @@ namespace StevenUniverse.FanGame.OverworldEditor
                 return tileTemplate;
             }
             private set { tileTemplate = value; }
-        }
+        }*/
 
         public override Instance Instance
         {

@@ -42,7 +42,7 @@ namespace StevenUniverse.FanGameEditor.Wizards
                 instances = new List<TileInstanceEditor>(value);
 
                 //If there is at least one instance, set the template to the first TileTemplate. Otherwise, make the template null.
-                template = (Instances.Length > 0) ? Instances[0].TileTemplate : null;
+                template = (Instances.Length > 0) ? Instances[0].TileInstance.TileTemplate : null;
             }
         }
 
@@ -55,7 +55,7 @@ namespace StevenUniverse.FanGameEditor.Wizards
 
             foreach (TileInstanceEditor instance in instances)
             {
-                TileTemplate instanceTemplate = instance.TileTemplate;
+                TileTemplate instanceTemplate = instance.TileInstance.TileTemplate;
 
                 //Display the progress bar
                 EditorUtility.DisplayProgressBar("Applying Tile Templates", instance.name, progress);
