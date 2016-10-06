@@ -13,6 +13,10 @@ using System.Linq;
 /// A user-friendly map editor window for painting tiles in a scene.
 /// </summary>
 
+// TODO MORE: Right now...tile instance editor references in position map somehow get scrubbed between OnSceneLoad and OnMouseDown.
+//            Solution? Maybe an in-scene world object with a global instance accessor. All tiles are added/removed via this object.
+//            Since it would be in scene we wouldn't need to worry about losing references
+
 //  TODO: We'll have to be able to load existing world data
 //       into the system from chunks. Is there a better way than polling all editor instances? Could be really slow on big maps.
 //       
@@ -82,8 +86,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             tileInstanceParent_ = GameObject.Find("MapEditorTiles");
             VerifyTileParent();
 
-            var tiles = GameObject.FindObjectsOfType<TileInstanceEditor>();
-            positionMap_ = new TilePositionMap(tiles);
+            BuildPositionMap();
         }
 
         [MenuItem("Tools/SUFanGame/MapEditor")]
@@ -259,57 +262,61 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
                 cursorWorldPos.z = 0;
 
+                //BuildPositionMap();
+
                 // Get the list of instances at our cursor position
                 var listOfInstances = positionMap_.Get(cursorWorldPos);
                 // Cache our currently selected tile
                 var selected = editorInstances_[selectedTileIndex_];
 
-                //Debug.LogFormat("Creating tile {0} at {1}", selected.name, cursorWorldPos);
-                // Get the layer from the prefab
-
-
-
-                GameObject instanceGO = null;
+                
+                GameObject prefabInstanceGO = null;
 
                 // If there's a list
                 if (listOfInstances != null)
                 {
-                    
-                    for( int i = listOfInstances.Count - 1; i >= 0; --i )
+
+                    for ( int i = listOfInstances.Count - 1; i >= 0; --i )
                     {
                         var existing = listOfInstances[i];
+
+                        Debug.LogFormat("Existing is null: {0}", existing == null);
                         //Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileTemplate.TileLayer.Name, selected.TileTemplate.TileLayer.Name);
+                        // Somehow this if statement still goes through, even though existing reports
+                        // as being null above after going in and out of play mode....What?
                         if (existing.Elevation == currentElevation_ && existing.TileInstance.TileTemplate.TileLayer == selected.TileInstance.TileTemplate.TileLayer )
                         {
+                            Debug.LogFormat("Existing is null: {0}", existing == null);
                             //Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
                             // At this point we know a tile exists at our target elevation/position/layer. If it's the same tile type as our
                             // currently selected tile we can just bail out now and save the overhead of destroying/instantiating gameobjects
                             //if (existing.TileInstance == selected.TileInstance)
                             //    Debug.Log("Same Tile");
 
-                            positionMap_.RemoveAt(cursorWorldPos, i);
+                            // Remove the tile if it's on the same layer/elevation.
                             Undo.DestroyObjectImmediate(existing.gameObject);
+                            positionMap_.RemoveAt(cursorWorldPos, i);
                         }
                     }
                 }
 
-                instanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
-                Undo.RegisterCreatedObjectUndo(instanceGO, "PaintedTileInstance");
-                var instance = instanceGO.GetComponent<TileInstanceEditor>();
+                prefabInstanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
+                Undo.RegisterCreatedObjectUndo(prefabInstanceGO, "PaintedTileInstance");
+                var prefabTileInstance = prefabInstanceGO.GetComponent<TileInstanceEditor>();
 
-                Debug.LogFormat("Prefab Layer: {0}. Instance Layer: {1}. AppDataPath: {2}", selected.TileInstance.TileTemplate.TileLayerName, instance.TileInstance.TileTemplate.TileLayerName, instance.TileInstance.TileTemplate.AppDataPath);
+                Debug.LogFormat("Prefab Layer: {0}. Instance Layer: {1}. AppDataPath: {2}", selected.TileInstance.TileTemplate.TileLayerName, prefabTileInstance.TileInstance.TileTemplate.TileLayerName, prefabTileInstance.TileInstance.TileTemplate.AppDataPath);
 
                 VerifyTileParent();
 
-                instance.transform.position = cursorWorldPos;
-                instance.Elevation = currentElevation_;
+                prefabTileInstance.transform.position = cursorWorldPos;
+                prefabTileInstance.Elevation = currentElevation_;
                 cursorWorldPos.z = currentElevation_;
-                instance.name = string.Join( ":", new string[] { cursorWorldPos.ToString(), instance.name } );
-                instance.transform.SetParent(tileInstanceParent_.transform);
-                instance.Instance.X = (int)cursorWorldPos.x;
-                instance.Instance.Y = (int)cursorWorldPos.y;
+                prefabTileInstance.name = string.Join( ":", new string[] { cursorWorldPos.ToString(), prefabTileInstance.name } );
+                prefabTileInstance.transform.SetParent(tileInstanceParent_.transform);
+                prefabTileInstance.Instance.X = (int)cursorWorldPos.x;
+                prefabTileInstance.Instance.Y = (int)cursorWorldPos.y;
 
-                positionMap_.AddValue(cursorWorldPos, instance);
+                positionMap_.AddValue(cursorWorldPos, prefabTileInstance);
             }
 
         }
@@ -375,5 +382,19 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         }
 
+        void BuildPositionMap()
+        {
+            var tiles = GameObject.FindObjectsOfType<TileInstanceEditor>();
+
+            foreach (var t in tiles)
+            {
+                if (t.gameObject == null)
+                {
+                    Debug.LogFormat("GAMEOBJECT OF ILTE IS NULL?");
+                }
+            }
+
+            positionMap_ = new TilePositionMap(tiles);
+        }
     }
 }
