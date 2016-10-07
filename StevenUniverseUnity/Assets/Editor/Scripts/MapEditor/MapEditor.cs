@@ -44,11 +44,16 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         // Cache of tile instances, built whenever our folder changes.
         // The buttons in the Editor Window correspond back to these
         [SerializeField]
-        List<TileInstanceEditor> editorInstances_ = new List<TileInstanceEditor>();
+        List<TileInstanceEditor> tilePrefabs_ = new List<TileInstanceEditor>();
+        [SerializeField]
+        List<GroupInstanceEditor> tileGroupPrefabs_ = new List<GroupInstanceEditor>();
         
         // Cache of sprites, built whenever our folder changes.
         [SerializeField]
         List<Sprite> sprites_ = new List<Sprite>();
+
+        [SerializeField]
+        List<Texture2D> tileTextures_ = new List<Texture2D>();
 
         // Currently selected tile
         [SerializeField]
@@ -95,8 +100,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             world_ = GameObject.FindObjectOfType<World>();
             VerifyWorld();
-
-            //BuildPositionMap();
         }
 
         [MenuItem("Tools/SUFanGame/MapEditor")]
@@ -184,7 +187,26 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
                 if( currentFolder_ != null )
                 {
-                    GetTileInstances( AssetDatabase.GetAssetPath(currentFolder_).Substring(7));
+                    var path = AssetDatabase.GetAssetPath(currentFolder_).Substring(7);
+
+                    tilePrefabs_.Clear();
+                    sprites_.Clear();
+                    tileGroupPrefabs_.Clear();
+
+                    tilePrefabs_ = AssetUtil.GetAssets<TileInstanceEditor>(path);
+                    tileTextures_.Clear();
+                    foreach( var p in tilePrefabs_ )
+                    {
+                        var renderer = p.GetComponent<SpriteRenderer>();
+                        if (renderer != null && renderer.sprite != null)
+                        {
+                            sprites_.Add(renderer.sprite);
+                        }
+                    }
+
+                    EditorUtility.ClearProgressBar();
+
+                    tileGroupPrefabs_ = AssetUtil.GetAssets<GroupInstanceEditor>(path);
                 }
             }
 
@@ -205,69 +227,54 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             selectedToolbar_ = GUILayout.Toolbar(selectedToolbar_, System.Enum.GetNames(typeof(Toolbar)));
 
-            if( selectedToolbar_ == (int)Toolbar.PaintTile )
+            switch( (Toolbar)selectedToolbar_ )
             {
-                if (editorInstances_.Count > 0)
-                {
-                    // Draw our sprite grid from our cached list.
-                    selectedTileIndex_ = SceneEditorUtil.DrawSpriteGrid(
-                        selectedTileIndex_, sprites_, 50f,
-                        Screen.height - 75,
-                        Color.white,
-                        new Color(.25f, .25f, .25f),
-                        ref scrollPos_
-                        );
-                }
+                case Toolbar.PaintTile:
+                    GUIPaintIndividual();
+                    break;
+                case Toolbar.PaintGroup:
+                    GUIPaintGroup();
+                    break;
             }
         }
 
-
-        /// <summary>
-        /// Get all tile instances at the given path (assumes the given path begins at and excludes the assets folder)
-        /// Caches the results in the instances/sprites lists
-        /// </summary>
-        void GetTileInstances( string path )
+        void GUIPaintIndividual()
         {
-            editorInstances_.Clear();
-            sprites_.Clear();
-            // AssetDatabase doesn't allow us to load all resources in a single folder.
-            // So we have to iterate over each file, or use the Resources folder
-            // http://answers.unity3d.com/questions/24060/can-assetdatabaseloadallassetsatpath-load-all-asse.html
-            // Load all the prefabs in all subfolders of the given path
-            var files = Directory.GetFiles(Application.dataPath + "/" + path, "*.prefab", SearchOption.AllDirectories );
-            float progress = 0;
-
-            foreach (var file in files)
+            if (tilePrefabs_.Count > 0)
             {
-                EditorUtility.DisplayProgressBar("Loading Tiles", file, progress);
-
-                var filePath = "Assets" + file.Replace(Application.dataPath, "").Replace('\\', '/');
-
-                // Get the actual gameobject and editor instance from our asset
-                var go = AssetDatabase.LoadAssetAtPath<GameObject>(filePath);
-                var instance = go.GetComponent<TileInstanceEditor>();
-
-                if( instance != null )
-                {
-                    // Populate our lists if our instance is valid.
-                    editorInstances_.Add(instance);
-                    var renderer = go.GetComponent<SpriteRenderer>();
-                    if( renderer != null && renderer.sprite != null )
-                        sprites_.Add( renderer.sprite );
-                }
-
-                progress += 1f / (float)files.Length;
+                // Draw our sprite grid from our cached list.
+                selectedTileIndex_ = SceneEditorUtil.DrawSpriteGrid(
+                    selectedTileIndex_, sprites_, 50f,
+                    Screen.height - 75,
+                    Color.white,
+                    new Color(.25f, .25f, .25f),
+                    ref scrollPos_
+                    );
             }
-
-            EditorUtility.ClearProgressBar();
         }
+
+        void GUIPaintGroup()
+        {
+            if( tileGroupPrefabs_.Count > 0 )
+            {
+                var group = tileGroupPrefabs_[0];
+
+                var tex = AssetPreview.GetAssetPreview(group.gameObject);
+
+                var area = EditorGUILayout.GetControlRect(GUILayout.Width(tex.width), GUILayout.Height(tex.height));
+
+                GUI.DrawTexture(area, tex);
+            }
+        }
+
+
 
 
         protected override void OnMouseDown(int button, Vector3 cursorWorldPos)
         {
             base.OnMouseDown(button, cursorWorldPos);
 
-            if (editorInstances_.Count == 0)
+            if (tilePrefabs_.Count == 0)
                 return;
 
             if( button ==  0 )
@@ -277,9 +284,15 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
                 cursorWorldPos.z = 0;
 
-                if( selectedToolbar_ == (int)Toolbar.PaintTile )
+
+                switch( (Toolbar)selectedToolbar_ )
                 {
-                    PlaceTile(cursorWorldPos);
+                    case Toolbar.PaintTile:
+                        PlaceTile(cursorWorldPos);
+                        break;
+                    case Toolbar.PaintGroup:
+                        PlaceGroup(cursorWorldPos);
+                        break;
                 }
             }
 
@@ -292,7 +305,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         void PlaceTile( Vector3 pos )
         {
             // Cache our currently selected tile
-            var selected = editorInstances_[selectedTileIndex_];
+            var selected = tilePrefabs_[selectedTileIndex_];
 
 
             var map = World.Instance.TileMap;
@@ -334,6 +347,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             map.AddTile(pos, newTile);
         }
 
+        void PlaceGroup( Vector3 pos )
+        {
+
+        }
+
         /// <summary>
         /// Check a and b share the same layer and elevation.
         /// </summary>
@@ -348,7 +366,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             base.OnKeyDown(key);
 
-            if( Event.current.shift )
+            if (Event.current.shift)
             {
                 if (key == KeyCode.W)
                 {
@@ -358,19 +376,26 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 {
                     --currentElevation_;
                 }
-                else if ( key == KeyCode.E )
+                else if (key == KeyCode.E)
                 {
                     ++selectedTileIndex_;
                 }
-                else if ( key == KeyCode.Q )
+                else if (key == KeyCode.Q)
                 {
                     --selectedTileIndex_;
                 }
             }
 
             currentElevation_ = Mathf.Clamp(currentElevation_, 0, int.MaxValue);
-            selectedTileIndex_ = Mathf.Clamp(selectedTileIndex_, 0, editorInstances_.Count - 1);
-            
+            selectedTileIndex_ = Mathf.Clamp(selectedTileIndex_, 0, tilePrefabs_.Count - 1);
+
+        }
+
+
+
+        void GetGroupInstances()
+        {
+
         }
 
         void VerifyWorld()

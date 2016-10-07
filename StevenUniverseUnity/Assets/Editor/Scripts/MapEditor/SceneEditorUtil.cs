@@ -50,7 +50,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     UnityEditor.Tools.current = Tool.Move;
             }
         }
-
+        
         // TODO : Clean this up a bit, it's a mess right now. Too many magic numbers and the horizontal spacing is way off 
         // - for wide windows it leaves a huge gap on the right.
         public static int DrawSpriteGrid(
@@ -125,7 +125,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         }
 
-        static Rect GetNormalizedSpriteRect(Sprite sprite)
+        public static Rect GetNormalizedSpriteRect(Sprite sprite)
         {
             var tex = sprite.texture;
             var spriteRect = sprite.textureRect;
@@ -154,3 +154,4 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         }
     }
 }
+ 
