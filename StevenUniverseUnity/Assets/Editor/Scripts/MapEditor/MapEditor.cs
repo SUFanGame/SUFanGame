@@ -58,14 +58,19 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         // Currently selected tile
         [SerializeField]
         int selectedTileIndex_ = 0;
+        [SerializeField]
+        int selectedGroupIndex_ = 0;
 
         // Currently selected toolbar
         [SerializeField]
         int selectedToolbar_ = 0;
 
+
         // Scroll Pos, used by the sprite grid.
         [SerializeField]
-        Vector2 scrollPos_;
+        Vector2 tileGUIScrollPos_;
+        [SerializeField]
+        Vector2 groupGUIScrollPos_;
 
         static MapEditor instance_;
 
@@ -240,31 +245,26 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         void GUIPaintIndividual()
         {
-            if (tilePrefabs_.Count > 0)
-            {
-                // Draw our sprite grid from our cached list.
-                selectedTileIndex_ = SceneEditorUtil.DrawSpriteGrid(
-                    selectedTileIndex_, sprites_, 50f,
-                    Screen.height - 75,
-                    Color.white,
-                    new Color(.25f, .25f, .25f),
-                    ref scrollPos_
-                    );
-            }
+            if (tilePrefabs_.Count == 0)
+                return;
+            // Draw our sprite grid from our cached list.
+            selectedTileIndex_ = SceneEditorUtil.DrawSpriteGrid(
+                selectedTileIndex_, sprites_, 50f,
+                Screen.height - 75,
+                ref tileGUIScrollPos_
+                );
         }
 
         void GUIPaintGroup()
         {
-            if( tileGroupPrefabs_.Count > 0 )
-            {
-                var group = tileGroupPrefabs_[0];
+            if (tileGroupPrefabs_.Count == 0)
+                return;
 
-                var tex = AssetPreview.GetAssetPreview(group.gameObject);
-
-                var area = EditorGUILayout.GetControlRect(GUILayout.Width(tex.width), GUILayout.Height(tex.height));
-
-                GUI.DrawTexture(area, tex);
-            }
+            
+            selectedGroupIndex_ = SceneEditorUtil.DrawAssetPreviewGrid(
+                selectedGroupIndex_, 
+                tileGroupPrefabs_.Select(p=>p.gameObject).ToList(), 
+                ref groupGUIScrollPos_);
         }
 
 

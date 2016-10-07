@@ -6,6 +6,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 {
     public class SceneEditorUtil
     {
+        static Color selectedColor_ = new Color(.25f, .25f, .25f);
+        static Color buttonColor_ = Color.white;
+
         /// <summary>
         /// Draws a cursor of the given size and returns the cursor's position, snapped to the 1x1 grid
         /// </summary>
@@ -58,8 +61,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             List<Sprite> sprites,
             float scrollViewImageSize,
             float scrollViewHeight,
-            Color buttonColor,
-            Color selectedColor,
             ref Vector2 scrollViewPos)
         {
             if (sprites == null || sprites.Count == 0)
@@ -89,12 +90,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
 
                     var oldColor = GUI.color;
-                    GUI.color = buttonColor;
+                    GUI.color = buttonColor_;
 
                     var toggleState = GUI.Toggle(toggleRect, i == selectedID, "", GUI.skin.button);
 
                     if (i == selectedID)
-                        GUI.color = selectedColor;
+                        GUI.color = selectedColor_;
 
                     if (toggleState != (i == selectedID))
                         selectedID = i;
@@ -114,6 +115,67 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             EditorGUILayout.EndScrollView();
 
             return selectedID;
+        }
+
+        /// <summary>
+        /// Draw the asset preview texture for each of the given assets in a selectable grid.
+        /// </summary>
+        /// <param name="selected">The index of the selected asset.</param>
+        /// <param name="assets">List of assets.</param>
+        /// <param name="scrollPos">The scroll position of the scroll view containing the grid.</param>
+        /// <returns></returns>
+        public static int DrawAssetPreviewGrid( int selected, List<GameObject> assets, ref Vector2 scrollPos )
+        {
+            int i = 0;
+
+            // Note : asset previews textures always seem to be 128x128
+            int cellCountX = Mathf.FloorToInt((float)Screen.width / 128f);
+            int cellCountY = Mathf.CeilToInt((float)assets.Count / (float)cellCountX);
+
+            scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+            EditorGUILayout.BeginVertical();
+            for( int y = 0; y < cellCountY && i < assets.Count; ++y )
+            {
+                EditorGUILayout.BeginHorizontal();
+                for (int x = 0; x < cellCountX && i < assets.Count; ++x)
+                {
+                    // GetAssetPreview runs asynchronously and seems to destroy and recreate the textures
+                    // arbitrarily (meaning they can't be cached). Best way seems to be to constantly poll
+                    // to ensure we ALWAYS get a valid texture. Seems to perform alright, it might explode
+                    // if it's trying to draw a LOT of tile groups.
+                    Texture2D tex = null;
+                    while( tex == null )
+                    {
+                        tex = AssetPreview.GetAssetPreview(assets[i]);
+                    }
+
+                    var area = EditorGUILayout.GetControlRect(GUILayout.Width(tex.width), GUILayout.Height(tex.height));
+
+
+                    var oldColor = GUI.color;
+                    GUI.color = buttonColor_;
+
+                    bool isToggled = GUI.Toggle(area, i == selected, "", GUI.skin.button);
+
+                    if( isToggled )
+                    {
+                        GUI.color = selectedColor_;
+                    }
+
+                    GUI.DrawTexture(area, tex);
+
+                    if (isToggled != (i == selected))
+                        selected = i;
+
+                    GUI.color = oldColor;
+                    ++i;
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndScrollView();
+
+            return selected;
         }
 
         public static void DrawSprite(Sprite sprite, float imageSize )
