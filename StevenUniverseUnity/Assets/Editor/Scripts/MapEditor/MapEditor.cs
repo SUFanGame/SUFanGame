@@ -89,13 +89,16 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             PaintGroup,
         }
 
-        //[SerializeField]
-        //TilePositionMap positionMap_;
-
+        #region INIT
         protected override void OnEnable()
         {
             base.OnEnable();
             titleContent.text = "MapEditor";
+            instance_ = this;
+        }
+
+        void OnFocus()
+        {
             instance_ = this;
         }
 
@@ -106,11 +109,102 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             world_ = GameObject.FindObjectOfType<World>();
             VerifyWorld();
         }
+        #endregion
 
-        [MenuItem("Tools/SUFanGame/MapEditor")]
-        static void OpenWindow()
+        protected override void OnGUI()
         {
-            EditorWindow.GetWindow<MapEditor>();
+            base.OnGUI();
+
+            // Draw our "folder" field. Note that unity doesn't really support folders-as-assets in a natural way. 
+            // Could break in future versions.
+            var inputFolder = EditorGUILayout.ObjectField("Tiles Folder", currentFolder_, typeof(UnityEditor.DefaultAsset), false);
+
+            if (currentFolder_ != inputFolder)
+            {
+                currentFolder_ = inputFolder;
+
+                if (currentFolder_ != null)
+                {
+                    var path = AssetDatabase.GetAssetPath(currentFolder_).Substring(7);
+
+                    GetTilePrefabs( path );
+                    GetGroupPrefabs( path );
+
+                }
+            }
+
+            if (GUILayout.Button("Clear"))
+            {
+                Clear();
+            }
+
+            selectedToolbar_ = GUILayout.Toolbar(selectedToolbar_, System.Enum.GetNames(typeof(Toolbar)));
+
+            switch ((Toolbar)selectedToolbar_)
+            {
+                case Toolbar.PaintTile:
+                    TileOnGUI();
+                    break;
+                case Toolbar.PaintGroup:
+                    GroupOnGUI();
+                    break;
+            }
+        }
+
+        protected override void OnKeyDown(KeyCode key)
+        {
+            base.OnKeyDown(key);
+
+            if (Event.current.shift)
+            {
+                if (key == KeyCode.W)
+                {
+                    ++currentElevation_;
+                }
+                else if (key == KeyCode.S)
+                {
+                    --currentElevation_;
+                }
+                currentElevation_ = Mathf.Clamp(currentElevation_, 0, int.MaxValue);
+            }
+
+            switch ((Toolbar)selectedToolbar_)
+            {
+                case Toolbar.PaintTile:
+                    OnTileKey(key);
+                    break;
+                case Toolbar.PaintGroup:
+                    OnGroupKey(key);
+                    break;
+            }
+        }
+
+        protected override void OnMouseDown(int button, Vector3 cursorWorldPos)
+        {
+            base.OnMouseDown(button, cursorWorldPos);
+
+            if (tilePrefabs_.Count == 0)
+                return;
+
+            if (button == 0)
+            {
+                // floor position to grid
+                for (int i = 0; i < 2; ++i)
+                    cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
+                cursorWorldPos.z = 0;
+
+
+                switch ((Toolbar)selectedToolbar_)
+                {
+                    case Toolbar.PaintTile:
+                        PlaceTile(cursorWorldPos);
+                        break;
+                    case Toolbar.PaintGroup:
+                        PlaceGroup(cursorWorldPos);
+                        break;
+                }
+            }
+
         }
 
         protected override void OnSceneGUI(SceneView view)
@@ -128,10 +222,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             Handles.EndGUI();
         }
 
-        void OnFocus()
-        {
-            instance_ = this;
-        }
+
 
         [DrawGizmo(GizmoType.NotInSelectionHierarchy)]
         static void DrawGizmos(Transform t, GizmoType gizmoType)
@@ -139,14 +230,29 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             // Bail out if we're not in "edit mode".
             if (!SceneEditorUtil.EditMode_)
                 return;
-
-            var cursorPos = SceneEditorUtil.DrawCursor();
             
             if ( instance_ == null )
                 return;
 
+            switch( (Toolbar)instance_.selectedToolbar_ )
+            {
+                case Toolbar.PaintTile:
+                    TileDrawCursor();
+                    break;
+
+                case Toolbar.PaintGroup:
+                    GroupDrawCursor();
+                    break;
+            }
+
+        }
+
+        static void TileDrawCursor()
+        {
             if (instance_.sprites_.Count == 0)
                 return;
+
+            var cursorPos = SceneEditorUtil.DrawCursor();
 
             // Convert world space to gui space
             var bl = HandleUtility.WorldToGUIPoint(cursorPos);
@@ -159,94 +265,32 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             // Can't use gui functions to draw directly into the scene view.
             Handles.BeginGUI();
 
-            instance_.selectedTileIndex_ = Mathf.Clamp(instance_.selectedTileIndex_, 0, instance_.sprites_.Count - 1);
-
             // Draw a semi-transparent image of our current tile on the cursor.
             col.a = .25f;
             GUI.color = col;
             // Vertical UVs are flipped in the scene...?
             SceneEditorUtil.DrawSprite(
-                Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y), 
-                instance_.sprites_[instance_.selectedTileIndex_], 
+                Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y),
+                instance_.sprites_[instance_.selectedTileIndex_],
                 false, true);
             GUI.color = oldColor;
 
             // Draw a label showing the cursor's current elevation.
-            EditorGUI.LabelField(new Rect(labelPos.x, labelPos.y, 100f, 100f), "Elevation " + instance_.currentElevation_ );
+            EditorGUI.LabelField(new Rect(labelPos.x, labelPos.y, 100f, 100f), "Elevation " + instance_.currentElevation_);
 
             Handles.EndGUI();
-
         }
-        
-        protected override void OnGUI()
+
+        static void GroupDrawCursor()
         {
-            base.OnGUI();
+            if (instance_.tileGroupPrefabs_.Count == 0 )
+                return;
 
-            // Draw our "folder" field. Note that unity doesn't really support folders-as-assets in a natural way. 
-            // Could break in future versions.
-            var inputFolder = EditorGUILayout.ObjectField("Tiles Folder", currentFolder_, typeof(UnityEditor.DefaultAsset), false );
 
-            if ( currentFolder_ != inputFolder )
-            {
-                currentFolder_ = inputFolder;
-
-                if( currentFolder_ != null )
-                {
-                    var path = AssetDatabase.GetAssetPath(currentFolder_).Substring(7);
-
-                    tilePrefabs_.Clear();
-                    sprites_.Clear();
-                    tileGroupPrefabs_.Clear();
-
-                    // Get our tile prefabs
-                    tilePrefabs_ = AssetUtil.GetAssets<TileInstanceEditor>(path);
-                    tilePrefabs_ = tilePrefabs_.Where((p) => p.TileInstance.TileTemplate.UsableIndividually).ToList();
-
-                    tileTextures_.Clear();
-                    foreach( var p in tilePrefabs_ )
-                    {
-                        var renderer = p.GetComponent<SpriteRenderer>();
-                        if (renderer != null && renderer.sprite != null)
-                        {
-                            sprites_.Add(renderer.sprite);
-                        }
-                    }
-
-                    EditorUtility.ClearProgressBar();
-
-                    tileGroupPrefabs_ = AssetUtil.GetAssets<GroupInstanceEditor>(path);
-                }
-            }
-
-            //if( GUILayout.Button("WriteToJSON") )
-            //{
-            //    Debug.Log("Whoops, I'm not implemented yet!");
-            //}
-
-            if( GUILayout.Button("Debug"))
-            {
-                //positionMap_.Print();
-            }
-
-            if ( GUILayout.Button("Clear") )
-            {
-                Clear();
-            }
-
-            selectedToolbar_ = GUILayout.Toolbar(selectedToolbar_, System.Enum.GetNames(typeof(Toolbar)));
-
-            switch( (Toolbar)selectedToolbar_ )
-            {
-                case Toolbar.PaintTile:
-                    GUIPaintIndividual();
-                    break;
-                case Toolbar.PaintGroup:
-                    GUIPaintGroup();
-                    break;
-            }
         }
+ 
 
-        void GUIPaintIndividual()
+        void TileOnGUI()
         {
             if (tilePrefabs_.Count == 0)
                 return;
@@ -256,9 +300,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 Screen.height - 75,
                 ref tileGUIScrollPos_
                 );
+
+
+            selectedTileIndex_ = Mathf.Clamp(selectedTileIndex_, 0, sprites_.Count - 1);
         }
 
-        void GUIPaintGroup()
+        void GroupOnGUI()
         {
             if (tileGroupPrefabs_.Count == 0)
                 return;
@@ -268,38 +315,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 selectedGroupIndex_, 
                 tileGroupPrefabs_.Select(p=>p.gameObject).ToList(), 
                 ref groupGUIScrollPos_);
+
+            selectedGroupIndex_ = Mathf.Clamp(selectedGroupIndex_, 0, tileGroupPrefabs_.Count - 1);
         }
+        
 
-
-
-
-        protected override void OnMouseDown(int button, Vector3 cursorWorldPos)
-        {
-            base.OnMouseDown(button, cursorWorldPos);
-
-            if (tilePrefabs_.Count == 0)
-                return;
-
-            if( button ==  0 )
-            {
-                // floor position to grid
-                for (int i = 0; i < 2; ++i)
-                    cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
-                cursorWorldPos.z = 0;
-
-
-                switch( (Toolbar)selectedToolbar_ )
-                {
-                    case Toolbar.PaintTile:
-                        PlaceTile(cursorWorldPos);
-                        break;
-                    case Toolbar.PaintGroup:
-                        PlaceGroup(cursorWorldPos);
-                        break;
-                }
-            }
-
-        }
 
         /// <summary>
         /// Place a tile at the given location.
@@ -365,21 +385,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             return aTemplate.TileLayer == bTemplate.TileLayer && a.Elevation == b.Elevation;
         }
 
-        protected override void OnKeyDown(KeyCode key)
-        {
-            base.OnKeyDown(key);
 
+
+        void OnTileKey( KeyCode key )
+        {
             if (Event.current.shift)
             {
-                if (key == KeyCode.W)
-                {
-                    ++currentElevation_;
-                }
-                else if (key == KeyCode.S)
-                {
-                    --currentElevation_;
-                }
-                else if (key == KeyCode.E)
+                if (key == KeyCode.E)
                 {
                     ++selectedTileIndex_;
                 }
@@ -387,18 +399,51 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 {
                     --selectedTileIndex_;
                 }
+                selectedTileIndex_ = Mathf.Clamp(selectedTileIndex_, 0, tilePrefabs_.Count - 1);
             }
+        }
 
-            currentElevation_ = Mathf.Clamp(currentElevation_, 0, int.MaxValue);
-            selectedTileIndex_ = Mathf.Clamp(selectedTileIndex_, 0, tilePrefabs_.Count - 1);
-
+        void OnGroupKey( KeyCode key )
+        {
+            if (Event.current.shift)
+            {
+                if (key == KeyCode.E)
+                {
+                    ++selectedGroupIndex_;
+                }
+                else if (key == KeyCode.Q)
+                {
+                    --selectedGroupIndex_;
+                }
+                selectedTileIndex_ = Mathf.Clamp(selectedTileIndex_, 0, tilePrefabs_.Count - 1);
+            }
         }
 
 
-
-        void GetGroupInstances()
+        void GetTilePrefabs( string path )
         {
+            tilePrefabs_.Clear();
+            sprites_.Clear();
 
+            // Get our tile prefabs
+            tilePrefabs_ = AssetUtil.GetAssets<TileInstanceEditor>(path);
+            tilePrefabs_ = tilePrefabs_.Where((p) => p.TileInstance.TileTemplate.UsableIndividually).ToList();
+
+            tileTextures_.Clear();
+            foreach (var p in tilePrefabs_)
+            {
+                var renderer = p.GetComponent<SpriteRenderer>();
+                if (renderer != null && renderer.sprite != null)
+                {
+                    sprites_.Add(renderer.sprite);
+                }
+            }
+        }
+
+        void GetGroupPrefabs( string path )
+        {
+            tileGroupPrefabs_.Clear();
+            tileGroupPrefabs_ = AssetUtil.GetAssets<GroupInstanceEditor>(path);
         }
 
         void VerifyWorld()
@@ -410,8 +455,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
         }
 
-        // Clear all tile instances in the current scene. Right now the position map is not serializable so there's
-        // no way for unity to rebuild it if we tried to undo this.
+
+        /// <summary>
+        /// Clear all instances in the scene and reset the world object.
+        /// </summary>
         void Clear()
         {
             if (!EditorUtility.DisplayDialog(
@@ -431,25 +478,15 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 }
 
                 World.Instance.TileMap.Clear();
-                //if (positionMap_ != null)
-                //    positionMap_.Clear();
             }
 
         }
 
-        //void BuildPositionMap()
-        //{
-        //    var tiles = GameObject.FindObjectsOfType<TileInstanceEditor>();
+        [MenuItem("Tools/SUFanGame/MapEditor")]
+        static void OpenWindow()
+        {
+            EditorWindow.GetWindow<MapEditor>();
+        }
 
-        //    foreach (var t in tiles)
-        //    {
-        //        if (t.gameObject == null)
-        //        {
-        //            Debug.LogFormat("GAMEOBJECT OF ILTE IS NULL?");
-        //        }
-        //    }
-
-        //    //positionMap_ = new TilePositionMap(tiles);
-        //}
     }
 }
