@@ -64,13 +64,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// Object in the scene that all map-editor-generated objects will be parented to.
         /// </summary>
         [SerializeField]
-        GameObject tileInstanceParent_;
+        World world_ = null;
 
         [SerializeField]
         int currentElevation_ = 0;
 
         //[SerializeField]
-        TilePositionMap positionMap_;
+        //TilePositionMap positionMap_;
 
         protected override void OnEnable()
         {
@@ -83,10 +83,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             base.OnSceneLoaded();
 
-            tileInstanceParent_ = GameObject.Find("MapEditorTiles");
-            VerifyTileParent();
+            world_ = GameObject.FindObjectOfType<World>();
+            VerifyWorld();
 
-            BuildPositionMap();
+            //BuildPositionMap();
         }
 
         [MenuItem("Tools/SUFanGame/MapEditor")]
@@ -178,14 +178,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 }
             }
 
-            if( GUILayout.Button("WriteToJSON") )
-            {
-                Debug.Log("Whoops, I'm not implemented yet!");
-            }
+            //if( GUILayout.Button("WriteToJSON") )
+            //{
+            //    Debug.Log("Whoops, I'm not implemented yet!");
+            //}
 
             if( GUILayout.Button("Debug"))
             {
-                positionMap_.Print();
+                //positionMap_.Print();
             }
 
             if ( GUILayout.Button("Clear") )
@@ -264,61 +264,109 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
                 //BuildPositionMap();
 
-                // Get the list of instances at our cursor position
-                var listOfInstances = positionMap_.Get(cursorWorldPos);
                 // Cache our currently selected tile
                 var selected = editorInstances_[selectedTileIndex_];
 
-                
-                GameObject prefabInstanceGO = null;
 
-                // If there's a list
-                if (listOfInstances != null)
+                var map = World.Instance.TileMap;
+
+                var tilesAtPos = map.GetTiles(cursorWorldPos);
+
+                if( tilesAtPos != null )
                 {
-
-                    for ( int i = listOfInstances.Count - 1; i >= 0; --i )
+                    for( int i = 0; i < tilesAtPos.Count; ++i )
                     {
-                        var existing = listOfInstances[i];
+                        var existing = tilesAtPos[i];
+                        Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileInstance.TileTemplate.TileLayer.Name, selected.TileInstance.TileTemplate.TileLayer.Name);
 
-                        Debug.LogFormat("Existing is null: {0}", existing == null);
-                        //Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileTemplate.TileLayer.Name, selected.TileTemplate.TileLayer.Name);
-                        // Somehow this if statement still goes through, even though existing reports
-                        // as being null above after going in and out of play mode....What?
-                        if (existing.Elevation == currentElevation_ && existing.TileInstance.TileTemplate.TileLayer == selected.TileInstance.TileTemplate.TileLayer )
+                        if ( SameLayer( existing, selected ) )
                         {
-                            Debug.LogFormat("Existing is null: {0}", existing == null);
-                            //Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
-                            // At this point we know a tile exists at our target elevation/position/layer. If it's the same tile type as our
-                            // currently selected tile we can just bail out now and save the overhead of destroying/instantiating gameobjects
-                            //if (existing.TileInstance == selected.TileInstance)
-                            //    Debug.Log("Same Tile");
-
-                            // Remove the tile if it's on the same layer/elevation.
-                            Undo.DestroyObjectImmediate(existing.gameObject);
-                            positionMap_.RemoveAt(cursorWorldPos, i);
+                            // If our selected tile is the existing tile's prefab we already know this tile is at the target location
+                            // so we can bail out now.
+                            if (PrefabUtility.GetPrefabParent(existing) == selected)
+                                return;
+                            else
+                            {
+                                map.RemoveTile(cursorWorldPos, existing);
+                                Undo.DestroyObjectImmediate(existing.gameObject);
+                            }
                         }
                     }
                 }
 
-                prefabInstanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
-                Undo.RegisterCreatedObjectUndo(prefabInstanceGO, "PaintedTileInstance");
-                var prefabTileInstance = prefabInstanceGO.GetComponent<TileInstanceEditor>();
+                var newTile = (TileInstanceEditor)PrefabUtility.InstantiatePrefab(selected);
 
-                Debug.LogFormat("Prefab Layer: {0}. Instance Layer: {1}. AppDataPath: {2}", selected.TileInstance.TileTemplate.TileLayerName, prefabTileInstance.TileInstance.TileTemplate.TileLayerName, prefabTileInstance.TileInstance.TileTemplate.AppDataPath);
-
-                VerifyTileParent();
-
-                prefabTileInstance.transform.position = cursorWorldPos;
-                prefabTileInstance.Elevation = currentElevation_;
+                newTile.transform.position = cursorWorldPos;
+                newTile.Elevation = currentElevation_;
                 cursorWorldPos.z = currentElevation_;
-                prefabTileInstance.name = string.Join( ":", new string[] { cursorWorldPos.ToString(), prefabTileInstance.name } );
-                prefabTileInstance.transform.SetParent(tileInstanceParent_.transform);
-                prefabTileInstance.Instance.X = (int)cursorWorldPos.x;
-                prefabTileInstance.Instance.Y = (int)cursorWorldPos.y;
+                newTile.name = string.Join(":", new string[] { cursorWorldPos.ToString(), newTile.name });
+                newTile.transform.SetParent(World.Instance.transform);
+                newTile.Instance.X = (int)cursorWorldPos.x;
+                newTile.Instance.Y = (int)cursorWorldPos.y;
 
-                positionMap_.AddValue(cursorWorldPos, prefabTileInstance);
+                map.AddTile(cursorWorldPos, newTile);
+
+
+                //// Get the list of instances at our cursor position
+                //var listOfInstances = positionMap_.Get(cursorWorldPos); GameObject prefabInstanceGO = null;
+
+                //// If there's a list
+                //if (listOfInstances != null)
+                //{
+
+                //    for ( int i = listOfInstances.Count - 1; i >= 0; --i )
+                //    {
+                //        var existing = listOfInstances[i];
+
+                //        Debug.LogFormat("Existing is null: {0}", existing == null);
+                //        //Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileTemplate.TileLayer.Name, selected.TileTemplate.TileLayer.Name);
+                //        // Somehow this if statement still goes through, even though existing reports
+                //        // as being null above after going in and out of play mode....What?
+                //        if (existing.Elevation == currentElevation_ && existing.TileInstance.TileTemplate.TileLayer == selected.TileInstance.TileTemplate.TileLayer )
+                //        {
+                //            Debug.LogFormat("Existing is null: {0}", existing == null);
+                //            //Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
+                //            // At this point we know a tile exists at our target elevation/position/layer. If it's the same tile type as our
+                //            // currently selected tile we can just bail out now and save the overhead of destroying/instantiating gameobjects
+                //            //if (existing.TileInstance == selected.TileInstance)
+                //            //    Debug.Log("Same Tile");
+
+                //            // Remove the tile if it's on the same layer/elevation.
+                //            Undo.DestroyObjectImmediate(existing.gameObject);
+                //            positionMap_.RemoveAt(cursorWorldPos, i);
+                //        }
+                //    }
+                //}
+
+                //prefabInstanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
+                //Undo.RegisterCreatedObjectUndo(prefabInstanceGO, "PaintedTileInstance");
+                //var prefabTileInstance = prefabInstanceGO.GetComponent<TileInstanceEditor>();
+
+                //Debug.LogFormat("Prefab Layer: {0}. Instance Layer: {1}. AppDataPath: {2}", selected.TileInstance.TileTemplate.TileLayerName, prefabTileInstance.TileInstance.TileTemplate.TileLayerName, prefabTileInstance.TileInstance.TileTemplate.AppDataPath);
+
+                //VerifyTileParent();
+
+                //prefabTileInstance.transform.position = cursorWorldPos;
+                //prefabTileInstance.Elevation = currentElevation_;
+                //cursorWorldPos.z = currentElevation_;
+                //prefabTileInstance.name = string.Join( ":", new string[] { cursorWorldPos.ToString(), prefabTileInstance.name } );
+                //prefabTileInstance.transform.SetParent(tileInstanceParent_.transform);
+                //prefabTileInstance.Instance.X = (int)cursorWorldPos.x;
+                //prefabTileInstance.Instance.Y = (int)cursorWorldPos.y;
+
+                //positionMap_.AddValue(cursorWorldPos, prefabTileInstance);
             }
 
+        }
+
+        /// <summary>
+        /// Check a and b share the same layer and elevation.
+        /// </summary>
+        bool SameLayer( TileInstanceEditor a, TileInstanceEditor b )
+        {
+            var aTemplate = a.TileInstance.TileTemplate;
+            var bTemplate = b.TileInstance.TileTemplate;
+            return aTemplate.TileLayer == bTemplate.TileLayer && a.Elevation == b.Elevation;
         }
 
         protected override void OnKeyDown(KeyCode key)
@@ -350,10 +398,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             
         }
 
-        void VerifyTileParent()
+        void VerifyWorld()
         {
-            if (tileInstanceParent_ == null)
-                tileInstanceParent_ = new GameObject("MapEditorTiles");
+            if (world_ == null)
+            {
+                var go = new GameObject("World");
+                world_ = go.AddComponent<World>();
+            }
         }
 
         // Clear all tile instances in the current scene. Right now the position map is not serializable so there's
@@ -376,25 +427,26 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                         DestroyImmediate(instances[i].gameObject, false);
                 }
 
-                if (positionMap_ != null)
-                    positionMap_.Clear();
+                World.Instance.TileMap.Clear();
+                //if (positionMap_ != null)
+                //    positionMap_.Clear();
             }
 
         }
 
-        void BuildPositionMap()
-        {
-            var tiles = GameObject.FindObjectsOfType<TileInstanceEditor>();
+        //void BuildPositionMap()
+        //{
+        //    var tiles = GameObject.FindObjectsOfType<TileInstanceEditor>();
 
-            foreach (var t in tiles)
-            {
-                if (t.gameObject == null)
-                {
-                    Debug.LogFormat("GAMEOBJECT OF ILTE IS NULL?");
-                }
-            }
+        //    foreach (var t in tiles)
+        //    {
+        //        if (t.gameObject == null)
+        //        {
+        //            Debug.LogFormat("GAMEOBJECT OF ILTE IS NULL?");
+        //        }
+        //    }
 
-            positionMap_ = new TilePositionMap(tiles);
-        }
+        //    //positionMap_ = new TilePositionMap(tiles);
+        //}
     }
 }
