@@ -54,6 +54,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         [SerializeField]
         int selectedTileIndex_ = 0;
 
+        // Currently selected toolbar
+        [SerializeField]
+        int selectedToolbar_ = 0;
+
         // Scroll Pos, used by the sprite grid.
         [SerializeField]
         Vector2 scrollPos_;
@@ -68,6 +72,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         [SerializeField]
         int currentElevation_ = 0;
+
+        enum Toolbar
+        {
+            PaintTile,
+            PaintGroup,
+        }
 
         //[SerializeField]
         //TilePositionMap positionMap_;
@@ -193,16 +203,21 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 Clear();
             }
 
-            if ( editorInstances_.Count > 0 )
+            selectedToolbar_ = GUILayout.Toolbar(selectedToolbar_, System.Enum.GetNames(typeof(Toolbar)));
+
+            if( selectedToolbar_ == (int)Toolbar.PaintTile )
             {
-                // Draw our sprite grid from our cached list.
-                selectedTileIndex_ = SceneEditorUtil.DrawSpriteGrid(
-                    selectedTileIndex_, sprites_, 50f, 
-                    Screen.height - 75,
-                    Color.white,
-                    new Color(.25f, .25f, .25f),
-                    ref scrollPos_
-                    );
+                if (editorInstances_.Count > 0)
+                {
+                    // Draw our sprite grid from our cached list.
+                    selectedTileIndex_ = SceneEditorUtil.DrawSpriteGrid(
+                        selectedTileIndex_, sprites_, 50f,
+                        Screen.height - 75,
+                        Color.white,
+                        new Color(.25f, .25f, .25f),
+                        ref scrollPos_
+                        );
+                }
             }
         }
 
@@ -262,101 +277,61 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
                 cursorWorldPos.z = 0;
 
-                //BuildPositionMap();
-
-                // Cache our currently selected tile
-                var selected = editorInstances_[selectedTileIndex_];
-
-
-                var map = World.Instance.TileMap;
-
-                var tilesAtPos = map.GetTiles(cursorWorldPos);
-
-                if( tilesAtPos != null )
+                if( selectedToolbar_ == (int)Toolbar.PaintTile )
                 {
-                    for( int i = 0; i < tilesAtPos.Count; ++i )
-                    {
-                        var existing = tilesAtPos[i];
-                        //Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileInstance.TileTemplate.TileLayer.Name, selected.TileInstance.TileTemplate.TileLayer.Name);
+                    PlaceTile(cursorWorldPos);
+                }
+            }
 
-                        if ( SameLayer( existing, selected ) )
+        }
+
+        /// <summary>
+        /// Place a tile at the given location.
+        /// </summary>
+        /// <param name="pos"></param>
+        void PlaceTile( Vector3 pos )
+        {
+            // Cache our currently selected tile
+            var selected = editorInstances_[selectedTileIndex_];
+
+
+            var map = World.Instance.TileMap;
+
+            var tilesAtPos = map.GetTiles(pos);
+
+            if (tilesAtPos != null)
+            {
+                for (int i = 0; i < tilesAtPos.Count; ++i)
+                {
+                    var existing = tilesAtPos[i];
+                    //Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileInstance.TileTemplate.TileLayer.Name, selected.TileInstance.TileTemplate.TileLayer.Name);
+
+                    if (SameLayer(existing, selected))
+                    {
+                        // If our selected tile is the existing tile's prefab we already know this tile is at the target location
+                        // so we can bail out now.
+                        if (PrefabUtility.GetPrefabParent(existing) == selected)
+                            return;
+                        else
                         {
-                            // If our selected tile is the existing tile's prefab we already know this tile is at the target location
-                            // so we can bail out now.
-                            if (PrefabUtility.GetPrefabParent(existing) == selected)
-                                return;
-                            else
-                            {
-                                map.RemoveTile(cursorWorldPos, existing);
-                                Undo.DestroyObjectImmediate(existing.gameObject);
-                            }
+                            map.RemoveTile(pos, existing);
+                            Undo.DestroyObjectImmediate(existing.gameObject);
                         }
                     }
                 }
-
-                var newTile = (TileInstanceEditor)PrefabUtility.InstantiatePrefab(selected);
-
-                newTile.transform.position = cursorWorldPos;
-                newTile.Elevation = currentElevation_;
-                cursorWorldPos.z = currentElevation_;
-                newTile.name = string.Join(":", new string[] { cursorWorldPos.ToString(), newTile.name });
-                newTile.transform.SetParent(World.Instance.transform);
-                newTile.Instance.X = (int)cursorWorldPos.x;
-                newTile.Instance.Y = (int)cursorWorldPos.y;
-
-                map.AddTile(cursorWorldPos, newTile);
-
-
-                //// Get the list of instances at our cursor position
-                //var listOfInstances = positionMap_.Get(cursorWorldPos); GameObject prefabInstanceGO = null;
-
-                //// If there's a list
-                //if (listOfInstances != null)
-                //{
-
-                //    for ( int i = listOfInstances.Count - 1; i >= 0; --i )
-                //    {
-                //        var existing = listOfInstances[i];
-
-                //        Debug.LogFormat("Existing is null: {0}", existing == null);
-                //        //Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileTemplate.TileLayer.Name, selected.TileTemplate.TileLayer.Name);
-                //        // Somehow this if statement still goes through, even though existing reports
-                //        // as being null above after going in and out of play mode....What?
-                //        if (existing.Elevation == currentElevation_ && existing.TileInstance.TileTemplate.TileLayer == selected.TileInstance.TileTemplate.TileLayer )
-                //        {
-                //            Debug.LogFormat("Existing is null: {0}", existing == null);
-                //            //Debug.LogFormat("Destroying existing tiles at {0}, Elevation {1}", cursorWorldPos, currentElevation_);
-                //            // At this point we know a tile exists at our target elevation/position/layer. If it's the same tile type as our
-                //            // currently selected tile we can just bail out now and save the overhead of destroying/instantiating gameobjects
-                //            //if (existing.TileInstance == selected.TileInstance)
-                //            //    Debug.Log("Same Tile");
-
-                //            // Remove the tile if it's on the same layer/elevation.
-                //            Undo.DestroyObjectImmediate(existing.gameObject);
-                //            positionMap_.RemoveAt(cursorWorldPos, i);
-                //        }
-                //    }
-                //}
-
-                //prefabInstanceGO = (GameObject)PrefabUtility.InstantiatePrefab(selected.gameObject);
-                //Undo.RegisterCreatedObjectUndo(prefabInstanceGO, "PaintedTileInstance");
-                //var prefabTileInstance = prefabInstanceGO.GetComponent<TileInstanceEditor>();
-
-                //Debug.LogFormat("Prefab Layer: {0}. Instance Layer: {1}. AppDataPath: {2}", selected.TileInstance.TileTemplate.TileLayerName, prefabTileInstance.TileInstance.TileTemplate.TileLayerName, prefabTileInstance.TileInstance.TileTemplate.AppDataPath);
-
-                //VerifyTileParent();
-
-                //prefabTileInstance.transform.position = cursorWorldPos;
-                //prefabTileInstance.Elevation = currentElevation_;
-                //cursorWorldPos.z = currentElevation_;
-                //prefabTileInstance.name = string.Join( ":", new string[] { cursorWorldPos.ToString(), prefabTileInstance.name } );
-                //prefabTileInstance.transform.SetParent(tileInstanceParent_.transform);
-                //prefabTileInstance.Instance.X = (int)cursorWorldPos.x;
-                //prefabTileInstance.Instance.Y = (int)cursorWorldPos.y;
-
-                //positionMap_.AddValue(cursorWorldPos, prefabTileInstance);
             }
 
+            var newTile = (TileInstanceEditor)PrefabUtility.InstantiatePrefab(selected);
+
+            newTile.transform.position = pos;
+            newTile.Elevation = currentElevation_;
+            pos.z = currentElevation_;
+            newTile.name = string.Join(":", new string[] { pos.ToString(), newTile.name });
+            newTile.transform.SetParent(World.Instance.transform);
+            newTile.Instance.X = (int)pos.x;
+            newTile.Instance.Y = (int)pos.y;
+
+            map.AddTile(pos, newTile);
         }
 
         /// <summary>
