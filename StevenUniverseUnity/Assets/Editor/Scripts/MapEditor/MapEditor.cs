@@ -277,7 +277,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     for( int i = 0; i < tilesAtPos.Count; ++i )
                     {
                         var existing = tilesAtPos[i];
-                        Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileInstance.TileTemplate.TileLayer.Name, selected.TileInstance.TileTemplate.TileLayer.Name);
+                        //Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileInstance.TileTemplate.TileLayer.Name, selected.TileInstance.TileTemplate.TileLayer.Name);
 
                         if ( SameLayer( existing, selected ) )
                         {
