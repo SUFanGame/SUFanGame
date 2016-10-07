@@ -13,27 +13,11 @@ using System.Linq;
 /// A user-friendly map editor window for painting tiles in a scene.
 /// </summary>
 
-// TODO MORE: Right now...tile instance editor references in position map somehow get scrubbed between OnSceneLoad and OnMouseDown.
-//            Solution? Maybe an in-scene world object with a global instance accessor. All tiles are added/removed via this object.
-//            Since it would be in scene we wouldn't need to worry about losing references
-
 //  TODO: We'll have to be able to load existing world data
 //       into the system from chunks. Is there a better way than polling all editor instances? Could be really slow on big maps.
-//       
-//       Support for multiple tiles on different layers at the same position/elevation
-//             Dust: Just realized I should clarify something about tiles. It's fine to place two tiles in the same position and 
-//                   same elevation as long as they're in different tile layers. That's how you get things like flowers on top of grass 
-//                   at the same elevation.  So what you really need to check for is tiles at the same position, elevation, and tile layer.
-//                   And then I guess we should decide if trying to place a conflicting tile results in an error or if it results in 
-//                   replacing the existing tile
-//
-//       Proper support for undo/redo, currently it doesn't update the positionmap
-//
-//       RE: Serialization of the positionmap. Editorwindows are pretty quirky, they can't serialize monobehaviours that are
-//       part of a scene and OnEnable occurs BEFORE serialization happens and the scene is loaded, so any set up in
-//       OnEnable is lost. For now I will do set up once when I know a scene is loaded using HierarchyChanged callbacks.
-//       Another possible solution for Serializing the PositionMap: Reference gameobjects instead of monobehaviours. Then getcomponent
-//       the scripts as needed. Editorwindows seem to be able to serialize gameobjects just fine.
+
+//       Proper support for undo/redo, currently it doesn't update the World's tilemap. Easy solution is to rebuild the tilemap
+//       In OnUndoRedo?
 namespace StevenUniverse.FanGameEditor.SceneEditing
 {
     public class MapEditor : SceneEditorWindow
@@ -245,6 +229,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     break;
             }
 
+            SceneView.currentDrawingSceneView.Repaint();
+
         }
 
         static void TileDrawCursor()
@@ -252,7 +238,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             if (instance_.sprites_.Count == 0)
                 return;
 
-            var cursorPos = SceneEditorUtil.DrawCursor();
+            var cursorPos = SceneEditorUtil.GetCursorPosition();
+
+            var offset = Vector2.one * .5f;
+            Gizmos.DrawWireCube(cursorPos + Vector3.back + (Vector3)offset, Vector3.one );
+
 
             // Convert world space to gui space
             var bl = HandleUtility.WorldToGUIPoint(cursorPos);
@@ -285,8 +275,41 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             if (instance_.tileGroupPrefabs_.Count == 0 )
                 return;
+            var selected = instance_.tileGroupPrefabs_[instance_.selectedGroupIndex_];
+
+            Texture2D tex = null;
+            while( tex == null )
+            {
+                tex = AssetPreview.GetAssetPreview(selected.gameObject);
+            }
+
+            var cursorPos = SceneEditorUtil.GetCursorPosition();
 
 
+            var dims = instance_.GetGroupDimensions(selected);
+
+            var offset = ((Vector3)dims.size / 2f);
+            Gizmos.DrawWireCube(cursorPos + offset, Vector3.Scale(Vector3.one, dims.size) );
+
+            var bl = HandleUtility.WorldToGUIPoint(cursorPos);
+            var tr = HandleUtility.WorldToGUIPoint(cursorPos + (Vector3)dims.size);
+
+            Handles.BeginGUI();
+
+            var area = new Rect(bl, tr - bl);
+
+            // Draw a semi-transparent image of our current tile on the cursor.
+            var oldColor = GUI.color;
+            var col = GUI.color;
+            col.a = .25f;
+            GUI.color = col;
+
+            Rect texCoords = new Rect(0, 0, 1, -1);
+            GUI.DrawTextureWithTexCoords(area, tex, texCoords);
+
+            GUI.color = oldColor;
+
+            Handles.EndGUI();
         }
  
 
@@ -372,6 +395,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         void PlaceGroup( Vector3 pos )
         {
+            var selected = tileGroupPrefabs_[selectedGroupIndex_];
+
 
         }
 
@@ -486,6 +511,23 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         static void OpenWindow()
         {
             EditorWindow.GetWindow<MapEditor>();
+        }
+
+        Rect GetGroupDimensions( GroupInstanceEditor group )
+        {
+            Rect r = new Rect();
+
+            r.min = new Vector2(float.MaxValue, float.MaxValue);
+            r.max = new Vector2(float.MinValue, float.MinValue);
+
+            var tiles = group.GetComponentsInChildren<TileInstanceEditor>();
+            foreach( var t in tiles )
+            {
+                r.min = Vector2.Min(r.min, t.TileInstance.Position);
+                r.max = Vector2.Max(r.max, t.TileInstance.Position + Vector3.one);
+            }
+
+            return r;
         }
 
     }

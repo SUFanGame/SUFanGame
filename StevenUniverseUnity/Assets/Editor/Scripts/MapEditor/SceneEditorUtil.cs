@@ -13,9 +13,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// Draws a cursor of the given size and returns the cursor's position, snapped to the 1x1 grid
         /// </summary>
         /// <returns></returns>
-        public static Vector3 DrawCursor( float cursorSize = 1f )
+        public static Vector3 GetCursorPosition()
         {
-
             var mouseRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
             var mousePoint = mouseRay.GetPoint(0);
             for( int i = 0; i < 2; ++i )
@@ -25,13 +24,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             mousePoint[2] = 0;
 
-            var offset = Vector2.one * .5f;
-            Gizmos.DrawWireCube(mousePoint + Vector3.back + (Vector3)offset, Vector3.one * cursorSize);
-
-            SceneView.currentDrawingSceneView.Repaint();
-
             return mousePoint;
         }
+        
 
 
         /// <summary>
