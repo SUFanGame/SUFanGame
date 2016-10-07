@@ -198,7 +198,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     sprites_.Clear();
                     tileGroupPrefabs_.Clear();
 
+                    // Get our tile prefabs
                     tilePrefabs_ = AssetUtil.GetAssets<TileInstanceEditor>(path);
+                    tilePrefabs_ = tilePrefabs_.Where((p) => p.TileInstance.TileTemplate.UsableIndividually).ToList();
+
                     tileTextures_.Clear();
                     foreach( var p in tilePrefabs_ )
                     {
