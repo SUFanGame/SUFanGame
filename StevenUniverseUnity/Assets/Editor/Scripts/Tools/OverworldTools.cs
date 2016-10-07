@@ -430,8 +430,6 @@ namespace StevenUniverse.FanGameEditor.Tools
             }
         }
 
-        private static List<string> sstuff = new List<string>();
-
         private static void LoadChunk(Chunk chunkToLoad)
         {
             //Create an empty parent object to store all the loaded Instances
@@ -464,24 +462,6 @@ namespace StevenUniverse.FanGameEditor.Tools
                 {
                     ToolUtilities.CancelOperation(
                         "Instantiated EditorInstance did not have an InstanceEditor component!");
-                }
-
-                string DEBUGtemplateAppDataPath = instanceEditor.Instance.TemplateAppDataPath;
-                if (!sstuff.Contains(instanceEditor.Instance.TemplateAppDataPath))
-                {
-                    sstuff.Add(DEBUGtemplateAppDataPath);
-
-                    if (sstuff.Count == 76)
-                    {
-                        sstuff = sstuff.OrderBy(q => q).ToList();
-
-                        foreach (string s in sstuff)
-                        {
-                            Debug.Log(s);
-                        }
-
-                        sstuff.Clear();
-                    }
                 }
 
                 if (instanceEditor is TileInstanceEditor)

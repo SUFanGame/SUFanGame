@@ -21,6 +21,7 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         [SerializeField] private string tileModeName;
         [SerializeField] private string tileLayerName;
         [SerializeField] private bool isGrounded;
+        [SerializeField] private bool usableIndividually;
 
         private Sprite[] animationSprites;
 
@@ -32,7 +33,8 @@ namespace StevenUniverse.FanGame.Overworld.Templates
             float secondsPerFrame,
             string tileModeName,
             string tileLayerName,
-            bool isGrounded
+            bool isGrounded,
+            bool usableIndividually
         ) : base()
         {
             AnimationSprites = animationSprites;
@@ -42,11 +44,12 @@ namespace StevenUniverse.FanGame.Overworld.Templates
             TileModeName = tileModeName;
             TileLayerName = tileLayerName;
             IsGrounded = isGrounded;
+            UsableIndividually = usableIndividually;
         }
 
         public TileTemplate()
         {
-            //TODO why is this called whenever the code is saved?
+
         }
 
         public Sprite GetCachedSprite(int frame)
@@ -99,6 +102,12 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         {
             get { return isGrounded; }
             set { isGrounded = value; }
+        }
+
+        public bool UsableIndividually
+        {
+            get { return usableIndividually; }
+            set { usableIndividually = value; }
         }
 
         public Sprite[] AnimationSprites

@@ -65,7 +65,7 @@ namespace StevenUniverse.FanGame.Entities.Customization
                 animation.Add(sprites[col, TILES_PER_HEIGHT - 1 - row]);
             }
 
-            return new TileTemplate(animation.ToArray(), false, 0.2f, "Normal", "CharacterBody", false);
+            return new TileTemplate(animation.ToArray(), false, 0.2f, "Normal", "CharacterBody", false, false);
         }
     }
 }

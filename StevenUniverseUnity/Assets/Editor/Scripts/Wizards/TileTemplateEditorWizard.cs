@@ -21,6 +21,7 @@ namespace StevenUniverse.FanGameEditor.Wizards
         [SerializeField] private bool applyTileModeName = false;
         [SerializeField] private bool applyTileLayerName = false;
         [SerializeField] private bool applyIsGrounded = false;
+        [SerializeField] private bool applyUsableIndividually = false;
 
         public static void CreateWizard(TileInstanceEditor instance)
         {
@@ -85,6 +86,10 @@ namespace StevenUniverse.FanGameEditor.Wizards
                 {
                     instanceTemplate.IsGrounded = template.IsGrounded;
                 }
+                if (applyUsableIndividually)
+                {
+                    instanceTemplate.UsableIndividually = template.UsableIndividually;
+                }
 
                 //Save the template
                 instanceTemplate.Save();
@@ -108,6 +113,7 @@ namespace StevenUniverse.FanGameEditor.Wizards
                 applyTileModeName = true;
                 applyTileLayerName = true;
                 applyIsGrounded = true;
+                applyUsableIndividually = true;
             }
         }
 

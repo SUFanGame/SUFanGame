@@ -10,6 +10,8 @@ using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Templates;
 using StevenUniverse.FanGame.Util;
 using StevenUniverse.FanGame.Util.Logic;
+using System.Collections.Generic;
+using StevenUniverse.FanGame.Overworld.Instances;
 
 namespace StevenUniverse.FanGameEditor.Tools
 {
@@ -96,6 +98,8 @@ namespace StevenUniverse.FanGameEditor.Tools
         [MenuItem("Tools/SUFanGame/Temp/Reformat ALL json files")]
         public static void ReformatAllJsonFiles()
         {
+            ToolUtilities.ClearAllJsonCaches();
+
             //Define the template directory
             string jsonDirectory = Utilities.ExternalDataPath;
 
@@ -119,48 +123,112 @@ namespace StevenUniverse.FanGameEditor.Tools
             //Get an array of absolute paths to all json files
             string[] jsonAbsolutePaths = Directory.GetFiles(jsonDirectory, "*.json", SearchOption.AllDirectories);
 
+            List<string> tileTemplateAppDataPaths = new List<string>();
+            List<string> groupTemplateAppDataPaths = new List<string>();
+            List<string> chunkAppDataPaths = new List<string>();
+            List<string> characterAppDataPaths = new List<string>();
+
             float progress = 0f;
             foreach (string jsonAbsolutePath in jsonAbsolutePaths)
             {
                 string jsonAppDataPath = Utilities.ConvertAbsolutePathToAppDataPath(jsonAbsolutePath);
 
-                EditorUtility.DisplayProgressBar("Reformatting json", jsonAppDataPath, progress);
+                EditorUtility.DisplayProgressBar("Sorting json files", jsonAppDataPath, progress);
 
-                ReformatJsonFile(jsonAppDataPath);
+                if (jsonAppDataPath.Contains("Tiles/"))
+                {
+                    tileTemplateAppDataPaths.Add(jsonAppDataPath);
+                }
+                else if (jsonAppDataPath.Contains("Tile Groups/"))
+                {
+                    groupTemplateAppDataPaths.Add(jsonAppDataPath);
+                }
+                else if (jsonAppDataPath.Contains("Chunks/"))
+                {
+                    chunkAppDataPaths.Add(jsonAppDataPath);
+                }
+                else if (jsonAppDataPath.Contains("Characters/"))
+                {
+                    characterAppDataPaths.Add(jsonAppDataPath);
+                }
+                else
+                {
+                    Debug.Log("Unrecognized directory: " + jsonAppDataPath);
+                }
 
                 progress += 1/(float) jsonAbsolutePaths.Length;
             }
-            EditorUtility.ClearProgressBar();
-        }
 
-        //If you need to make bulk changes to Json formats, do it here
-        private static void ReformatJsonFile(string jsonAppDataPath)
-        {
-            //Clear all JSON caches because this tool needs to reload Json information
-            ToolUtilities.ClearAllJsonCaches();
+            //This is used to find out which tile templates are exclusively used by tile groups
+            List<string> tileTemplateAppDataPathsNotUsableIndividually = new List<string>();
 
-            if (jsonAppDataPath.Contains("Tiles/"))
+            //Reset the progress
+            progress = 0f;
+            //Reformat group templates
+            foreach (string groupTemplateAppDataPath in groupTemplateAppDataPaths)
             {
-                TileTemplate loadedTileTemplate = TileTemplate.GetTileTemplate(jsonAppDataPath);
-                //loadedTileTemplate.SerializedType = typeof(TileTemplate).Name;
-                loadedTileTemplate.Save();
-            }
-            else if (jsonAppDataPath.Contains("Tile Groups/"))
-            {
-                GroupTemplate loadedGroupTemplate = GroupTemplate.GetGroupTemplate(jsonAppDataPath);
+                EditorUtility.DisplayProgressBar("Refactoring GroupTemplate json files", groupTemplateAppDataPath, progress);
+
+                GroupTemplate loadedGroupTemplate = GroupTemplate.GetGroupTemplate(groupTemplateAppDataPath);
                 //loadedGroupTemplate.SerializedType = typeof(GroupTemplate).Name;
-                loadedGroupTemplate.Save();
+                //loadedGroupTemplate.Save();
+
+                foreach (TileInstance childTileInstance in loadedGroupTemplate.TileInstances)
+                {
+                    string childTileTemplateAppDataPath = childTileInstance.TemplateAppDataPath;
+
+                    if (!tileTemplateAppDataPathsNotUsableIndividually.Contains(childTileTemplateAppDataPath))
+                    {
+                        tileTemplateAppDataPathsNotUsableIndividually.Add(childTileTemplateAppDataPath);
+                    }
+                }
+
+                progress += 1 / (float)groupTemplateAppDataPaths.Count;
             }
-            else if (jsonAppDataPath.Contains("Chunks/"))
+
+            //Reset the progress
+            progress = 0f;
+            //Reformat chunks
+            foreach (string chunkAppDataPath in chunkAppDataPaths)
             {
-                Chunk loadedChunk = Chunk.GetChunk(jsonAppDataPath);
+                EditorUtility.DisplayProgressBar("Refactoring Chunk json files", chunkAppDataPath, progress);
+
+                Chunk loadedChunk = Chunk.GetChunk(chunkAppDataPath);
                 //loadedChunk.SerializedType = typeof(Chunk).Name;
-                loadedChunk.Save();
+                //loadedChunk.Save();
+
+                progress += 1 / (float)chunkAppDataPaths.Count;
             }
-            else
+
+            //Reset the progress
+            progress = 0f;
+            //Reformat tile templates
+            foreach (string tileTemplateAppDataPath in tileTemplateAppDataPaths)
             {
-                Debug.Log("Unrecognized directory: " + jsonAppDataPath);
+                EditorUtility.DisplayProgressBar("Refactoring TileTemplate json files", tileTemplateAppDataPath, progress);
+
+                TileTemplate loadedTileTemplate = TileTemplate.GetTileTemplate(tileTemplateAppDataPath);
+                //loadedTileTemplate.SerializedType = typeof(TileTemplate).Name;
+                loadedTileTemplate.UsableIndividually = !tileTemplateAppDataPathsNotUsableIndividually.Contains(tileTemplateAppDataPath);
+
+                loadedTileTemplate.Save();
+
+                progress += 1 / (float)tileTemplateAppDataPaths.Count;
             }
+
+            //Reset the progress
+            progress = 0f;
+            //Reformat characters
+            foreach (string characterAppDataPath in characterAppDataPaths)
+            {
+                EditorUtility.DisplayProgressBar("Refactoring Character json files", characterAppDataPath, progress);
+
+                //TODO this
+
+                progress += 1 / (float)tileTemplateAppDataPaths.Count;
+            }
+
+            EditorUtility.ClearProgressBar();
         }
 
         [MenuItem("Tools/SUFanGame/Temp/Count Objects In Scene")]
