@@ -9,9 +9,7 @@ using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGameEditor.Tools;
 using System.Linq;
 
-/// <summary>
-/// A user-friendly map editor window for painting tiles in a scene.
-/// </summary>
+
 
 //  TODO: We'll have to be able to load existing world data
 //       into the system from chunks. Is there a better way than polling all editor instances? Could be really slow on big maps.
@@ -20,6 +18,9 @@ using System.Linq;
 //       In OnUndoRedo?
 namespace StevenUniverse.FanGameEditor.SceneEditing
 {
+    /// <summary>
+    /// A user-friendly map editor window for painting tiles in a scene.
+    /// </summary>
     public class MapEditor : SceneEditorWindow
     {
         // The folder the map editor will build our list of tiles from
@@ -167,9 +168,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             base.OnMouseDown(button, cursorWorldPos);
 
-            if (tilePrefabs_.Count == 0)
-                return;
-
             if (button == 0)
             {
                 // floor position to grid
@@ -181,10 +179,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 switch ((Toolbar)selectedToolbar_)
                 {
                     case Toolbar.PaintTile:
-                        PlaceTile(cursorWorldPos);
+                        if (tilePrefabs_.Count == 0)
+                            return;
+                        PlaceTile(cursorWorldPos, tilePrefabs_[selectedTileIndex_] );
                         break;
                     case Toolbar.PaintGroup:
-                        PlaceGroup(cursorWorldPos);
+                        if (tileGroupPrefabs_.Count == 0)
+                            return;
+                        PlaceGroup(cursorWorldPos, tileGroupPrefabs_[selectedGroupIndex_] );
                         break;
                 }
             }
@@ -286,13 +288,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             var cursorPos = SceneEditorUtil.GetCursorPosition();
 
 
-            var dims = instance_.GetGroupDimensions(selected);
+            var size = instance_.GetTileGroupSize(selected);
 
-            var offset = ((Vector3)dims.size / 2f);
-            Gizmos.DrawWireCube(cursorPos + offset, Vector3.Scale(Vector3.one, dims.size) );
+            var offset = ((Vector3)size / 2f);
+            Gizmos.DrawWireCube(cursorPos + offset, Vector3.Scale(Vector3.one, size) );
 
             var bl = HandleUtility.WorldToGUIPoint(cursorPos);
-            var tr = HandleUtility.WorldToGUIPoint(cursorPos + (Vector3)dims.size);
+            var tr = HandleUtility.WorldToGUIPoint(cursorPos + (Vector3)size);
 
             Handles.BeginGUI();
 
@@ -348,60 +350,87 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// Place a tile at the given location.
         /// </summary>
         /// <param name="pos"></param>
-        void PlaceTile( Vector3 pos )
+        void PlaceTile( Vector3 pos, TileInstanceEditor tile )
         {
-            // Cache our currently selected tile
-            var selected = tilePrefabs_[selectedTileIndex_];
-
-
             var map = World.Instance.TileMap;
 
-            var tilesAtPos = map.GetTiles(pos);
+            var layer = tile.TileInstance.TileTemplate.TileLayer;
 
-            if (tilesAtPos != null)
-            {
-                for (int i = 0; i < tilesAtPos.Count; ++i)
-                {
-                    var existing = tilesAtPos[i];
-                    //Debug.LogFormat("Instance Layer: {0}, Prefab Layer {1}", existing.TileInstance.TileTemplate.TileLayer.Name, selected.TileInstance.TileTemplate.TileLayer.Name);
+            var existing = map.RemoveAt(pos, layer);
 
-                    if (SameLayer(existing, selected))
-                    {
-                        // If our selected tile is the existing tile's prefab we already know this tile is at the target location
-                        // so we can bail out now.
-                        if (PrefabUtility.GetPrefabParent(existing) == selected)
-                            return;
-                        else
-                        {
-                            map.RemoveTile(pos, existing);
-                            Undo.DestroyObjectImmediate(existing.gameObject);
-                        }
-                    }
-                }
-            }
+            if (existing != null)
+                Undo.DestroyObjectImmediate(existing.gameObject);
 
-            var newTile = (TileInstanceEditor)PrefabUtility.InstantiatePrefab(selected);
+            var newTile = (TileInstanceEditor)PrefabUtility.InstantiatePrefab(tile);
 
             newTile.transform.position = pos;
+            newTile.Instance.Position = pos;
             newTile.Elevation = currentElevation_;
             pos.z = currentElevation_;
             newTile.name = string.Join(":", new string[] { pos.ToString(), newTile.name });
             newTile.transform.SetParent(World.Instance.transform);
-            newTile.Instance.X = (int)pos.x;
-            newTile.Instance.Y = (int)pos.y;
 
-            map.AddTile(pos, newTile);
-        }
-
-        void PlaceGroup( Vector3 pos )
-        {
-            var selected = tileGroupPrefabs_[selectedGroupIndex_];
-
-
+            map.AddInstance(pos, newTile);
         }
 
         /// <summary>
-        /// Check a and b share the same layer and elevation.
+        /// Place a tile group from a prefab.
+        /// </summary>
+        void PlaceGroup( Vector3 pos, GroupInstanceEditor groupPrefab )
+        {
+            var map = World.Instance.TileMap;
+
+            Undo.SetCurrentGroupName("Create Tile Group");
+
+            int undoIndex = Undo.GetCurrentGroup();
+
+            var group = (GroupInstanceEditor)PrefabUtility.InstantiatePrefab(groupPrefab);
+            var instances = group.GroupInstance.GroupTemplate.TileInstances;
+
+            group.transform.position = pos;
+            group.Instance.Position = pos;
+            // RE: Tile Group Elevation:
+            // Nope, it's the elevation from which every tileInstance is relative to
+            // So like if you have the tile group at elevation 0, a tile instance ay elevation 1 will be at 1.
+            // If the tile group is at elevation 5, a tile at elevation 1 will be at 6.
+            group.Elevation = currentElevation_;
+
+            pos.z = (int)currentElevation_;
+
+            group.name = string.Join(":", new string[] { pos.ToString(), group.name });
+
+            Undo.SetTransformParent(group.transform, World.Instance.transform, "Parent group to world");
+
+            Undo.RegisterCreatedObjectUndo(group.gameObject, "Create tile group");
+
+            foreach ( var tile in instances )
+            {
+                // The world position for this tile.
+                var tilePos = pos + tile.Position;
+                // A tile group's tile's world elevation is relative to the group's elevation. See above.
+                tilePos.z += group.Elevation;
+                var layer = tile.TileTemplate.TileLayer;
+                var existing = map.RemoveAt( tilePos, layer );
+                if (existing != null)
+                    Undo.DestroyObjectImmediate(existing);
+                map.AddInstance( tilePos, group );
+            }
+            
+           Undo.CollapseUndoOperations(undoIndex);
+        }
+
+        /// <summary>
+        /// Removes an editor instance from the map and destroys it, whether it's a tile or a group
+        /// </summary>
+        void RemoveInstance( Vector3 pos, FanGame.Overworld.Templates.TileTemplate.Layer layer )
+        {
+            var map = World.Instance.TileMap;
+            var existingTiles = map.GetInstances(pos);
+            
+        }
+
+        /// <summary>
+        /// Check if a and b share the same layer and elevation.
         /// </summary>
         bool SameLayer( TileInstanceEditor a, TileInstanceEditor b )
         {
@@ -411,7 +440,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         }
 
 
-
+        /// <summary>
+        /// For cycling through the currently selected tiles in the map editor window.
+        /// </summary>
         void OnTileKey( KeyCode key )
         {
             if (Event.current.shift)
@@ -428,6 +459,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
         }
 
+        /// <summary>
+        /// For cycling through the currently selected groups in the map editor window.
+        /// </summary>
         void OnGroupKey( KeyCode key )
         {
             if (Event.current.shift)
@@ -444,7 +478,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
         }
 
-
+        /// <summary>
+        /// Refresh our list of tile prefabs.
+        /// </summary>
+        /// <param name="path"></param>
         void GetTilePrefabs( string path )
         {
             tilePrefabs_.Clear();
@@ -465,12 +502,19 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
         }
 
+        /// <summary>
+        /// Refresh our list of tile group prefabs.
+        /// </summary>
         void GetGroupPrefabs( string path )
         {
             tileGroupPrefabs_.Clear();
             tileGroupPrefabs_ = AssetUtil.GetAssets<GroupInstanceEditor>(path);
         }
 
+        /// <summary>
+        /// Verify the state of the World Object exists and create one if it doesn't. We need a world
+        /// object to keep track of the state of our map.
+        /// </summary>
         void VerifyWorld()
         {
             if (world_ == null)
@@ -482,7 +526,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
 
         /// <summary>
-        /// Clear all instances in the scene and reset the world object.
+        /// Clear all instances in the scene and reset the world object. Could easily make this undoable if needed.
         /// </summary>
         void Clear()
         {
@@ -492,7 +536,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 "Yes", "No"))
                 return;
 
-            var instances = FindObjectsOfType<TileInstanceEditor>();
+            var instances = FindObjectsOfType<InstanceEditor>();
             
             if( instances.Length > 0 )
             {
@@ -513,21 +557,34 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             EditorWindow.GetWindow<MapEditor>();
         }
 
-        Rect GetGroupDimensions( GroupInstanceEditor group )
+        Vector2 GetTileGroupSize( GroupInstanceEditor group )
         {
-            Rect r = new Rect();
-
-            r.min = new Vector2(float.MaxValue, float.MaxValue);
-            r.max = new Vector2(float.MinValue, float.MinValue);
+            Vector2 size = Vector2.zero;
 
             var tiles = group.GetComponentsInChildren<TileInstanceEditor>();
             foreach( var t in tiles )
             {
-                r.min = Vector2.Min(r.min, t.TileInstance.Position);
-                r.max = Vector2.Max(r.max, t.TileInstance.Position + Vector3.one);
+                size = Vector2.Max(size, t.TileInstance.Position + Vector3.one);
             }
 
-            return r;
+            return size;
+        }
+
+        /// <summary>
+        /// Remove a group instance from the map and destroy it.
+        /// </summary>
+        void DestroyGroup( GroupInstanceEditor group )
+        {
+            // Get our positions
+            var positions = group.GroupInstance.IndependantTileInstances.Select(i=>i.Position).ToArray();
+            var map = World.Instance.TileMap;
+            // Iterate through each position of the individual tiles of the group and remove our group reference from the map.
+            foreach( var pos in positions )
+            {
+                map.RemoveInstance(pos, group);
+            }
+            // Destroy the group gameobject
+            Undo.DestroyObjectImmediate(group.gameObject);
         }
 
     }

@@ -10,6 +10,9 @@ namespace StevenUniverse.FanGame.OverworldEditor
     {
         [SerializeField] private GroupInstance groupInstance;
 
+        [SerializeField]
+        EditorInstanceMap tileMap_ = new EditorInstanceMap();
+
         private GroupTemplate groupTemplate;
 
         // Use this for initialization
@@ -21,7 +24,17 @@ namespace StevenUniverse.FanGame.OverworldEditor
             }
 
             base.Start();
+
+            var instances = GetComponentsInChildren<TileInstanceEditor>();
+
+            foreach( var i in instances )
+            {
+                Vector2 pos = i.transform.localPosition;
+                int elevation = i.Elevation;
+                tileMap_.AddInstance(new Vector3(pos.x, pos.y, elevation), i);
+            }
         }
+        
 
         public GroupInstance GroupInstance
         {
@@ -45,6 +58,12 @@ namespace StevenUniverse.FanGame.OverworldEditor
         public override Instance Instance
         {
             get { return GroupInstance; }
+        }
+
+        public TileInstanceEditor GetTile( Vector3 pos )
+        {
+            Debug.LogFormat("Getting tile {0} from group {1}", pos, name);
+            return tileMap_.GetInstances( pos )[0] as TileInstanceEditor;
         }
     }
 }

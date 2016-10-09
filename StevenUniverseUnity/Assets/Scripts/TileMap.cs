@@ -3,17 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using StevenUniverse.FanGame.OverworldEditor;
+using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
+// TODO : Change position paramters to Vector2 and have a third "Elevation" parameter 
+//        to mirror how elevation works within the framework.
+
+/// <summary>
+/// Collection mapping editor instances to a position. Each position can hold multiple tiles of different layers. No single position should have
+/// two tiles of the same layer. Accepts either individual tiles (TileInstanceEditor) or Tile Groups (GroupInsanceEditor).
+/// Note the "Z" value of the key refers to the "Elevation" of the tile
+/// </summary>
 [System.Serializable]
-public class TileMap : ISerializationCallbackReceiver, IEnumerable<KeyValuePair<Vector3,List<TileInstanceEditor>>>
+public class EditorInstanceMap : ISerializationCallbackReceiver, IEnumerable<KeyValuePair<Vector3,List<InstanceEditor>>>
 {
     [System.Serializable]
     class TileListWrapper 
     {
-        public List<TileInstanceEditor> list_;
+        public List<InstanceEditor> list_;
     }
 
     [SerializeField]
@@ -22,73 +31,122 @@ public class TileMap : ISerializationCallbackReceiver, IEnumerable<KeyValuePair<
     [SerializeField]
     List<Vector3> serializedKeys_ = null;
 
-    Dictionary<Vector3, List<TileInstanceEditor>> dict_ = new Dictionary<Vector3, List<TileInstanceEditor>>();
+    Dictionary<Vector3, List<InstanceEditor>> dict_ = new Dictionary<Vector3, List<InstanceEditor>>();
 
-    public TileMap() { }
+    public EditorInstanceMap() { }
 
-    public TileMap( TileInstanceEditor[] tiles )
+    public EditorInstanceMap( InstanceEditor[] instances )
     {
-        for( int i = 0; i < tiles.Length; ++i )
+        for( int i = 0; i < instances.Length; ++i )
         {
-            AddTile(tiles[i].transform.position, tiles[i]);
+            AddInstance(instances[i].transform.position, instances[i]);
         }
     }
 
+
     /// <summary>
-    /// Add a tile to the given position. Any existing tiles that match the given tile's layer will be removed.
+    /// Add a tile to the given position. Z is assumed to be the instance's elevation. Any existing tiles that match the given tile's layer will be removed.
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="tilePrefab"></param>
-    public void AddTile( Vector3 pos, TileInstanceEditor newTile )
+    public void AddInstance( Vector3 pos, InstanceEditor instance )
     {
         if( !dict_.ContainsKey(pos) )
         {
-            dict_[pos] = new List<TileInstanceEditor>();
+            dict_[pos] = new List<InstanceEditor>();
         }
 
-        dict_[pos].Add(newTile);
+        dict_[pos].Add(instance);
     }
-    
-    /// <summary>
-    /// Remove a SINGLE tile at the given position matching the given predicate and destroys it.
-    /// </summary>
-    /// <param name="pos">Position of the tile</param>
-    /// <param name="match">A predicate to match the tile against. If true, the tile will be removed.</param>
-    /// <returns></returns>
-    public void RemoveTile( Vector3 pos, System.Predicate<TileInstanceEditor> match )
-    {
-        List<TileInstanceEditor> tiles;
-        if (!dict_.TryGetValue(pos, out tiles))
-            return;
 
-        for( int i = tiles.Count - 1; i >= 0; --i )
+    /// <summary>
+    /// Remove the given instance from the map. Note in the case of group instances, all tiles of the group will be removed from the map.
+    /// </summary>
+    public void RemoveInstance(Vector3 pos, InstanceEditor instance )
+    {
+        if (instance is TileInstanceEditor)
+            dict_.Remove(pos);
+        else
         {
-            var t = tiles[i];
-            if (match(t))
+            var group = instance as GroupInstanceEditor;
+            var tiles = group.GroupInstance.IndependantTileInstances;
+            for( int i = 0; i < tiles.Length; ++i )
             {
-                tiles.RemoveAt(i);
+                var tilePos = tiles[i].Position;
+                dict_.Remove(tilePos);
             }
         }
     }
 
     /// <summary>
-    /// Remove the given tile from the given position
+    /// Remove the instance given position if it matches the given layer. Returns the removed instance, or null if no instance was found.
+    /// Note that in the case of groups this will remove ALL TILES OF THAT GROUP from the map, then return the group instance.
     /// </summary>
-    public void RemoveTile(Vector3 pos, TileInstanceEditor tile )
+    public InstanceEditor RemoveAt( Vector3 pos, StevenUniverse.FanGame.Overworld.Templates.TileTemplate.Layer layer )
     {
-        var list = GetTiles(pos);
+        // Get a list of all instances at the given position.
+        var list = GetInstances(pos);
         if (list == null)
-            return;
-        list.Remove(tile);
+            return null;
+
+        // Iterate through each tile at this location to see if it matches our target layer.
+        for( int i = 0; i < list.Count; ++i )
+        {
+            // The instance at this position. Could be a group or a tile.
+            var instance = list[i];
+
+            TileInstanceEditor instanceEditor = null;
+            instanceEditor = instance as TileInstanceEditor;
+            // If it's not a tile, then it's a group.
+            if (instanceEditor == null)
+            {
+                var group = instance as GroupInstanceEditor;
+                // Check the layer of the group's tile at this position. If it's not a match then we can bail out.
+                // If it IS a match that means this tile group  will be removed. We'll
+                // remove every tile of the group from the map then return the group instance
+                if (group.GetTile(pos).TileInstance.TileTemplate.TileLayer != layer)
+                    continue;
+                
+                // Get the instances for all of the group's tiles
+                var instances = group.GroupInstance.IndependantTileInstances;
+                for( int j = 0; j < instances.Length; ++j )
+                {
+                    var tile = instances[i];
+                    // Position for the tile instance for this group
+                    Vector3 tilePos = new Vector3(tile.Position.x, tile.Position.y, tile.Elevation);
+
+                    // Get the list of instances at our tile's position
+                    var tiles = GetInstances(tilePos);
+                    // Remove the group reference from that position.
+                    tiles.Remove(group);
+                }
+
+                // At this point all references to our group have been removed from the map.
+                return group;
+            }
+
+            var existingLayer = instanceEditor.TileInstance.TileTemplate.TileLayer;
+
+            // Otherwise we're dealing with a tile instance. Check our layer...
+            if ( existingLayer == layer)
+            {
+                // If it's a match, remove the tile and return it.
+                list.RemoveAt(i);
+                return instanceEditor;
+            }
+        }
+
+        // Otherwise there was no match!
+        return null;
     }
     
 
     /// <summary>
-    /// Gets the list of all tiles at the given position.
+    /// Gets the list of all instances at the given position.
     /// </summary>
-    public List<TileInstanceEditor> GetTiles( Vector3 pos )
+    public List<InstanceEditor> GetInstances( Vector3 pos )
     {
-        List<TileInstanceEditor> list;
+        List<InstanceEditor> list;
         if (!dict_.TryGetValue(pos, out list))
             return null;
 
@@ -96,11 +154,36 @@ public class TileMap : ISerializationCallbackReceiver, IEnumerable<KeyValuePair<
     }
 
     /// <summary>
+    /// Gets the tile at the given location matching the given layer. Returns null if no match was found.
+    /// </summary>
+    public TileInstanceEditor GetTile( Vector3 pos, StevenUniverse.FanGame.Overworld.Templates.TileTemplate.Layer layer )
+    {
+        var tiles = GetInstances(pos);
+        if (tiles != null )
+        {
+            for (int i = 0; i < tiles.Count; ++i)
+            {
+                var tile = tiles[i];
+                TileInstanceEditor instanceEditor = null;
+                instanceEditor = tile as TileInstanceEditor;
+                if (instanceEditor == null)
+                    instanceEditor = (tile as GroupInstanceEditor).GetTile(pos);
+
+                if (instanceEditor.TileInstance.TileTemplate.TileLayer == layer)
+                {
+                    return instanceEditor;
+                }
+            }
+        }
+        return null;
+    }
+
+    /// <summary>
     /// Gets the count of all tiles at the given position.
     /// </summary>
     public int GetTileCount( Vector3 pos )
     {
-        List<TileInstanceEditor> list;
+        List<InstanceEditor> list;
         if (!dict_.TryGetValue(pos, out list))
             return 0;
 
@@ -161,7 +244,7 @@ public class TileMap : ISerializationCallbackReceiver, IEnumerable<KeyValuePair<
         }
     }
 
-    public IEnumerator<KeyValuePair<Vector3, List<TileInstanceEditor>>> GetEnumerator()
+    public IEnumerator<KeyValuePair<Vector3, List<InstanceEditor>>> GetEnumerator()
     {
         return dict_.GetEnumerator();
     }

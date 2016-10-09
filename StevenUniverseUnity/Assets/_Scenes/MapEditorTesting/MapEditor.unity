@@ -118,14 +118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMap_:
-    serializedValues_:
-    - list_:
-      - {fileID: 1338633391}
-    - list_:
-      - {fileID: 887074832}
-    serializedKeys_:
-    - {x: -2, y: -4, z: 0}
-    - {x: 1, y: -3, z: 0}
+    serializedValues_: []
+    serializedKeys_: []
 --- !u!4 &526103209
 Transform:
   m_ObjectHideFlags: 0
@@ -136,78 +130,9 @@ Transform:
   m_LocalPosition: {x: -0.7715644, y: -4.351722, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 1338633392}
-  - {fileID: 887074833}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1001 &887074831
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 526103209}
-    m_Modifications:
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1.7715645
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.3517218
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012602287224, guid: 49a803e9052ab0c4db01ed09f138e85e,
-        type: 2}
-      propertyPath: tileInstance.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012602287224, guid: 49a803e9052ab0c4db01ed09f138e85e,
-        type: 2}
-      propertyPath: tileInstance.y
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010148956736, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_Name
-      value: (1.0, -3.0, 0.0):Battle Tent 09
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &887074832 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012602287224, guid: 49a803e9052ab0c4db01ed09f138e85e,
-    type: 2}
-  m_PrefabInternal: {fileID: 887074831}
-  m_Script: {fileID: 11500000, guid: 55c03327e9e17284a987120513187196, type: 3}
---- !u!4 &887074833 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e,
-    type: 2}
-  m_PrefabInternal: {fileID: 887074831}
 --- !u!1 &964531921
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,70 +220,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!1001 &1338633390
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 526103209}
-    m_Modifications:
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1.2284355
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.35172176
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012602287224, guid: 49a803e9052ab0c4db01ed09f138e85e,
-        type: 2}
-      propertyPath: tileInstance.x
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012602287224, guid: 49a803e9052ab0c4db01ed09f138e85e,
-        type: 2}
-      propertyPath: tileInstance.y
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010148956736, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-      propertyPath: m_Name
-      value: (-2.0, -4.0, 0.0):Battle Tent 09
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 49a803e9052ab0c4db01ed09f138e85e, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1338633391 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012602287224, guid: 49a803e9052ab0c4db01ed09f138e85e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1338633390}
-  m_Script: {fileID: 11500000, guid: 55c03327e9e17284a987120513187196, type: 3}
---- !u!4 &1338633392 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000013561229552, guid: 49a803e9052ab0c4db01ed09f138e85e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1338633390}
