@@ -81,6 +81,15 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             base.OnEnable();
             titleContent.text = "MapEditor";
             instance_ = this;
+            Undo.undoRedoPerformed -= OnUndoRedo;
+            Undo.undoRedoPerformed += OnUndoRedo;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            Undo.undoRedoPerformed -= OnUndoRedo;
         }
 
         void OnFocus()
@@ -454,6 +463,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 Undo.DestroyObjectImmediate(existing.gameObject);
 
             var newTile = (TileInstanceEditor)PrefabUtility.InstantiatePrefab(tile);
+            Undo.RegisterCreatedObjectUndo(newTile.gameObject, "Place Tile");
 
             newTile.transform.position = index.Position;
             newTile.Instance.Position = index.Position;
@@ -658,6 +668,27 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             return size;
         }
 
+        void OnUndoRedo()
+        {
+            var map = World.Instance.TileMap;
+            map.Clear();
+            var tiles = GameObject.FindObjectsOfType<TileInstanceEditor>();
+
+            foreach( var t in tiles )
+            {
+                var index = new TileIndex(t.transform.position, t.Elevation, t.TileInstance.TileTemplate.TileLayer);
+
+                var group = t.transform.parent.GetComponent<GroupInstanceEditor>();
+                if (group != null)
+                {
+                    map.AddInstance(index, group);
+                }
+                else
+                {
+                    map.AddInstance(index, t);
+                }
+            }
+        }
 
     }
 }
