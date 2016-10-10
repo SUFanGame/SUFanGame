@@ -8,6 +8,7 @@ using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGameEditor.Tools;
 using System.Linq;
+using StevenUniverse.FanGame.Overworld.Templates;
 
 
 
@@ -173,8 +174,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 // floor position to grid
                 for (int i = 0; i < 2; ++i)
                     cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
-                cursorWorldPos.z = currentElevation_;
 
+
+                if( EraseKey() )
+                {
+                    EraseInstance( cursorWorldPos );
+
+                    return;
+                }
 
                 switch ((Toolbar)selectedToolbar_)
                 {
@@ -182,15 +189,47 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                         if (tilePrefabs_.Count == 0)
                             return;
                         PlaceTile(cursorWorldPos, tilePrefabs_[selectedTileIndex_] );
+
                         break;
                     case Toolbar.PaintGroup:
                         if (tileGroupPrefabs_.Count == 0)
                             return;
+
                         PlaceGroup(cursorWorldPos, tileGroupPrefabs_[selectedGroupIndex_] );
+
                         break;
                 }
             }
 
+        }
+
+        protected override void OnMouseDrag(int button, Vector3 cursorWorldPos)
+        {
+            base.OnMouseDrag(button, cursorWorldPos);
+
+            if( button == 0 )
+            {
+                // floor position to grid
+                for (int i = 0; i < 2; ++i)
+                    cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
+
+
+                if( EraseKey() )
+                {
+
+                    return;
+                }
+
+
+                switch( (Toolbar)selectedToolbar_)
+                {
+                    case Toolbar.PaintTile:
+                        if (tilePrefabs_.Count == 0)
+                            return;
+                        PlaceTile(cursorWorldPos, tilePrefabs_[selectedTileIndex_]);
+                        break;
+                }
+            }
         }
 
         protected override void OnSceneGUI(SceneView view)
@@ -204,6 +243,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             
             GUILayout.Label("Raise/Lower Elevation: Shift W/S");
             GUILayout.Label("Next/Previous Tile: Shift E/Q");
+            GUILayout.Label("To Erase: Hold control");
 
 
             Handles.EndGUI();
@@ -229,19 +269,40 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             EditorGUI.LabelField(new Rect(labelPos.x, labelPos.y, 100f, 100f), "Elevation " + instance_.currentElevation_);
             Handles.EndGUI();
 
-            switch ( (Toolbar)instance_.selectedToolbar_ )
-            {
-                case Toolbar.PaintTile:
-                    TileDrawCursor();
-                    break;
 
-                case Toolbar.PaintGroup:
-                    GroupDrawCursor();
-                    break;
+            if( EraseKey() )
+            {
+                EraseDrawCursor();
+            }
+            else
+            {
+                switch ((Toolbar)instance_.selectedToolbar_)
+                {
+                    case Toolbar.PaintTile:
+                        TileDrawCursor();
+                        break;
+
+                    case Toolbar.PaintGroup:
+                        GroupDrawCursor();
+                        break;
+                }
             }
 
             SceneView.currentDrawingSceneView.Repaint();
 
+        }
+
+        static void EraseDrawCursor()
+        {
+            var cursorPos = SceneEditorUtil.GetCursorPosition();
+
+            var oldColor = Gizmos.color;
+
+            Gizmos.color = Color.red;
+            var offset = Vector2.one * .5f;
+            Gizmos.DrawWireCube(cursorPos + Vector3.back + (Vector3)offset, Vector3.one);
+
+            Gizmos.color = oldColor;
         }
 
         static void TileDrawCursor()
@@ -353,7 +414,27 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             selectedGroupIndex_ = Mathf.Clamp(selectedGroupIndex_, 0, tileGroupPrefabs_.Count - 1);
         }
         
+        void EraseInstance( Vector2 pos )
+        {
+            var layers = TileTemplate.Layer.Instances;
+            var map = World.Instance.TileMap;
 
+            Undo.SetCurrentGroupName("Create Tile Group");
+
+            int undoIndex = Undo.GetCurrentGroup();
+
+            foreach ( var layer in layers )
+            {
+                var index = new TileIndex(pos, currentElevation_, layer);
+
+                var existing = map.RemoveAt(index);
+
+                if( existing != null )
+                    Undo.DestroyObjectImmediate(existing.gameObject);
+            }
+
+            Undo.CollapseUndoOperations( undoIndex );
+        }
 
         /// <summary>
         /// Place a tile at the given location.
@@ -413,7 +494,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             //var templateInstances = group.GroupInstance.GroupTemplate.TileInstances;
             //var instances = group.GroupInstance.IndependantTileInstances;
-            var indices = GroupTileIndices(group);
+            var indices = TileMap.GroupTileIndices(group);
 
             // Iterate through all tiles in this group and add a reference to the group at that tile's position
             foreach (var index in indices )
@@ -430,16 +511,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             Undo.CollapseUndoOperations(undoIndex);
         }
-
-        ///// <summary>
-        ///// Removes an editor instance from the map and destroys it, whether it's a tile or a group
-        ///// </summary>
-        //void RemoveInstance( Vector2 pos, int elevation, FanGame.Overworld.Templates.TileTemplate.Layer layer )
-        //{
-        //    var map = World.Instance.TileMap;
-        //    var existingTiles = map.GetInstances( pos, elevation );
-            
-        //}
 
         /// <summary>
         /// Check if a and b share the same layer and elevation.
@@ -563,6 +634,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         }
 
+        static bool EraseKey()
+        {
+            return Event.current.control;
+        }
+
         [MenuItem("Tools/SUFanGame/MapEditor")]
         static void OpenWindow()
         {
@@ -582,38 +658,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             return size;
         }
 
-        ///// <summary>
-        ///// Remove a group instance from the map and destroy it.
-        ///// </summary>
-        //void DestroyGroup( GroupInstanceEditor group )
-        //{
-        //    // Get our positions
-        //    var positions = group.GroupInstance.IndependantTileInstances.Select(i=>i.Position).ToArray();
-        //    var map = World.Instance.TileMap;
-        //    // Iterate through each position of the individual tiles of the group and remove our group reference from the map.
-        //    foreach( var pos in positions )
-        //    {
-        //        map.RemoveInstance(pos, currentElevation_, group);
-        //    }
-        //    // Destroy the group gameobject
-        //    Undo.DestroyObjectImmediate(group.gameObject);
-        //}
 
-        public static List<TileIndex> GroupTileIndices(GroupInstanceEditor group)
-        {
-            List<TileIndex> tileIndices = new List<TileIndex>();
-
-            var instances = group.GetComponentsInChildren<TileInstanceEditor>();
-
-            foreach (var tile in instances)
-            {
-                tileIndices.Add(new TileIndex(
-                    tile.transform.position,
-                    tile.Elevation + group.Elevation,
-                    tile.TileInstance.TileTemplate.TileLayer));
-            }
-
-            return tileIndices;
-        }
     }
 }

@@ -15,8 +15,8 @@ public class World : MonoBehaviour
 
     [SerializeField]
     //[HideInInspector]
-    EditorInstanceMap tileMap_ = new EditorInstanceMap();
+    TileMap tileMap_ = new TileMap();
     
-    public EditorInstanceMap TileMap { get { return tileMap_; } }
+    public TileMap TileMap { get { return tileMap_; } }
 
 }
