@@ -23,21 +23,21 @@ public class WorldInspector : Editor
         //    //EditorUtils.CreatePrefab<UnityTile>(assetPath_);
         //}
 
-        foreach (var pair in tar.TileMap)
-        {
-            //for (int i = pair.Value.Count - 1; i >= 0; --i)
-            //{
-            //    if (pair.Value[i] == null)
-            //        pair.Value.RemoveAt(i);
-            //}
+        //foreach (var pair in tar.TileMap)
+        //{
+        //    //for (int i = pair.Value.Count - 1; i >= 0; --i)
+        //    //{
+        //    //    if (pair.Value[i] == null)
+        //    //        pair.Value.RemoveAt(i);
+        //    //}
 
-            var tileNames = pair.Value.Select(t => t.name).ToArray();
-            var tileNamesString = string.Join(", ", tileNames);
+        //    var tileNames = pair.Value.Select(t => t.name).ToArray();
+        //    var tileNamesString = string.Join(", ", tileNames);
 
-            var str = string.Format("{0}:{1}", pair.Key, tileNamesString);
+        //    var str = string.Format("{0}:{1}", pair.Key, tileNamesString);
 
-            EditorGUILayout.LabelField(str);
-        }
+        //    EditorGUILayout.LabelField(str);
+        //}
 
         //if ( GUILayout.Button("Clear") )
         //{

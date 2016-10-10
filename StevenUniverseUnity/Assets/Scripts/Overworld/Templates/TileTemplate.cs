@@ -169,7 +169,7 @@ namespace StevenUniverse.FanGame.Overworld.Templates
                 Add(new Mode("Collidable"));
             }
         }
-
+        
         public class Layer : EnhancedEnum<Layer>
         {
             //Instance

@@ -173,7 +173,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 // floor position to grid
                 for (int i = 0; i < 2; ++i)
                     cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
-                cursorWorldPos.z = 0;
+                cursorWorldPos.z = currentElevation_;
 
 
                 switch ((Toolbar)selectedToolbar_)
@@ -205,6 +205,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             GUILayout.Label("Raise/Lower Elevation: Shift W/S");
             GUILayout.Label("Next/Previous Tile: Shift E/Q");
 
+
             Handles.EndGUI();
         }
 
@@ -220,7 +221,15 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             if ( instance_ == null )
                 return;
 
-            switch( (Toolbar)instance_.selectedToolbar_ )
+            var cursorPos = SceneEditorUtil.GetCursorPosition();
+            var labelPos = HandleUtility.WorldToGUIPoint(cursorPos + Vector3.right + (Vector3.up));
+
+            // Draw our elevation label.
+            Handles.BeginGUI();
+            EditorGUI.LabelField(new Rect(labelPos.x, labelPos.y, 100f, 100f), "Elevation " + instance_.currentElevation_);
+            Handles.EndGUI();
+
+            switch ( (Toolbar)instance_.selectedToolbar_ )
             {
                 case Toolbar.PaintTile:
                     TileDrawCursor();
@@ -245,11 +254,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             var offset = Vector2.one * .5f;
             Gizmos.DrawWireCube(cursorPos + Vector3.back + (Vector3)offset, Vector3.one );
 
-
             // Convert world space to gui space
             var bl = HandleUtility.WorldToGUIPoint(cursorPos);
             var tr = HandleUtility.WorldToGUIPoint(cursorPos + Vector3.right + Vector3.up);
-            var labelPos = HandleUtility.WorldToGUIPoint(cursorPos + Vector3.right + (Vector3.up));
 
             var oldColor = GUI.color;
             var col = GUI.color;
@@ -266,9 +273,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 instance_.sprites_[instance_.selectedTileIndex_],
                 false, true);
             GUI.color = oldColor;
-
-            // Draw a label showing the cursor's current elevation.
-            EditorGUI.LabelField(new Rect(labelPos.x, labelPos.y, 100f, 100f), "Elevation " + instance_.currentElevation_);
 
             Handles.EndGUI();
         }
@@ -319,6 +323,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             if (tilePrefabs_.Count == 0)
                 return;
+
+            EditorGUILayout.LabelField("Layer: " + tilePrefabs_[selectedTileIndex_].TileInstance.TileTemplate.TileLayerName);
+
             // Draw our sprite grid from our cached list.
             selectedTileIndex_ = SceneEditorUtil.DrawSpriteGrid(
                 selectedTileIndex_, sprites_, 50f,
@@ -334,7 +341,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             if (tileGroupPrefabs_.Count == 0)
                 return;
+            var group = tileGroupPrefabs_[selectedGroupIndex_];
 
+            EditorGUILayout.LabelField(group.name);
             
             selectedGroupIndex_ = SceneEditorUtil.DrawAssetPreviewGrid(
                 selectedGroupIndex_, 
@@ -350,27 +359,28 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// Place a tile at the given location.
         /// </summary>
         /// <param name="pos"></param>
-        void PlaceTile( Vector3 pos, TileInstanceEditor tile )
+        void PlaceTile( Vector2 pos, TileInstanceEditor tile )
         {
             var map = World.Instance.TileMap;
 
             var layer = tile.TileInstance.TileTemplate.TileLayer;
 
-            var existing = map.RemoveAt(pos, layer);
+            //var existing = map.RemoveAt(pos, currentElevation_, layer);
+            var index = new TileIndex(pos, currentElevation_, layer);
+            var existing = map.RemoveAt( index);
 
             if (existing != null)
                 Undo.DestroyObjectImmediate(existing.gameObject);
 
             var newTile = (TileInstanceEditor)PrefabUtility.InstantiatePrefab(tile);
 
-            newTile.transform.position = pos;
-            newTile.Instance.Position = pos;
-            newTile.Elevation = currentElevation_;
-            pos.z = currentElevation_;
+            newTile.transform.position = index.Position;
+            newTile.Instance.Position = index.Position;
+            newTile.Elevation = index.Elevation;
             newTile.name = string.Join(":", new string[] { pos.ToString(), newTile.name });
             newTile.transform.SetParent(World.Instance.transform);
 
-            map.AddInstance(pos, newTile);
+            map.AddInstance(index, newTile);
         }
 
         /// <summary>
@@ -385,7 +395,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             int undoIndex = Undo.GetCurrentGroup();
 
             var group = (GroupInstanceEditor)PrefabUtility.InstantiatePrefab(groupPrefab);
-            var instances = group.GroupInstance.GroupTemplate.TileInstances;
+            // Get the template instances which gives is an easy way to retrieve LOCAL tile position/elevations for this group
 
             group.transform.position = pos;
             group.Instance.Position = pos;
@@ -395,39 +405,41 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             // If the tile group is at elevation 5, a tile at elevation 1 will be at 6.
             group.Elevation = currentElevation_;
 
-            pos.z = (int)currentElevation_;
-
             group.name = string.Join(":", new string[] { pos.ToString(), group.name });
 
             Undo.SetTransformParent(group.transform, World.Instance.transform, "Parent group to world");
 
             Undo.RegisterCreatedObjectUndo(group.gameObject, "Create tile group");
 
-            foreach ( var tile in instances )
+            //var templateInstances = group.GroupInstance.GroupTemplate.TileInstances;
+            //var instances = group.GroupInstance.IndependantTileInstances;
+            var indices = GroupTileIndices(group);
+
+            // Iterate through all tiles in this group and add a reference to the group at that tile's position
+            foreach (var index in indices )
             {
-                // The world position for this tile.
-                var tilePos = pos + tile.Position;
-                // A tile group's tile's world elevation is relative to the group's elevation. See above.
-                tilePos.z += group.Elevation;
-                var layer = tile.TileTemplate.TileLayer;
-                var existing = map.RemoveAt( tilePos, layer );
-                if (existing != null)
-                    Undo.DestroyObjectImmediate(existing);
-                map.AddInstance( tilePos, group );
+                var existing = map.RemoveAt(index);
+
+                if( existing != null )
+                {
+                    Undo.DestroyObjectImmediate(existing.gameObject);
+                }
+
+                map.AddInstance(index, group);
             }
-            
-           Undo.CollapseUndoOperations(undoIndex);
+
+            Undo.CollapseUndoOperations(undoIndex);
         }
 
-        /// <summary>
-        /// Removes an editor instance from the map and destroys it, whether it's a tile or a group
-        /// </summary>
-        void RemoveInstance( Vector3 pos, FanGame.Overworld.Templates.TileTemplate.Layer layer )
-        {
-            var map = World.Instance.TileMap;
-            var existingTiles = map.GetInstances(pos);
+        ///// <summary>
+        ///// Removes an editor instance from the map and destroys it, whether it's a tile or a group
+        ///// </summary>
+        //void RemoveInstance( Vector2 pos, int elevation, FanGame.Overworld.Templates.TileTemplate.Layer layer )
+        //{
+        //    var map = World.Instance.TileMap;
+        //    var existingTiles = map.GetInstances( pos, elevation );
             
-        }
+        //}
 
         /// <summary>
         /// Check if a and b share the same layer and elevation.
@@ -570,22 +582,38 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             return size;
         }
 
-        /// <summary>
-        /// Remove a group instance from the map and destroy it.
-        /// </summary>
-        void DestroyGroup( GroupInstanceEditor group )
-        {
-            // Get our positions
-            var positions = group.GroupInstance.IndependantTileInstances.Select(i=>i.Position).ToArray();
-            var map = World.Instance.TileMap;
-            // Iterate through each position of the individual tiles of the group and remove our group reference from the map.
-            foreach( var pos in positions )
-            {
-                map.RemoveInstance(pos, group);
-            }
-            // Destroy the group gameobject
-            Undo.DestroyObjectImmediate(group.gameObject);
-        }
+        ///// <summary>
+        ///// Remove a group instance from the map and destroy it.
+        ///// </summary>
+        //void DestroyGroup( GroupInstanceEditor group )
+        //{
+        //    // Get our positions
+        //    var positions = group.GroupInstance.IndependantTileInstances.Select(i=>i.Position).ToArray();
+        //    var map = World.Instance.TileMap;
+        //    // Iterate through each position of the individual tiles of the group and remove our group reference from the map.
+        //    foreach( var pos in positions )
+        //    {
+        //        map.RemoveInstance(pos, currentElevation_, group);
+        //    }
+        //    // Destroy the group gameobject
+        //    Undo.DestroyObjectImmediate(group.gameObject);
+        //}
 
+        public static List<TileIndex> GroupTileIndices(GroupInstanceEditor group)
+        {
+            List<TileIndex> tileIndices = new List<TileIndex>();
+
+            var instances = group.GetComponentsInChildren<TileInstanceEditor>();
+
+            foreach (var tile in instances)
+            {
+                tileIndices.Add(new TileIndex(
+                    tile.transform.position,
+                    tile.Elevation + group.Elevation,
+                    tile.TileInstance.TileTemplate.TileLayer));
+            }
+
+            return tileIndices;
+        }
     }
 }
