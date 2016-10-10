@@ -115,15 +115,9 @@ public class EditorInstanceMap : ISerializationCallbackReceiver//, IEnumerable<K
 
             var tiles = group.GroupInstance.IndependantTileInstances;
 
-            if (tiles == null)
-                Debug.LogFormat("TILES IS NULL");
-
             // Remove the reference to our group from each of the group's cells
             foreach( var t in tiles )
             {
-                if (t == null)
-                    Debug.LogFormat("T IS NULL");
-
                 if (t.TileTemplate == null)
                     Debug.LogFormat("TILE TEMPLATE IS NULL");
 
