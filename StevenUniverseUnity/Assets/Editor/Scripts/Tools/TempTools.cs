@@ -193,7 +193,7 @@ namespace StevenUniverse.FanGameEditor.Tools
             {
                 EditorUtility.DisplayProgressBar("Refactoring Chunk json files", chunkAppDataPath, progress);
 
-                Chunk loadedChunk = Chunk.GetChunk(chunkAppDataPath);
+                //Chunk loadedChunk = Chunk.GetChunk(chunkAppDataPath);
                 //loadedChunk.SerializedType = typeof(Chunk).Name;
                 //loadedChunk.Save();
 

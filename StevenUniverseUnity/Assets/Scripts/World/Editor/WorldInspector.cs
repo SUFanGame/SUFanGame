@@ -14,7 +14,7 @@ public class WorldInspector : Editor
     {
         base.OnInspectorGUI();
 
-        var tar = target as World;
+        //var tar = target as World;
 
         //assetPath_ = EditorGUILayout.TextField(assetPath_);
 

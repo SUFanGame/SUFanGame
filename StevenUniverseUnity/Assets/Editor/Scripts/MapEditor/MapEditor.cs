@@ -50,7 +50,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         // Currently selected toolbar
         [SerializeField]
         int selectedToolbar_ = 0;
-
+         
 
         // Scroll Pos, used by the sprite grid.
         [SerializeField]
@@ -225,7 +225,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
                 if( EraseKey() )
                 {
-
+                    EraseInstance(cursorWorldPos);
                     return;
                 }
 
