@@ -23,7 +23,7 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         [SerializeField] private bool isGrounded;
         [SerializeField] private bool usableIndividually;
 
-        private Sprite[] animationSprites;
+        private Sprite[] animationSprites = new Sprite[0];
 
         //Constructor for on-the-fly TileTemplate creation
         public TileTemplate
@@ -114,7 +114,7 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         {
             get
             {
-                if (animationSprites.Length == 0)
+                if (animationSprites == null || animationSprites.Length == 0)
                 {
                     List<Sprite> loadedSprites = new List<Sprite>();
                     foreach (string animationSpriteName in AnimationSpriteNames)
