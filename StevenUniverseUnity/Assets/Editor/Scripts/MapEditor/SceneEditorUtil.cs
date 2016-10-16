@@ -135,9 +135,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 for (int x = 0; x < cellCountX && i < assets.Count; ++x)
                 {
                     // GetAssetPreview runs asynchronously and seems to destroy and recreate the textures
-                    // arbitrarily (meaning they can't be cached). Best way seems to be to constantly poll
-                    // to ensure we ALWAYS get a valid texture. Seems to perform alright, it might explode
-                    // if it's trying to draw a LOT of tile groups.
+                    // arbitrarily (meaning they can't be cached). Best way seems to be to block until we 
+                    // get a valid texture. Seems to perform alright, it might explode
+                    // if it's trying to draw a LOT of tile groups???
                     Texture2D tex = null;
                     while( tex == null )
                     {

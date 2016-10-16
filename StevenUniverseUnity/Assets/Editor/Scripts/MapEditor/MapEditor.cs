@@ -14,9 +14,6 @@ using StevenUniverse.FanGame.Overworld.Templates;
 
 //  TODO: We'll have to be able to load existing world data
 //       into the system from chunks. Is there a better way than polling all editor instances? Could be really slow on big maps.
-
-//       Proper support for undo/redo, currently it doesn't update the World's tilemap. Easy solution is to rebuild the tilemap
-//       In OnUndoRedo?
 namespace StevenUniverse.FanGameEditor.SceneEditing
 {
     /// <summary>
@@ -27,6 +24,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         // The folder the map editor will build our list of tiles from
         [SerializeField]
         UnityEngine.Object currentFolder_ = null;
+
         // Cache of tile instances, built whenever our folder changes.
         // The buttons in the Editor Window correspond back to these
         [SerializeField]
@@ -38,12 +36,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         [SerializeField]
         List<Sprite> sprites_ = new List<Sprite>();
 
-        [SerializeField]
-        List<Texture2D> tileTextures_ = new List<Texture2D>();
-
         // Currently selected tile
         [SerializeField]
         int selectedTileIndex_ = 0;
+        // Currently selected group index
         [SerializeField]
         int selectedGroupIndex_ = 0;
 
@@ -52,22 +48,23 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         int selectedToolbar_ = 0;
          
 
-        // Scroll Pos, used by the sprite grid.
+        // Scroll Positions, used by the tile selection grids.
         [SerializeField]
         Vector2 tileGUIScrollPos_;
         [SerializeField]
         Vector2 groupGUIScrollPos_;
 
-        static MapEditor instance_;
-
         /// <summary>
         /// Object in the scene that all map-editor-generated objects will be parented to.
+        /// Also holds the tile map data structure
         /// </summary>
-        //[SerializeField]
-        //World world_ = null;
         [SerializeField]
         MapEditorSceneObject sceneObject_ = null;
 
+        /// <summary>
+        /// RAII access to tile map object. Prevents aggressive game object spawning 
+        /// just from having the map editor open even in scenes where we're not editing. 
+        /// </summary>
         TileMap Map_
         {
             get
@@ -84,9 +81,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         [SerializeField]
         int currentElevation_ = 0;
 
+        /// <summary>
+        /// Toolbars for our Map Editor.
+        /// </summary>
         enum Toolbar
         {
+            // For painting individual tiles
             PaintTile,
+            // For painting tile groups
             PaintGroup,
         }
 
@@ -95,7 +97,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             base.OnEnable();
             titleContent.text = "MapEditor";
-            instance_ = this;
             Undo.undoRedoPerformed -= OnUndoRedo;
             Undo.undoRedoPerformed += OnUndoRedo;
         }
@@ -105,11 +106,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             base.OnDisable();
 
             Undo.undoRedoPerformed -= OnUndoRedo;
-        }
-
-        void OnFocus()
-        {
-            instance_ = this;
         }
 
         protected override void OnSceneLoaded()
@@ -197,7 +193,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
 
 
-                if( EraseKey() )
+                if( EraseKeyIsBeingHeld() )
                 {
                     EraseInstance( cursorWorldPos );
 
@@ -235,7 +231,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                     cursorWorldPos[i] = Mathf.Floor(cursorWorldPos[i]);
 
 
-                if( EraseKey() )
+                if( EraseKeyIsBeingHeld() )
                 {
                     EraseInstance(cursorWorldPos);
                     return;
@@ -278,8 +274,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             // Bail out if we're not in "edit mode".
             if (!SceneEditorUtil.EditMode_)
                 return;
+
+            // Hilariously this seems to be how unity checks if an editor window is open. Sure, why not.
+            // https://github.com/MattRix/UnityDecompiled/blob/master/UnityEditor/UnityEditor/EditorWindow.cs#L598-L600
+            MapEditor[] arr = Resources.FindObjectsOfTypeAll<MapEditor>();
+            var instance = (arr.Length <= 0) ? null : (arr[0] as MapEditor);
             
-            if ( instance_ == null )
+            if ( instance == null )
                 return;
 
             var cursorPos = SceneEditorUtil.GetCursorPosition();
@@ -287,24 +288,24 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             // Draw our elevation label.
             Handles.BeginGUI();
-            EditorGUI.LabelField(new Rect(labelPos.x, labelPos.y, 100f, 100f), "Elevation " + instance_.currentElevation_);
+            EditorGUI.LabelField(new Rect(labelPos.x, labelPos.y, 100f, 100f), "Elevation " + instance.currentElevation_);
             Handles.EndGUI();
 
-
-            if( EraseKey() )
+            // Check if our "erase key" is being held down
+            if( EraseKeyIsBeingHeld() )
             {
                 EraseDrawCursor();
             }
             else
             {
-                switch ((Toolbar)instance_.selectedToolbar_)
+                switch ((Toolbar)instance.selectedToolbar_)
                 {
                     case Toolbar.PaintTile:
-                        TileDrawCursor();
+                        TileDrawCursor( instance );
                         break;
 
                     case Toolbar.PaintGroup:
-                        GroupDrawCursor();
+                        GroupDrawCursor( instance );
                         break;
                 }
             }
@@ -313,6 +314,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         }
 
+        /// <summary>
+        /// Draw the "erase tile" cursor.
+        /// </summary>
         static void EraseDrawCursor()
         {
             var cursorPos = SceneEditorUtil.GetCursorPosition();
@@ -326,9 +330,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             Gizmos.color = oldColor;
         }
 
-        static void TileDrawCursor()
+        /// <summary>
+        /// Draw a semi-transparent cursor of our currently selected tile.
+        /// </summary>
+        static void TileDrawCursor( MapEditor instance )
         {
-            if (instance_.sprites_.Count == 0)
+            if (instance.sprites_.Count == 0)
                 return;
 
             var cursorPos = SceneEditorUtil.GetCursorPosition();
@@ -352,19 +359,26 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             // Vertical UVs are flipped in the scene...?
             SceneEditorUtil.DrawSprite(
                 Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y),
-                instance_.sprites_[instance_.selectedTileIndex_],
+                instance.sprites_[instance.selectedTileIndex_],
                 false, true);
             GUI.color = oldColor;
 
             Handles.EndGUI();
         }
 
-        static void GroupDrawCursor()
+        /// <summary>
+        /// Draw a semi-transparent cursor of our currently selected tile group.
+        /// </summary>
+        static void GroupDrawCursor( MapEditor instance )
         {
-            if (instance_.tileGroupPrefabs_.Count == 0 )
+            if (instance.tileGroupPrefabs_.Count == 0 )
                 return;
-            var selected = instance_.tileGroupPrefabs_[instance_.selectedGroupIndex_];
+            var selected = instance.tileGroupPrefabs_[instance.selectedGroupIndex_];
 
+            // GetAssetPreview runs asynchronously and seems to destroy and recreate the textures
+            // arbitrarily (meaning they can't be cached). Best way seems to be to block until we 
+            // get a valid texture. Seems to perform alright, it might explode
+            // if it's trying to draw a LOT of tile groups??
             Texture2D tex = null;
             while( tex == null )
             {
@@ -373,8 +387,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             var cursorPos = SceneEditorUtil.GetCursorPosition();
 
-
-            var size = instance_.GetTileGroupSize(selected);
+            var size = instance.GetTileGroupSize(selected);
 
             var offset = ((Vector3)size / 2f);
             Gizmos.DrawWireCube(cursorPos + offset, Vector3.Scale(Vector3.one, size) );
@@ -400,7 +413,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             Handles.EndGUI();
         }
  
-
+        /// <summary>
+        /// Draw the editor window gui for the tile painting toolbar.
+        /// </summary>
         void TileOnGUI()
         {
             if (tilePrefabs_.Count == 0)
@@ -419,6 +434,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             selectedTileIndex_ = Mathf.Clamp(selectedTileIndex_, 0, sprites_.Count - 1);
         }
 
+        /// <summary>
+        /// Draw the editor window gui for the tile group paining toolbar.
+        /// </summary>
         void GroupOnGUI()
         {
             if (tileGroupPrefabs_.Count == 0)
@@ -435,6 +453,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             selectedGroupIndex_ = Mathf.Clamp(selectedGroupIndex_, 0, tileGroupPrefabs_.Count - 1);
         }
         
+        /// <summary>
+        /// Erase an editor instance at the given position. Allows undo. Currently erases ALL layers at the given position.
+        /// How do we pick a sensible layer??
+        /// </summary>
         void EraseInstance( Vector2 pos )
         {
             var layers = TileTemplate.Layer.Instances;
@@ -443,7 +465,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             Undo.SetCurrentGroupName("Create Tile Group");
 
             int undoIndex = Undo.GetCurrentGroup();
-
+            
             foreach ( var layer in layers )
             {
                 var index = new TileIndex(pos, currentElevation_, layer);
@@ -466,8 +488,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             var map = Map_;
 
             var layer = tile.TileInstance.TileTemplate.TileLayer;
-
-            //var existing = map.RemoveAt(pos, currentElevation_, layer);
+            
             var index = new TileIndex(pos, currentElevation_, layer);
             var existing = map.RemoveAt( index);
 
@@ -479,9 +500,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             newTile.transform.position = index.Position;
             newTile.Instance.Position = index.Position;
+            
             newTile.Elevation = index.Elevation;
             newTile.name = string.Join(":", new string[] { pos.ToString(), newTile.name });
-            // Note we've called Map above so this shouldn't be null at this point.
+            // Note we've called Map_ above so this shouldn't be null at this point.
             newTile.transform.SetParent(sceneObject_.transform);
 
             map.AddInstance(index, newTile);
@@ -499,14 +521,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             int undoIndex = Undo.GetCurrentGroup();
 
             var group = (GroupInstanceEditor)PrefabUtility.InstantiatePrefab(groupPrefab);
-            // Get the template instances which gives is an easy way to retrieve LOCAL tile position/elevations for this group
 
             group.transform.position = pos;
             group.Instance.Position = pos;
-            // RE: Tile Group Elevation:
-            // Nope, it's the elevation from which every tileInstance is relative to
-            // So like if you have the tile group at elevation 0, a tile instance ay elevation 1 will be at 1.
-            // If the tile group is at elevation 5, a tile at elevation 1 will be at 6.
             group.Elevation = currentElevation_;
 
             group.name = string.Join(":", new string[] { pos.ToString(), group.name });
@@ -516,36 +533,25 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             Undo.RegisterCreatedObjectUndo(group.gameObject, "Create tile group");
 
-            //var templateInstances = group.GroupInstance.GroupTemplate.TileInstances;
-            //var instances = group.GroupInstance.IndependantTileInstances;
             var indices = TileMap.GroupTileIndices(group);
 
-            // Iterate through all tiles in this group and add a reference to the group at that tile's position
+            // Iterate through all indices in this group and add a reference to the group at each index
             foreach (var index in indices )
             {
                 var existing = map.RemoveAt(index);
 
+                // Remove any existing instance at the position.
                 if( existing != null )
                 {
                     Undo.DestroyObjectImmediate(existing.gameObject);
                 }
 
+                // Add our group reference.
                 map.AddInstance(index, group);
             }
 
             Undo.CollapseUndoOperations(undoIndex);
         }
-
-        /// <summary>
-        /// Check if a and b share the same layer and elevation.
-        /// </summary>
-        bool SameLayer( TileInstanceEditor a, TileInstanceEditor b )
-        {
-            var aTemplate = a.TileInstance.TileTemplate;
-            var bTemplate = b.TileInstance.TileTemplate;
-            return aTemplate.TileLayer == bTemplate.TileLayer && a.Elevation == b.Elevation;
-        }
-
 
         /// <summary>
         /// For cycling through the currently selected tiles in the map editor window.
@@ -598,7 +604,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             tilePrefabs_ = AssetUtil.GetAssets<TileInstanceEditor>(path);
             tilePrefabs_ = tilePrefabs_.Where((p) => p.TileInstance.TileTemplate.UsableIndividually).ToList();
 
-            tileTextures_.Clear();
             foreach (var p in tilePrefabs_)
             {
                 var renderer = p.GetComponent<SpriteRenderer>();
@@ -617,21 +622,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             tileGroupPrefabs_.Clear();
             tileGroupPrefabs_ = AssetUtil.GetAssets<GroupInstanceEditor>(path);
         }
-
-        ///// <summary>
-        ///// Verify the state of the World Object exists and create one if it doesn't. We need a world
-        ///// object to keep track of the state of our map.
-        ///// </summary>
-        //void VerifyWorld()
-        //{
-        //    world_ = GameObject.FindObjectOfType<World>();
-        //    if (world_ == null)
-        //    {
-        //        var go = new GameObject("Map Editor");
-        //        world_ = go.AddComponent<World>();
-        //    }
-        //}
-
 
         /// <summary>
         /// Clear all instances in the scene and reset the world object. Could easily make this undoable if needed.
@@ -658,8 +648,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
 
         }
-
-        static bool EraseKey()
+        
+        static bool EraseKeyIsBeingHeld()
         {
             return Event.current.control;
         }
@@ -670,6 +660,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             EditorWindow.GetWindow<MapEditor>();
         }
 
+        /// <summary>
+        /// Gets the tile count on each axis of the given tile group.
+        /// </summary>
         Vector2 GetTileGroupSize( GroupInstanceEditor group )
         {
             Vector2 size = Vector2.zero;
@@ -683,6 +676,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             return size;
         }
 
+        /// <summary>
+        /// Handle undo redo by just rebuilding the entire tile map each time. Not exactly elegant but it works.
+        /// </summary>
         void OnUndoRedo()
         {
             var map = Map_;

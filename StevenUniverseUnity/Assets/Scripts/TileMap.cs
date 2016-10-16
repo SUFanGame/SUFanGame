@@ -102,6 +102,9 @@ public class TileMap : ISerializationCallbackReceiver, IEnumerable<KeyValuePair<
         }
     }
 
+    /// <summary>
+    /// Build a list of WORLD indices for each tile of the given tile group.
+    /// </summary>
     public static List<TileIndex> GroupTileIndices(GroupInstanceEditor group)
     {
         List<TileIndex> tileIndices = new List<TileIndex>();
@@ -112,6 +115,7 @@ public class TileMap : ISerializationCallbackReceiver, IEnumerable<KeyValuePair<
         {
             tileIndices.Add(new TileIndex(
                 tile.transform.position,
+                //Tile instance elevations in a group are relative to the group's elevation.
                 tile.Elevation + group.Elevation,
                 tile.TileInstance.TileTemplate.TileLayer));
         }
