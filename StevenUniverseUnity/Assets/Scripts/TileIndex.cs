@@ -6,6 +6,9 @@ using StevenUniverse.FanGame.Overworld.Templates;
 using StevenUniverse.FanGame.OverworldEditor;
 using StevenUniverse.FanGame.Overworld.Instances;
 
+/// <summary>
+/// Defines the index of a tile and can be used as a dictionary key.
+/// </summary>
 [System.Serializable]
 public struct TileIndex : System.IEquatable<TileIndex>
 {
@@ -18,10 +21,27 @@ public struct TileIndex : System.IEquatable<TileIndex>
     [SerializeField]
     int layer_;
     
+    /// <summary>
+    /// Tile's x position.
+    /// </summary>
     public int X { get { return x_; } }
+    /// <summary>
+    /// Tile's y position.
+    /// </summary>
     public int Y { get { return y_; } }
+    /// <summary>
+    /// Tile's elevation.
+    /// </summary>
     public int Elevation { get { return elevation_; } }
+
+    /// <summary>
+    /// Tile's layer. Made an int since Dust's "Enhanced Enums" (custom layers) are not serializable.
+    /// </summary>
     public int Layer { get { return layer_; } }
+
+    /// <summary>
+    /// Returns a Vector2 of the tile's x and y position.
+    /// </summary>
     public Vector2 Position { get { return new Vector2(x_, y_); } }
 
     public TileIndex( int x, int y, int elevation, TileTemplate.Layer layer ) : this( x, y, elevation, layer.SortingValue )
@@ -36,15 +56,14 @@ public struct TileIndex : System.IEquatable<TileIndex>
 
     }
 
+    /// <summary>
+    /// Construct a tile index from a vector2. Position will be floored.
+    /// </summary>
     public TileIndex(Vector2 pos, int elevation, TileTemplate.Layer layer) : 
         this( Mathf.FloorToInt(pos.x), 
               Mathf.FloorToInt(pos.y), 
               elevation, layer )
     { }
-
-    //public TileIndex( TileInstance tile ) : 
-    //    this( tile.Position, tile.Elevation, tile.TileTemplate.TileLayer )
-    //{}
 
     public override bool Equals(object obj)
     {
@@ -96,13 +115,4 @@ public struct TileIndex : System.IEquatable<TileIndex>
         return string.Format("Pos:{0}, Elev:{1}, Layer:{2}", Position, elevation_, Layer );
     }
 
-    /// <summary>
-    /// Gets the tile position for the given tile group. The "Layer" value is set to whatever
-    /// the group's first tile's layer is.
-    /// </summary>
-    public static TileIndex GetGroupPosition( GroupInstanceEditor group )
-    {
-        return new TileIndex((int)group.Instance.Position.x, (int)group.Instance.Position.y,
-            group.Elevation, group.GroupInstance.IndependantTileInstances[0].TileTemplate.TileLayer);
-    }
 }

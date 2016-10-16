@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using System;
 using StevenUniverse.FanGame.OverworldEditor;
 using System.Linq;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
-// TODO : Change position paramters to Vector2 and have a third "Elevation" parameter 
-//        to mirror how elevation works within the framework.
+// TODO : Now that we've simplified this it can be made generic pretty easily, serializable parts will survive if then derived to
+// a serializable class (IE: How UnityActions work)
 
 /// <summary>
 /// Collection mapping editor instances to a position. Each position can hold multiple tiles of different layers. No single position should have

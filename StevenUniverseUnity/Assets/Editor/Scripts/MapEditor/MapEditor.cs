@@ -8,7 +8,7 @@ using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGameEditor.Tools;
 using System.Linq;
-using StevenUniverse.FanGame.Overworld.Templates;
+using StevenUniverse.FanGame.Overworld.Templates; 
 
 
 
@@ -63,8 +63,23 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// <summary>
         /// Object in the scene that all map-editor-generated objects will be parented to.
         /// </summary>
+        //[SerializeField]
+        //World world_ = null;
         [SerializeField]
-        World world_ = null;
+        MapEditorSceneObject sceneObject_ = null;
+
+        TileMap Map_
+        {
+            get
+            {
+                sceneObject_ = GameObject.FindObjectOfType<MapEditorSceneObject>();
+
+                if (sceneObject_ == null)
+                    sceneObject_ = new GameObject("MapEditor").AddComponent<MapEditorSceneObject>();
+
+                return sceneObject_.map_;
+            }
+        }
 
         [SerializeField]
         int currentElevation_ = 0;
@@ -100,9 +115,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         protected override void OnSceneLoaded()
         {
             base.OnSceneLoaded();
-
-            world_ = GameObject.FindObjectOfType<World>();
-            VerifyWorld();
         }
         #endregion
 
@@ -426,7 +438,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         void EraseInstance( Vector2 pos )
         {
             var layers = TileTemplate.Layer.Instances;
-            var map = World.Instance.TileMap;
+            var map = Map_;
 
             Undo.SetCurrentGroupName("Create Tile Group");
 
@@ -451,7 +463,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// <param name="pos"></param>
         void PlaceTile( Vector2 pos, TileInstanceEditor tile )
         {
-            var map = World.Instance.TileMap;
+            var map = Map_;
 
             var layer = tile.TileInstance.TileTemplate.TileLayer;
 
@@ -469,7 +481,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             newTile.Instance.Position = index.Position;
             newTile.Elevation = index.Elevation;
             newTile.name = string.Join(":", new string[] { pos.ToString(), newTile.name });
-            newTile.transform.SetParent(World.Instance.transform);
+            // Note we've called Map above so this shouldn't be null at this point.
+            newTile.transform.SetParent(sceneObject_.transform);
 
             map.AddInstance(index, newTile);
         }
@@ -479,7 +492,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// </summary>
         void PlaceGroup( Vector3 pos, GroupInstanceEditor groupPrefab )
         {
-            var map = World.Instance.TileMap;
+            var map = Map_;
 
             Undo.SetCurrentGroupName("Create Tile Group");
 
@@ -498,7 +511,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             group.name = string.Join(":", new string[] { pos.ToString(), group.name });
 
-            Undo.SetTransformParent(group.transform, World.Instance.transform, "Parent group to world");
+            // Note we called Map_ above so sceneObject should not be null
+            Undo.SetTransformParent(group.transform, sceneObject_.transform, "Parent group to world");
 
             Undo.RegisterCreatedObjectUndo(group.gameObject, "Create tile group");
 
@@ -604,18 +618,19 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             tileGroupPrefabs_ = AssetUtil.GetAssets<GroupInstanceEditor>(path);
         }
 
-        /// <summary>
-        /// Verify the state of the World Object exists and create one if it doesn't. We need a world
-        /// object to keep track of the state of our map.
-        /// </summary>
-        void VerifyWorld()
-        {
-            if (world_ == null)
-            {
-                var go = new GameObject("World");
-                world_ = go.AddComponent<World>();
-            }
-        }
+        ///// <summary>
+        ///// Verify the state of the World Object exists and create one if it doesn't. We need a world
+        ///// object to keep track of the state of our map.
+        ///// </summary>
+        //void VerifyWorld()
+        //{
+        //    world_ = GameObject.FindObjectOfType<World>();
+        //    if (world_ == null)
+        //    {
+        //        var go = new GameObject("Map Editor");
+        //        world_ = go.AddComponent<World>();
+        //    }
+        //}
 
 
         /// <summary>
@@ -639,7 +654,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                         DestroyImmediate(instances[i].gameObject, false);
                 }
 
-                World.Instance.TileMap.Clear();
+                Map_.Clear();
             }
 
         }
@@ -670,7 +685,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         void OnUndoRedo()
         {
-            var map = World.Instance.TileMap;
+            var map = Map_;
             map.Clear();
             var tiles = GameObject.FindObjectsOfType<TileInstanceEditor>();
 

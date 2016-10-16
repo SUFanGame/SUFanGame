@@ -6,11 +6,25 @@ using System;
 [ExecuteInEditMode]
 public class World : MonoBehaviour
 {
-    public static World Instance { get; private set; }
+    static World world_ = null;
+    //public static World Instance
+    //{
+    //    get
+    //    {
+    //        world_ = GameObject.FindObjectOfType<World>();
+    //        if( world_ == null )
+    //        {
+    //            world_ = new GameObject("TileMap").AddComponent<World>();
+    //        }
+    //    }
+    //    private set
+    //    {
+    //    }
+    //}
 
     void OnEnable()
     {
-        Instance = this;
+        //Instance = this;
     }
 
     [SerializeField]
