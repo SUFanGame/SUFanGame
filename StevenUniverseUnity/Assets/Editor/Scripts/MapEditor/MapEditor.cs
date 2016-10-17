@@ -74,7 +74,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 if (sceneObject_ == null)
                     sceneObject_ = new GameObject("MapEditor").AddComponent<MapEditorSceneObject>();
 
-                return sceneObject_.map_;
+                return sceneObject_.tileMap_;
             }
         }
 

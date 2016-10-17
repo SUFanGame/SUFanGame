@@ -10,5 +10,5 @@ using System.Collections.Generic;
 /// </summary>
 public class MapEditorSceneObject : MonoBehaviour 
 {
-    public TileMap map_ = new TileMap();
+    public TileMap tileMap_ = new TileMap();
 }
