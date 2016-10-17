@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 using StevenUniverse.FanGame.Overworld;
 using System.Linq;
 
+
 public class LoadSceneChunks : MonoBehaviour 
 {
-    Chunk currentChunk_ = null;
+    Chunk currentChunk_ = null; 
 
-    void Start()
+    IEnumerator Start()
     {
 
         var appData = Utilities.ExternalDataPath;
@@ -33,21 +34,27 @@ public class LoadSceneChunks : MonoBehaviour
             chunks.Add(Chunk.GetChunk(dataPath));
         }
 
-        StartCoroutine(LoadChunks(chunks));
+        yield return StartCoroutine(LoadChunks(chunks));
+        
     }
 
     IEnumerator LoadChunks( List<Chunk> chunks )
     {
         foreach (var chunk in chunks)
         {
+            //yield return new WaitForSeconds(0.1f);
+
             if (chunk == null)
                 Debug.LogFormat("CHUNK IS NULL");
 
             currentChunk_ = chunk;
             ChunkRenderer.AddChunkRenderer(new GameObject(chunk.Name), true, chunk);
 
-            yield return new WaitForSeconds(0.1f);
         }
+
+        currentChunk_ = null;
+
+        yield return null;
     }
 
     void OnGUI()
@@ -57,5 +64,6 @@ public class LoadSceneChunks : MonoBehaviour
             GUILayout.Label("Loading chunks...");
         }
     }
+
 
 }
