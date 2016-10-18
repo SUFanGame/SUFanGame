@@ -19,8 +19,11 @@ namespace StevenUniverse.FanGame.Battle
         /// </summary>
         public IList<Node> Neighbours_ { get { return neighboursReadOnly_; } }
 
-        public Node( )
+        public IntVector3 Pos_ { get; private set; }
+
+        public Node( IntVector3 pos )
         {
+            Pos_ = pos;
         }
 
         public void FormConnection( Node other )
@@ -56,7 +59,7 @@ namespace StevenUniverse.FanGame.Battle
         /// <returns></returns>
         public int GetCost( MovementType movementType )
         {
-            return 0;
+            return 1;
         }
 
     }

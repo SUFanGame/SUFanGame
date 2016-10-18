@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using StevenUniverse.FanGame.Util.Collections;
+using StevenUniverse.FanGame.Overworld;
 
 namespace StevenUniverse.FanGame.Battle
 {
@@ -34,9 +35,6 @@ namespace StevenUniverse.FanGame.Battle
         }
 
 
-        // TODO: Figure out what we actually want to return to the caller here. A list of nodes isn't much use since
-        // it wouldn't have pathing information. Should we pass in a "CameFrom" dictionary as a buffer instead? Not very
-        // intuitive...
         /// <summary>
         /// Populates the node buffer with all nodes in the given range starting from the given point with the given movement type.
         /// </summary>
@@ -44,7 +42,7 @@ namespace StevenUniverse.FanGame.Battle
         /// <param name="range">The range of the search (in tiles).</param>
         /// <param name="nodeBuffer">All discovered nodes will be added to the buffer.</param>
         /// <param name="movementType">The movement type to be used during the search.</param>
-        public void GetNodesInRange( IntVector3 pos, int range, List<Node> nodeBuffer, MovementType movementType = MovementType.GROUNDED )
+        public void GetNodesInRange( IntVector3 pos, int range, Path path, MovementType movementType = MovementType.GROUNDED)
         {
             // Use dijkstra's to retrieve all nodes in range.
             var current = GetNode(pos);
@@ -57,9 +55,10 @@ namespace StevenUniverse.FanGame.Battle
             var frontier = new MinPriorityQueue<Node>();
             // Maps each node in our path to the node it came from
             var cameFrom = new Dictionary<Node, Node>();
-            // Maps each node in our path to the total cost to reach that node so far.
+            // Maps each node in our path to the total cost to reach that node from the starting point
             var costSoFar = new Dictionary<Node, int>();
 
+            path.AddToPath(current);
             frontier.Add(current, 0);
             costSoFar[current] = 0;
 
@@ -87,10 +86,27 @@ namespace StevenUniverse.FanGame.Battle
                         costSoFar[next] = newCost;
                         frontier.Add(next, newCost);
                         cameFrom[next] = current;
+                        path.AddToPath(current.Pos_, next);
                     }
                 }
+                
             }
         }
 
+        void OnDrawGizmosSelected()
+        {
+        }
+        
+
     }
 }
+
+/*
+    Dust on transitioning between elevations:
+
+    The logic for that is basically: if you are on a Surface tile at elevation n, 
+    you can go to any adjacent Surface tile at elevation n or any Transitional tile at elevation n or n-1.
+    And if you are on a Transitional tile at elevation n, 
+    you can go to an adjacent Surface or Transitional tile at either n or n+1(edited)
+    Which allows you to move up to non-transitonal tiles
+    */

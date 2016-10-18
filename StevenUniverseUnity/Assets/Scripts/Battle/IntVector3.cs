@@ -27,6 +27,11 @@ namespace StevenUniverse.FanGame.Battle
 		{
 			return new IntVector3( v );
 		}
+
+        public static explicit operator Vector2( IntVector3 v )
+        {
+            return new Vector2(v.x, v.y);
+        }
 		
 		public static explicit operator Vector3( IntVector3 v )
 		{
