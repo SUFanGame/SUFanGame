@@ -21,36 +21,14 @@ namespace StevenUniverse.FanGame.Characters
         private Skill[] skills; //All available skills
         [SerializeField]
         private UnitStats stats; //All the unit battle modifiers
+        [SerializeField]
+        private Character[] supportList; //All the other units this one can support
 
         //Unchanged from original Entity, consider changing
         [SerializeField]
         private Outfit outfit; // TO-DO change to all graphical stuff
         [SerializeField]
-        private string stateName; //State, needs to be reworked
-        [SerializeField]
-        private State currentState; //Current State
-
-        // Location Data
-        [SerializeField]
-        private string sceneName;
-        [SerializeField]
-        private int xPosition;
-        [SerializeField]
-        private int yPosition;
-        [SerializeField]
-        private int elevation;
-        [SerializeField]
-        private string directionName;
-
-        [SerializeField]
         private SaveData savedData;
-
-        //Events
-        public delegate void GenericEventHandler();
-
-        public event GenericEventHandler OnDirectionChange;
-        public event GenericEventHandler OnStateChange;
-        public event GenericEventHandler OnInteract;
 
         public Character(
             string characterName,
@@ -103,30 +81,13 @@ namespace StevenUniverse.FanGame.Characters
             set { stats = value; }
         }
 
-        //Location info
-        public string SceneName
+        //Supportable characters
+        public Character[] SupportList
         {
-            get { return sceneName; }
-            set { sceneName = value; }
+            get { return supportList; }
+            set { supportList = value; }
         }
 
-        public int XPosition
-        {
-            get { return xPosition; }
-            set { xPosition = value; }
-        }
-
-        public int YPosition
-        {
-            get { return yPosition; }
-            set { yPosition = value; }
-        }
-
-        public int Elevation
-        {
-            get { return elevation; }
-            set { elevation = value; }
-        }
 
         public SaveData SavedData
         {
@@ -134,27 +95,7 @@ namespace StevenUniverse.FanGame.Characters
             set { savedData = value; }
         }
 
-        //State
-        public string StateName
-        {
-            get { return stateName; }
-            set { stateName = value; }
-        }
-
-        public State CurrentState
-        {
-            get { return State.Get(StateName); }
-            set
-            {
-                string lastStateName = StateName;
-                StateName = value.Name;
-                if (lastStateName != StateName && OnStateChange != null)
-                {
-                    OnStateChange();
-                }
-            }
-        }
-
+        
         //Outfit
         public Outfit Outfit
         {
@@ -162,58 +103,6 @@ namespace StevenUniverse.FanGame.Characters
             set { outfit = value; }
         }
 
-        //Direction
-        public string DirectionName
-        {
-            get { return directionName; }
-            set { directionName = value; }
-        }
-
-        public Direction CurrentDirection
-        {
-            get { return Direction.Get(DirectionName); }
-            set
-            {
-                string lastDirectionName = DirectionName;
-                DirectionName = value.Name;
-                if (lastDirectionName != DirectionName && OnDirectionChange != null)
-                {
-                    OnDirectionChange();
-                }
-            }
-        }
-    }
-
-
-    //TO-DO rework this
-    public class State : EnhancedEnum<State>
-    {
-        //Instance
-        private State(string name) : base(name)
-        {
-        }
-
-        //Static Instances
-        static State()
-        {
-            Add(new State("Standing"));
-            Add(new State("Walking"));
-            Add(new State("Running"));
-        }
-
-        public static State Standing
-        {
-            get { return Get("Standing"); }
-        }
-
-        public static State Walking
-        {
-            get { return Get("Walking"); }
-        }
-
-        public static State Running
-        {
-            get { return Get("Running"); }
-        }
-    }
+        
+    } 
 }
