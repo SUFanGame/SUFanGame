@@ -174,13 +174,19 @@ public class LoadSceneChunks : MonoBehaviour
     {
         bool walkable = false;
         int walkableElevation = int.MinValue;
-        bool collision = false;
-        // Group our tiles according to their elevation
-        var query = tileStack.GroupBy(t => t.Elevation, t => t);
+        // Order our tiles by elevation then group them.
+        var query = tileStack.OrderBy(t=>t.Elevation).GroupBy(t => t.Elevation, t => t);
+
+        //Debug.LogFormat("Tiles at pos {0}", tileStack.First().Position);
 
         // Iterate through our groups starting from the lowest elevation to the highest
         foreach( var tileGroups in query )
         {
+
+            //string tilesString = string.Join(",", tileGroups.Select(t => t.TileTemplate.Name).ToArray());
+            //Debug.LogFormat("-------{0}: {1}", tileGroups.Key, tilesString);
+
+            bool collision = false;
             foreach ( var tile in tileGroups )
             {
                 var mode = tile.TileTemplate.TileModeName;
@@ -192,8 +198,8 @@ public class LoadSceneChunks : MonoBehaviour
                 // If any tiles at this elevation are collidable, it's not walkable.
                 if( mode == "Collidable" || collision )
                 {
-                    walkable = false;
                     collision = true;
+                    walkable = false;
                     continue;
                 }
 
