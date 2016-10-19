@@ -10,6 +10,8 @@ namespace StevenUniverse.FanGame.Battle
         Vector3 lastCursorPosition_ = Vector3.zero;
         SpriteRenderer cursorSprite_ = null;
 
+        public bool onGUI_;
+
         /// <summary>
         /// The world position of the cursor, snapped to the grid.
         /// </summary>
@@ -40,5 +42,14 @@ namespace StevenUniverse.FanGame.Battle
                 lastCursorPosition_ = cursorPos;
             }
         }
+
+        void OnGUI()
+        {
+            if (!onGUI_)
+                return;
+
+            GUILayout.Label("Cursor Pos: " + Position_);
+        }
+        
     }
 }

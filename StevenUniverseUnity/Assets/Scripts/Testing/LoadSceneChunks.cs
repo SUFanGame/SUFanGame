@@ -8,9 +8,6 @@ using StevenUniverse.FanGame.Overworld;
 using System.Linq;
 using StevenUniverse.FanGame.Battle;
 using StevenUniverse.FanGame.Overworld.Instances;
-using StevenUniverse.FanGame.OverworldEditor;
-using StevenUniverse.FanGame;
-using StevenUniverse.FanGame.Overworld.Templates;
 
 public class LoadSceneChunks : MonoBehaviour 
 {
@@ -37,13 +34,13 @@ public class LoadSceneChunks : MonoBehaviour
 
         chunkDirNames = chunkDirNames.Select(d => System.IO.Path.GetFileName(d)).ToArray();
 
-        //Debug.LogFormat("{0}", string.Join(",", chunkDirNames));
-
         List<Chunk> chunks = new List<Chunk>();
 
-        //foreach( var dir in chunkDirNames )
+        // Load a single isolated chunk for testing purposes.
         int numToLoad = 6;
-        for( int i = numToLoad; i < numToLoad + 1; ++i )
+        //int numToLoad = 2;
+        for (int i = numToLoad; i < numToLoad + 1; ++i)
+        //for( int i = 0; i < chunkDirNames.Length; ++i )
         {
             string dir = chunkDirNames[i];
             string dataPath = string.Format("Chunks/{0}/{1}/{1}", currentSceneName, dir);
@@ -53,21 +50,20 @@ public class LoadSceneChunks : MonoBehaviour
 
         yield return StartCoroutine(LoadChunks(chunks));
 
-        BuildGrid( chunks );
+        BuildGrid();
     }
 
     IEnumerator LoadChunks( List<Chunk> chunks )
     {
         foreach (var chunk in chunks)
         {
-            //yield return new WaitForSeconds(0.1f);
-
             if (chunk == null)
                 Debug.LogFormat("CHUNK IS NULL");
 
             currentChunk_ = chunk;
             ChunkRenderer.AddChunkRenderer(new GameObject(chunk.Name), true, chunk);
 
+            yield return null;
         }
 
         currentChunk_ = null;
@@ -83,70 +79,108 @@ public class LoadSceneChunks : MonoBehaviour
         }
     }
 
-    public void BuildGrid( List<Chunk> chunks )
+    public void BuildGrid( )
     {
 
-        List<Instance> instances = new List<Instance>();
+        //List<Instance> instances = new List<Instance>();
 
-        foreach( var chunk in chunks )
+        var renderers = GameObject.FindObjectsOfType<ChunkRenderer>();
+
+        var chunks = renderers.Select(r => r.SourceChunk).ToArray();
+
+        foreach( var renderer in renderers )
         {
-            instances.AddRange(chunk.AllInstances);
-        }
-        
+            var chunk = renderer.SourceChunk;
 
+            var instances = chunk.AllInstances;
 
-        // Add all tile instances to our map.
-        foreach( var i in instances)
-        {
-            if( i is GroupInstance )
+            // Note this is includes any group instances sticking out the edges of the chunk
+            var minX = chunk.MinX;
+            var minY = chunk.MinY;
+            var maxX = chunk.MaxX;
+            var maxY = chunk.MaxY;
+            
+            int sizeX = maxX - minX;
+            int sizeY = maxY - minY;
+            if (sizeX > 0)
+                ++sizeX;
+            if (sizeY > 0)
+                ++sizeY;
+
+            // Run through each cell of our chunk and determine pathability.
+            for( int x = 0; x < sizeX; ++x )
             {
-                var group = i as GroupInstance;
-                foreach( var tile in group.IndependantTileInstances)
+                for( int y = 0; y < sizeY; ++y )
                 {
-                    var index = new TileIndex(tile.Position, tile.Elevation, tile.TileTemplate.TileLayer );
-                    tileMap_.AddInstance(index, tile);
+                    //// Local positions...
+                    //int xPos = x;// + (int)chunk.Position.x;
+                    //int yPos = y;// + (int)chunk.Position.y;
+
+
+                    // World positions...
+                    int xPos = x + (int)chunk.Position.x;
+                    int yPos = y + (int)chunk.Position.y;
+
+                    var tilesAtPos = chunk.AllInstancesFlattenedCoordinated.Get(x, y);
+                    if (tilesAtPos.Length == 0)
+                    {
+                        Debug.LogFormat("No tiles found at {0},{1}", xPos, yPos);
+                        continue;
+                    }
+
+                    string tilesString = string.Join(",", tilesAtPos.Select(t => t.TileTemplate.Name).ToArray());
+                    Debug.LogFormat("Tiles at {0},{1}: {2}", xPos, yPos, tilesString);
+
+                    return;
                 }
             }
 
-            if( i is TileInstance )
-            {
-                var tile = i as TileInstance;
-                var index = new TileIndex(tile.Position, tile.Elevation, tile.TileTemplate.TileLayer);
-                tileMap_.AddInstance(index, tile);
-            }
+            //Debug.LogFormat("Size: {0},{1}", sizeX, sizeY);
+            //Debug.LogFormat();
+            //string minMax = string.Format("Min: {0},{1} Max: {2},{3}", minX, minY, maxX, maxY);
+            //Rect bounds = Rect.MinMaxRect(minX, minY, maxX, maxY);
+
+            //renderer.name = renderer.name + ":" + minMax;
+
+            //Debug.LogFormat("Bounds for chunk {0}: {1}", chunk.Name, bounds);
+
+            
+
+           // instances.AddRange(chunk.AllInstances);
         }
+        
     }
     
 
 
-    // Polls the tile map to determine if the given position is walkable
-    bool IsWalkable( IntVector3 position )
-    {
-        bool walkable = true;
-        // Go through all tiles at the given position...
-        foreach (var layer in TileTemplate.Layer.Instances)
-        {
-            // Index for our given position
-            TileIndex currentIndex = new TileIndex((Vector2)position, position.z, layer);
-            // Index for the tile above our given position.
-            TileIndex aboveIndex = new TileIndex((Vector2)position, position.z + 1, layer);
+    //// Polls the tile map to determine if the given position is walkable
+    //bool IsWalkable( IntVector3 position )
+    //{
+    //    bool walkable = true;
+    //    // Go through all tiles at the given position...
+    //    foreach (var layer in TileTemplate.Layer.Instances)
+    //    {
+    //        // Index for our given position
+    //        TileIndex currentIndex = new TileIndex((Vector2)position, position.z, layer);
+    //        // Index for the tile above our given position.
+    //        TileIndex aboveIndex = new TileIndex((Vector2)position, position.z + 1, layer);
 
-            // current tile
-            var tile = tileMap_.Get(currentIndex);
-            if (tile != null)
-            {
-                if (tile.TileTemplate.TileLayerName != "Surface" || tile.TileTemplate.TileLayerName != "Transitional")
-                    walkable = false;
-            }
+    //        // current tile
+    //        var tile = tileMap_.Get(currentIndex);
+    //        if (tile != null)
+    //        {
+    //            if (tile.TileTemplate.TileLayerName != "Surface" || tile.TileTemplate.TileLayerName != "Transitional")
+    //                walkable = false;
+    //        }
 
-            var aboveTile = tileMap_.Get(aboveIndex);
-            if( aboveTile != null )
-            {
-                if (aboveTile.TileTemplate.IsGrounded)
-                    walkable = false;
-            }
-        }
+    //        var aboveTile = tileMap_.Get(aboveIndex);
+    //        if( aboveTile != null )
+    //        {
+    //            if (aboveTile.TileTemplate.IsGrounded)
+    //                walkable = false;
+    //        }
+    //    }
 
-        return walkable;
-    }
+    //    return walkable;
+    //}
 }
