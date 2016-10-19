@@ -16,7 +16,7 @@ public class LoadSceneChunks : MonoBehaviour
 {
     Chunk currentChunk_ = null;
 
-    Grid grid_;
+    Grid grid_ = null;
 
     TileMap<TileInstance> tileMap_ = new TileMap<TileInstance>();
 
@@ -117,18 +117,7 @@ public class LoadSceneChunks : MonoBehaviour
         }
     }
     
-    void Update()
-    {
-        IntVector3 cursorPos = (IntVector3)Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        cursorPos.z = 1;
 
-        if( cursorPos != lastCursorPosition_ )
-        {
-            cursorSprite_.transform.position = (Vector3)cursorPos;
-            lastCursorPosition_ = cursorPos;
-            walkable_ = IsWalkable(cursorPos);
-        }
-    }
 
     // Polls the tile map to determine if the given position is walkable
     bool IsWalkable( IntVector3 position )
