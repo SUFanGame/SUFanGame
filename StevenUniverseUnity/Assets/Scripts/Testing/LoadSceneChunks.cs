@@ -30,8 +30,8 @@ public class LoadSceneChunks : MonoBehaviour
     {
         grid_ = GameObject.FindObjectOfType<Grid>();
 
-        var chunks = GetChunks(4, 7);
-        //var chunks = GetAllChunks();
+        //var chunks = GetChunks(4, 7);
+        var chunks = GetAllChunks();
 
         yield return StartCoroutine(LoadChunks(chunks));
 
@@ -175,7 +175,7 @@ public class LoadSceneChunks : MonoBehaviour
         bool walkable = false;
         int walkableElevation = int.MinValue;
         // Order our tiles by elevation then group them.
-        var query = tileStack.OrderBy(t=>t.Elevation).GroupBy(t => t.Elevation, t => t);
+        var query = tileStack.OrderBy(t=>t.Elevation).ThenBy(t=>t.TileTemplate.TileLayer.SortingValue).GroupBy(t => t.Elevation, t => t);
 
         //Debug.LogFormat("Tiles at pos {0}", tileStack.First().Position);
 
@@ -185,8 +185,7 @@ public class LoadSceneChunks : MonoBehaviour
 
             //string tilesString = string.Join(",", tileGroups.Select(t => t.TileTemplate.Name).ToArray());
             //Debug.LogFormat("-------{0}: {1}", tileGroups.Key, tilesString);
-
-            bool collision = false;
+            
             foreach ( var tile in tileGroups )
             {
                 var mode = tile.TileTemplate.TileModeName;
@@ -196,9 +195,8 @@ public class LoadSceneChunks : MonoBehaviour
                     continue;
 
                 // If any tiles at this elevation are collidable, it's not walkable.
-                if( mode == "Collidable" || collision )
+                if( mode == "Collidable" )
                 {
-                    collision = true;
                     walkable = false;
                     continue;
                 }
