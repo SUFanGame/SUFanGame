@@ -4,11 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using StevenUniverse.FanGame.Entities;
-using StevenUniverse.FanGame.Entities.EntityDrivers;
 using StevenUniverse.FanGame.Extensions;
-using StevenUniverse.FanGame.Interactions;
-using StevenUniverse.FanGame.Interactions.Activities;
 using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGame.Overworld.Templates;
@@ -35,17 +31,11 @@ namespace StevenUniverse.FanGame.Util
         private DialogUIController dialogUIController;
         private GameUIController gameUIController;
         private ProgressBarUIController progressBarUIController;
+        private MapCursor mapCursor;
 
         //Scene
         private string currentScene = "Title";
 
-        //Player
-        private PlayerDriver currentPlayer;
-
-        public PlayerDriver CurrentPlayer
-        {
-            get { return currentPlayer; }
-        }
 
         //Characters
         private GameObject characterParent;
@@ -67,20 +57,6 @@ namespace StevenUniverse.FanGame.Util
         private GameObject chunkParent;
         private List<ChunkRenderer> activeChunkRenderers = new List<ChunkRenderer>();
 
-        //Activity Queues
-        private List<Activity> activityEntryQueue = new List<Activity>();
-        private List<Activity> activityQueue = new List<Activity>();
-
-        private Character currentInteractor;
-        private Character.CharacterInstance currentInteractorInstance;
-        private Interaction currentInteraction;
-
-        public void ProcessInteraction(Character interactor, Character.CharacterInstance interactorInstance, Interaction interaction)
-        {
-            currentInteractor = interactor;
-            currentInteractorInstance = interactorInstance;
-            currentInteraction = interaction;
-        }
 
         //Thread constants
         private string tempChunkLayerPath = "";
@@ -143,8 +119,9 @@ namespace StevenUniverse.FanGame.Util
                 (GameObject)
                 Instantiate(Resources.Load<GameObject>("Prefabs/_Entities/Player/Player"), Vector3.zero,
                     Quaternion.identity);
-            currentPlayer = player.GetComponent<PlayerDriver>();
-            CurrentPlayer.CreatePlayerCamera();
+
+            //TO-DO get a real cursor camera
+            mapCursor = new MapCursor();
 
             titleUIController.gameObject.SetActive(true);
         }
@@ -152,56 +129,9 @@ namespace StevenUniverse.FanGame.Util
         // Update is called once per frame
         void Update()
         {
-            //Cache the current activity
-            Activity currentActivity = GetCurrentActivity();
-
-            if (activityQueue.Count > 0)
-            {
-                if (!currentActivity.Started)
-                {
-                    currentActivity.StartActivity();
-                }
-
-                currentActivity.UpdateActivity();
-            }
+            // Nothing!!
         }
 
-        protected void LateUpdate()
-        {
-            //Put any activities that have been enqueued during this frame into the main queue
-            if (activityEntryQueue.Count > 0)
-            {
-                activityQueue.AddRange(activityEntryQueue);
-                activityEntryQueue.Clear();
-            }
-
-            //If an activity is complete, dequeue it
-            if (activityQueue.Count > 0 && GetCurrentActivity().IsComplete)
-            {
-                activityQueue.RemoveAt(0);
-            }
-
-            //TODO will this require multiple updates to advance nested branches?
-            if (activityQueue.Count < 1)
-            {
-                if (currentInteraction != null)
-                {
-                    int nextInteractionID = currentInteraction.GetNextInteractionID();
-
-                    if (nextInteractionID != -1)
-                    {
-                        Interaction nextInteraction = currentInteractor.GetInteraction(nextInteractionID);
-                        currentInteractor.Enqueue(currentInteractorInstance, nextInteraction);
-                    }
-                    else
-                    {
-                        currentInteractor = null;
-                        currentInteractorInstance = null;
-                        currentInteraction = null;
-                    }
-                }
-            }
-        }
 
         public void RegisterActiveChunkRenderer(ChunkRenderer chunkRenderer)
         {
@@ -294,51 +224,10 @@ namespace StevenUniverse.FanGame.Util
             progressBarUIController.gameObject.SetActive(active);
         }
 
-        //Activity Properties
-        public bool HasActivity
-        {
-            get { return activityQueue.Count != 0; }
-        }
-
-        public Activity GetCurrentActivity()
-        {
-            return activityQueue.Count > 0 ? activityQueue[0] : null;
-        }
-
-        public Activity GetNextActivity()
-        {
-            return activityQueue.Count > 1 ? activityQueue[1] : null;
-        }
-
-        public void EnqueueActivity(Activity activityToEnqueue)
-        {
-            activityToEnqueue.Reset();
-            activityEntryQueue.Add(activityToEnqueue);
-        }
 
         private bool controlDisabledOverride = false;
 
-        //If there is an activity queued, return wether or not it allows control. Otherwise, allow control.
-        public bool ControlEnabled
-        {
-            get
-            {
-                if (!controlDisabledOverride)
-                {
-                    //Cache the current activity
-                    Activity currentActivity = GetCurrentActivity();
-
-                    //Return whether or not the current activity allows control, if there is one. Otherwise, default to allowing control.
-                    return currentActivity != null ? currentActivity.AllowsControl : true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            set { controlDisabledOverride = value; }
-        }
-
+        
         public void DisableAllUIControllers()
         {
             ToggleTitleUI(false);
@@ -403,15 +292,16 @@ namespace StevenUniverse.FanGame.Util
         public void StartNewGame()
         {
             DisableAllUIControllers();
-            CurrentPlayer.ChunkRenderer.SetVisibility(false);
+            //TO-DO, make proper camera attached to MapCursor
+            //MapCursor.ChunkRenderer.SetVisibility(false);
             SceneManager.LoadScene("Intro");
         }
 
         public void ContinueFile()
         {
             DisableAllUIControllers();
-            CurrentPlayer.MoveTo(CurrentPlayer.SourcePlayer.SavedWarpPoint);
-            CurrentPlayer.PlayerCameraController.SetNight();
+            //CurrentPlayer.MoveTo(CurrentPlayer.SourcePlayer.SavedWarpPoint);
+            //CurrentPlayer.PlayerCameraController.SetNight();
         }
 
         public void StartLoadAreaAroundPlayer(bool changeScene, bool showProgressBars)
@@ -426,12 +316,14 @@ namespace StevenUniverse.FanGame.Util
                 //Destroy the existing ChunkRenderers
                 foreach (ChunkRenderer activeChunkRenderer in activeChunkRenderers)
                 {
-                    //If the ChunkRenderer is not a Player
-                    if (activeChunkRenderer.GetComponent<PlayerDriver>() == null)
-                    {
-                        //Debug.Log("destroying chunk!");
-                        Destroy(activeChunkRenderer.gameObject);
-                    }
+                    // Need to change focus to a cursor camera
+
+                    ////If the ChunkRenderer is not a Player
+                    //if (activeChunkRenderer.GetComponent<PlayerDriver>() == null)
+                    //{
+                    //    //Debug.Log("destroying chunk!");
+                    //    Destroy(activeChunkRenderer.gameObject);
+                    //}
                 }
 
                 //Load the scene
@@ -452,7 +344,7 @@ namespace StevenUniverse.FanGame.Util
             }
 
             //Floor the Player's position
-            Vector3 flooredPosition = Utilities.FloorToNearestMultiple(CurrentPlayer.TruePosition, Utilities.CHUNK_WIDTH, Utilities.CHUNK_HEIGHT);
+            Vector3 flooredPosition = Utilities.FloorToNearestMultiple(mapCursor.TruePosition, Utilities.CHUNK_WIDTH, Utilities.CHUNK_HEIGHT);
 
             List<string> chunkNamesToLoad = new List<string>();
             for (int i = -1; i <= 1; i++)
@@ -545,8 +437,9 @@ namespace StevenUniverse.FanGame.Util
 
                 foreach (string characterAppDataPath in characterAppDataPaths)
                 {
-                    Character loadedCharacter = Character.GetCharacter(characterAppDataPath);
-                    loadedCharacter.AttemptLoad();
+                    //TO-DO remake the loading utility
+                    //Character loadedCharacter = Character.GetCharacter(characterAppDataPath);
+                    //loadedCharacter.AttemptLoad();
                 }
             }
 
@@ -559,21 +452,6 @@ namespace StevenUniverse.FanGame.Util
                 //Unlock player control
                 controlDisabledOverride = false;
             }
-        }
-
-        public EntityDriver FindEntity(string targetName)
-        {
-            EntityDriver[] entityDrivers = GameObject.FindObjectsOfType<EntityDriver>();
-
-            foreach (EntityDriver entityDriver in entityDrivers)
-            {
-                if (entityDriver.SourceEntity.EntityName == targetName)
-                {
-                    return entityDriver;
-                }
-            }
-
-            return null;
         }
     }
 }

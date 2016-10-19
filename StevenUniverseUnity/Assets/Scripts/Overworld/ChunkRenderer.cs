@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using StevenUniverse.FanGame.Entities.EntityDrivers;
 using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGame.Util;
 
@@ -21,7 +20,6 @@ namespace StevenUniverse.FanGame.Overworld
         private bool chunkPositionIsAbsolute = false;
         private Chunk sourceChunk;
         private Chunk displayChunk;
-        private EntityDriver entityDriver;
 
         private Vector3 pivotPoint;
         private bool spriteRenderersSet = true;
@@ -71,7 +69,6 @@ namespace StevenUniverse.FanGame.Overworld
         protected virtual void Start()
         {
             GameController.Instance.RegisterActiveChunkRenderer(this);
-            entityDriver = GetComponent<EntityDriver>();
         }
 
         protected virtual void Update()
@@ -187,10 +184,9 @@ namespace StevenUniverse.FanGame.Overworld
                 {
                     chunkLayer.UpdateSpriteRenderer();
                     //Allow for a pause if there is no entity controller because it's not critical
-                    if (entityDriver == null)
-                    {
-                        yield return null;
-                    }
+                    // Corresponding Behavior??
+                    yield return null;
+                    
                 }
 
                 UpdateSortingOrder();

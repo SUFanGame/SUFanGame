@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using StevenUniverse.FanGame.Entities;
+using StevenUniverse.FanGame.Characters;
 using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Templates;
 
@@ -20,9 +20,9 @@ namespace StevenUniverse.FanGameEditor.Tools
             Template.ClearJsonCache();
             TileTemplate.ClearJsonCache();
             GroupTemplate.ClearJsonCache();
-            Entity.ClearJsonCache();
             Character.ClearJsonCache();
-            Player.ClearJsonCache();
+            XCharacter.ClearJsonCache();
+            PlayableCharacter.ClearJsonCache();
         }
     }
 }

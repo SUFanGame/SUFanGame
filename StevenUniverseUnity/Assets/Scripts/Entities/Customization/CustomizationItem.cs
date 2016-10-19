@@ -2,7 +2,7 @@
 using UnityEngine;
 using StevenUniverse.FanGame.Overworld.Templates;
 
-namespace StevenUniverse.FanGame.Entities.Customization
+namespace StevenUniverse.FanGame.Characters.Customization
 {
     public class CustomizationItem
     {

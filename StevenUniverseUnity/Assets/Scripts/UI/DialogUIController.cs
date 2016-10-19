@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using StevenUniverse.FanGame.Extensions;
-using StevenUniverse.FanGame.Interactions.Activities;
 using StevenUniverse.FanGame.Util;
+
+// This class is targeted for deletion later
 
 namespace StevenUniverse.FanGame.UI
 {
@@ -35,54 +36,55 @@ namespace StevenUniverse.FanGame.UI
                         .FindChildWithName("Current Speaker")
                         .GetComponent<Text>();
             }
-            Reset();
+            //Reset();
         }
 
-        protected void FixedUpdate()
-        {
-            if (!speakerAssigned)
-            {
-                currentSpeakerText.text = CurrentDialog.CurrentSpeaker;
-                speakerAssigned = true;
-            }
-            if (!FinishedPrinting)
-            {
-                currentDialogText.text = CurrentDialog.CurrentMessage.Substring(0, charCounter);
-
-                if (charCounter < CurrentDialog.CurrentMessage.Length)
-                {
-                    charCounter++;
-                }
-                else
-                {
-                    FinishedPrinting = true;
-                }
-            }
-        }
-
-        public void SkipToEnd()
-        {
-            charCounter = CurrentDialog.CurrentMessage.Length;
-        }
-
-        public bool FinishedPrinting
-        {
-            get { return finishedPrinting; }
-            private set { finishedPrinting = value; }
-        }
-
-        private void Reset()
-        {
-            currentDialogText.text = "";
-            currentSpeakerText.text = "";
-            charCounter = 0;
-            FinishedPrinting = false;
-            speakerAssigned = false;
-        }
-
-        private Dialog CurrentDialog
-        {
-            get { return GameController.Instance.GetCurrentActivity() as Dialog; }
-        }
+        // Problematic code
+        //protected void FixedUpdate()
+        //{
+        //    if (!speakerAssigned)
+        //    {
+        //        currentSpeakerText.text = CurrentDialog.CurrentSpeaker;
+        //        speakerAssigned = true;
+        //    }
+        //    if (!FinishedPrinting)
+        //    {
+        //        currentDialogText.text = CurrentDialog.CurrentMessage.Substring(0, charCounter);
+        //
+        //        if (charCounter < CurrentDialog.CurrentMessage.Length)
+        //        {
+        //            charCounter++;
+        //        }
+        //        else
+        //        {
+        //            FinishedPrinting = true;
+        //        }
+        //    }
+        //}
+        //
+        //public void SkipToEnd()
+        //{
+        //    charCounter = CurrentDialog.CurrentMessage.Length;
+        //}
+        //
+        //public bool FinishedPrinting
+        //{
+        //    get { return finishedPrinting; }
+        //    private set { finishedPrinting = value; }
+        //}
+        //
+        //private void Reset()
+        //{
+        //    currentDialogText.text = "";
+        //    currentSpeakerText.text = "";
+        //    charCounter = 0;
+        //    FinishedPrinting = false;
+        //    speakerAssigned = false;
+        //}
+        //
+        //private Dialog CurrentDialog
+        //{
+        //    // get { return GameController.Instance.GetCurrentActivity() as Dialog; }
+        //}
     }
 }

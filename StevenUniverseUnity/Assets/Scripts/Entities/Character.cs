@@ -1,296 +1,219 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using StevenUniverse.FanGame.Entities.Customization;
-using StevenUniverse.FanGame.Entities.EntityDrivers;
-using StevenUniverse.FanGame.Interactions;
-using StevenUniverse.FanGame.Interactions.Activities;
+﻿using UnityEngine;
+using StevenUniverse.FanGame.Data;
+using StevenUniverse.FanGame.Characters.Customization;
 using StevenUniverse.FanGame.Util;
-using StevenUniverse.FanGame.Util.Logic;
 
-namespace StevenUniverse.FanGame.Entities
+// This class used to be called "Entity"
+
+namespace StevenUniverse.FanGame.Characters
 {
     [System.Serializable]
-    public class Character : Entity
+    public class Character : JsonBase<Character>
     {
+        
         [SerializeField]
-        private CharacterInstance[] characterInstances;
+        private string name; //Name
+        [SerializeField]
+        private string affiliation; //What Team?
+        [SerializeField]
+        private HeldItems items; //WILDCATS
+        [SerializeField]
+        private Skill[] skills; //All available skills
+        [SerializeField]
+        private UnitStats stats; //All the unit battle modifiers
+
+        //Unchanged from original Entity, consider changing
+        [SerializeField]
+        private Outfit outfit; // TO-DO change to all graphical stuff
+        [SerializeField]
+        private string stateName; //State, needs to be reworked
+        [SerializeField]
+        private State currentState; //Current State
+
+        // Location Data
+        [SerializeField]
+        private string sceneName;
+        [SerializeField]
+        private int xPosition;
+        [SerializeField]
+        private int yPosition;
+        [SerializeField]
+        private int elevation;
+        [SerializeField]
+        private string directionName;
 
         [SerializeField]
-        private ActivityBlock[] activityBlocks;
-        [SerializeField]
-        private Branch[] branches;
+        private SaveData savedData;
 
-        [SerializeField]
-        private DestroyEntity[] destroyEntityList;
-        [SerializeField]
-        private Dialog[] dialogList;
-        [SerializeField]
-        private InstantiateGameObject[] instantiateGameObjectList;
-        [SerializeField]
-        private Movement[] movementList;
-        [SerializeField]
-        private SetData[] setDataList;
-        [SerializeField]
-        private Wait[] waitList;
-        [SerializeField]
-        private WaitForBool[] waitForBoolList;
+        //Events
+        public delegate void GenericEventHandler();
 
-        public static Character GetCharacter(string characterAppDataPath)
-        {
-            return Get<Character>(characterAppDataPath);
-        }
+        public event GenericEventHandler OnDirectionChange;
+        public event GenericEventHandler OnStateChange;
+        public event GenericEventHandler OnInteract;
 
-        public Character
-            (
+        public Character(
             string characterName,
-            string directionName,
-            string stateName,
+            string affiliation,
             Outfit startingOutfit,
-
-            CharacterInstance[] characterInstances,
-
-            ActivityBlock[] activityBlocks,
-            Branch[] branches,
-
-            DestroyEntity[] destroyEntityList,
-            Dialog[] dialogList,
-            InstantiateGameObject[] instantiateGameObjectList,
-            Movement[] movementList,
-            SetData[] setDataList,
-            Wait[] waitList,
-            WaitForBool[] waitForBoolList
-            ) : base(characterName, directionName, stateName, startingOutfit)
+            SaveData saveData)
         {
-            this.characterInstances = characterInstances;
+            this.name = characterName;
+            this.affiliation = affiliation;
+            this.outfit = startingOutfit;
+            this.savedData = saveData;
 
-            this.activityBlocks = activityBlocks;
-            this.branches = branches;
-
-            this.destroyEntityList = destroyEntityList;
-            this.dialogList = dialogList;
-            this.instantiateGameObjectList = instantiateGameObjectList;
-            this.movementList = movementList;
-            this.setDataList = setDataList;
-            this.waitList = waitList;
-            this.waitForBoolList = waitForBoolList;
+            // All other data parameters may want to be loaded from SaveData at instantiation.
+            // This particular class as-is is meant for in-map character entities but could be further abstracted
         }
 
-        private Interaction[] GetAllInteractions()
+
+        //Name
+        public string EntityName
         {
-            List<Interaction> allInteractions = new List<Interaction>();
-
-            allInteractions.AddRange(activityBlocks);
-            allInteractions.AddRange(branches);
-
-            return allInteractions.ToArray();
+            get { return name; }
+            set { name = value; }
         }
 
-        public Interaction GetInteraction(int interactionID)
+        //Team name
+        public string Affiliation
         {
-            if (interactionID == -1)
-            {
-                return null;
-            }
+            get { return affiliation; }
+            set { affiliation = value; }
+        }
 
-            foreach (Interaction interaction in GetAllInteractions())
+        //Held items
+        public HeldItems Items
+        {
+            get { return items; }
+            set { items = value; }
+        }
+
+        //Skills available
+        public Skill[] Skills
+        {
+            get { return skills; }
+            set { skills = value; }
+        }
+
+        //Unit stats
+        public UnitStats Stats
+        {
+            get { return stats; }
+            set { stats = value; }
+        }
+
+        //Location info
+        public string SceneName
+        {
+            get { return sceneName; }
+            set { sceneName = value; }
+        }
+
+        public int XPosition
+        {
+            get { return xPosition; }
+            set { xPosition = value; }
+        }
+
+        public int YPosition
+        {
+            get { return yPosition; }
+            set { yPosition = value; }
+        }
+
+        public int Elevation
+        {
+            get { return elevation; }
+            set { elevation = value; }
+        }
+
+        public SaveData SavedData
+        {
+            get { return savedData; }
+            set { savedData = value; }
+        }
+
+        //State
+        public string StateName
+        {
+            get { return stateName; }
+            set { stateName = value; }
+        }
+
+        public State CurrentState
+        {
+            get { return State.Get(StateName); }
+            set
             {
-                if (interaction.InteractionID == interactionID)
+                string lastStateName = StateName;
+                StateName = value.Name;
+                if (lastStateName != StateName && OnStateChange != null)
                 {
-                    return interaction;
+                    OnStateChange();
                 }
             }
-
-            throw new UnityException(string.Format("Could not find an Interaction with interactionID '{0};", interactionID));
         }
 
-        private Activity[] GetAllActivities()
+        //Outfit
+        public Outfit Outfit
         {
-            List<Activity> allActivities = new List<Activity>();
-
-            allActivities.AddRange(destroyEntityList);
-            allActivities.AddRange(dialogList);
-            allActivities.AddRange(instantiateGameObjectList);
-            allActivities.AddRange(movementList);
-            allActivities.AddRange(setDataList);
-            allActivities.AddRange(waitList);
-            allActivities.AddRange(waitForBoolList);
-
-            return allActivities.ToArray();
+            get { return outfit; }
+            set { outfit = value; }
         }
 
-        public Activity GetActivity(int activityID)
+        //Direction
+        public string DirectionName
         {
-            foreach (Activity activity in GetAllActivities())
+            get { return directionName; }
+            set { directionName = value; }
+        }
+
+        public Direction CurrentDirection
+        {
+            get { return Direction.Get(DirectionName); }
+            set
             {
-                if (activity.ActivityID == activityID)
+                string lastDirectionName = DirectionName;
+                DirectionName = value.Name;
+                if (lastDirectionName != DirectionName && OnDirectionChange != null)
                 {
-                    return activity;
+                    OnDirectionChange();
                 }
             }
+        }
+    }
 
-            throw new UnityException(string.Format("Could not find an activity with activityID '{0};", activityID));
+
+    //TO-DO rework this
+    public class State : EnhancedEnum<State>
+    {
+        //Instance
+        private State(string name) : base(name)
+        {
         }
 
-        public void AttemptLoad()
+        //Static Instances
+        static State()
         {
-            CharacterInstance firstValidCharacterInstance = GetFirstValidCharacterInstance();
-
-            if (firstValidCharacterInstance != null)
-            {
-                //Create the GameObject
-                GameObject characterGameObject = new GameObject(Name);
-                characterGameObject.transform.position = firstValidCharacterInstance.Position;
-                characterGameObject.transform.SetParent(GameController.Instance.CharacterParent.transform);
-                //Add a BoxCollider2D
-                BoxCollider2D characterCollider = characterGameObject.AddComponent<BoxCollider2D>();
-                characterCollider.offset = new Vector2(0.5f, 0.5f);
-                characterCollider.size = new Vector2(1f, 1f);
-                //Add a CharacterDriver
-                CharacterDriver characterDriver = characterGameObject.AddComponent<CharacterDriver>();
-                characterDriver.SourceEntity = this;
-                characterDriver.SourceEntity.OnInteract +=
-                    delegate { Enqueue(firstValidCharacterInstance); };
-                characterDriver.OnStart +=
-                    delegate { characterDriver.CurrentElevation = firstValidCharacterInstance.Elevation; };
-            }
+            Add(new State("Standing"));
+            Add(new State("Walking"));
+            Add(new State("Running"));
         }
 
-        private void Enqueue(CharacterInstance characterInstance)
+        public static State Standing
         {
-            Interaction interactionToProcess = GetFirstValidInteractionInCharacterInstance(characterInstance);
-
-            Enqueue(characterInstance, interactionToProcess);
+            get { return Get("Standing"); }
         }
 
-        public void Enqueue(CharacterInstance characterInstance, Interaction interactionToProcess)
+        public static State Walking
         {
-            if (interactionToProcess != null)
-            {
-                ActivityBlock activityBlockToProcess = interactionToProcess as ActivityBlock;
-                if (activityBlockToProcess != null)
-                {
-                    List<Activity> activitiesToEnqueue = new List<Activity>();
-
-                    foreach (int activityID in activityBlockToProcess.ActivityIDs)
-                    {
-                        activitiesToEnqueue.Add(GetActivity(activityID));
-                    }
-
-                    foreach (Activity activityToEnqueue in activitiesToEnqueue)
-                    {
-                        GameController.Instance.EnqueueActivity(activityToEnqueue);
-                    }
-                }
-                /*
-                else
-                {
-                    throw new UnityException("Non-ActivityBlock Interactions are not yet supported!");
-                }*/
-            }
-
-            GameController.Instance.ProcessInteraction(this, characterInstance, interactionToProcess);
+            get { return Get("Walking"); }
         }
 
-        public Interaction GetFirstValidInteractionInCharacterInstance(CharacterInstance characterInstance)
+        public static State Running
         {
-            foreach (CharacterInstance.InteractionStarter interactionStarter in characterInstance.InteractionStarters)
-            {
-                if (interactionStarter.CheckStatus())
-                {
-                    return GetInteraction(interactionStarter.InteractionID);
-                }
-            }
-
-            return null;
-        }
-
-        public CharacterInstance GetFirstValidCharacterInstance()
-        {
-            foreach (CharacterInstance characterInstance in characterInstances)
-            {
-                if (characterInstance.CheckStatus())
-                {
-                    return characterInstance;
-                }
-            }
-
-            return null;
-        }
-
-        //public CharacterInstance[] CharacterInstances { get { return characterInstances; } }
-
-        [System.Serializable]
-        public class CharacterInstance
-        {
-            [SerializeField] private Conditional spawnCondition;
-            [SerializeField] private Vector3 position;
-            [SerializeField] private int elevation;
-            [SerializeField] private InteractionStarter[] interactionStarters;
-
-            public CharacterInstance
-            (
-                Conditional spawnCondition,
-                Vector3 position,
-                int elevation,
-                InteractionStarter[] interactionStarters
-            )
-            {
-                SpawnCondition = spawnCondition;
-                Position = position;
-                Elevation = elevation;
-                this.interactionStarters = interactionStarters;
-            }
-
-            public bool CheckStatus()
-            {
-                return spawnCondition.CheckStatus();
-            }
-
-            public Conditional SpawnCondition
-            {
-                get { return spawnCondition; }
-                set { spawnCondition = value; }
-            }
-
-            public Vector3 Position
-            {
-                get { return position; }
-                set { position = value; }
-            }
-
-            public int Elevation
-            {
-                get { return elevation; }
-                set { elevation = value; }
-            }
-
-            public InteractionStarter[] InteractionStarters
-            {
-                get { return interactionStarters; }
-                set { interactionStarters = value; }
-            }
-
-            [System.Serializable]
-            public class InteractionStarter
-            {
-                [SerializeField]
-                private Conditional conditional;
-                [SerializeField]
-                private int interactionID;
-
-                public InteractionStarter(Conditional conditional, int interactionID)
-                {
-                    this.conditional = conditional;
-                    this.interactionID = interactionID;
-                }
-
-                public bool CheckStatus()
-                {
-                    return conditional.CheckStatus();
-                }
-
-                public int InteractionID { get { return interactionID;} }
-            }
+            get { return Get("Running"); }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using StevenUniverse.FanGame.Entities;
+using StevenUniverse.FanGame.Characters;
 
 namespace StevenUniverse.FanGame.Util
 {
@@ -19,7 +19,7 @@ namespace StevenUniverse.FanGame.Util
         public static T2 Get<T2>(string appDataPath) where T2 : T
         {
             System.Type t2Type = typeof(T2);
-            System.Type entityType = typeof(Entity);
+            System.Type entityType = typeof(Character);
 
             bool skipInstanceCache = t2Type.Equals(entityType) || t2Type.IsSubclassOf(entityType);
 

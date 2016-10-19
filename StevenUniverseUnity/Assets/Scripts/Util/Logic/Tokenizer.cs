@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using StevenUniverse.FanGame.Data;
 using StevenUniverse.FanGame.Data.DataTypes;
-using StevenUniverse.FanGame.Entities;
+using StevenUniverse.FanGame.Characters;
 using StevenUniverse.FanGame.Extensions;
 
 namespace StevenUniverse.FanGame.Util.Logic

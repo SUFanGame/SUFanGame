@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using StevenUniverse.FanGame.Entities.EntityDrivers;
-using StevenUniverse.FanGame.Extensions;
+using StevenUniverse.FanGame.Characters;
 using StevenUniverse.FanGame.UI.Components;
 
 namespace StevenUniverse.FanGame.UI
@@ -84,7 +83,7 @@ namespace StevenUniverse.FanGame.UI
             return b;
         }
 
-        public static Selector AddSelector(this GameObject parent, EntityDriver target, string itemGroup,
+        public static Selector AddSelector(this GameObject parent, Character target, string itemGroup,
             string[] itemNames)
         {
             //Instantiate the Selector

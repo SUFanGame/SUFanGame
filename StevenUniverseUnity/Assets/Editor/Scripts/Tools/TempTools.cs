@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
-using StevenUniverse.FanGame.Entities;
-using StevenUniverse.FanGame.Entities.Customization;
+using StevenUniverse.FanGame.Characters;
+using StevenUniverse.FanGame.Characters.Customization;
 using StevenUniverse.FanGame.Extensions;
 using StevenUniverse.FanGame.Interactions;
 using StevenUniverse.FanGame.Interactions.Activities;
@@ -38,23 +38,23 @@ namespace StevenUniverse.FanGameEditor.Tools
         {
             Outfit sapphireOutfit = new Outfit("Light Body", "Sapphire Hat", "Calm Eyes", "Sapphire Shirt");
 
-            Character sapphire = new Character
+            XCharacter sapphire = new XCharacter
                 (
                 "Sapphire",
                 "Down",
                 "Standing",
                 sapphireOutfit,
 
-                new Character.CharacterInstance[]
+                new XCharacter.CharacterInstance[]
                 {
-                    new Character.CharacterInstance
+                    new XCharacter.CharacterInstance
                     (
                         new Conditional("true"),
                         new Vector3(-156, 162, 0),
                         0,
-                        new Character.CharacterInstance.InteractionStarter[]
+                        new XCharacter.CharacterInstance.InteractionStarter[]
                         {
-                            new Character.CharacterInstance.InteractionStarter( new Conditional("true"), 5 )
+                            new XCharacter.CharacterInstance.InteractionStarter( new Conditional("true"), 5 )
                         }
                     )
                 },

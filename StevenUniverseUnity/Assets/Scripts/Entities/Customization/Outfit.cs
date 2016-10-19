@@ -4,7 +4,7 @@ using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGame.Util;
 
-namespace StevenUniverse.FanGame.Entities.Customization
+namespace StevenUniverse.FanGame.Characters.Customization
 {
     [System.Serializable]
     public class Outfit
@@ -31,7 +31,7 @@ namespace StevenUniverse.FanGame.Entities.Customization
         private CustomizationItem eyes;
         private CustomizationItem shirt;
 
-        private Dictionary<Character.State, Dictionary<Direction, Chunk>> animations;
+        private Dictionary<State, Dictionary<Direction, Chunk>> animations;
 
         //Instance Properties
         public string BodySpriteSheetName
@@ -173,20 +173,20 @@ namespace StevenUniverse.FanGame.Entities.Customization
             }
         }
 
-        private Dictionary<Character.State, Dictionary<Direction, Chunk>> Animations
+        private Dictionary<State, Dictionary<Direction, Chunk>> Animations
         {
             get
             {
                 if (animations == null)
                 {
-                    animations = new Dictionary<Character.State, Dictionary<Direction, Chunk>>();
+                    animations = new Dictionary<State, Dictionary<Direction, Chunk>>();
                 }
 
                 return animations;
             }
         }
 
-        public Chunk GetChunk(Character.State state, Direction direction)
+        public Chunk GetChunk(State state, Direction direction)
         {
             //Add an index for the State if there isn't one
             if (!Animations.ContainsKey(state))
@@ -198,7 +198,7 @@ namespace StevenUniverse.FanGame.Entities.Customization
             if (!Animations[state].ContainsKey(direction))
             {
                 Chunk generatedChunk = null;
-                if (state == Character.State.Standing)
+                if (state == State.Standing)
                 {
                     //Determine the starting row
                     int startingRow = 0;
@@ -221,7 +221,7 @@ namespace StevenUniverse.FanGame.Entities.Customization
 
                     generatedChunk = GenerateChunk(new int[] {0}, startingRow);
                 }
-                else if (state == Character.State.Walking)
+                else if (state == State.Walking)
                 {
                     //Determine the starting row
                     int startingRow = 0;
@@ -272,5 +272,6 @@ namespace StevenUniverse.FanGame.Entities.Customization
                 new GroupInstance[] {}
             );
         }
+
     }
 }

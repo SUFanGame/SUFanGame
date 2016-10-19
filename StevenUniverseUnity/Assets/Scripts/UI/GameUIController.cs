@@ -79,7 +79,7 @@ namespace StevenUniverse.FanGame.UI
         {
             //mainPanel.AddButton("Bag", delegate { ChangeMenu(GameMenu.Bag); });
             //mainPanel.AddButton("User", delegate { ChangeMenu(GameMenu.User); });
-            mainPanel.AddButton("Save", delegate { GameController.Instance.CurrentPlayer.SaveToJson(); });
+            //mainPanel.AddButton("Save", delegate { GameController.Instance.CurrentPlayer.SaveToJson(); });
         }
 
         private void CloseSecondaryMenus()

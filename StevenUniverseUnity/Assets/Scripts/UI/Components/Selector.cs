@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using StevenUniverse.FanGame.Entities.EntityDrivers;
 using StevenUniverse.FanGame.Extensions;
+using StevenUniverse.FanGame.Characters;
 
 namespace StevenUniverse.FanGame.UI.Components
 {
     public class Selector : MonoBehaviour
     {
-        private EntityDriver target;
+        private Character target;
         private string itemGroup;
         private string[] itemNames;
 
-        public void Init(EntityDriver target, string itemGroup, string[] itemNames)
+        public void Init(Character target, string itemGroup, string[] itemNames)
         {
             this.target = target;
             this.itemGroup = itemGroup;
@@ -84,13 +84,13 @@ namespace StevenUniverse.FanGame.UI.Components
                 switch (itemGroup)
                 {
                     case "Bodies":
-                        return target.SourceEntity.Outfit.BodySpriteSheet;
+                        return target.Outfit.BodySpriteSheet;
                     case "Eyes":
-                        return target.SourceEntity.Outfit.EyesSpriteSheet;
+                        return target.Outfit.EyesSpriteSheet;
                     case "Hats":
-                        return target.SourceEntity.Outfit.HatSpriteSheet;
+                        return target.Outfit.HatSpriteSheet;
                     case "Shirts":
-                        return target.SourceEntity.Outfit.ShirtSpriteSheet;
+                        return target.Outfit.ShirtSpriteSheet;
                     default:
                         throw new UnityException("Invalid item group");
                 }
@@ -100,16 +100,16 @@ namespace StevenUniverse.FanGame.UI.Components
                 switch (itemGroup)
                 {
                     case "Bodies":
-                        target.SourceEntity.Outfit.BodySpriteSheet = value;
+                        target.Outfit.BodySpriteSheet = value;
                         break;
                     case "Eyes":
-                        target.SourceEntity.Outfit.EyesSpriteSheet = value;
+                        target.Outfit.EyesSpriteSheet = value;
                         break;
                     case "Hats":
-                        target.SourceEntity.Outfit.HatSpriteSheet = value;
+                        target.Outfit.HatSpriteSheet = value;
                         break;
                     case "Shirts":
-                        target.SourceEntity.Outfit.ShirtSpriteSheet = value;
+                        target.Outfit.ShirtSpriteSheet = value;
                         break;
                     default:
                         throw new UnityException("Invalid item group");
