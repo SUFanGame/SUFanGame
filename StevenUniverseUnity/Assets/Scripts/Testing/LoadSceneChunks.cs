@@ -5,9 +5,11 @@ using System.IO;
 using StevenUniverse.FanGame.Util;
 using UnityEngine.SceneManagement;
 using StevenUniverse.FanGame.Overworld;
+using StevenUniverse.FanGame.Overworld.Templates;
 using System.Linq;
 using StevenUniverse.FanGame.Battle;
 using StevenUniverse.FanGame.Overworld.Instances;
+using System;
 
 public class LoadSceneChunks : MonoBehaviour 
 {
@@ -21,6 +23,8 @@ public class LoadSceneChunks : MonoBehaviour
     public SpriteRenderer cursorSprite_;
 
     bool walkable_ = false;
+
+    public GameObject pfb_WalkableTileSprite_;
 
     IEnumerator Start()
     {
@@ -120,37 +124,121 @@ public class LoadSceneChunks : MonoBehaviour
                     // World positions...
                     int xPos = x + (int)chunk.Position.x;
                     int yPos = y + (int)chunk.Position.y;
+                    Vector2 pos = new Vector2(xPos, yPos);
 
-                    var tilesAtPos = chunk.AllInstancesFlattenedCoordinated.Get(x, y);
+                    var tilesAtPos = chunk.AllInstancesFlattenedCoordinated.Get(xPos, yPos);
                     if (tilesAtPos.Length == 0)
                     {
-                        Debug.LogFormat("No tiles found at {0},{1}", xPos, yPos);
+                        //Debug.LogFormat("No tiles found at {0},{1}", xPos, yPos);
                         continue;
                     }
 
-                    string tilesString = string.Join(",", tilesAtPos.Select(t => t.TileTemplate.Name).ToArray());
-                    Debug.LogFormat("Tiles at {0},{1}: {2}", xPos, yPos, tilesString);
-
-                    return;
+                    if( IsWalkable( tilesAtPos ) )
+                    {
+                        //Debug.LogFormat("{0} is walkable!", pos );
+                        // Spawn a walkable tile marker on any walkable tiles
+                        Instantiate(pfb_WalkableTileSprite_, new Vector3(xPos, yPos, 1f), Quaternion.identity, renderer.transform);
+                    }
                 }
             }
-
-            //Debug.LogFormat("Size: {0},{1}", sizeX, sizeY);
-            //Debug.LogFormat();
-            //string minMax = string.Format("Min: {0},{1} Max: {2},{3}", minX, minY, maxX, maxY);
-            //Rect bounds = Rect.MinMaxRect(minX, minY, maxX, maxY);
-
-            //renderer.name = renderer.name + ":" + minMax;
-
-            //Debug.LogFormat("Bounds for chunk {0}: {1}", chunk.Name, bounds);
-
-            
-
-           // instances.AddRange(chunk.AllInstances);
         }
         
     }
-    
+
+    // TODO: Figure out how to resolve sorting within an elevation's tiles. Cliff edges ending up walkable somehow?
+
+    // A tile is considered walkable if it's tile mode is "Surface" or "Transitional" 
+    // and if it's not sharing a space with a tile whose tile mode is "Collidable" and if the tile above is it not grounded
+    bool IsWalkable( TileInstance[] tileStack )
+    {
+        // Group our tiles according to their elevation, so we can treat each set of tiles at each elevation as
+        // it's own group
+        var query = tileStack.GroupBy(t => t.Elevation, t => t);
+
+        bool walkable = false;
+        int walkableElevation = int.MinValue;
+
+        foreach( var elevationTiles in query )
+        {
+            // Don't bother processing this elevation if any tiles in it are collidable
+            if (elevationTiles.Any(t => t.TileTemplate.TileModeName == "Collidable"))
+            {
+                walkable = false;
+                walkableElevation = int.MinValue;
+                // Continue to the next elevation's tiles
+                continue;
+            }
+
+            //var tilesString = string.Join(",", sortedTile.Select(t => t.TileTemplate.Name).ToArray());
+            //Debug.LogFormat("Tiles at {0}: {1}", elevation, tilesString );
+            foreach( var tile in elevationTiles )
+            {
+                // If this tile is grounded and is above any tile that was walkable, walkability is nulled
+                if (walkable && tile.TileTemplate.IsGrounded && tile.Elevation == walkableElevation + 1)
+                {
+                    walkable = false;
+                    walkableElevation = int.MinValue;
+                }
+
+                var mode = tile.TileTemplate.TileModeName;
+                // If the current tile is a surface or transitional tile then this is potentially a walkable cell.
+                if (mode == "Surface" || mode == "Transitional")
+                {
+                    walkable = true;
+                    walkableElevation = tile.Elevation;
+                }
+            }
+        }
+
+        return walkable;
+
+
+        //// Sort our tile stack into separate lists of tiles based on their elevation.
+   
+
+        //bool walkable = false;
+        //int walkableHeight = int.MinValue;
+        //bool collidable = false;
+        //int collidableHeight = int.MinValue;
+
+        //for( int i = 0; i < tileStack.Length; ++i )
+        //{
+        //    var tile = tileStack[i];
+        //    var mode = tile.TileTemplate.TileModeName;
+
+        //    // "Normal" tiles don't factor into walkability
+        //    if (mode == "Normal")
+        //        continue;
+
+
+        //    //Debug.LogFormat("Pos:{0}, Elevation:{1}", tile.Position, tile.Elevation);
+
+        //    // If a previous tile in the stack was found to be walkable...
+        //    if ( walkable )
+        //    {
+        //        // Ensure the tile above it is not grounded. If it is, then the previous walkability is not valid
+        //        if (tile.TileTemplate.IsGrounded && tile.Elevation == walkableHeight + 1)
+        //            walkable = false;
+        //    }
+            
+        //    // If the current tile is a surface or transitional tile then this is potentially a walkable cell.
+        //    if( mode == "Surface" || mode == "Transitional" )
+        //    {
+        //        walkable = true;
+        //        walkableHeight = tile.Elevation;
+        //    }
+            
+        //    // If the current elevation has a "collidable" tile then it's not walkable, period
+        //    if ( mode == "Collidable" )
+        //    {
+        //        if( walkable && )
+        //        walkable = false;
+        //    }
+
+        //}
+
+        //return walkable;
+    }
 
 
     //// Polls the tile map to determine if the given position is walkable
@@ -183,4 +271,5 @@ public class LoadSceneChunks : MonoBehaviour
 
     //    return walkable;
     //}
+
 }
