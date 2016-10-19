@@ -30,31 +30,54 @@ public class LoadSceneChunks : MonoBehaviour
     {
         grid_ = GameObject.FindObjectOfType<Grid>();
 
-        var appData = Utilities.ExternalDataPath;
+        var chunks = GetChunks(4, 7);
+        //var chunks = GetAllChunks();
 
+        yield return StartCoroutine(LoadChunks(chunks));
+
+        BuildGrid();
+    }
+
+    List<Chunk> GetChunks( params int[] indices  )
+    {
+        List<Chunk> chunks = new List<Chunk>();
+        var appData = Utilities.ExternalDataPath;
         var currentSceneName = SceneManager.GetActiveScene().name;
 
         var chunkDirNames = Directory.GetDirectories(appData + "/Chunks/" + currentSceneName);
 
         chunkDirNames = chunkDirNames.Select(d => System.IO.Path.GetFileName(d)).ToArray();
 
-        List<Chunk> chunks = new List<Chunk>();
-
-        // Load a single isolated chunk for testing purposes.
-        int numToLoad = 6;
-        //int numToLoad = 2;
-        for (int i = numToLoad; i < numToLoad + 1; ++i)
-        //for( int i = 0; i < chunkDirNames.Length; ++i )
+        foreach( var i in indices )
         {
             string dir = chunkDirNames[i];
             string dataPath = string.Format("Chunks/{0}/{1}/{1}", currentSceneName, dir);
-            //Debug.LogFormat("{0}", dataPath);
+
             chunks.Add(Chunk.GetChunk(dataPath));
         }
 
-        yield return StartCoroutine(LoadChunks(chunks));
+        return chunks;
+    }
 
-        BuildGrid();
+    List<Chunk> GetAllChunks()
+    {
+        List<Chunk> chunks = new List<Chunk>();
+        var appData = Utilities.ExternalDataPath;
+        var currentSceneName = SceneManager.GetActiveScene().name;
+
+        var chunkDirNames = Directory.GetDirectories(appData + "/Chunks/" + currentSceneName);
+
+        chunkDirNames = chunkDirNames.Select(d => System.IO.Path.GetFileName(d)).ToArray();
+
+        for( int i = 0; i < chunkDirNames.Length; ++i )
+        {
+            string dir = chunkDirNames[i];
+            string dataPath = string.Format("Chunks/{0}/{1}/{1}", currentSceneName, dir);
+
+            chunks.Add(Chunk.GetChunk(dataPath));
+        }
+
+        return chunks;
     }
 
     IEnumerator LoadChunks( List<Chunk> chunks )
@@ -144,35 +167,36 @@ public class LoadSceneChunks : MonoBehaviour
         }
         
     }
-
-    // TODO: Figure out how to resolve sorting within an elevation's tiles. Cliff edges ending up walkable somehow?
-
+    
     // A tile is considered walkable if it's tile mode is "Surface" or "Transitional" 
     // and if it's not sharing a space with a tile whose tile mode is "Collidable" and if the tile above is it not grounded
     bool IsWalkable( TileInstance[] tileStack )
     {
-        // Group our tiles according to their elevation, so we can treat each set of tiles at each elevation as
-        // it's own group
-        var query = tileStack.GroupBy(t => t.Elevation, t => t);
-
         bool walkable = false;
         int walkableElevation = int.MinValue;
+        bool collision = false;
+        // Group our tiles according to their elevation
+        var query = tileStack.GroupBy(t => t.Elevation, t => t);
 
-        foreach( var elevationTiles in query )
+        // Iterate through our groups starting from the lowest elevation to the highest
+        foreach( var tileGroups in query )
         {
-            // Don't bother processing this elevation if any tiles in it are collidable
-            if (elevationTiles.Any(t => t.TileTemplate.TileModeName == "Collidable"))
+            foreach ( var tile in tileGroups )
             {
-                walkable = false;
-                walkableElevation = int.MinValue;
-                // Continue to the next elevation's tiles
-                continue;
-            }
+                var mode = tile.TileTemplate.TileModeName;
 
-            //var tilesString = string.Join(",", sortedTile.Select(t => t.TileTemplate.Name).ToArray());
-            //Debug.LogFormat("Tiles at {0}: {1}", elevation, tilesString );
-            foreach( var tile in elevationTiles )
-            {
+                // Ignore "normal" tiles, they are decorative and should not affect collision
+                if (mode == "Normal")
+                    continue;
+
+                // If any tiles at this elevation are collidable, it's not walkable.
+                if( mode == "Collidable" || collision )
+                {
+                    walkable = false;
+                    collision = true;
+                    continue;
+                }
+
                 // If this tile is grounded and is above any tile that was walkable, walkability is nulled
                 if (walkable && tile.TileTemplate.IsGrounded && tile.Elevation == walkableElevation + 1)
                 {
@@ -180,7 +204,6 @@ public class LoadSceneChunks : MonoBehaviour
                     walkableElevation = int.MinValue;
                 }
 
-                var mode = tile.TileTemplate.TileModeName;
                 // If the current tile is a surface or transitional tile then this is potentially a walkable cell.
                 if (mode == "Surface" || mode == "Transitional")
                 {
