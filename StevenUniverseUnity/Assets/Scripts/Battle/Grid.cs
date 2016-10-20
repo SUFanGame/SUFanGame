@@ -120,14 +120,24 @@ namespace StevenUniverse.FanGame.Battle
                     var tileStack = chunk.AllInstancesFlattenedCoordinated.Get(worldX, worldY);
 
                     // Sort the tilestack into a qeury where tiles are grouped by elevation then by sorting order
-                    var query = tileStack.OrderBy(t => t.Elevation).ThenBy(t => t.TileTemplate.TileLayer.SortingValue).GroupBy(t => t.Elevation, t => t);
+                    // sort by elevation in reverse. This way we can account for "IsGrounded" nodes ahead of time.
+                    var query = tileStack.OrderByDescending(t => t.Elevation).ThenBy(t => t.TileTemplate.TileLayer.SortingValue).GroupBy(t => t.Elevation, t => t);
 
+                    // If a node is "Grounded" it means the node directly below it (in terms of elevation) cannot be pathable.
+                    bool lastNodeWasGrounded = false;
                     foreach( var orderedTiles in query)
                     {
                         // The walkable status of the set of tiles at this elevation
                         // ( which cumulatively represents a node )
                         bool walkable = false;
                         int elevation = orderedTiles.Key;
+
+                        // If the node at the previous elevation was grounded, then this node is unpathable.
+                        if( lastNodeWasGrounded )
+                        {
+                            lastNodeWasGrounded = false;
+                            continue;
+                        }
 
                         foreach ( var tile in orderedTiles )
                         {
@@ -142,8 +152,12 @@ namespace StevenUniverse.FanGame.Battle
 
                             if (mode == "Collidable")
                                 walkable = false;
+
+                            if (tile.TileTemplate.IsGrounded)
+                                lastNodeWasGrounded = true;
                         }
 
+                        // If the node is walkable at this point then we'll add it to our grid.
                         if( walkable )
                         {
                             // Add node to grid at current position and elevation
