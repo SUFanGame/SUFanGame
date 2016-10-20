@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using StevenUniverse.FanGame.Util.Collections;
 using StevenUniverse.FanGame.Overworld;
+using System.Linq;
 
 namespace StevenUniverse.FanGame.Battle
 {
@@ -96,7 +97,67 @@ namespace StevenUniverse.FanGame.Battle
         void OnDrawGizmosSelected()
         {
         }
+
+        public void ProcessChunk( Chunk chunk )
+        {
+            int xMin = chunk.MinX;
+            int yMin = chunk.MinY;
+            int xMax = chunk.MaxX;
+            int yMax = chunk.MaxY;
+
+            int width = xMax - xMin + 1;
+            int height = yMax - yMin + 1;
+            
+
+
+            // Run through each cell of the chunk and add valid positions as nodes.
+            for( int x = 0; x < width; ++ x )
+            {
+                for( int y = 0; y < height; ++y )
+                {
+                    int worldX = x + (int)chunk.Position.x;
+                    int worldY = y + (int)chunk.Position.y;
+                    var tileStack = chunk.AllInstancesFlattenedCoordinated.Get(worldX, worldY);
+
+                    // Sort the tilestack into a qeury where tiles are grouped by elevation then by sorting order
+                    var query = tileStack.OrderBy(t => t.Elevation).ThenBy(t => t.TileTemplate.TileLayer.SortingValue).GroupBy(t => t.Elevation, t => t);
+
+                    foreach( var orderedTiles in query)
+                    {
+                        // The walkable status of the set of tiles at this elevation
+                        // ( which cumulatively represents a node )
+                        bool walkable = false;
+                        int elevation = orderedTiles.Key;
+
+                        foreach ( var tile in orderedTiles )
+                        {
+                            var mode = tile.TileTemplate.TileModeName;
+
+                            // Ignore "normal" tiles
+                            if (mode == "Normal")
+                                continue;
+
+                            if (mode == "Surface" || mode == "Transitional")
+                                walkable = true;
+
+                            if (mode == "Collidable")
+                                walkable = false;
+                        }
+
+                        if( walkable )
+                        {
+                            // Add node to grid at current position and elevation
+                            AddNode(new IntVector3(x, y, elevation));
+                        }
+                    }
+                }
+            }
+        }
         
+        void AddNode( IntVector3 pos )
+        {
+            dict_.Add(pos, new Node(pos));
+        }
 
     }
 }
