@@ -3,8 +3,6 @@ using StevenUniverse.FanGame.Data;
 using StevenUniverse.FanGame.Characters.Customization;
 using StevenUniverse.FanGame.Util;
 
-// This class used to be called "Entity"
-
 namespace StevenUniverse.FanGame.Characters
 {
     [System.Serializable]
@@ -21,9 +19,7 @@ namespace StevenUniverse.FanGame.Characters
         private Skill[] skills; //All available skills
         [SerializeField]
         private UnitStats stats; //All the unit battle modifiers
-        [SerializeField]
-        private Character[] supportList; //All the other units this one can support
-
+        
         //Unchanged from original Entity, consider changing
         [SerializeField]
         private Outfit outfit; // TO-DO change to all graphical stuff
@@ -34,7 +30,8 @@ namespace StevenUniverse.FanGame.Characters
             string characterName,
             string affiliation,
             Outfit startingOutfit,
-            SaveData saveData)
+            SaveData saveData
+            )
         {
             this.name = characterName;
             this.affiliation = affiliation;
@@ -66,26 +63,19 @@ namespace StevenUniverse.FanGame.Characters
             get { return items; }
             set { items = value; }
         }
-
+        
         //Skills available
         public Skill[] Skills
         {
             get { return skills; }
             set { skills = value; }
         }
-
+        
         //Unit stats
         public UnitStats Stats
         {
             get { return stats; }
             set { stats = value; }
-        }
-
-        //Supportable characters
-        public Character[] SupportList
-        {
-            get { return supportList; }
-            set { supportList = value; }
         }
 
 

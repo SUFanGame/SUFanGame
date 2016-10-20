@@ -1,46 +1,85 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using StevenUniverse.FanGame.Characters;
-
-// Lotta abstract non-functional framework
+using System;
+using System.IO;
+using StevenUniverse.FanGame.Util;
 
 namespace StevenUniverse.FanGame.Interactions
 {
-    public class SupportLoader
+    public static class SupportLoader
     {
-        public void FindScriptJSON()
+
+        public static ScriptLine[] ImportSupport(string supportName)
         {
-            //Use the utilities to find right script name
-        }
 
-        public List<ScriptLine> ParseJSON()
-        {
-            List<ScriptLine> dialog = new List<ScriptLine>();
+            //use supportName to find the correct json file
+            //Not sure how assets are handled in build, so check if this is the correct way to search for a file
+            string absolutePath = Utilities.ConvertAssetPathToAbsolutePath("Assets/Resources/Supports/" + supportName + ".json");
+            if (!File.Exists(absolutePath))
+            {
+                throw new UnityException("Support " + supportName + " was not found.");
+            }
+            
+            string json = Utilities.GetTextAsString(absolutePath);
 
-            //parse the json, add for every line
-            //dialog.Add(new Scriptline());
+            //Test
+            //ScriptLine[] test = new ScriptLine[2];
+            //test[0] = new ScriptLine("aaaa", "b", "c", "d", "e", "f");
+            //test[1] = new ScriptLine("bbbb", "b", "c", "d", "e", "f");
+            //
+            //json = JsonHelper.ToJson<ScriptLine>(test);
+            //Debug.Log(json);
+            
+            //parse the json, each item in array is a complete line
+            ScriptLine[] parsedLines = JsonHelper.FromJson<ScriptLine>(json);
 
-            return dialog;
+            return parsedLines;
         }
     }
 
+    public static class JsonHelper //Helper class to deserialize Array Json
+    {
+
+        public static T[] FromJson<T>(string json)
+        {
+            Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
+            return wrapper.Items;
+        }
+
+        public static string ToJson<T>(T[] array)
+        {
+            Wrapper<T> wrapper = new Wrapper<T>();
+            wrapper.Items = array;
+            return JsonUtility.ToJson(wrapper);
+        }
+
+        [Serializable]
+        private class Wrapper<T>
+        {
+            public T[] Items;
+        }
+    }
+
+    [System.Serializable]
     public class ScriptLine
     {
-        //TO-DO: replace Character with the reference to the portrait's holder. We don't need the entire character
-
+        [SerializeField]
         private string line;
-        private string currentSpeaker;
-        private Character leftSpeaker;
-        private Character rightSpeaker;
-        private string leftExpr;
+        [SerializeField]
+        private string currentSpeaker; //What goes on nameplate
+        [SerializeField]
+        private string leftSpeaker; //Only the names, the character instance will have to be found
+        [SerializeField]
+        private string rightSpeaker;
+        [SerializeField]
+        private string leftExpr; //Will be used as image name
+        [SerializeField]
         private string rightExpr;
-        private bool isSpeakerOnRight; //If true, nameplate on the right
 
         public ScriptLine(
             string line, 
             string currentSpeaker, 
-            Character leftSpeaker,
-            Character rightSpeaker,
+            string leftSpeaker,
+            string rightSpeaker,
             string leftExpr, 
             string rightExpr) 
         {
@@ -50,7 +89,6 @@ namespace StevenUniverse.FanGame.Interactions
             this.rightSpeaker = rightSpeaker;
             this.leftExpr = leftExpr;
             this.rightExpr = rightExpr;
-            this.isSpeakerOnRight = (rightSpeaker.Name == currentSpeaker);
         }
 
         public string Line
@@ -63,12 +101,12 @@ namespace StevenUniverse.FanGame.Interactions
             get { return currentSpeaker; }
         }
 
-        public Character LeftSpeaker
+        public string LeftSpeaker
         {
             get { return leftSpeaker; }
         }
 
-        public Character RightSpeaker
+        public string RightSpeaker
         {
             get { return rightSpeaker; }
         }
@@ -82,11 +120,6 @@ namespace StevenUniverse.FanGame.Interactions
         {
             get { return rightExpr; }
         }
-
-        public bool IsSpeakerOnRight
-        {
-            get { return isSpeakerOnRight; }
-        }
-
+        
     }
 }

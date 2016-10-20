@@ -1,0 +1,26 @@
+{"Items":[
+    {
+	"rightSpeaker": "Righty",
+	"rightExpr":    "rexpr1",
+	"leftSpeaker":  "Lefty",
+	"leftExpr":     "lexpr1",
+    "line":         "My name is Righty and I get to speak first!",
+	"currentSpeaker": "Righty"
+    },
+    {
+    "rightSpeaker": "Righty",
+	"rightExpr":    "rexpr1",
+	"leftSpeaker":  "Lefty",
+	"leftExpr":     "lexpr2",
+	"line":         "Aw, I wanted to speak first...",
+	"currentSpeaker": "Lefty"
+    },
+    {
+    "rightSpeaker": "Righty",
+	"rightExpr":    "rexpr2",
+	"leftSpeaker":  "Lefty",
+	"leftExpr":     "lexpr1",
+	"line":         "It doesn't really matter. That's all for this dialog!",
+	"currentSpeaker": "Righty"
+    }
+]}
