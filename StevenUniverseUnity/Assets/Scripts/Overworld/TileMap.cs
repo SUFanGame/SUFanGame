@@ -66,7 +66,7 @@ namespace StevenUniverse.FanGame.Overworld
 
             AddToStackDict(t);
 
-            //AddToIndexDict(t);
+            AddToIndexDict(t);
 
             AddToElevationDict(t);
         }
