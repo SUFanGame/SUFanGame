@@ -1,14 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using StevenUniverse.FanGame.Battle;
+using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace StevenUniverse.FanGame.Overworld
 {
+    // Tiles within a stack should be sorted by elevation, then by layer sorting order...
+    // Except right now ICoordinated doesn't give us access to that information.
+    // Ideally we would want to use this for both tile instances and for tile instance editors, so...
+    // The best solution seems to be to push the needed data out into ICoordinated? Check with dust.
+
     public class CoordinatedList<T> where T : ICoordinated
     {
-        private SortedDictionary<int, SortedDictionary<int, List<T>>> mapList =
-            new SortedDictionary<int, SortedDictionary<int, List<T>>>();
+        IntVector2 min_;
+        IntVector2 max_;
 
-        int minX, maxX, minY, maxY;
+        // Dictionary mapping stacks of tiles to their 2D position
+        Dictionary<IntVector2, List<T>> stackDict_ = new Dictionary<IntVector2, List<T>>();
+
+        // Dictionary mapping tiles directly to their tile index..if we could get access to the elevation and layer data
+        //Dictionary<TileIndex, T> indexDict_ = new Dictionary<TileIndex, T>();
 
         public CoordinatedList()
         {
@@ -21,136 +32,64 @@ namespace StevenUniverse.FanGame.Overworld
 
         public void Add(T t)
         {
-            Vector3 tPos = t.Position;
-            int x = (int) tPos.x;
-            int y = (int) tPos.y;
+            IntVector2 pos = new IntVector2(t.Position);
 
             //Set the mins and maxes if there are currently no elements
-            if (mapList.Count == 0)
+            if (stackDict_.Count == 0)
             {
-                MinX = MaxX = x;
-                MinY = MaxY = y;
+                min_ = max_ = pos;
             }
             //Otherwise, set any new mins and maxes that surpass previous values
             else
             {
-                if (x < MinX)
-                {
-                    MinX = x;
-                }
-                else if (x > MaxX)
-                {
-                    MaxX = x;
-                }
-                if (y < MinY)
-                {
-                    MinY = y;
-                }
-                else if (y > MaxY)
-                {
-                    MaxY = y;
-                }
+                min_ = IntVector2.Min(min_, pos);
+                max_ = IntVector2.Max(max_, pos);
             }
 
-            bool added = false;
-            while (!added)
+            List<T> list;
+            if( !stackDict_.TryGetValue(pos, out list ) )
             {
-                try
-                {
-                    //Add the value to the list at the map's X and Y
-                    mapList[x][y].Add(t);
-                    added = true;
-                }
-                catch (KeyNotFoundException)
-                {
-                    //If the Map doesn't contain a key for the X value, add it
-                    if (!mapList.ContainsKey(x))
-                    {
-                        mapList.Add(x, new SortedDictionary<int, List<T>>());
-                    }
-
-                    //If the Map doesn't contain a key for the Y value at the X value, add it
-                    if (!mapList[x].ContainsKey(y))
-                    {
-                        mapList[x].Add(y, new List<T>());
-                    }
-                }
+                list = new List<T>();
+                stackDict_[pos] = list;
             }
+            list.Add(t);
+
+            // TODO: Check if index dict contains index...if not, add to index dict
         }
 
         public void AddRange(T[] ts)
         {
-            foreach (T t in ts)
+            for( int i = 0; i < ts.Length; ++i )
             {
-                Add(t);
+                Add( ts[i] );
             }
         }
 
-        public T[] Get(int x, int y)
+        /// <summary>
+        /// Get the stack of tiles at the given position. Returns null if no tiles are present.
+        /// </summary>
+        /// <returns>The list of tiles at the given position, or null if no tiles are present.</returns>
+        public List<T> Get(int x, int y)
         {
-            try
+            List<T> list;
+            if( !stackDict_.TryGetValue(new IntVector2(x,y), out list ) )
             {
-                return mapList[x][y].ToArray();
+                return null;
             }
-            catch (KeyNotFoundException)
-            {
-                return new T[] {};
-            }
+            return list;
         }
 
-        public T[] GetRange(int rangeMinX, int rangeMinY, int rangeMaxX, int rangeMaxY)
+        public IntVector2 Min
         {
-            List<T> rangeValues = new List<T>();
-
-            //Loop through each X
-            foreach (int x in mapList.Keys)
-            {
-                //Check if the X value is within the given range
-                if (x >= rangeMinX && x <= rangeMaxX)
-                {
-                    //Loop through each Y
-                    foreach (int y in mapList[x].Keys)
-                    {
-                        //Check if the Y value is within the given range
-                        if (y >= rangeMinY && y <= rangeMaxY)
-                        {
-                            //Add the found non-null objects
-                            rangeValues.AddRange(mapList[x][y]);
-                        }
-                    }
-                }
-            }
-
-            return rangeValues.ToArray();
+            get { return min_; }
+            private set { min_ = value; }
         }
-
-        public T[] GetAll()
+        
+        public IntVector2 Max
         {
-            return GetRange(MinX, MinY, MaxX, MaxY);
+            get { return max_; }
+            private set { max_ = value; }
         }
 
-        public int MinX
-        {
-            get { return minX; }
-            private set { minX = value; }
-        }
-
-        public int MinY
-        {
-            get { return minY; }
-            private set { minY = value; }
-        }
-
-        public int MaxX
-        {
-            get { return maxX; }
-            private set { maxX = value; }
-        }
-
-        public int MaxY
-        {
-            get { return maxY; }
-            private set { maxY = value; }
-        }
     }
 }

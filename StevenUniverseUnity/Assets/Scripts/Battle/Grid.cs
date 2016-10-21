@@ -160,8 +160,18 @@ namespace StevenUniverse.FanGame.Battle
                         // If the node is walkable at this point then we'll add it to our grid.
                         if( walkable )
                         {
-                            // Add node to grid at current position and elevation
-                            AddNode(new IntVector3(x, y, elevation));
+                            IntVector3 key = new IntVector3(x, y, elevation);
+
+                            if( dict_.ContainsKey(key) )
+                            {
+                                // If a node was already added at a position it could mean tile group
+                                // from a chunk is extending outside the border of the chunk.
+                            }
+                            else
+                            {
+                                // Add node to grid at current position and elevation
+                                AddNode(new IntVector3(x, y, elevation));
+                            }
                         }
                     }
                 }

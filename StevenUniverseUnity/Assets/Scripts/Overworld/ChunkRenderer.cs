@@ -213,7 +213,7 @@ namespace StevenUniverse.FanGame.Overworld
             }
         }
 
-        public TileInstance[] GetTileInstancesAtPosition(int x, int y)
+        public List<TileInstance> GetTileInstancesAtPosition(int x, int y)
         {
             //Caclulate the true X&Y values by subtracting the transform's distance from the pivot from the X&Y values
             int trueX = x - Mathf.RoundToInt(transform.position.x - pivotPoint.x);

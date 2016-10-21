@@ -15,20 +15,20 @@ public class LoadSceneChunks : MonoBehaviour
 {
     Chunk currentChunk_ = null;
 
-    Grid grid_ = null;
+    //Grid grid_ = null;
 
-    TileMap<TileInstance> tileMap_ = new TileMap<TileInstance>();
+    //TileMap<TileInstance> tileMap_ = new TileMap<TileInstance>();
 
-    IntVector3 lastCursorPosition_ = IntVector3.zero;
+    //IntVector3 lastCursorPosition_ = IntVector3.zero;
     public SpriteRenderer cursorSprite_;
 
-    bool walkable_ = false;
+    //bool walkable_ = false;
 
     public GameObject pfb_WalkableTileSprite_;
 
     IEnumerator Start()
     {
-        grid_ = GameObject.FindObjectOfType<Grid>();
+        //grid_ = GameObject.FindObjectOfType<Grid>();
 
         //var chunks = GetChunks(4, 7);
         var chunks = GetAllChunks();
@@ -113,13 +113,13 @@ public class LoadSceneChunks : MonoBehaviour
 
         var renderers = GameObject.FindObjectsOfType<ChunkRenderer>();
 
-        var chunks = renderers.Select(r => r.SourceChunk).ToArray();
+        //var chunks = renderers.Select(r => r.SourceChunk).ToArray();
 
         foreach( var renderer in renderers )
         {
             var chunk = renderer.SourceChunk;
 
-            var instances = chunk.AllInstances;
+            //var instances = chunk.AllInstances;
 
             // Note this is includes any group instances sticking out the edges of the chunk
             var minX = chunk.MinX;
@@ -147,21 +147,21 @@ public class LoadSceneChunks : MonoBehaviour
                     // World positions...
                     int xPos = x + (int)chunk.Position.x;
                     int yPos = y + (int)chunk.Position.y;
-                    Vector2 pos = new Vector2(xPos, yPos);
+                    //Vector2 pos = new Vector2(xPos, yPos);
 
                     var tilesAtPos = chunk.AllInstancesFlattenedCoordinated.Get(xPos, yPos);
-                    if (tilesAtPos.Length == 0)
+                    if (tilesAtPos == null || tilesAtPos.Count == 0 )
                     {
                         //Debug.LogFormat("No tiles found at {0},{1}", xPos, yPos);
                         continue;
                     }
 
-                    if( IsWalkable( tilesAtPos ) )
-                    {
-                        //Debug.LogFormat("{0} is walkable!", pos );
-                        // Spawn a walkable tile marker on any walkable tiles
-                        Instantiate(pfb_WalkableTileSprite_, new Vector3(xPos, yPos, 1f), Quaternion.identity, renderer.transform);
-                    }
+                    //if( IsWalkable( tilesAtPos ) )
+                    //{
+                    //    //Debug.LogFormat("{0} is walkable!", pos );
+                    //    // Spawn a walkable tile marker on any walkable tiles
+                    //    Instantiate(pfb_WalkableTileSprite_, new Vector3(xPos, yPos, 1f), Quaternion.identity, renderer.transform);
+                    //}
                 }
             }
         }

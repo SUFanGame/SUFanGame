@@ -5,6 +5,7 @@ using System;
 using StevenUniverse.FanGame.Overworld.Templates;
 using StevenUniverse.FanGame.OverworldEditor;
 using StevenUniverse.FanGame.Overworld.Instances;
+using StevenUniverse.FanGame.Battle;
 
 /// <summary>
 /// Defines the index of a tile and can be used as a dictionary key.
@@ -13,22 +14,13 @@ using StevenUniverse.FanGame.Overworld.Instances;
 public struct TileIndex : System.IEquatable<TileIndex>
 {
     [SerializeField]
-    int x_;
-    [SerializeField]
-    int y_;
+    IntVector2 pos_;
     [SerializeField]
     int elevation_;
     [SerializeField]
     int layer_;
     
-    /// <summary>
-    /// Tile's x position.
-    /// </summary>
-    public int X { get { return x_; } }
-    /// <summary>
-    /// Tile's y position.
-    /// </summary>
-    public int Y { get { return y_; } }
+    public IntVector2 Position { get { return pos_; } }
     /// <summary>
     /// Tile's elevation.
     /// </summary>
@@ -39,18 +31,12 @@ public struct TileIndex : System.IEquatable<TileIndex>
     /// </summary>
     public int Layer { get { return layer_; } }
 
-    /// <summary>
-    /// Returns a Vector2 of the tile's x and y position.
-    /// </summary>
-    public Vector2 Position { get { return new Vector2(x_, y_); } }
-
-    public TileIndex( int x, int y, int elevation, TileTemplate.Layer layer ) : this( x, y, elevation, layer.SortingValue )
+    public TileIndex( IntVector2 pos, int elevation, TileTemplate.Layer layer ) : this( pos, elevation, layer.SortingValue )
     {}
 
-    public TileIndex( int x, int y, int elevation, int layer )
+    public TileIndex( IntVector2 pos, int elevation, int layer )
     {
-        x_ = x;
-        y_ = y;
+        pos_ = pos;
         elevation_ = elevation;
         layer_ = layer;
 
@@ -60,8 +46,7 @@ public struct TileIndex : System.IEquatable<TileIndex>
     /// Construct a tile index from a vector2. Position will be floored.
     /// </summary>
     public TileIndex(Vector2 pos, int elevation, TileTemplate.Layer layer) : 
-        this( Mathf.FloorToInt(pos.x), 
-              Mathf.FloorToInt(pos.y), 
+        this( (IntVector2)pos, 
               elevation, layer )
     { }
 
@@ -77,7 +62,7 @@ public struct TileIndex : System.IEquatable<TileIndex>
 
     public bool Equals(TileIndex other)
     {
-        return x_ == other.x_ && y_ == other.y_ && 
+        return pos_ == other.pos_ && 
                elevation_ == other.elevation_ && layer_ == other.layer_;
     }
 
@@ -93,7 +78,7 @@ public struct TileIndex : System.IEquatable<TileIndex>
 
     public static TileIndex operator - ( TileIndex lhs, TileIndex rhs )
     {
-        return new TileIndex(lhs.x_ - rhs.x_, lhs.y_ - rhs.y_, lhs.elevation_ - rhs.elevation_, lhs.layer_ );
+        return new TileIndex(lhs.pos_ - rhs.pos_, lhs.elevation_ - rhs.elevation_, lhs.layer_ );
     }
 
     //http://stackoverflow.com/questions/263400/what-is-the-best-algorithm-for-an-overridden-system-object-gethashcode/263416#263416
@@ -102,8 +87,7 @@ public struct TileIndex : System.IEquatable<TileIndex>
         unchecked
         {
             int hash = 17;
-            hash = hash * 23 + x_.GetHashCode();
-            hash = hash * 23 + y_.GetHashCode();
+            hash = hash * 23 + pos_.GetHashCode();
             hash = hash * 23 + elevation_.GetHashCode();
             hash = hash * 23 + layer_.GetHashCode();
             return hash;
