@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using StevenUniverse.FanGame.Battle;
+using UnityEngine;
 
 namespace StevenUniverse.FanGame.Overworld
 {
     [System.Serializable]
-    public class Instance : ICoordinated
+    public class Instance : ITile
     {
         [SerializeField] private string templateAppDataPath;
         [SerializeField] private int x;
@@ -25,8 +27,8 @@ namespace StevenUniverse.FanGame.Overworld
 
         private Instance(int x, int y, int elevation)
         {
-            X = x;
-            Y = y;
+            this.x = x;
+            this.y = y;
             Elevation = elevation;
         }
 
@@ -36,22 +38,25 @@ namespace StevenUniverse.FanGame.Overworld
             set { templateAppDataPath = value; }
         }
 
-        public int X
+        public IntVector2 Position
         {
-            get { return x; }
-            set { x = value; }
-        }
-
-        public int Y
-        {
-            get { return y; }
-            set { y = value; }
+            get { return new IntVector2(x,y); }
+            set
+            {
+                x = value.x;
+                y = value.y;
+            }
         }
 
         public int Elevation
         {
             get { return elevation; }
             set { elevation = value; }
+        }
+
+        public int SortingOrder
+        {
+            get { return template.TileLayer.SortingValue; }
         }
 
         public T GetTemplate<T>() where T : Template
@@ -69,19 +74,9 @@ namespace StevenUniverse.FanGame.Overworld
             template = newTemplate;
         }
 
-        public Vector3 Position
-        {
-            get { return new Vector3(X, Y, 0); }
-            set
-            {
-                X = Mathf.FloorToInt(value.x);
-                Y = Mathf.FloorToInt(value.y);
-            }
-        }
-
         public override string ToString()
         {
-            return string.Format("Template: {0}, X: {1}, Y: {2}, Elevation: {3}", templateAppDataPath, X, Y, Elevation);
+            return string.Format("Template: {0}, Position: {1}, Elevation: {2}", templateAppDataPath, Position, Elevation);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using StevenUniverse.FanGame.Util;
+using UnityEngine;
 
 namespace StevenUniverse.FanGame.Overworld
 {
@@ -6,6 +7,13 @@ namespace StevenUniverse.FanGame.Overworld
     public class Template : JsonBase<Template>
     {
         //Instance
+        [SerializeField] protected string tileLayerName = "Main";
+
+        public Templates.TileTemplate.Layer TileLayer
+        {
+            get { return Templates.TileTemplate.Layer.Get(tileLayerName); }
+        }
+
 
         //Constructor
         public Template()

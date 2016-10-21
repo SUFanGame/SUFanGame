@@ -15,6 +15,8 @@ public class LoadSceneChunks : MonoBehaviour
 {
     Chunk currentChunk_ = null;
 
+    public TileMap<TileInstance> tileMap_ = new TileMap<TileInstance>();
+
     //Grid grid_ = null;
 
     //TileMap<TileInstance> tileMap_ = new TileMap<TileInstance>();
@@ -30,10 +32,15 @@ public class LoadSceneChunks : MonoBehaviour
     {
         //grid_ = GameObject.FindObjectOfType<Grid>();
 
-        //var chunks = GetChunks(4, 7);
-        var chunks = GetAllChunks();
+        var chunks = GetChunks(4, 7);
+        //var chunks = GetAllChunks();
 
         yield return StartCoroutine(LoadChunks(chunks));
+
+        foreach( var chunk in chunks )
+        {
+            tileMap_.AddRange(chunk.AllInstancesFlattened);
+        }
 
         BuildGrid();
     }
@@ -122,10 +129,10 @@ public class LoadSceneChunks : MonoBehaviour
             //var instances = chunk.AllInstances;
 
             // Note this is includes any group instances sticking out the edges of the chunk
-            var minX = chunk.MinX;
-            var minY = chunk.MinY;
-            var maxX = chunk.MaxX;
-            var maxY = chunk.MaxY;
+            var minX = chunk.Min.x;
+            var minY = chunk.Min.y;
+            var maxX = chunk.Max.x;
+            var maxY = chunk.Max.y;
             
             int sizeX = maxX - minX;
             int sizeY = maxY - minY;
@@ -149,7 +156,7 @@ public class LoadSceneChunks : MonoBehaviour
                     int yPos = y + (int)chunk.Position.y;
                     //Vector2 pos = new Vector2(xPos, yPos);
 
-                    var tilesAtPos = chunk.AllInstancesFlattenedCoordinated.Get(xPos, yPos);
+                    var tilesAtPos = chunk.AllInstancesFlattenedCoordinated.GetTileStack(xPos, yPos);
                     if (tilesAtPos == null || tilesAtPos.Count == 0 )
                     {
                         //Debug.LogFormat("No tiles found at {0},{1}", xPos, yPos);

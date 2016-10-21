@@ -100,10 +100,10 @@ namespace StevenUniverse.FanGame.Battle
 
         public void ProcessChunk( Chunk chunk )
         {
-            int xMin = chunk.MinX;
-            int yMin = chunk.MinY;
-            int xMax = chunk.MaxX;
-            int yMax = chunk.MaxY;
+            int xMin = chunk.Min.x;
+            int yMin = chunk.Min.y;
+            int xMax = chunk.Max.x;
+            int yMax = chunk.Max.y;
 
             int width = xMax - xMin + 1;
             int height = yMax - yMin + 1;
@@ -117,7 +117,7 @@ namespace StevenUniverse.FanGame.Battle
                 {
                     int worldX = x + (int)chunk.Position.x;
                     int worldY = y + (int)chunk.Position.y;
-                    var tileStack = chunk.AllInstancesFlattenedCoordinated.Get(worldX, worldY);
+                    var tileStack = chunk.AllInstancesFlattenedCoordinated.GetTileStack(worldX, worldY);
 
                     // Sort the tilestack into a qeury where tiles are grouped by elevation then by sorting order
                     // sort by elevation in reverse. This way we can account for "IsGrounded" nodes ahead of time.
