@@ -15,7 +15,7 @@ public class LoadSceneChunks : MonoBehaviour
 {
     Chunk currentChunk_ = null;
 
-    public TileMap<TileInstance> tileMap_ = new TileMap<TileInstance>();
+    public TileMap<ITile> tileMap_ = new TileMap<ITile>();
 
     //Grid grid_ = null;
 
@@ -42,7 +42,9 @@ public class LoadSceneChunks : MonoBehaviour
             tileMap_.AddRange(chunk.AllInstancesFlattened);
         }
 
-        BuildGrid();
+        var grid = GameObject.FindObjectOfType<Grid>();
+        grid.BuildGrid(tileMap_);
+
     }
 
     List<Chunk> GetChunks( params int[] indices  )

@@ -26,8 +26,6 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         [SerializeField] private string[] animationSpriteNames;
         [SerializeField] private bool syncAnimation;
         [SerializeField] private float secondsPerFrame;
-        [SerializeField] private string tileModeName = "Normal";
-        [SerializeField] private bool isGrounded;
 
         private Sprite[] animationSprites;
 
@@ -88,18 +86,6 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         {
             get { return syncAnimation; }
             set { syncAnimation = value; }
-        }
-
-        public string TileModeName
-        {
-            get { return tileModeName; }
-            set { tileModeName = value; }
-        }
-
-        public bool IsGrounded
-        {
-            get { return isGrounded; }
-            set { isGrounded = value; }
         }
 
         public Sprite[] AnimationSprites

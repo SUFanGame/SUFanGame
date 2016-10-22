@@ -26,7 +26,8 @@ public class PollMap : MonoBehaviour
             {
                 foreach( var tile in tiles )
                 {
-                    Debug.LogFormat(tile.TileTemplate.Name);
+                    
+                    Debug.LogFormat((tile as TileInstance).TileTemplate.Name);
                 }
             }
         }

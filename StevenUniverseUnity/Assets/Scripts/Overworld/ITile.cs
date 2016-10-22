@@ -18,5 +18,7 @@ namespace StevenUniverse.FanGame.Overworld
         /// determines ordering in cases where tiles share the same position and elevation.
         /// </summary>
         int SortingOrder { get; }
+
+        string TileModeName { get; }
     }
 }

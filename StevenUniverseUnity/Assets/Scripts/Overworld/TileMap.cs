@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Collections;
 
 namespace StevenUniverse.FanGame.Overworld
 {
@@ -11,10 +12,11 @@ namespace StevenUniverse.FanGame.Overworld
     /// <summary>
     /// Providing fast and efficient access to tiles and groups of tiles.
     /// </summary>
-    public class TileMap<T> where T : ITile
+    public class TileMap<T> : IEnumerable<T> where T : ITile
     {
         IntVector2 min_;
         IntVector2 max_;
+        IntVector2 size_;
 
         // Dictionary mapping stacks of tiles to their 2D position
         Dictionary<IntVector2, List<T>> stackDict_ = new Dictionary<IntVector2, List<T>>();
@@ -38,7 +40,11 @@ namespace StevenUniverse.FanGame.Overworld
             get { return max_; }
         }
 
-
+        public IntVector2 Size
+        {
+            get { return size_; }
+        }
+        
         public TileMap()
         {
         }
@@ -62,6 +68,7 @@ namespace StevenUniverse.FanGame.Overworld
             {
                 min_ = IntVector2.Min(min_, pos);
                 max_ = IntVector2.Max(max_, pos);
+                size_ = max_ - min_ + IntVector2.one;
             }
 
             AddToStackDict(t);
@@ -111,13 +118,12 @@ namespace StevenUniverse.FanGame.Overworld
         {
             var index = new IntVector3(x, y, elevation);
             List<T> list;
-            elevationDict_.TryGetValue(new IntVector3(x,y,elevation), out list);
+            elevationDict_.TryGetValue(index, out list);
             return list;
         }
 
         void AddToStackDict( T t )
         {
-
             List<T> list;
             if (!stackDict_.TryGetValue(t.Position, out list))
             {
@@ -131,7 +137,6 @@ namespace StevenUniverse.FanGame.Overworld
 
         void AddToIndexDict( T t )
         {
-            // TODO: Check if index dict contains index...if not, add to index dict
             var index = new TileIndex(t.Position, t.Elevation, t.SortingOrder);
             if (!indexDict_.ContainsKey(index))
             {
@@ -153,6 +158,17 @@ namespace StevenUniverse.FanGame.Overworld
 
             // Sort tiles by their sortingorder
             list.Sort(comparer_);
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (var pair in indexDict_)
+                yield return pair.Value;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
 
         class TileComparer : IComparer<T>

@@ -6,6 +6,7 @@ namespace StevenUniverse.FanGame.Overworld.Instances
     [System.Serializable]
     public class TileInstance : Instance, System.IEquatable<TileInstance>, System.IComparable<TileInstance>
     {
+
         public TileInstance( Template template, IntVector2 position, int elevation ) : this( template, position.x, position.y, elevation )
         {
 

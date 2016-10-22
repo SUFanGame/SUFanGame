@@ -8,10 +8,24 @@ namespace StevenUniverse.FanGame.Overworld
     {
         //Instance
         [SerializeField] protected string tileLayerName = "Main";
+        [SerializeField] protected string tileModeName = "Normal";
+        [SerializeField] protected bool isGrounded = false;
 
         public Templates.TileTemplate.Layer TileLayer
         {
             get { return Templates.TileTemplate.Layer.Get(tileLayerName); }
+        }
+
+        public string TileModeName
+        {
+            get { return tileModeName; }
+            set { tileModeName = value; }
+        }
+
+        public bool IsGrounded
+        {
+            get { return isGrounded; }
+            set { isGrounded = value; }
         }
 
 

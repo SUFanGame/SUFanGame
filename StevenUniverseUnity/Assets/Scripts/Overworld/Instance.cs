@@ -59,6 +59,11 @@ namespace StevenUniverse.FanGame.Overworld
             get { return template.TileLayer.SortingValue; }
         }
 
+        public string TileModeName
+        {
+            get { return template.TileModeName; }
+        }
+
         public T GetTemplate<T>() where T : Template
         {
             if (template == null)

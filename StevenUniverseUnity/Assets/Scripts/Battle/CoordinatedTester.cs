@@ -35,6 +35,11 @@ public class CoordinatedTester : MonoBehaviour
             get; set;
         }
 
+        public string TileModeName
+        {
+            get; set;
+        }
+
         public override string ToString()
         {
             return string.Format("{0}: {1} - {2}", name_, Elevation, SortingOrder);
