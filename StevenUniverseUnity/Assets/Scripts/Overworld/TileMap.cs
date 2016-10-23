@@ -175,12 +175,12 @@ namespace StevenUniverse.FanGame.Overworld
         {
             public int Compare(T x, T y)
             {
-                // Order tiles by elevation first...
+                // Order tiles by DESCENDING elevation ( high to low )
                 if (x.Elevation != y.Elevation)
-                    return x.Elevation.CompareTo(y.Elevation);
+                    return -x.Elevation.CompareTo(y.Elevation);
 
-                // Then by sorting order
-                return x.SortingOrder.CompareTo(y.SortingOrder);
+                // Then by DESCENDING sorting order ( high to low )
+                return -x.SortingOrder.CompareTo(y.SortingOrder);
             }
         }
 

@@ -20,5 +20,7 @@ namespace StevenUniverse.FanGame.Overworld
         int SortingOrder { get; }
 
         string TileModeName { get; }
+
+        bool IsGrounded { get; }
     }
 }

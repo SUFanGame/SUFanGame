@@ -64,6 +64,11 @@ namespace StevenUniverse.FanGame.Overworld
             get { return template.TileModeName; }
         }
 
+        public bool IsGrounded
+        {
+            get { return template.IsGrounded; }
+        }
+
         public T GetTemplate<T>() where T : Template
         {
             if (template == null)
