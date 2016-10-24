@@ -1,11 +1,8 @@
 ﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
-using StevenUniverse.FanGame.Characters;
 using StevenUniverse.FanGame.Characters.Customization;
 using StevenUniverse.FanGame.Extensions;
-using StevenUniverse.FanGame.Interactions;
-using StevenUniverse.FanGame.Interactions.Activities;
 using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Templates;
 using StevenUniverse.FanGame.Util;
@@ -36,6 +33,7 @@ namespace StevenUniverse.FanGameEditor.Tools
         [MenuItem("Tools/SUFanGame/Temp/Create Temp Character")]
         public static void CreateTempCharacter()
         {
+            /* Problematic code
             Outfit sapphireOutfit = new Outfit("Light Body", "Sapphire Hat", "Calm Eyes", "Sapphire Shirt");
 
             XCharacter sapphire = new XCharacter
@@ -91,6 +89,7 @@ namespace StevenUniverse.FanGameEditor.Tools
             sapphire.AppDataPath = "Characters/Overworld/Caldera/Sapphire";
 
             sapphire.Save();
+            */
         }
 
         [MenuItem("Tools/SUFanGame/Temp/Reformat ALL json files")]

@@ -31,7 +31,6 @@ namespace StevenUniverse.FanGame.Util
         private DialogUIController dialogUIController;
         private GameUIController gameUIController;
         private ProgressBarUIController progressBarUIController;
-        private MapCursor mapCursor;
 
         //Scene
         private string currentScene = "Title";
@@ -121,7 +120,7 @@ namespace StevenUniverse.FanGame.Util
                     Quaternion.identity);
 
             //TO-DO get a real cursor camera
-            mapCursor = new MapCursor();
+            //mapCursor = new MapCursor();
 
             titleUIController.gameObject.SetActive(true);
         }
