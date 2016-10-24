@@ -21,7 +21,7 @@ namespace StevenUniverse.FanGameEditor.Tools
             TileTemplate.ClearJsonCache();
             GroupTemplate.ClearJsonCache();
             Character.ClearJsonCache();
-            XCharacter.ClearJsonCache();
+            //XCharacter.ClearJsonCache();
             PlayableCharacter.ClearJsonCache();
         }
     }

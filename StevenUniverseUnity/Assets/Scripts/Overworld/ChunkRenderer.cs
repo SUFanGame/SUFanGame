@@ -68,7 +68,7 @@ namespace StevenUniverse.FanGame.Overworld
 
         protected virtual void Start()
         {
-            GameController.Instance.RegisterActiveChunkRenderer(this);
+            //GameController.Instance.RegisterActiveChunkRenderer(this);
         }
 
         protected virtual void Update()
@@ -86,7 +86,7 @@ namespace StevenUniverse.FanGame.Overworld
 
         protected virtual void OnDestroy()
         {
-            GameController.Instance.DeregisterActiveChunkRenderer(this);
+            //GameController.Instance.DeregisterActiveChunkRenderer(this);
         }
 
         public void UpdatePivotPoint()

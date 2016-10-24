@@ -123,10 +123,10 @@ namespace StevenUniverse.FanGame.Util.Logic
                     throw new Exception(string.Format("Invalid segment: '{0}'. variable must be split into 2 segments by an period ex: 'dataGroup.dataBool'", segmentString));
                 }
 
-                string segmentDataGroupName = splitSegment1[0];
-                string segmentDataName = splitSegment1[1];
+                //string segmentDataGroupName = splitSegment1[0];
+                //string segmentDataName = splitSegment1[1];
 
-                return GameController.Instance.CurrentPlayer.SourcePlayer.SavedData.GetDataOfAnyType(segmentDataGroupName, segmentDataName);
+                return null;
             }
             else
             {
