@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using StevenUniverse.FanGame.Overworld.Templates;
-using StevenUniverse.FanGame.OverworldEditor;
-using StevenUniverse.FanGame.Overworld.Instances;
-using StevenUniverse.FanGame.Battle;
+using StevenUniverse.FanGame.MapSkirmish;
+
+
 /// <summary>
 /// Defines the index of a tile and can be used as a dictionary key.
 /// </summary>

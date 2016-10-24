@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGame.Util;
-using StevenUniverse.FanGame.Battle;
+using StevenUniverse.FanGame.MapSkirmish;
 
 namespace StevenUniverse.FanGame.Overworld
 {

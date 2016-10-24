@@ -5,7 +5,7 @@ using System.Linq;
 
 
 
-namespace StevenUniverse.FanGame.Battle
+namespace StevenUniverse.FanGame.MapSkirmish
 {
     /// <summary>
     /// A list of nodes, where any node in the path can be passed in to retrieve a path to that node.

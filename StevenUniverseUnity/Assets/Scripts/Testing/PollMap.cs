@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Instances;
-using StevenUniverse.FanGame.Battle;
+using StevenUniverse.FanGame.MapSkirmish;
 
 public class PollMap : MonoBehaviour 
 {

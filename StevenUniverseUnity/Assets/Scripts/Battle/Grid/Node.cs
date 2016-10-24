@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-namespace StevenUniverse.FanGame.Battle
+namespace StevenUniverse.FanGame.MapSkirmish
 {
     /// <summary>
     /// A node in the strategy graph.

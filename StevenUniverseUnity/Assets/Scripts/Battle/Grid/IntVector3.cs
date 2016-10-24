@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-namespace StevenUniverse.FanGame.Battle
+namespace StevenUniverse.FanGame.MapSkirmish
 {
 	[System.Serializable]
 	public struct IntVector3 : IEquatable<IntVector3>

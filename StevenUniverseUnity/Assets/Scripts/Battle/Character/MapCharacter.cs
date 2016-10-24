@@ -2,20 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
-using StevenUniverse.FanGame.Battle;
+using StevenUniverse.FanGame.MapSkirmish;
 using System.Linq;
 
 // Just a note about unity's built in Selection Handlers - they require that the camera have a "Physics Raycaster"
 // and that an "EventSystem" is in the scene (GameObject->UI->EventSystem). Any objects to be selected
 // must also have an appropriate collider. The handlers WILL receieve notifications from chid objects.
 
-namespace StevenUniverse.FanGame.Battle
+namespace StevenUniverse.FanGame.MapSkirmish
 {
     /// <summary>
     /// A character in the battle map.
     /// </summary>
     [SelectionBase]
-    public class BattleCharacter : MonoBehaviour, IPointerClickHandler, ISelectHandler
+    public class MapCharacter : MonoBehaviour, IPointerClickHandler, ISelectHandler
     {
         // Imaginary class containing specific character data that might be passed between modules.
         // CharacterData data_;
@@ -108,6 +108,7 @@ namespace StevenUniverse.FanGame.Battle
                     cam.follow_ = true;
                     StartCoroutine( MoveTo(cursorPos) );
                 }
+                path_.Clear();
             }
         }
 
@@ -145,6 +146,7 @@ namespace StevenUniverse.FanGame.Battle
             }
 
             moving_ = false;
+            Debug.LogFormat("Done moving");
             yield return null;
         }
 

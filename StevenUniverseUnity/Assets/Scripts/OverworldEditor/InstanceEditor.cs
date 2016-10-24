@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using StevenUniverse.FanGame.Overworld;
-using StevenUniverse.FanGame.Battle;
+using StevenUniverse.FanGame.MapSkirmish;
 
 namespace StevenUniverse.FanGame.OverworldEditor
 {

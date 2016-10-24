@@ -5,7 +5,7 @@ using StevenUniverse.FanGame.Util.Collections;
 using StevenUniverse.FanGame.Overworld;
 using System.Linq;
 
-namespace StevenUniverse.FanGame.Battle
+namespace StevenUniverse.FanGame.MapSkirmish
 {
 
     public class Grid : MonoBehaviour

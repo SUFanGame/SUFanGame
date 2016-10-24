@@ -1,5 +1,5 @@
 
-using StevenUniverse.FanGame.Battle;
+using StevenUniverse.FanGame.MapSkirmish;
 using StevenUniverse.FanGame.Overworld.Templates;
 
 namespace StevenUniverse.FanGame.Overworld.Instances
