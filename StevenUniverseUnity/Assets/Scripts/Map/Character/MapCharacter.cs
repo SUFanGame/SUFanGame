@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using StevenUniverse.FanGame.MapSkirmish;
 using System.Linq;
+using System;
 
 // Just a note about unity's built in Selection Handlers - they require that the camera have a "Physics Raycaster"
 // and that an "EventSystem" is in the scene (GameObject->UI->EventSystem). Any objects to be selected
@@ -15,7 +16,7 @@ namespace StevenUniverse.FanGame.MapSkirmish
     /// A character in the battle map.
     /// </summary>
     [SelectionBase]
-    public class MapCharacter : MonoBehaviour, IPointerClickHandler, ISelectHandler
+    public class MapCharacter : MonoBehaviour, IPointerClickHandler, ISelectHandler, IDeselectHandler
     {
         // Imaginary class containing specific character data that might be passed between modules.
         // CharacterData data_;
@@ -27,7 +28,7 @@ namespace StevenUniverse.FanGame.MapSkirmish
 
         public float tilesMovedPerSecond_ = 3f;
 
-        public int moveRange_ = 99999;
+        public int moveRange_ = 5;
 
         SpriteRenderer renderer_;
 
@@ -153,6 +154,11 @@ namespace StevenUniverse.FanGame.MapSkirmish
         void UpdateSortingOrder()
         {
             renderer_.sortingOrder = GridPosition.z * 100 + 90;
+        }
+
+        public void OnDeselect(BaseEventData eventData)
+        {
+            HighlightGrid.Clear();
         }
     }
 
