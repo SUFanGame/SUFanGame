@@ -94,6 +94,7 @@ namespace StevenUniverse.FanGame.Overworld
             //If the Chunk's Position is an absolute value, move to it and set the pivot to is
             if (ChunkPositionIsAbsolute)
             {
+               // Debug.LogFormat("Setting {0}s position to {1}", name, DisplayChunk.Position);
                 transform.position = DisplayChunk.Position;
                 pivotPoint = DisplayChunk.Position;
             }
@@ -209,13 +210,13 @@ namespace StevenUniverse.FanGame.Overworld
             }
         }
 
-        public TileInstance[] GetTileInstancesAtPosition(int x, int y)
+        public List<TileInstance> GetTileInstancesAtPosition(int x, int y)
         {
             //Caclulate the true X&Y values by subtracting the transform's distance from the pivot from the X&Y values
             int trueX = x - Mathf.RoundToInt(transform.position.x - pivotPoint.x);
             int trueY = y - Mathf.RoundToInt(transform.position.y - pivotPoint.y);
 
-            return DisplayChunk.AllInstancesFlattenedCoordinated.Get(trueX, trueY);
+            return DisplayChunk.AllInstancesFlattenedCoordinated.GetTileStack(trueX, trueY);
         }
 
         public void SetVisibility(bool visible)

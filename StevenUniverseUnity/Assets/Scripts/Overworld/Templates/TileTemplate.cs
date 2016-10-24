@@ -26,9 +26,6 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         [SerializeField] private string[] animationSpriteNames;
         [SerializeField] private bool syncAnimation;
         [SerializeField] private float secondsPerFrame;
-        [SerializeField] private string tileModeName = "Normal";
-        [SerializeField] private string tileLayerName = "Main";
-        [SerializeField] private bool isGrounded;
 
         private Sprite[] animationSprites;
 
@@ -91,24 +88,6 @@ namespace StevenUniverse.FanGame.Overworld.Templates
             set { syncAnimation = value; }
         }
 
-        public string TileModeName
-        {
-            get { return tileModeName; }
-            set { tileModeName = value; }
-        }
-
-        public string TileLayerName
-        {
-            get { return tileLayerName; }
-            set { tileLayerName = value; }
-        }
-
-        public bool IsGrounded
-        {
-            get { return isGrounded; }
-            set { isGrounded = value; }
-        }
-
         public Sprite[] AnimationSprites
         {
             get
@@ -147,10 +126,13 @@ namespace StevenUniverse.FanGame.Overworld.Templates
             get { return Mode.Get(tileModeName); }
         }
 
-        public Layer TileLayer
+
+        public string TileLayerName
         {
-            get { return Layer.Get(tileLayerName); }
+            get { return tileLayerName; }
+            set { tileLayerName = value; }
         }
+
 
         public class Mode : EnhancedEnum<Mode>
         {

@@ -29,7 +29,7 @@ namespace StevenUniverse.FanGame.Overworld.Instances
                 List<TileInstance> tileInstances = new List<TileInstance>();
                 foreach (TileInstance tileInstance in GroupTemplate.TileInstances)
                 {
-                    tileInstances.Add(new TileInstance(tileInstance.TileTemplate, tileInstance.X + X, tileInstance.Y + Y,
+                    tileInstances.Add(new TileInstance(tileInstance.TileTemplate, tileInstance.Position + Position,
                         tileInstance.Elevation + Elevation));
                 }
                 return tileInstances.ToArray();

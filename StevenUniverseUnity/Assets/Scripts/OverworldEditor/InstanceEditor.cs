@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using StevenUniverse.FanGame.Overworld;
+using StevenUniverse.FanGame.Battle;
 
 namespace StevenUniverse.FanGame.OverworldEditor
 {
@@ -30,17 +31,17 @@ namespace StevenUniverse.FanGame.OverworldEditor
             lastPosition = GetRelevantPosition();
         }
 
-        private Vector3 GetRelevantPosition()
+        private IntVector2 GetRelevantPosition()
         {
             //If the Instance is not in a GroupInstance, use the global position
             if (transform.parent == null || transform.parent.GetComponent<GroupInstanceEditor>() == null)
             {
-                return transform.position;
+                return (IntVector2)transform.position;
             }
             //Otherwise, use the local position
             else
             {
-                return transform.localPosition;
+                return (IntVector2)transform.localPosition;
             }
         }
 

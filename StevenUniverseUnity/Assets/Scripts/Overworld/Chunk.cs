@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGame.Util;
+using StevenUniverse.FanGame.Battle;
 
 namespace StevenUniverse.FanGame.Overworld
 {
@@ -39,13 +40,11 @@ namespace StevenUniverse.FanGame.Overworld
         //Instance caches
         private Instance[] allInstances;
         private TileInstance[] allInstancesFlattened;
-        private CoordinatedList<TileInstance> allInstancesFlattenedCoordinated;
+        private TileMap<TileInstance> allInstancesFlattenedCoordinated;
 
-        //Bounds
-        private int minX;
-        private int minY;
-        private int maxX;
-        private int maxY;
+        // Bounds
+        private IntVector2 min;
+        private IntVector2 max;
 
         //Constructor
         public Chunk(TileInstance[] tileInstances, GroupInstance[] groupInstances)
@@ -60,10 +59,13 @@ namespace StevenUniverse.FanGame.Overworld
             {
                 //Find the min and max values
                 //TODO use this method for finding min max instead of OrderBy in other places
-                MinX = AllInstancesFlattened.Min(ix => ix.X);
-                MaxX = AllInstancesFlattened.Max(ix => ix.X);
-                MinY = AllInstancesFlattened.Min(ix => ix.Y);
-                MaxY = AllInstancesFlattened.Max(ix => ix.Y);
+                int minX = AllInstancesFlattened.Min(ix => ix.Position.x);
+                int maxX = AllInstancesFlattened.Max(ix => ix.Position.x);
+                int minY = AllInstancesFlattened.Min(ix => ix.Position.y);
+                int maxY = AllInstancesFlattened.Max(ix => ix.Position.y);
+                
+                min = new IntVector2(minX, minY);
+                max = new IntVector2(maxX, maxY);
             }
         }
 
@@ -149,65 +151,41 @@ namespace StevenUniverse.FanGame.Overworld
             private set { allInstancesFlattened = value; }
         }
 
-        public CoordinatedList<TileInstance> AllInstancesFlattenedCoordinated
+        public TileMap<TileInstance> AllInstancesFlattenedCoordinated
         {
             get
             {
                 if (allInstancesFlattenedCoordinated == null)
                 {
                     //Set the flattened coordinated list
-                    allInstancesFlattenedCoordinated = new CoordinatedList<TileInstance>(AllInstancesFlattened);
+                    allInstancesFlattenedCoordinated = new TileMap<TileInstance>(AllInstancesFlattened);
                 }
 
                 return allInstancesFlattenedCoordinated;
             }
         }
 
-        //Bounds
-        //TODO instead of calling UpdateMinMax everytime, create a variable to keep track of when a change requiring it to be updated has been made
-        public int MinX
+        public IntVector2 Min
         {
             get
             {
                 UpdateMinMax();
-                return minX;
+                return min;
             }
-            private set { minX = value; }
         }
 
-        public int MinY
+        public IntVector2 Max
         {
             get
             {
                 UpdateMinMax();
-                return minY;
+                return max;
             }
-            private set { minY = value; }
-        }
-
-        public int MaxX
-        {
-            get
-            {
-                UpdateMinMax();
-                return maxX;
-            }
-            private set { maxX = value; }
-        }
-
-        public int MaxY
-        {
-            get
-            {
-                UpdateMinMax();
-                return maxY;
-            }
-            private set { maxY = value; }
         }
 
         public Vector3 Position
         {
-            get { return new Vector3(MinX, MinY, 0); }
+            get { return new Vector3(Min.x, Min.y, 0); }
         }
 
         public override string ToString()
@@ -333,8 +311,8 @@ namespace StevenUniverse.FanGame.Overworld
                     .ThenBy(tile => (tile.TileTemplate).TileLayer.SortingValue)
                     .ToArray();
 
-            int textureWidth = (Mathf.Abs(MaxX - MinX) + 1)*PIXELS_PER_TILE;
-            int textureHeight = (Mathf.Abs(MaxY - MinY) + 1)*PIXELS_PER_TILE;
+            int textureWidth = (Mathf.Abs(Max.x - Min.x) + 1)*PIXELS_PER_TILE;
+            int textureHeight = (Mathf.Abs(Max.y - Min.y) + 1)*PIXELS_PER_TILE;
 
             //Create the texture to be drawn onto
             Texture2D texture = new Texture2D(textureWidth, textureHeight);
@@ -357,8 +335,8 @@ namespace StevenUniverse.FanGame.Overworld
                 Texture2D tileTexture = tile.TileTemplate.GetCachedSprite(animationFrame).texture;
 
                 Vector3 tixPos = tile.Position;
-                int startingX = ((int) tixPos.x - minX)*PIXELS_PER_TILE;
-                int startingY = ((int) tixPos.y - minY)*PIXELS_PER_TILE;
+                int startingX = ((int) tixPos.x - min.x)*PIXELS_PER_TILE;
+                int startingY = ((int) tixPos.y - min.y)*PIXELS_PER_TILE;
 
                 //Get the colors
                 Color[] colors = texture.GetPixels(startingX, startingY, PIXELS_PER_TILE, PIXELS_PER_TILE);

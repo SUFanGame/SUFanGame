@@ -1,10 +1,17 @@
-﻿using StevenUniverse.FanGame.Overworld.Templates;
+﻿using StevenUniverse.FanGame.Battle;
+using StevenUniverse.FanGame.Overworld.Templates;
 
 namespace StevenUniverse.FanGame.Overworld.Instances
 {
     [System.Serializable]
     public class TileInstance : Instance, System.IEquatable<TileInstance>, System.IComparable<TileInstance>
     {
+
+        public TileInstance( Template template, IntVector2 position, int elevation ) : this( template, position.x, position.y, elevation )
+        {
+
+        }
+
         public TileInstance(Template template, int x, int y, int elevation) : base(template, x, y, elevation)
         {
         }
