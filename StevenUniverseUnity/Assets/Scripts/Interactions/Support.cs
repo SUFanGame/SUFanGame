@@ -2,20 +2,27 @@
 using UnityEngine.UI;
 using System.Collections;
 
-/* Use:
-   Support SupportComponent = GameObject.Find("SupportObject").GetComponent<Support>();
-   SupportComponent.Dialog = SupportLoader.ImportSupport("Righty_Lefty_C");
-   SupportComponent.enabled = true;
-*/
-
 namespace StevenUniverse.FanGame.Interactions
 {
     public class Support : MonoBehaviour
     {
+        /* Use this inside the controller that initiates a support:
+        Support SupportComponent = GameObject.Find("SupportObject").GetComponent<Support>();
+        SupportComponent.Dialog = SupportLoader.ImportSupport("Righty_Lefty_C");
+        SupportComponent.enabled = true;
+        */
+
+        /* TODO:
+         * Support isn't re-enabling itself after support is finished. It only runs once per test.
+         * Control isn't totally taken away from main game. Need to disable other input.
+         * Remove hardcoded values
+         * Check if it's inefficient to do a Resources.Load<>() for every single line or if caching is built in
+         */
+
         public GameObject canvas;
 
         private ScriptLine[] dialog;
-        private int count;
+        private int count; //Keeps track of the line we're on
 
         private GameObject newCanvas;
         private Text spokenText;
