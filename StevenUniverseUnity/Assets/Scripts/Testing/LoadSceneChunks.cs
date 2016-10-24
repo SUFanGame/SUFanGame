@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Templates;
 using System.Linq;
-using StevenUniverse.FanGame.MapSkirmish;
+using StevenUniverse.FanGame.StrategyMap;
 using StevenUniverse.FanGame.Overworld.Instances;
 using System;
 

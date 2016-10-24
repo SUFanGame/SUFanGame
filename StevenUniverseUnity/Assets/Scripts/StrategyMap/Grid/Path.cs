@@ -5,7 +5,7 @@ using System.Linq;
 
 
 
-namespace StevenUniverse.FanGame.MapSkirmish
+namespace StevenUniverse.FanGame.StrategyMap
 {
     /// <summary>
     /// A list of nodes, where any node in the path can be passed in to retrieve a path to that node.
@@ -18,8 +18,6 @@ namespace StevenUniverse.FanGame.MapSkirmish
         // Hashset to ensure we don't add a node more than once to our nodes list.
         HashSet<Node> nodeSet_ = new HashSet<Node>();
 
-        Grid grid_ = null;
-
         /// <summary>
         /// A list of all the nodes in the path, not in any particular order.
         /// To retrieve the specific path to a node in this path call ToPosition()
@@ -29,10 +27,9 @@ namespace StevenUniverse.FanGame.MapSkirmish
         // Maps the previous position on the path to the node it leads to
         Dictionary<Node, Node> cameFrom_ = new Dictionary<Node, Node>();
 
-        public GridPaths( Grid grid )
+        public GridPaths()
         {
             NodesReadOnly_ = nodes_.AsReadOnly();
-            grid_ = grid;
         }
 
         /// <summary>
@@ -64,10 +61,10 @@ namespace StevenUniverse.FanGame.MapSkirmish
         /// Note this will reverse the given list, it is assumed to be empty.
         /// </summary>
         /// <param name="path"></param>
-        public void PathPosition(IntVector3 startPos, IntVector3 endPos, List<Node> path)
+        public void PathPosition(IntVector3 startPos, IntVector3 endPos, List<Node> path, Grid grid)
         {
-            var start = grid_.GetNode(startPos);
-            var end = grid_.GetNode(endPos);
+            var start = grid.GetNode(startPos);
+            var end = grid.GetNode(endPos);
 
             if( !nodeSet_.Contains( start ) )
             {
@@ -102,9 +99,8 @@ namespace StevenUniverse.FanGame.MapSkirmish
         /// <summary>
         /// Returns whether or not the given position is a part of this set of paths
         /// </summary>
-        public bool Contains( IntVector3 pos )
+        public bool Contains( Node node )
         {
-            var node = grid_.GetNode(pos);
             return node != null && nodeSet_.Contains(node);
         }
 

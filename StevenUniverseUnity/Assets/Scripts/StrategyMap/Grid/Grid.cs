@@ -5,7 +5,7 @@ using StevenUniverse.FanGame.Util.Collections;
 using StevenUniverse.FanGame.Overworld;
 using System.Linq;
 
-namespace StevenUniverse.FanGame.MapSkirmish
+namespace StevenUniverse.FanGame.StrategyMap
 {
 
     public class Grid : MonoBehaviour
@@ -21,6 +21,13 @@ namespace StevenUniverse.FanGame.MapSkirmish
         // Dictionary mapping sets of nodes to their 2D position
 
         public GameObject pfb_pathSprite_;
+
+        public static Grid Instance { get; private set; }
+
+        void Awake()
+        {
+            Instance = this;
+        }
 
         /// <summary>
         /// Populate the given list with the neighbours of the given node.
@@ -46,7 +53,7 @@ namespace StevenUniverse.FanGame.MapSkirmish
         }
 
         /// <summary>
-        /// Retrieve the highest walkable node position for the given cell.
+        /// Retrieve the highest walkable node position for the given cell. Returns int.MinValue if the given index is out of range.
         /// </summary>
         public int GetHeight( IntVector2 pos )
         {
@@ -116,24 +123,24 @@ namespace StevenUniverse.FanGame.MapSkirmish
             }
         }
 
-        void OnDrawGizmosSelected()
-        {
-            if( tileMap_ != null )
-            {
-                var min = tileMap_.Min;
-                var max = tileMap_.Max;
+        //void OnDrawGizmosSelected()
+        //{
+        //    if( tileMap_ != null )
+        //    {
+        //        var min = tileMap_.Min;
+        //        var max = tileMap_.Max;
 
-                for (int x = min.x; x <= max.x; ++x)
-                {
-                    for (int y = min.y; y <= max.y; ++y)
-                    {
-                        var tileStack = tileMap_.GetTileStack(x, y);
-                        if (tileStack != null)
-                            Gizmos.DrawWireSphere(new Vector3(x, y, 1f) + Vector3.one * .5f, .5f);
-                    }
-                }
-            }
-        }
+        //        for (int x = min.x; x <= max.x; ++x)
+        //        {
+        //            for (int y = min.y; y <= max.y; ++y)
+        //            {
+        //                var tileStack = tileMap_.GetTileStack(x, y);
+        //                if (tileStack != null)
+        //                    Gizmos.DrawWireSphere(new Vector3(x, y, 1f) + Vector3.one * .5f, .5f);
+        //            }
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Builds the grid from the given tile map and forms node connections for ground movement.

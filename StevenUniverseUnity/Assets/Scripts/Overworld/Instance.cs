@@ -1,5 +1,5 @@
 ﻿using System;
-using StevenUniverse.FanGame.MapSkirmish;
+using StevenUniverse.FanGame.StrategyMap;
 using UnityEngine;
 
 namespace StevenUniverse.FanGame.Overworld

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.MapSkirmish;
+using StevenUniverse.FanGame.StrategyMap;
 
-namespace StevenUniverse.FanGame.MapSkirmish
+namespace StevenUniverse.FanGame.StrategyMap
 {
     public class StrategyCursor : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-﻿using StevenUniverse.FanGame.MapSkirmish;
+﻿using StevenUniverse.FanGame.StrategyMap;
 using System.Collections.Generic;
 using UnityEngine;
 using System;

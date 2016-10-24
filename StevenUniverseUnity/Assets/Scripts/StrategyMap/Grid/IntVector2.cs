@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace StevenUniverse.FanGame.MapSkirmish
+namespace StevenUniverse.FanGame.StrategyMap
 {
     [System.Serializable]
     // CopyPaste of Vector2 but with Ints

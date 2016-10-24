@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using StevenUniverse.FanGame.Overworld.Templates;
-using StevenUniverse.FanGame.MapSkirmish;
+using StevenUniverse.FanGame.StrategyMap;
 
 
 /// <summary>
