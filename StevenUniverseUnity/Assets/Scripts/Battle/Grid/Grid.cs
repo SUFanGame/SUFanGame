@@ -12,7 +12,13 @@ namespace StevenUniverse.FanGame.Battle
     {
         TileMap<ITile> tileMap_ = null;
 
+        // Dictionary mapping nodes to their 3D position ( x, y, elevation )
         Dictionary<IntVector3, Node> dict_ = new Dictionary<IntVector3, Node>();
+
+        // Dictionary mapping each 2D position to the highest walkable node in that position.
+        Dictionary<IntVector2, int> heightMap_ = new Dictionary<IntVector2, int>();
+
+        // Dictionary mapping sets of nodes to their 2D position
 
         public GameObject pfb_pathSprite_;
 
@@ -39,15 +45,27 @@ namespace StevenUniverse.FanGame.Battle
             return n;
         }
 
+        /// <summary>
+        /// Retrieve the highest walkable node position for the given cell.
+        /// </summary>
+        public int GetHeight( IntVector2 pos )
+        {
+            int height;
+            if (!heightMap_.TryGetValue(pos, out height))
+                return int.MinValue;
+            return height;
+        }
+
 
         /// <summary>
-        /// Populates the node buffer with all nodes in the given range starting from the given point with the given movement type.
+        /// Populates the path buffer with all nodes in the given range starting from the given point with the given movement type.
+        /// The path object can then be used to retrieve paths to specific nodes.
         /// </summary>
         /// <param name="pos">The position to start the search.</param>
         /// <param name="range">The range of the search (in tiles).</param>
         /// <param name="nodeBuffer">All discovered nodes will be added to the buffer.</param>
         /// <param name="movementType">The movement type to be used during the search.</param>
-        public void GetNodesInRange( IntVector3 pos, int range, Path path, MovementType movementType = MovementType.GROUNDED)
+        public void GetNodesInRange( IntVector3 pos, int range, GridPaths path, MovementType movementType = MovementType.GROUNDED)
         {
             // Use dijkstra's to retrieve all nodes in range.
             var current = GetNode(pos);
@@ -91,7 +109,7 @@ namespace StevenUniverse.FanGame.Battle
                         costSoFar[next] = newCost;
                         frontier.Add(next, newCost);
                         cameFrom[next] = current;
-                        path.AddToPath(current.Pos_, next);
+                        path.AddToPath(current, next);
                     }
                 }
                 
@@ -117,11 +135,18 @@ namespace StevenUniverse.FanGame.Battle
             }
         }
 
-        public void BuildGrid( TileMap<ITile> tiles )
+        /// <summary>
+        /// Builds the grid from the given tile map and forms node connections for ground movement.
+        /// </summary>
+        public IEnumerator BuildGrid( TileMap<ITile> tiles )
         {
             tileMap_ = tiles;
             var min = tiles.Min;
             var max = tiles.Max;
+
+            // How long should the function work before yielding if it hasn't yet finished?
+            float workTime = .1f;
+            float startTime = Time.realtimeSinceStartup;
 
             // Run through each cell of the map...
             for( int x = min.x; x < max.x + 1; ++x )
@@ -150,6 +175,8 @@ namespace StevenUniverse.FanGame.Battle
                         bool pathable = false;
                         // Whether or not this node is collidable.
                         bool collidable = false;
+                        // Whether or not this node is transitional
+                        bool transitional = false;
 
                         // If the previously polled node was grounded, it means the node directly below it is automatically 
                         // unpathable - so skip it.
@@ -171,6 +198,8 @@ namespace StevenUniverse.FanGame.Battle
                             // A tile is only pathable if previous tiles in this node are NOT collidable
                             if( !collidable && (mode == "Transitional" || mode == "Surface") )
                             {
+                                if (mode == "Transitional")
+                                    transitional = true;
                                 pathable = true;
                             }
 
@@ -193,49 +222,94 @@ namespace StevenUniverse.FanGame.Battle
                         // If we reach this point and the node is pathable then this position can officially be walked on.
                         if(pathable)
                         {
-                            AddNode(new IntVector3(x, y, elevation));
+                            var pos = new IntVector3(x, y, elevation);
+                            Node.PathType pathType = transitional ? Node.PathType.Transitional : Node.PathType.Surface;
+                            dict_.Add(pos, new Node(pos, pathType));
+
+                            IntVector2 pos2D = new IntVector2(x, y);
+
+                            // Populate our height map
+                            int existingHeight;
+                            if (!heightMap_.TryGetValue(pos2D, out existingHeight))
+                                heightMap_[pos2D] = elevation;
+                            else
+                            {
+                                heightMap_[pos2D] = Mathf.Max(elevation, existingHeight);
+                            }
                         }
+
+                        // Yield if we've exceeded our work time.
+                        if( Time.realtimeSinceStartup - startTime >= workTime )
+                        {
+                            startTime = Time.realtimeSinceStartup;
+                            yield return null;
+                        }
+                    }
+
+                }
+            }
+            yield return null;
+
+            // Form connections between adjacent nodes. Right now this only accounts
+            // for ground units. If units can fly we'll need to modify things a bit - push
+            // connection forming out to when pathfinding is actually called or model a second set of node adjacency data
+            // to account for flying units
+            foreach( var pair in dict_ )
+            {
+                var node = pair.Value;
+                var pos = node.Pos_;
+
+                foreach( var dir in Directions2D.Quadrilateral )
+                {
+                    var adj = pos + dir;
+
+                    /// <summary>
+                    /// From a surface tiles you can only move to surface tiles at the same height or transitional ties
+                    /// at the same height or 1 lower.
+                    /// </summary>
+                    if ( node.PathType_ == Node.PathType.Surface )
+                    {
+                        // Check for adjacent node at the same height.
+                        var adjNode = GetNode(adj);
+                        if (adjNode != null)
+                            node.FormConnection(adjNode);
+
+                        // Check for adjacent transitional node one below
+                        adjNode = GetNode(adj + new IntVector3(0,0,-1));
+                        if( adjNode != null && adjNode.PathType_ == Node.PathType.Transitional )
+                        {
+                            node.FormConnection(adjNode);
+                        }
+                        adjNode = GetNode(adj + new IntVector3(0,0,1));
+                        if (adjNode != null && adjNode.PathType_ == Node.PathType.Transitional)
+                        {
+                            node.FormConnection(adjNode);
+                        }
+                    }
+
+                    /// <summary>
+                    /// For transitional tiles you can only move to surface or transitional tile at the same height
+                    /// or 1 higher
+                    /// </summary>
+                    if ( node.PathType_ == Node.PathType.Transitional )
+                    {
+                        // Check for adjacent node at the same height.
+                        var adjNode = GetNode(adj);
+                        if (adjNode != null)
+                            node.FormConnection(adjNode);
+
+                        // Check for adjacent node one above
+                        adjNode = GetNode(adj + new IntVector3(0,0,1) );
+                        if (adjNode != null)
+                            node.FormConnection(adjNode);
+                        //// Check for adjacent node one below
+                        adjNode = GetNode(adj + new IntVector3(0,0,-1) );
+                        if (adjNode != null)
+                           node.FormConnection(adjNode);
                     }
                 }
             }
-
-            foreach (var pair in dict_)
-            {
-                var pos = pair.Value.Pos_;
-
-                var spriteGO = Instantiate(pfb_pathSprite_);
-                spriteGO.transform.position = (Vector3)pos;
-
-                var tilesAtPos = tileMap_.GetTilesAtElevation(pos.x, pos.y, pos.z);
-
-                if (tilesAtPos != null && tilesAtPos.Count > 0)
-                {
-                    var sprite = spriteGO.GetComponentInChildren<SpriteRenderer>();
-                    // Grab the topmost tile at this position and get it's sorting order.
-                    var topTile = tilesAtPos[0];
-                    
-                    int sortingOrder = tilesAtPos[0].SortingOrder;
-                    // Put our sprite above it on the same layer.
-                    sprite.sortingOrder = topTile.Elevation * 100 + sortingOrder + 10;
-                    sprite.sortingLayerID = SortingLayer.NameToID("Overworld");
-                }
-            }
-        }
-        
-        void AddNode( IntVector3 pos )
-        {
-            dict_.Add(pos, new Node(pos));
         }
 
     }
 }
-
-/*
-    Dust on transitioning between elevations:
-
-    The logic for that is basically: if you are on a Surface tile at elevation n, 
-    you can go to any adjacent Surface tile at elevation n or any Transitional tile at elevation n or n-1.
-    And if you are on a Transitional tile at elevation n, 
-    you can go to an adjacent Surface or Transitional tile at either n or n+1(edited)
-    Which allows you to move up to non-transitonal tiles
-    */

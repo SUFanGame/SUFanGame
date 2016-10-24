@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012946963532}
+  - 114: {fileID: 114000010555931778}
   m_Layer: 5
   m_Name: pfb_WalkablePathMarker
   m_TagString: Untagged
@@ -69,6 +70,17 @@ Transform:
   - {fileID: 4000012427296196}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000010555931778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011315429774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4b218884942ca43af80bae05564263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212000011839797018
 SpriteRenderer:
   m_ObjectHideFlags: 1

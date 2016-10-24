@@ -17,23 +17,14 @@ public class LoadSceneChunks : MonoBehaviour
 
     public TileMap<ITile> tileMap_ = new TileMap<ITile>();
 
-    //Grid grid_ = null;
-
-    //TileMap<TileInstance> tileMap_ = new TileMap<TileInstance>();
-
-    //IntVector3 lastCursorPosition_ = IntVector3.zero;
     public SpriteRenderer cursorSprite_;
-
-    //bool walkable_ = false;
 
     public GameObject pfb_WalkableTileSprite_;
 
     IEnumerator Start()
     {
-        //grid_ = GameObject.FindObjectOfType<Grid>();
-
-        var chunks = GetChunks(4, 7);
-        //var chunks = GetAllChunks();
+        //var chunks = GetChunks(4, 7);
+        var chunks = GetAllChunks();
 
         yield return StartCoroutine(LoadChunks(chunks));
 
@@ -43,7 +34,7 @@ public class LoadSceneChunks : MonoBehaviour
         }
 
         var grid = GameObject.FindObjectOfType<Grid>();
-        grid.BuildGrid(tileMap_);
+        yield return grid.BuildGrid(tileMap_);
 
     }
 
@@ -114,198 +105,5 @@ public class LoadSceneChunks : MonoBehaviour
             GUILayout.Label("Loading chunks...");
         }
     }
-
-    public void BuildGrid( )
-    {
-
-        //List<Instance> instances = new List<Instance>();
-
-        var renderers = GameObject.FindObjectsOfType<ChunkRenderer>();
-
-        //var chunks = renderers.Select(r => r.SourceChunk).ToArray();
-
-        foreach( var renderer in renderers )
-        {
-            var chunk = renderer.SourceChunk;
-
-            //var instances = chunk.AllInstances;
-
-            // Note this is includes any group instances sticking out the edges of the chunk
-            var minX = chunk.Min.x;
-            var minY = chunk.Min.y;
-            var maxX = chunk.Max.x;
-            var maxY = chunk.Max.y;
-            
-            int sizeX = maxX - minX;
-            int sizeY = maxY - minY;
-            if (sizeX > 0)
-                ++sizeX;
-            if (sizeY > 0)
-                ++sizeY;
-
-            // Run through each cell of our chunk and determine pathability.
-            for( int x = 0; x < sizeX; ++x )
-            {
-                for( int y = 0; y < sizeY; ++y )
-                {
-                    //// Local positions...
-                    //int xPos = x;// + (int)chunk.Position.x;
-                    //int yPos = y;// + (int)chunk.Position.y;
-
-
-                    // World positions...
-                    int xPos = x + (int)chunk.Position.x;
-                    int yPos = y + (int)chunk.Position.y;
-                    //Vector2 pos = new Vector2(xPos, yPos);
-
-                    var tilesAtPos = chunk.AllInstancesFlattenedCoordinated.GetTileStack(xPos, yPos);
-                    if (tilesAtPos == null || tilesAtPos.Count == 0 )
-                    {
-                        //Debug.LogFormat("No tiles found at {0},{1}", xPos, yPos);
-                        continue;
-                    }
-
-                    //if( IsWalkable( tilesAtPos ) )
-                    //{
-                    //    //Debug.LogFormat("{0} is walkable!", pos );
-                    //    // Spawn a walkable tile marker on any walkable tiles
-                    //    Instantiate(pfb_WalkableTileSprite_, new Vector3(xPos, yPos, 1f), Quaternion.identity, renderer.transform);
-                    //}
-                }
-            }
-        }
-        
-    }
-    
-    // A tile is considered walkable if it's tile mode is "Surface" or "Transitional" 
-    // and if it's not sharing a space with a tile whose tile mode is "Collidable" and if the tile above is it not grounded
-    bool IsWalkable( TileInstance[] tileStack )
-    {
-        bool walkable = false;
-        int walkableElevation = int.MinValue;
-        // Order our tiles by elevation then group them.
-        var query = tileStack.OrderBy(t=>t.Elevation).ThenBy(t=>t.TileTemplate.TileLayer.SortingValue).GroupBy(t => t.Elevation, t => t);
-
-        //Debug.LogFormat("Tiles at pos {0}", tileStack.First().Position);
-
-        // Iterate through our groups starting from the lowest elevation to the highest
-        foreach( var tileGroups in query )
-        {
-
-            //string tilesString = string.Join(",", tileGroups.Select(t => t.TileTemplate.Name).ToArray());
-            //Debug.LogFormat("-------{0}: {1}", tileGroups.Key, tilesString);
-            
-            foreach ( var tile in tileGroups )
-            {
-                var mode = tile.TileTemplate.TileModeName;
-
-                // Ignore "normal" tiles, they are decorative and should not affect collision
-                if (mode == "Normal")
-                    continue;
-
-                // If any tiles at this elevation are collidable, it's not walkable.
-                if( mode == "Collidable" )
-                {
-                    walkable = false;
-                    continue;
-                }
-
-                // If this tile is grounded and is above any tile that was walkable, walkability is nulled
-                if (walkable && tile.TileTemplate.IsGrounded && tile.Elevation == walkableElevation + 1)
-                {
-                    walkable = false;
-                    walkableElevation = int.MinValue;
-                }
-
-                // If the current tile is a surface or transitional tile then this is potentially a walkable cell.
-                if (mode == "Surface" || mode == "Transitional")
-                {
-                    walkable = true;
-                    walkableElevation = tile.Elevation;
-                }
-            }
-        }
-
-        return walkable;
-
-
-        //// Sort our tile stack into separate lists of tiles based on their elevation.
-   
-
-        //bool walkable = false;
-        //int walkableHeight = int.MinValue;
-        //bool collidable = false;
-        //int collidableHeight = int.MinValue;
-
-        //for( int i = 0; i < tileStack.Length; ++i )
-        //{
-        //    var tile = tileStack[i];
-        //    var mode = tile.TileTemplate.TileModeName;
-
-        //    // "Normal" tiles don't factor into walkability
-        //    if (mode == "Normal")
-        //        continue;
-
-
-        //    //Debug.LogFormat("Pos:{0}, Elevation:{1}", tile.Position, tile.Elevation);
-
-        //    // If a previous tile in the stack was found to be walkable...
-        //    if ( walkable )
-        //    {
-        //        // Ensure the tile above it is not grounded. If it is, then the previous walkability is not valid
-        //        if (tile.TileTemplate.IsGrounded && tile.Elevation == walkableHeight + 1)
-        //            walkable = false;
-        //    }
-            
-        //    // If the current tile is a surface or transitional tile then this is potentially a walkable cell.
-        //    if( mode == "Surface" || mode == "Transitional" )
-        //    {
-        //        walkable = true;
-        //        walkableHeight = tile.Elevation;
-        //    }
-            
-        //    // If the current elevation has a "collidable" tile then it's not walkable, period
-        //    if ( mode == "Collidable" )
-        //    {
-        //        if( walkable && )
-        //        walkable = false;
-        //    }
-
-        //}
-
-        //return walkable;
-    }
-
-
-    //// Polls the tile map to determine if the given position is walkable
-    //bool IsWalkable( IntVector3 position )
-    //{
-    //    bool walkable = true;
-    //    // Go through all tiles at the given position...
-    //    foreach (var layer in TileTemplate.Layer.Instances)
-    //    {
-    //        // Index for our given position
-    //        TileIndex currentIndex = new TileIndex((Vector2)position, position.z, layer);
-    //        // Index for the tile above our given position.
-    //        TileIndex aboveIndex = new TileIndex((Vector2)position, position.z + 1, layer);
-
-    //        // current tile
-    //        var tile = tileMap_.Get(currentIndex);
-    //        if (tile != null)
-    //        {
-    //            if (tile.TileTemplate.TileLayerName != "Surface" || tile.TileTemplate.TileLayerName != "Transitional")
-    //                walkable = false;
-    //        }
-
-    //        var aboveTile = tileMap_.Get(aboveIndex);
-    //        if( aboveTile != null )
-    //        {
-    //            if (aboveTile.TileTemplate.IsGrounded)
-    //                walkable = false;
-    //        }
-    //    }
-
-    //    return walkable;
-    //}
 
 }

@@ -338,6 +338,11 @@ namespace StevenUniverse.FanGame.Battle
             return new IntVector2(v.x, v.y);
         }
 
+        public static explicit operator IntVector2( IntVector3 v )
+        {
+            return new IntVector2(v.x, v.y);
+        }
+
         public static bool operator !=(IntVector2 lhs, IntVector2 rhs)
         {
             return IntVector2.SqrMagnitude(lhs - rhs) >= 9.99999944E-11f;

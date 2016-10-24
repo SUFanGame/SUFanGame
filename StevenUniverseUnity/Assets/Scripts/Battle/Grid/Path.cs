@@ -1,18 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 
 
 namespace StevenUniverse.FanGame.Battle
 {
-
-    public class Path
+    /// <summary>
+    /// A list of nodes, where any node in the path can be passed in to retrieve a path to that node.
+    /// Not sure about the name, though...
+    /// </summary>
+    public class GridPaths
     {
         // A list of all nodes in the path. This list is not in any particular order.
         List<Node> nodes_ = new List<Node>();
         // Hashset to ensure we don't add a node more than once to our nodes list.
         HashSet<Node> nodeSet_ = new HashSet<Node>();
+
+        Grid grid_ = null;
 
         /// <summary>
         /// A list of all the nodes in the path, not in any particular order.
@@ -21,20 +27,23 @@ namespace StevenUniverse.FanGame.Battle
         public IList<Node> NodesReadOnly_ = null;
 
         // Maps the previous position on the path to the node it leads to
-        Dictionary<IntVector3, Node> cameFrom_ = new Dictionary<IntVector3, Node>();
+        Dictionary<Node, Node> cameFrom_ = new Dictionary<Node, Node>();
 
-        public Path()
+        public GridPaths( Grid grid )
         {
             NodesReadOnly_ = nodes_.AsReadOnly();
+            grid_ = grid;
         }
 
         /// <summary>
         /// Add a node to the path, forming a connection from the given position to the given node.
         /// </summary>
-        public void AddToPath(IntVector3 fromPos, Node toNode)
+        public void AddToPath(Node fromNode, Node toNode)
         {
-            cameFrom_[fromPos] = toNode;
+            //Debug.LogFormat("Updating path {0} leads to {1}", fromPos, toNode.Pos_);
+            cameFrom_[toNode] = fromNode;
             AddToPath(toNode);
+            AddToPath(fromNode);
         }
 
         /// <summary>
@@ -55,21 +64,48 @@ namespace StevenUniverse.FanGame.Battle
         /// Note this will reverse the given list, it is assumed to be empty.
         /// </summary>
         /// <param name="path"></param>
-        public void ToPosition(IntVector3 target, List<Node> path)
+        public void PathPosition(IntVector3 startPos, IntVector3 endPos, List<Node> path)
         {
-            Node dest;
-            cameFrom_.TryGetValue(target, out dest);
+            var start = grid_.GetNode(startPos);
+            var end = grid_.GetNode(endPos);
 
-            if (dest == null)
-                return;
-
-            while( dest != null )
+            if( !nodeSet_.Contains( start ) )
             {
-                path.Add(dest);
-                cameFrom_.TryGetValue(dest.Pos_, out dest);
+                Debug.LogFormat("Start pos {0} not found in paths", start);
             }
 
+            if( !nodeSet_.Contains(end) )
+            {
+                Debug.LogFormat("End pos {0} not found in paths", end);
+            }
+
+            path.Add(end);
+
+            Node dest;
+            cameFrom_.TryGetValue(end , out dest);
+
+            while( dest != null && dest != start )
+            {
+                path.Add(dest);
+                //Debug.LogFormat("Adding {0} to path", dest.Pos_);
+                cameFrom_.TryGetValue(dest, out dest);
+            }
+
+            //path.Add( end );
+
+            string pathString = string.Join("->", path.Select(p=>p.Pos_.ToString()).ToArray() );
+            //Debug.LogFormat("Path from {0} to {1}", start, end);
+            //Debug.LogFormat(pathString);
             path.Reverse();
+        }
+
+        /// <summary>
+        /// Returns whether or not the given position is a part of this set of paths
+        /// </summary>
+        public bool Contains( IntVector3 pos )
+        {
+            var node = grid_.GetNode(pos);
+            return node != null && nodeSet_.Contains(node);
         }
 
         /// <summary>

@@ -41,11 +41,16 @@ namespace StevenUniverse.FanGame.Battle
 		public static explicit operator IntVector3( Vector3 v )
 		{
 			return new IntVector3( v );
-		} 
+		}
 
-		
-		// Static Properties
-		public static IntVector3 forward { get { return new IntVector3 (0, 0, 1); } }
+        public static explicit operator IntVector3(IntVector2 v)
+        {
+            return new IntVector3(v.x, v.y, 0);
+        }
+
+
+        // Static Properties
+        public static IntVector3 forward { get { return new IntVector3 (0, 0, 1); } }
 		public static IntVector3 back { get { return new IntVector3 (0, 0, -1); } }
 		public static IntVector3 up { get { return new IntVector3 (0, 1, 0 ); } }
 		public static IntVector3 down { get { return new IntVector3 (0, -1, 0); } }
