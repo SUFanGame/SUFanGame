@@ -10,5 +10,6 @@
     "secondsPerFrame": 0.15000000596046449,
     "tileModeName": "Surface",
     "tileLayerName": "Water",
-    "isGrounded": true
+    "isGrounded": true,
+    "usableIndividually": true
 }

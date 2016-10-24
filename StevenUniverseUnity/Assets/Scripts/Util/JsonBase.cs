@@ -21,7 +21,7 @@ namespace StevenUniverse.FanGame.Util
             System.Type t2Type = typeof(T2);
             System.Type entityType = typeof(Character);
 
-            bool skipInstanceCache = t2Type.Equals(entityType) || t2Type.IsSubclassOf(entityType);
+            bool skipInstanceCache = t2Type.Equals(entityType) || t2Type.IsSubclassOf(entityType) || !Application.isPlaying;
 
             if (skipInstanceCache)
             {
@@ -44,8 +44,6 @@ namespace StevenUniverse.FanGame.Util
                 }
             }
         }
-
-        public static bool UseInstanceCache { get { return true; } }
 
         private static T2 LoadInstanceFromJson<T2>(string appDataPath) where T2 : JsonBase<T>
         {
