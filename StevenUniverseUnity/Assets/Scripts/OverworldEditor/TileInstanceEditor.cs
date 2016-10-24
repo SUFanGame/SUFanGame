@@ -10,8 +10,6 @@ namespace StevenUniverse.FanGame.OverworldEditor
     {
         [SerializeField] private TileInstance tileInstance;
 
-        private TileTemplate tileTemplate;
-
         // Use this for initialization
         protected override void Start()
         {
@@ -28,19 +26,6 @@ namespace StevenUniverse.FanGame.OverworldEditor
         {
             get { return tileInstance; }
             set { tileInstance = value; }
-        }
-
-        public TileTemplate TileTemplate
-        {
-            get
-            {
-                if (tileTemplate == null)
-                {
-                    TileTemplate = TileInstance.TileTemplate;
-                }
-                return tileTemplate;
-            }
-            private set { tileTemplate = value; }
         }
 
         public override Instance Instance

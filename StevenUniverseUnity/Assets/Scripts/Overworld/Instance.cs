@@ -71,11 +71,11 @@ namespace StevenUniverse.FanGame.Overworld
 
         public T GetTemplate<T>() where T : Template
         {
-            if (template == null)
+            if (template == null || !Application.isPlaying )
             {
                 template = Template.Get<T>(TemplateAppDataPath);
-                //Debug.Log(template.GetType());
             }
+
             return (T) template;
         }
 

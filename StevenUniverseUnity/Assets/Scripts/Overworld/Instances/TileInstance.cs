@@ -1,4 +1,5 @@
-﻿using StevenUniverse.FanGame.Battle;
+
+using StevenUniverse.FanGame.Battle;
 using StevenUniverse.FanGame.Overworld.Templates;
 
 namespace StevenUniverse.FanGame.Overworld.Instances

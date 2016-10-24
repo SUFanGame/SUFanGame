@@ -9,14 +9,6 @@ namespace StevenUniverse.FanGame.Overworld.Templates
     public class TileTemplate : Template
     {
         //Class
-        /*
-        private static readonly string localDirectory;
-
-        static TileTemplate()
-        {
-            localDirectory = Utilities.ExternalDataPath;
-        }*/
-
         public static TileTemplate GetTileTemplate(string tileTemplateAppDataPath)
         {
             return Get<TileTemplate>(tileTemplateAppDataPath);
@@ -26,8 +18,12 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         [SerializeField] private string[] animationSpriteNames;
         [SerializeField] private bool syncAnimation;
         [SerializeField] private float secondsPerFrame;
+        [SerializeField] private string tileModeName;
+        [SerializeField] private string tileLayerName;
+        [SerializeField] private bool isGrounded;
+        [SerializeField] private bool usableIndividually;
 
-        private Sprite[] animationSprites;
+        private Sprite[] animationSprites = new Sprite[0];
 
         //Constructor for on-the-fly TileTemplate creation
         public TileTemplate
@@ -37,7 +33,8 @@ namespace StevenUniverse.FanGame.Overworld.Templates
             float secondsPerFrame,
             string tileModeName,
             string tileLayerName,
-            bool isGrounded
+            bool isGrounded,
+            bool usableIndividually
         ) : base()
         {
             AnimationSprites = animationSprites;
@@ -47,11 +44,12 @@ namespace StevenUniverse.FanGame.Overworld.Templates
             TileModeName = tileModeName;
             TileLayerName = tileLayerName;
             IsGrounded = isGrounded;
+            UsableIndividually = usableIndividually;
         }
 
-        public TileTemplate() : this(new Sprite[0], false, 0f, "Normal", "Main", false)
+        public TileTemplate()
         {
-            //TODO why is this called whenever the code is saved?
+
         }
 
         public Sprite GetCachedSprite(int frame)
@@ -88,11 +86,23 @@ namespace StevenUniverse.FanGame.Overworld.Templates
             set { syncAnimation = value; }
         }
 
+        public string TileLayerName
+        {
+            get { return tileLayerName; }
+            set { tileLayerName = value; }
+        }
+
+        public bool UsableIndividually
+        {
+            get { return usableIndividually; }
+            set { usableIndividually = value; }
+        }
+
         public Sprite[] AnimationSprites
         {
             get
             {
-                if (animationSprites.Length == 0)
+                if (animationSprites == null || animationSprites.Length == 0)
                 {
                     List<Sprite> loadedSprites = new List<Sprite>();
                     foreach (string animationSpriteName in AnimationSpriteNames)
@@ -127,13 +137,6 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         }
 
 
-        public string TileLayerName
-        {
-            get { return tileLayerName; }
-            set { tileLayerName = value; }
-        }
-
-
         public class Mode : EnhancedEnum<Mode>
         {
             //Instance
@@ -150,7 +153,7 @@ namespace StevenUniverse.FanGame.Overworld.Templates
                 Add(new Mode("Collidable"));
             }
         }
-
+        
         public class Layer : EnhancedEnum<Layer>
         {
             //Instance
