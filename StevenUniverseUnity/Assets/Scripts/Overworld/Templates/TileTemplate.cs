@@ -18,9 +18,6 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         [SerializeField] private string[] animationSpriteNames;
         [SerializeField] private bool syncAnimation;
         [SerializeField] private float secondsPerFrame;
-        [SerializeField] private string tileModeName;
-        [SerializeField] private string tileLayerName;
-        [SerializeField] private bool isGrounded;
         [SerializeField] private bool usableIndividually;
 
         private Sprite[] animationSprites = new Sprite[0];

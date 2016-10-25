@@ -8,7 +8,7 @@ namespace StevenUniverse.FanGame.StrategyMap
     {
         GridPaths path_ = new GridPaths();
 
-        bool waitingForSelection_ = false;
+        //bool waitingForSelection_ = false;
          
         public override void Execute()
         {
@@ -32,12 +32,11 @@ namespace StevenUniverse.FanGame.StrategyMap
                 HighlightGrid.HighlightPos(node.Pos_.x, node.Pos_.y, node.Pos_.z, Color.blue);
             }
 
-            waitingForSelection_ = true;
+            //waitingForSelection_ = true;
         }
 
         void Update()
         {
-
             if (Input.GetMouseButtonDown(0))
             {
                 HighlightGrid.Clear();

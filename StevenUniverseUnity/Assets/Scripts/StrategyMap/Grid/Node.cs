@@ -21,6 +21,34 @@ namespace StevenUniverse.FanGame.StrategyMap
         public IntVector3 Pos_ { get; private set; }
         public PathType PathType_ { get; private set; }
 
+        List<MonoBehaviour> objects_ = null;
+        /// <summary>
+        /// List of any gameobjects in the node, for things like characters/chests/doors/etc
+        /// </summary>
+        public List<MonoBehaviour> Objects
+        {
+            get
+            {
+                return objects_;
+            }
+        }
+
+        public void AddObject( MonoBehaviour obj )
+        {
+            if (objects_ == null)
+                objects_ = new List<MonoBehaviour>();
+
+            objects_.Add(obj);
+        }
+
+        public void RemoveObject( MonoBehaviour obj )
+        {
+            if (objects_ == null)
+                return;
+
+            objects_.Remove(obj);
+        }
+
         public Node( IntVector3 pos, PathType pathType )
         {
             Pos_ = pos;

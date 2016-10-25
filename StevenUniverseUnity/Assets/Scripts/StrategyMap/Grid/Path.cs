@@ -90,7 +90,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 
             //path.Add( end );
 
-            string pathString = string.Join("->", path.Select(p=>p.Pos_.ToString()).ToArray() );
+            //string pathString = string.Join("->", path.Select(p=>p.Pos_.ToString()).ToArray() );
             //Debug.LogFormat("Path from {0} to {1}", start, end);
             //Debug.LogFormat(pathString);
             path.Reverse();
