@@ -25,6 +25,11 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         public static Grid Instance { get; private set; }
 
+        /// <summary>
+        /// Callback for when the grid is done building.
+        /// </summary>
+        public System.Action<Grid> OnGridBuilt_;
+
         void Awake()
         {
             Instance = this;
@@ -64,10 +69,14 @@ namespace StevenUniverse.FanGame.StrategyMap
             return height;
         }
 
+
         /// <summary>
         /// Populate the given buffer with any objects of type t that are at the given position.
         /// </summary>
-        public void GetObjects<T>( IntVector3 pos, List<T> buffer ) where T : MonoBehaviour
+        /// <param name="buffer">Buffer of T, to be populated if any exist in at the given position.</param>
+        /// <param name="predicate">Predicate against which discovered objects will be matched. If they
+        /// return true from the predicate, then they will be added to the buffer.</param>
+        public void GetObjects<T>(IntVector3 pos, List<T> buffer, System.Predicate<T> predicate = null ) where T : MonoBehaviour
         {
             var node = GetNode(pos);
 
@@ -80,10 +89,53 @@ namespace StevenUniverse.FanGame.StrategyMap
             {
                 for( int i = 0; i < list.Count; ++i )
                 {
-                    if (list[i] is T)
-                        buffer.Add((T)list[i]);
+                    var t = list[i] as T;
+
+                    if (t == null)
+                        continue;
+
+                    // If a predicate was passed check the object against it
+                    if (predicate != null && !predicate.Invoke(t))
+                        continue;
+
+                    buffer.Add(t);
                 }
             }
+        }
+
+        public void AddObject( IntVector3 pos, MonoBehaviour obj )
+        {
+            var node = GetNode(pos);
+
+            if (node == null)
+                Debug.LogErrorFormat("Attempting to add object {0} to grid at {1}, but there's no node there", obj.name, pos);
+
+            node.AddObject(obj);
+        }
+
+        public void RemoveObject( IntVector3 pos, MonoBehaviour obj )
+        {
+            var node = GetNode(pos);
+
+            if (node == null)
+                Debug.LogErrorFormat("Attempting to remove object {0} to grid at {1}, but there's no node there", obj.name, pos);
+
+            node.RemoveObject(obj);
+        }
+
+        public void MoveObject( IntVector3 oldPos, IntVector3 newPos, MonoBehaviour obj )
+        {
+            var oldNode = GetNode(oldPos);
+            var newNode = GetNode(newPos);
+
+            if (oldNode == null)
+                Debug.LogErrorFormat("Attempting to remove object {0} to grid at {1}, but there's no node there", obj.name, oldPos );
+
+            if (oldNode == null)
+                Debug.LogErrorFormat("Attempting to remove object {0} to grid at {1}, but there's no node there", obj.name, newPos );
+
+            oldNode.RemoveObject(obj);
+            newNode.AddObject(obj);
         }
 
         /// <summary>
@@ -338,6 +390,9 @@ namespace StevenUniverse.FanGame.StrategyMap
                     }
                 }
             }
+
+            if (OnGridBuilt_ != null)
+                OnGridBuilt_(this);
         }
 
     }

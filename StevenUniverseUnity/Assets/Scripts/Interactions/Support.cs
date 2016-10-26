@@ -93,8 +93,11 @@ namespace StevenUniverse.FanGame.Interactions
 
                 count++;
 
+
+                // Prevent double key presses
+                yield return new WaitForSeconds(.2f);
                 // Now wait for the next key, modify this to submit button?
-                yield return StartCoroutine(DelayedWaitForKeyDown(KeyCode.Space));
+                yield return new WaitWhile( ()=>!Input.GetKeyDown(KeyCode.Space) );
             }
 
             //Clear the GUI from the screen and return control
@@ -102,13 +105,6 @@ namespace StevenUniverse.FanGame.Interactions
             dialog = null; //reset the dialog
             //enabled = false; //disable itself for next support
         }
-
-        public IEnumerator DelayedWaitForKeyDown(KeyCode keyCode)
-        {
-            timestamp = Time.time + .2f; //prevent accidential double-presses
-            while (!Input.GetKeyDown(keyCode) || Time.time <= timestamp)
-                yield return null;
-            }
         
     }
 }

@@ -19,7 +19,7 @@ namespace StevenUniverse.FanGame.Util
         public static T2 Get<T2>(string appDataPath) where T2 : T
         {
             System.Type t2Type = typeof(T2);
-            System.Type entityType = typeof(Character);
+            System.Type entityType = typeof(CharacterData);
 
             bool skipInstanceCache = t2Type.Equals(entityType) || t2Type.IsSubclassOf(entityType) || !Application.isPlaying;
 
