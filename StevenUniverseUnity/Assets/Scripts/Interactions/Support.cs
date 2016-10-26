@@ -100,9 +100,14 @@ namespace StevenUniverse.FanGame.Interactions
                 yield return new WaitWhile( ()=>!Input.GetKeyDown(KeyCode.Space) );
             }
 
+            count = 0;
+
+            gameObject.SetActive(false);
+
             //Clear the GUI from the screen and return control
             Destroy(newCanvas);
             dialog = null; //reset the dialog
+            
             //enabled = false; //disable itself for next support
         }
         

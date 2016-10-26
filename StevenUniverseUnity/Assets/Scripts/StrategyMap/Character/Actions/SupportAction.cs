@@ -27,11 +27,11 @@ namespace StevenUniverse.FanGame.StrategyMap
                 ;
             };
             
-            support_.Dialog = SupportLoader.ImportSupport("Righty_Lefty_C");
         }
 
         public override void Execute()
         {
+            support_.Dialog = SupportLoader.ImportSupport("Righty_Lefty_C");
             support_.gameObject.SetActive(true);
         }
 
