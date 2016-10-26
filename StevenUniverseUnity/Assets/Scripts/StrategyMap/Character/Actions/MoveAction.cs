@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
-    public class CharacterMove : CharacterAction
+    public class MoveAction : CharacterAction
     {
         GridPaths path_ = new GridPaths();
 

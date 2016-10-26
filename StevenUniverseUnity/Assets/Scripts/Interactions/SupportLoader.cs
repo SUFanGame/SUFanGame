@@ -18,19 +18,8 @@ namespace StevenUniverse.FanGame.Interactions
             {
                 throw new UnityException("Support " + supportName + " was not found.");
             }
-            
-            string json = Utilities.GetTextAsString(absolutePath);
 
-            //Test
-            //ScriptLine[] test = new ScriptLine[2];
-            //test[0] = new ScriptLine("aaaa", "b", "c", "d", "e", "f");
-            //test[1] = new ScriptLine("bbbb", "b", "c", "d", "e", "f");
-            //
-            //json = JsonHelper.ToJson<ScriptLine>(test);
-            //Debug.Log(json);
-            
-            //parse the json, each item in array is a complete line
-            ScriptLine[] parsedLines = JsonHelper.FromJson<ScriptLine>(json);
+            ScriptLine[] parsedLines = JsonHelper.FromJson<ScriptLine>( File.ReadAllText(absolutePath) );
 
             return parsedLines;
         }

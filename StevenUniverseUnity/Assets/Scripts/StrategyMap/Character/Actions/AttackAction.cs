@@ -12,7 +12,7 @@ namespace StevenUniverse.FanGame.StrategyMap
     /// <summary>
     /// Character attack action
     /// </summary>
-    public class CharacterAttack : CharacterAction
+    public class AttackAction : CharacterAction
     {
         static Predicate<MapCharacter> opponentPredicate_ = null;
 

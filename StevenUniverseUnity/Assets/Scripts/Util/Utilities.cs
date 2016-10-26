@@ -56,21 +56,6 @@ namespace StevenUniverse.FanGame.Util
             }
         }
 
-        public static string GetTextAsString(string jsonFileAbsolutePath)
-        {
-            string blah = "";
-            using (FileStream fileStream = new FileStream(jsonFileAbsolutePath, FileMode.Open))
-            {
-                using (StreamReader streamReader = new StreamReader(fileStream))
-                {
-                    blah = streamReader.ReadToEnd();
-                    Debug.Log("GetTextAsString found: " + blah);
-                }
-            }
-
-            return blah;
-        }
-
         public static void ClearDirectory(string directoryPathAbsolute)
         {
             if (Directory.Exists(directoryPathAbsolute))

@@ -38,7 +38,7 @@ public static class FactionExtensions
 
     static FactionExtensions()
     {
-        Debug.LogFormat("Setting up factions");
+        //Debug.LogFormat("Setting up factions");
         var values = System.Enum.GetValues(typeof(Faction));
         foreach( Faction faction in values )
         {
