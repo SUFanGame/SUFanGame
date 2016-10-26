@@ -6,6 +6,7 @@ using StevenUniverse.FanGame.StrategyMap;
 using System.Linq;
 using System;
 using StevenUniverse.FanGame.StrategyMap.UI;
+using StevenUniverse.FanGame.Characters;
 
 // Just a note about unity's built in Selection Handlers - they require that the camera have a "Physics Raycaster"
 // and that an "EventSystem" is in the scene (GameObject->UI->EventSystem). Any objects to be selected
@@ -17,10 +18,16 @@ namespace StevenUniverse.FanGame.StrategyMap
     /// A character in the battle map.
     /// </summary>
     [SelectionBase]
-    public class MapCharacter : MonoBehaviour
+    public class MapCharacter : MonoBehaviour, IPointerClickHandler, ISelectHandler, IDeselectHandler
     {
-        // Imaginary class containing specific character data that might be passed between modules.
-        // CharacterData data_;
+         
+        /// <summary>
+        /// Character data, to be loaded in once this is instantiated.
+        /// </summary>
+        [SerializeField]
+        CharacterData characterData_;
+        public CharacterData Data { get { return characterData_; } }
+
 
         #region possiblecharacterdata
         public float tilesMovedPerSecond_ = 3f;
@@ -32,7 +39,8 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         /// <summary>
         /// List of actions this character is capable of. Actions are components added to the character
-        /// through the editor.
+        /// through the editor. Actions will need to be mirrored in JSON in some way, but we also want to keep them as components
+        /// on the unity side. Maybe character data just references actions by name? "Move", "Attack", etc
         /// </summary>
         List<CharacterAction> actions_ = null;
 
@@ -82,6 +90,29 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
             
             UpdateSortingOrder();
+        }
+
+        void Start()
+        {
+            Grid.Instance.OnGridBuilt_ += AddToGrid;
+        }
+
+        void OnDestroy()
+        {
+            if( Grid.Instance != null )
+                Grid.Instance.OnGridBuilt_ -= AddToGrid;
+        }
+
+        void AddToGrid( Grid grid )
+        {
+            // Snap our character's z position to the highest point on the grid.
+            // Not ideal but for now while we're having to manually place characters in the map this works.
+            var pos = transform.position;
+            pos.z = grid.GetHeight(new IntVector2(pos.x, pos.y));
+            transform.position = pos;
+
+            // Add our character to the grid at it's current position.
+            grid.AddObject(GridPosition, this);
         }
 
         public void OnPointerClick(PointerEventData eventData)

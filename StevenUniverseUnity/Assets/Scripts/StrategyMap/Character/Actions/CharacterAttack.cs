@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using StevenUniverse.FanGame.Factions;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -15,12 +16,15 @@ namespace StevenUniverse.FanGame.StrategyMap
     {
         static Predicate<MapCharacter> opponentPredicate_ = null;
 
-        void Awake()
+        protected override void Awake()
         {
-            if( opponentPredicate_ == null )
+            base.Awake();
+
+            // Set our predicate to search only for enemies
+            opponentPredicate_ = (c) =>
             {
-                //opponentPredicate_ = (c)=>c.sta
-            }
+                return actor_.Data.Faction_.GetStanding(c.Data.Faction_) == Standing.HOSTILE;
+            };
         }
 
         List<MapCharacter> opponents_ = new List<MapCharacter>();
@@ -38,7 +42,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             {
                 var adj = pos + adjacent[i];
 
-                grid.GetObjects(adj, opponents_);
+                grid.GetObjects(adj, opponents_, opponentPredicate_ );
             }
 
             return opponents_.Count > 0;

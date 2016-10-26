@@ -21,7 +21,7 @@ namespace StevenUniverse.FanGame.StrategyMap
         public string UIName { get { return uiName_; } }
         public MapCharacter Actor { get { return actor_; } }
 
-        void Awake()
+        protected virtual void Awake()
         {
             actor_ = GetComponent<MapCharacter>();
         }

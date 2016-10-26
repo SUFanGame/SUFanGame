@@ -38,6 +38,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             if (objects_ == null)
                 objects_ = new List<MonoBehaviour>();
 
+            //Debug.LogFormat("Adding {0} at {1}", obj.name, Pos_);
             objects_.Add(obj);
         }
 

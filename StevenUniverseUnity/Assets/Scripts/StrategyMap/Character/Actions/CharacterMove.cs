@@ -69,9 +69,9 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         IEnumerator MoveTo(IntVector3 targetPos)
         {
-            var gridPos = actor_.GridPosition;
-            
             var grid = Grid.Instance;
+
+            grid.RemoveObject(actor_.GridPosition, actor_);
             //Debug.LogFormat("Moving {0} from {1} to {2}", name, current, pos);
 
             List<Node> path = new List<Node>();
@@ -84,7 +84,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             {
                 var next = path[i];
 
-                gridPos = actor_.GridPosition;
+                var gridPos = actor_.GridPosition;
                 gridPos.z = next.Pos_.z;
                 actor_.GridPosition = gridPos;
 
@@ -100,6 +100,8 @@ namespace StevenUniverse.FanGame.StrategyMap
                     yield return null;
                 }
             }
+
+            grid.AddObject(actor_.GridPosition, actor_);
             
             //Debug.LogFormat("Done moving");
             yield return null;
