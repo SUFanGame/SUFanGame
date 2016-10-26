@@ -2,15 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using StevenUniverse.FanGame.StrategyMap;
+using StevenUniverse.FanGame.Interactions;
 
 // TODO : Push character scanning stuff out from attack/support into a utility class or the grid class.
 namespace StevenUniverse.FanGame.StrategyMap
 {
-    public class CharacterSupport : CharacterAction
+    public class SupportAction : CharacterAction
     {
         System.Predicate<MapCharacter> allyPredicate_;
 
         List<MapCharacter> allies_ = new List<MapCharacter>();
+
+        // Set through the inspector
+        public Support support_;
 
         protected override void Awake()
         {
@@ -22,6 +26,13 @@ namespace StevenUniverse.FanGame.StrategyMap
                 //&& actor_.Data.SupportInfos.Contains( other )
                 ;
             };
+            
+            support_.Dialog = SupportLoader.ImportSupport("Righty_Lefty_C");
+        }
+
+        public override void Execute()
+        {
+            support_.gameObject.SetActive(true);
         }
 
         public override bool IsUsable()
