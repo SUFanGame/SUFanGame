@@ -18,8 +18,8 @@ namespace StevenUniverse.FanGameEditor.Wizards
         [SerializeField] private bool applyAnimationSpriteNames = false;
         [SerializeField] private bool applySyncAnimation = false;
         [SerializeField] private bool applySecondsPerFrame = false;
-        [SerializeField] private bool applyTileModeName = false;
-        [SerializeField] private bool applyTileLayerName = false;
+        [SerializeField] private bool applyTileMode = false;
+        [SerializeField] private bool applyTileLayer = false;
         [SerializeField] private bool applyIsGrounded = false;
         [SerializeField] private bool applyUsableIndividually = false;
 
@@ -74,13 +74,13 @@ namespace StevenUniverse.FanGameEditor.Wizards
                 {
                     instanceTemplate.SecondsPerFrame = template.SecondsPerFrame;
                 }
-                if (applyTileModeName)
+                if (applyTileMode)
                 {
-                    instanceTemplate.TileModeName = template.TileModeName;
+                    instanceTemplate.TileMode = template.TileMode;
                 }
-                if (applyTileLayerName)
+                if (applyTileLayer)
                 {
-                    instanceTemplate.TileLayerName = template.TileLayerName;
+                    instanceTemplate.TileLayer = template.TileLayer;
                 }
                 if (applyIsGrounded)
                 {
@@ -110,8 +110,8 @@ namespace StevenUniverse.FanGameEditor.Wizards
                 applyAnimationSpriteNames = true;
                 applySyncAnimation = true;
                 applySecondsPerFrame = true;
-                applyTileModeName = true;
-                applyTileLayerName = true;
+                applyTileMode = true;
+                applyTileLayer = true;
                 applyIsGrounded = true;
                 applyUsableIndividually = true;
             }

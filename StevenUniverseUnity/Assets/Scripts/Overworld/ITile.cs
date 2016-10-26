@@ -1,4 +1,5 @@
-﻿using StevenUniverse.FanGame.StrategyMap;
+﻿using StevenUniverse.FanGame.Overworld.Templates;
+using StevenUniverse.FanGame.StrategyMap;
 using UnityEngine;
 
 namespace StevenUniverse.FanGame.Overworld
@@ -19,7 +20,7 @@ namespace StevenUniverse.FanGame.Overworld
         /// </summary>
         int SortingOrder { get; }
 
-        string TileModeName { get; }
+        TileTemplate.Mode TileMode { get; }
 
         bool IsGrounded { get; }
     }

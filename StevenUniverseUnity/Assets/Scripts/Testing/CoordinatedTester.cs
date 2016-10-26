@@ -5,6 +5,7 @@ using StevenUniverse.FanGame.Overworld;
 using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGame.StrategyMap;
 using System;
+using StevenUniverse.FanGame.Overworld.Templates;
 
 public class CoordinatedTester : MonoBehaviour 
 {
@@ -35,7 +36,7 @@ public class CoordinatedTester : MonoBehaviour
             get; set;
         }
 
-        public string TileModeName
+        public TileTemplate.Mode TileMode
         {
             get; set;
         }

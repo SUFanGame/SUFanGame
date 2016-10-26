@@ -8,8 +8,8 @@
     ],
     "syncAnimation": true,
     "secondsPerFrame": 0.15000000596046449,
-    "tileModeName": "Surface",
-    "tileLayerName": "Water",
     "isGrounded": true,
-    "usableIndividually": true
+    "usableIndividually": true,
+    "tileMode": 1,
+    "tileLayer": 0
 }

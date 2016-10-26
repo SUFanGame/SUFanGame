@@ -42,7 +42,7 @@ namespace StevenUniverse.FanGameEditor.Tools
                 else
                 {
                     //Create and save the initial Json TileTemplate
-                    TileTemplate createdTileTemplate = new TileTemplate(new Sprite[0], false, 0f, "Normal", "Main", false, false);
+                    TileTemplate createdTileTemplate = new TileTemplate(new Sprite[0], false, 0f, TileTemplate.Mode.Normal, TileTemplate.Layer.Main, false, false);
 
                     string createdTileTemplateAppDataPath =
                         Utilities.ConvertAbsolutePathToAppDataPath(jsonOutputAbsolutePath);

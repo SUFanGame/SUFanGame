@@ -8,8 +8,8 @@
     ],
     "syncAnimation": true,
     "secondsPerFrame": 0.25,
-    "tileModeName": "Normal",
-    "tileLayerName": "Main",
     "isGrounded": true,
-    "usableIndividually": true
+    "usableIndividually": true,
+    "tileMode": 0,
+    "tileLayer": 4
 }

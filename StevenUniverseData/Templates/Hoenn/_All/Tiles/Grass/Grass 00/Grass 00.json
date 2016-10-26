@@ -5,8 +5,8 @@
     ],
     "syncAnimation": false,
     "secondsPerFrame": 0.0,
-    "tileModeName": "Surface",
-    "tileLayerName": "Ground",
     "isGrounded": true,
-    "usableIndividually": true
+    "usableIndividually": true,
+    "tileMode": 1,
+    "tileLayer": 2
 }

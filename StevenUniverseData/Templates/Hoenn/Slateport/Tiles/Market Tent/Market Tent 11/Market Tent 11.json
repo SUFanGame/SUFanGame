@@ -5,8 +5,8 @@
     ],
     "syncAnimation": false,
     "secondsPerFrame": 0.0,
-    "tileModeName": "Normal",
-    "tileLayerName": "GroundOverlay",
     "isGrounded": true,
-    "usableIndividually": false
+    "usableIndividually": false,
+    "tileMode": 0,
+    "tileLayer": 3
 }

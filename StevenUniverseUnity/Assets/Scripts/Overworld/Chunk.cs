@@ -5,6 +5,7 @@ using UnityEngine;
 using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGame.Util;
 using StevenUniverse.FanGame.StrategyMap;
+using StevenUniverse.FanGame.Overworld.Templates;
 
 namespace StevenUniverse.FanGame.Overworld
 {
@@ -308,7 +309,7 @@ namespace StevenUniverse.FanGame.Overworld
         {
             TileInstance[] tilesInDrawingOrder =
                 tileInstances.OrderBy(tile => tile.Elevation)
-                    .ThenBy(tile => (tile.TileTemplate).TileLayer.SortingValue)
+                    .ThenBy(tile => (tile.TileTemplate).TileLayer.GetSortingValue())
                     .ToArray();
 
             int textureWidth = (Mathf.Abs(Max.x - Min.x) + 1)*PIXELS_PER_TILE;

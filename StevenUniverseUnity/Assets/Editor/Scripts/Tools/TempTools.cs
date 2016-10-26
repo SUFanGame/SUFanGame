@@ -158,9 +158,6 @@ namespace StevenUniverse.FanGameEditor.Tools
                 progress += 1/(float) jsonAbsolutePaths.Length;
             }
 
-            //This is used to find out which tile templates are exclusively used by tile groups
-            List<string> tileTemplateAppDataPathsNotUsableIndividually = new List<string>();
-
             //Reset the progress
             progress = 0f;
             //Reformat group templates
@@ -168,19 +165,9 @@ namespace StevenUniverse.FanGameEditor.Tools
             {
                 EditorUtility.DisplayProgressBar("Refactoring GroupTemplate json files", groupTemplateAppDataPath, progress);
 
-                GroupTemplate loadedGroupTemplate = GroupTemplate.GetGroupTemplate(groupTemplateAppDataPath);
+                //GroupTemplate loadedGroupTemplate = GroupTemplate.GetGroupTemplate(groupTemplateAppDataPath);
                 //loadedGroupTemplate.SerializedType = typeof(GroupTemplate).Name;
                 //loadedGroupTemplate.Save();
-
-                foreach (TileInstance childTileInstance in loadedGroupTemplate.TileInstances)
-                {
-                    string childTileTemplateAppDataPath = childTileInstance.TemplateAppDataPath;
-
-                    if (!tileTemplateAppDataPathsNotUsableIndividually.Contains(childTileTemplateAppDataPath))
-                    {
-                        tileTemplateAppDataPathsNotUsableIndividually.Add(childTileTemplateAppDataPath);
-                    }
-                }
 
                 progress += 1 / (float)groupTemplateAppDataPaths.Count;
             }
@@ -208,7 +195,8 @@ namespace StevenUniverse.FanGameEditor.Tools
 
                 TileTemplate loadedTileTemplate = TileTemplate.GetTileTemplate(tileTemplateAppDataPath);
                 //loadedTileTemplate.SerializedType = typeof(TileTemplate).Name;
-                loadedTileTemplate.UsableIndividually = !tileTemplateAppDataPathsNotUsableIndividually.Contains(tileTemplateAppDataPath);
+                //loadedTileTemplate.TileMode = (TileTemplate.Mode)System.Enum.Parse(typeof(TileTemplate.Mode), loadedTileTemplate.TileModeName);
+                //loadedTileTemplate.TileLayer = (TileTemplate.Layer)System.Enum.Parse(typeof(TileTemplate.Layer), loadedTileTemplate.TileLayerName);
 
                 loadedTileTemplate.Save();
 

@@ -5,7 +5,7 @@ using StevenUniverse.FanGame.Overworld.Templates;
 namespace StevenUniverse.FanGame.Overworld.Instances
 {
     [System.Serializable]
-    public class TileInstance : Instance, System.IEquatable<TileInstance>, System.IComparable<TileInstance>
+    public class TileInstance : Instance, ITile, System.IEquatable<TileInstance>, System.IComparable<TileInstance>
     {
 
         public TileInstance( Template template, IntVector2 position, int elevation ) : this( template, position.x, position.y, elevation )
@@ -30,24 +30,34 @@ namespace StevenUniverse.FanGame.Overworld.Instances
 
         public int TemplateSortingOrder
         {
-            get { return this.TileTemplate.TileLayer.SortingValue; }
+            get { return this.TileTemplate.TileLayer.GetSortingValue(); }
         }
 
-        private int InstanceSortingOrder
+        public int SortingOrder
         {
-            get { return Elevation*100 + TileTemplate.TileLayer.SortingValue; }
+            get { return Elevation*100 + TileTemplate.TileLayer.GetSortingValue(); }
+        }
+
+        public TileTemplate.Mode TileMode
+        {
+            get { return TileTemplate.TileMode; }
+        }
+
+        public bool IsGrounded
+        {
+            get { return TileTemplate.IsGrounded; }
         }
 
         public bool Equals(TileInstance other)
         {
             //Two tiles are equal if they both have the same position and InstanceSortingOrder
-            return (this.Position == other.Position && this.InstanceSortingOrder == other.InstanceSortingOrder);
+            return (this.Position == other.Position && this.SortingOrder == other.SortingOrder);
         }
 
         public int CompareTo(TileInstance other)
         {
             //Return the comparison of the SortingOrder values
-            return InstanceSortingOrder.CompareTo(other.InstanceSortingOrder);
+            return SortingOrder.CompareTo(other.SortingOrder);
         }
 
         public bool IsAbove(TileInstance other)

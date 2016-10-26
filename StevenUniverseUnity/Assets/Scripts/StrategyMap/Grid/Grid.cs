@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using StevenUniverse.FanGame.Util.Collections;
 using StevenUniverse.FanGame.Overworld;
 using System.Linq;
+using StevenUniverse.FanGame.Overworld.Templates;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -196,16 +197,16 @@ namespace StevenUniverse.FanGame.StrategyMap
                         // All tiles in this group share the same elevation, and are in descending order (high to low)
                         foreach( var tile in elevationGroup )
                         {
-                            var mode = tile.TileModeName;
+                            TileTemplate.Mode mode = tile.TileMode;
 
                             // Ignore "normal" tiles
-                            if (mode == "Normal")
+                            if (mode == TileTemplate.Mode.Normal)
                                 continue;
 
                             // A tile is only pathable if previous tiles in this node are NOT collidable
-                            if( !collidable && (mode == "Transitional" || mode == "Surface") )
+                            if( !collidable && (mode == TileTemplate.Mode.Transitional || mode == TileTemplate.Mode.Surface) )
                             {
-                                if (mode == "Transitional")
+                                if (mode == TileTemplate.Mode.Transitional)
                                     transitional = true;
                                 pathable = true;
                             }
@@ -214,7 +215,7 @@ namespace StevenUniverse.FanGame.StrategyMap
                             // being pathable. This allows for things like rocks to sit on top of pathable
                             // tiles (at the same elevation), preventing pathability, while a bridge could sit on top of an unpathable
                             // cliff tile (at the same elevation) but still be pathable.
-                            if ( mode == "Collidable" )
+                            if ( mode == TileTemplate.Mode.Collidable)
                             {
                                 collidable = true;
                             }

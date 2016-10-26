@@ -1,18 +1,9 @@
 ﻿namespace StevenUniverse.FanGame.Util
 {
-    public class Gender : EnhancedEnum<Gender>
+    public enum Gender
     {
-        //Instance
-        private Gender(string name) : base(name)
-        {
-        }
-
-        //Static Instances
-        static Gender()
-        {
-            Add(new Gender("None"));
-            Add(new Gender("Male"));
-            Add(new Gender("Female"));
-        }
+        None,
+        Male,
+        Female
     }
 }

@@ -6,9 +6,6 @@ namespace StevenUniverse.FanGame.Characters
     [System.Serializable]
     class CharacterMapData : MonoBehaviour
     {
-
-        [SerializeField]
-        private string stateName; //State, needs to be reworked
         [SerializeField]
         private State currentState; //Current State
 
@@ -23,6 +20,8 @@ namespace StevenUniverse.FanGame.Characters
         private int elevation;
         [SerializeField]
         private string directionName;
+        [SerializeField]
+        private Direction direction;
 
         //Events
         public delegate void GenericEventHandler();
@@ -55,25 +54,9 @@ namespace StevenUniverse.FanGame.Characters
             set { elevation = value; }
         }
 
-        //State
-        public string StateName
-        {
-            get { return stateName; }
-            set { stateName = value; }
-        }
-
         public State CurrentState
         {
-            get { return State.Get(StateName); }
-            set
-            {
-                string lastStateName = StateName;
-                StateName = value.Name;
-                if (lastStateName != StateName && OnStateChange != null)
-                {
-                    OnStateChange();
-                }
-            }
+            get { return currentState; } set { currentState = value; }
         }
 
         //Direction
@@ -85,12 +68,12 @@ namespace StevenUniverse.FanGame.Characters
 
         public Direction CurrentDirection
         {
-            get { return Direction.Get(DirectionName); }
+            get { return direction; }
             set
             {
-                string lastDirectionName = DirectionName;
-                DirectionName = value.Name;
-                if (lastDirectionName != DirectionName && OnDirectionChange != null)
+                Direction lastDirection = direction;
+                direction = value;
+                if (lastDirection != CurrentDirection && OnDirectionChange != null)
                 {
                     OnDirectionChange();
                 }
@@ -99,34 +82,10 @@ namespace StevenUniverse.FanGame.Characters
     }
 
     //TO-DO rework this
-    public class State : EnhancedEnum<State>
+    public enum State
     {
-        //Instance
-        private State(string name) : base(name)
-        {
-        }
-
-        //Static Instances
-        static State()
-        {
-            Add(new State("Standing"));
-            Add(new State("Walking"));
-            Add(new State("Running"));
-        }
-
-        public static State Standing
-        {
-            get { return Get("Standing"); }
-        }
-
-        public static State Walking
-        {
-            get { return Get("Walking"); }
-        }
-
-        public static State Running
-        {
-            get { return Get("Running"); }
-        }
+        Standing,
+        Walking,
+        Running
     }
 }

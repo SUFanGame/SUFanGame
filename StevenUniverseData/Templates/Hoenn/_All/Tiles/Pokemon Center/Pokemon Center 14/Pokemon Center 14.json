@@ -5,8 +5,8 @@
     ],
     "syncAnimation": false,
     "secondsPerFrame": 0.0,
-    "tileModeName": "Collidable",
-    "tileLayerName": "Main",
     "isGrounded": false,
-    "usableIndividually": false
+    "usableIndividually": false,
+    "tileMode": 3,
+    "tileLayer": 4
 }

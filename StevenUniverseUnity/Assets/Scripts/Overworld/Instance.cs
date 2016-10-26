@@ -5,7 +5,7 @@ using UnityEngine;
 namespace StevenUniverse.FanGame.Overworld
 {
     [System.Serializable]
-    public class Instance : ITile
+    public class Instance
     {
         [SerializeField] private string templateAppDataPath;
         [SerializeField] private int x;
@@ -52,21 +52,6 @@ namespace StevenUniverse.FanGame.Overworld
         {
             get { return elevation; }
             set { elevation = value; }
-        }
-
-        public int SortingOrder
-        {
-            get { return template.TileLayer.SortingValue; }
-        }
-
-        public string TileModeName
-        {
-            get { return template.TileModeName; }
-        }
-
-        public bool IsGrounded
-        {
-            get { return template.IsGrounded; }
         }
 
         public T GetTemplate<T>() where T : Template

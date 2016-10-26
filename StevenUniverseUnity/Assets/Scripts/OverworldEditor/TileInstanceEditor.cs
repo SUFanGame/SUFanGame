@@ -56,7 +56,7 @@ namespace StevenUniverse.FanGame.OverworldEditor
         public void UpdateSortingOrder()
         {
             GetComponent<SpriteRenderer>().sortingOrder = (GlobalElevation*100) +
-                                                          (TileInstance.TileTemplate).TileLayer.SortingValue;
+                                                          (TileInstance.TileTemplate).TileLayer.GetSortingValue();
         }
     }
 }

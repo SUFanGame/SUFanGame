@@ -15,13 +15,20 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         }
 
         //Instance
-        [SerializeField] private string[] animationSpriteNames;
-        [SerializeField] private bool syncAnimation;
-        [SerializeField] private float secondsPerFrame;
-        [SerializeField] private string tileModeName;
-        [SerializeField] private string tileLayerName;
-        [SerializeField] private bool isGrounded;
-        [SerializeField] private bool usableIndividually;
+        [SerializeField]
+        private string[] animationSpriteNames;
+        [SerializeField]
+        private bool syncAnimation;
+        [SerializeField]
+        private float secondsPerFrame;
+        [SerializeField]
+        private bool isGrounded;
+        [SerializeField]
+        private bool usableIndividually;
+        [SerializeField]
+        private Mode tileMode;
+        [SerializeField]
+        private Layer tileLayer;
 
         private Sprite[] animationSprites = new Sprite[0];
 
@@ -31,8 +38,8 @@ namespace StevenUniverse.FanGame.Overworld.Templates
             Sprite[] animationSprites,
             bool syncAnimation,
             float secondsPerFrame,
-            string tileModeName,
-            string tileLayerName,
+            Mode tileMode,
+            Layer tileLayer,
             bool isGrounded,
             bool usableIndividually
         ) : base()
@@ -41,8 +48,8 @@ namespace StevenUniverse.FanGame.Overworld.Templates
 
             SyncAnimation = syncAnimation;
             SecondsPerFrame = secondsPerFrame;
-            TileModeName = tileModeName;
-            TileLayerName = tileLayerName;
+            TileMode = tileMode;
+            TileLayer = tileLayer;
             IsGrounded = isGrounded;
             UsableIndividually = usableIndividually;
         }
@@ -86,12 +93,6 @@ namespace StevenUniverse.FanGame.Overworld.Templates
             set { syncAnimation = value; }
         }
 
-        public string TileLayerName
-        {
-            get { return tileLayerName; }
-            set { tileLayerName = value; }
-        }
-
         public bool UsableIndividually
         {
             get { return usableIndividually; }
@@ -133,62 +134,54 @@ namespace StevenUniverse.FanGame.Overworld.Templates
 
         public Mode TileMode
         {
-            get { return Mode.Get(tileModeName); }
+            get { return tileMode; }
+            set { tileMode = value; }
         }
 
-
-        public class Mode : EnhancedEnum<Mode>
+        public Layer TileLayer
         {
-            //Instance
-            private Mode(string name) : base(name)
-            {
-            }
-
-            //Static Instances
-            static Mode()
-            {
-                Add(new Mode("Normal"));
-                Add(new Mode("Surface"));
-                Add(new Mode("Transitional"));
-                Add(new Mode("Collidable"));
-            }
+            get { return tileLayer; }
+            set { tileLayer = value; }
         }
-        
-        public class Layer : EnhancedEnum<Layer>
+
+        public bool IsGrounded
         {
-            //Instance
-            private int sortingValue;
+            get { return isGrounded; }
+            set { isGrounded = value; }
+        }
 
-            //Constructor
-            private Layer(string name, int sortingValue) : base(name)
-            {
-                this.sortingValue = sortingValue;
-            }
+        public enum Mode
+        {
+            Normal,
+            Surface,
+            Transitional,
+            Collidable
+        }
 
-            //Properties
-            public int SortingValue
-            {
-                get { return sortingValue; }
-            }
+        public enum Layer
+        {
+            Water,
+            WaterOverlay,
+            Ground,
+            GroundOverlay,
+            Main,
+            CharacterBody,
+            CharacterFace,
+            CharacterHair,
+            CharacterShoes,
+            CharacterPants,
+            CharacterShirt,
+            CharacterAccessory,
+            CharacterHat,
+            Foreground
+        }
+    }
 
-            //Static Instances
-            static Layer()
-            {
-                Add(new Layer("Water", 0));
-                Add(new Layer("WaterOverlay", 1));
-                Add(new Layer("Ground", 2));
-                Add(new Layer("GroundOverlay", 3));
-                Add(new Layer("Main", 4));
-                Add(new Layer("CharacterBody", 5));
-                Add(new Layer("CharacterFace", 6));
-                Add(new Layer("CharacterHair", 7));
-                Add(new Layer("CharacterShoes", 8));
-                Add(new Layer("CharacterPants", 9));
-                Add(new Layer("CharacterShirt", 10));
-                Add(new Layer("CharacterAccessory", 11));
-                Add(new Layer("CharacterHat", 12));
-                Add(new Layer("Foreground", 13));
-            }
+    public static class LayerExtensions
+    {
+        public static int GetSortingValue(this TileTemplate.Layer tileLayer)
+        {
+            return (int)tileLayer;
         }
     }
 }
