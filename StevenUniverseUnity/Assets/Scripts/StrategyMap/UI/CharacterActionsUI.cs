@@ -23,7 +23,7 @@ namespace StevenUniverse.FanGame.StrategyMap.UI
         /// </summary>
         static List<CharacterAction> actionsBuffer_ = new List<CharacterAction>();
 
-        static List<Button> actionButtons_ = new List<Button>();
+        //static List<Button> actionButtons_ = new List<Button>();
 
         public static CharacterActionsUI Instance { get; private set; }
 

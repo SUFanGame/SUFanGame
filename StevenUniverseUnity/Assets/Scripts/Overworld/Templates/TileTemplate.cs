@@ -15,21 +15,14 @@ namespace StevenUniverse.FanGame.Overworld.Templates
         }
 
         //Instance
-        [SerializeField]
-        private string[] animationSpriteNames;
-        [SerializeField]
-        private bool syncAnimation;
-        [SerializeField]
-        private float secondsPerFrame;
-        [SerializeField]
-        private bool isGrounded;
-        [SerializeField]
-        private bool usableIndividually;
-        [SerializeField]
-        private Mode tileMode;
-        [SerializeField]
-        private Layer tileLayer;
-
+        [SerializeField] private string[] animationSpriteNames;
+        [SerializeField] private bool syncAnimation;
+        [SerializeField] private float secondsPerFrame;
+        [SerializeField] private bool usableIndividually;
+        [SerializeField] private Mode tileMode;
+        [SerializeField] private Layer tileLayer;
+        [SerializeField] private bool isGrounded;
+		
         private Sprite[] animationSprites = new Sprite[0];
 
         //Constructor for on-the-fly TileTemplate creation
@@ -134,8 +127,8 @@ namespace StevenUniverse.FanGame.Overworld.Templates
 
         public Mode TileMode
         {
-            get { return tileMode; }
-            set { tileMode = value; }
+            get { return tileMode;}
+            set {   tileMode = value;  }
         }
 
         public Layer TileLayer

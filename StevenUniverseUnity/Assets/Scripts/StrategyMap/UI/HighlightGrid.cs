@@ -22,12 +22,12 @@ public class HighlightGrid : MonoBehaviour
 
     static Dictionary<IntVector2, HighlighObject> positionMap_ = new Dictionary<IntVector2, HighlighObject>();
 
-    Grid grid_;
+    //Grid grid_;
 
     void Awake()
     {
         Instance = this;
-        grid_ = GameObject.FindObjectOfType<Grid>();
+        //grid_ = GameObject.FindObjectOfType<Grid>();
     }
 
     /// <summary>

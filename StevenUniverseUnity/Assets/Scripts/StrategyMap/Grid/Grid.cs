@@ -11,10 +11,10 @@ namespace StevenUniverse.FanGame.StrategyMap
 
     public class Grid : MonoBehaviour
     {
-        TileMap<ITile> tileMap_ = null;
+        //TileMap<ITile> tileMap_ = null;
 
         // Dictionary mapping nodes to their 3D position ( x, y, elevation )
-        Dictionary<IntVector3, Node> dict_ = new Dictionary<IntVector3, Node>();
+        Dictionary<IntVector3, Node> nodeDict_ = new Dictionary<IntVector3, Node>();
 
         // Dictionary mapping each 2D position to the highest walkable node in that position.
         Dictionary<IntVector2, int> heightMap_ = new Dictionary<IntVector2, int>();
@@ -49,7 +49,7 @@ namespace StevenUniverse.FanGame.StrategyMap
         public Node GetNode( IntVector3 pos )
         {
             Node n;
-            dict_.TryGetValue(pos, out n);
+            nodeDict_.TryGetValue(pos, out n);
             return n;
         }
 
@@ -64,6 +64,27 @@ namespace StevenUniverse.FanGame.StrategyMap
             return height;
         }
 
+        /// <summary>
+        /// Populate the given buffer with any objects of type t that are at the given position.
+        /// </summary>
+        public void GetObjects<T>( IntVector3 pos, List<T> buffer ) where T : MonoBehaviour
+        {
+            var node = GetNode(pos);
+
+            if (node == null)
+                return;
+
+            var list = node.Objects;
+
+            if( list != null )
+            {
+                for( int i = 0; i < list.Count; ++i )
+                {
+                    if (list[i] is T)
+                        buffer.Add((T)list[i]);
+                }
+            }
+        }
 
         /// <summary>
         /// Populates the path buffer with all nodes in the given range starting from the given point with the given movement type.
@@ -148,7 +169,7 @@ namespace StevenUniverse.FanGame.StrategyMap
         /// </summary>
         public IEnumerator BuildGrid( TileMap<ITile> tiles )
         {
-            tileMap_ = tiles;
+            //tileMap_ = tiles;
             var min = tiles.Min;
             var max = tiles.Max;
 
@@ -232,7 +253,7 @@ namespace StevenUniverse.FanGame.StrategyMap
                         {
                             var pos = new IntVector3(x, y, elevation);
                             Node.PathType pathType = transitional ? Node.PathType.Transitional : Node.PathType.Surface;
-                            dict_.Add(pos, new Node(pos, pathType));
+                            nodeDict_.Add(pos, new Node(pos, pathType));
 
                             IntVector2 pos2D = new IntVector2(x, y);
 
@@ -262,7 +283,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             // for ground units. If units can fly we'll need to modify things a bit - push
             // connection forming out to when pathfinding is actually called or model a second set of node adjacency data
             // to account for flying units
-            foreach( var pair in dict_ )
+            foreach( var pair in nodeDict_ )
             {
                 var node = pair.Value;
                 var pos = node.Pos_;
