@@ -39,6 +39,7 @@ namespace StevenUniverse.FanGame.StrategyMap.UI
         public static void Show( MapCharacter character )
         {
             actionsBuffer_.Clear();
+            ClearButtons();
             character.GetActions(actionsBuffer_);
 
             if( actionsBuffer_.Count == 0 )
@@ -76,12 +77,16 @@ namespace StevenUniverse.FanGame.StrategyMap.UI
         {
             canvasGroup_.alpha = 0;
             canvasGroup_.blocksRaycasts = false;
+        }
+
+        static void ClearButtons()
+        {
 
             var buttons = Instance.GetComponentsInChildren<Button>();
-            
-            if( buttons != null )
+
+            if (buttons != null)
             {
-                foreach( var button in buttons )
+                foreach (var button in buttons)
                 {
                     Destroy(button.gameObject);
                 }

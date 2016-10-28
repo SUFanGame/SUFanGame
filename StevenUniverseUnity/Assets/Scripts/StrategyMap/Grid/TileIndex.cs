@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using StevenUniverse.FanGame.Overworld.Templates;
 using StevenUniverse.FanGame.StrategyMap;
 
@@ -38,14 +38,14 @@ public struct TileIndex : System.IEquatable<TileIndex>
     /// </summary>
     public int Layer { get { return layer_; } }
 
-    public TileIndex( IntVector2 pos, int elevation, TileTemplate.Layer layer ) : this( pos, elevation, layer.GetSortingValue() )
+    public TileIndex( IntVector2 pos, int elevation, TileTemplate.Layer layer ) : this( pos, elevation, (int)layer )
     {}
 
     public TileIndex(IntVector2 pos, int elevation, int layer) : this( pos.x, pos.y, elevation, layer )
     {}
 
 
-    public TileIndex( int x, int y, int elevation, TileTemplate.Layer layer ) : this( x, y, elevation, layer.GetSortingValue())
+    public TileIndex( int x, int y, int elevation, TileTemplate.Layer layer ) : this( x, y, elevation, (int)layer )
     {}
 
     public TileIndex( int x, int y, int elevation, int layer )
