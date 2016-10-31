@@ -149,6 +149,21 @@ namespace StevenUniverse.FanGame.StrategyMap
             MOVING,
             IDLE,
         };
+
+        public IEnumerator MoveTo( IntVector3 end )
+        {
+            float startTime = Time.time;
+            float dist = Vector3.Distance(transform.position, (Vector3)end );
+            var start = transform.position;
+
+            while ( transform.position != (Vector3)end )
+            {
+                float distCovered = (Time.time - startTime) * tilesMovedPerSecond_;
+                float t = distCovered / dist; 
+                transform.position = Vector3.Lerp(start, (Vector3)end, t);
+                yield return null;
+            }
+        }
     }
 
 }
