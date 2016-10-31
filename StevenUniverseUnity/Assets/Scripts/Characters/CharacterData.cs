@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using StevenUniverse.FanGame.Data;
 using StevenUniverse.FanGame.Characters.Customization;
 using StevenUniverse.FanGame.Util;
 using StevenUniverse.FanGame.Factions;
+using StevenUniverse.FanGame.Items;
 
 namespace StevenUniverse.FanGame.Characters
 {
@@ -16,9 +18,9 @@ namespace StevenUniverse.FanGame.Characters
         [SerializeField]
         private string characterName; //Name
         [SerializeField]
-        private Faction faction;
+        private Faction faction; //What team?
         [SerializeField]
-        private HeldItems items; //WILDCATS
+        private List<Item> heldItems; //WILDCATS
         [SerializeField]
         private Skill[] skills; //All available skills
         [SerializeField]
@@ -26,26 +28,20 @@ namespace StevenUniverse.FanGame.Characters
         [SerializeField]
         private SupportInfo[] supportInfos;
         
-        //Unchanged from original Entity, consider changing
-        //[SerializeField]
-        //private Outfit outfit; // TO-DO change to all graphical stuff
         [SerializeField]
         private SaveData savedData;
 
         public CharacterData(  
             string characterName,
-            string affiliation, 
-            //Outfit startingOutfit,
+            string affiliation,
             SaveData saveData
             )
         {
             this.characterName = characterName;
             this.faction = (Faction)System.Enum.Parse(typeof(Faction), affiliation, true );
-            //this.outfit = startingOutfit;
             this.savedData = saveData;
 
             // All other data parameters may want to be loaded from SaveData at instantiation.
-            // This particular class as-is is meant for in-map character entities but could be further abstracted
         }
 
 
@@ -64,10 +60,10 @@ namespace StevenUniverse.FanGame.Characters
         }
 
         //Held items
-        public HeldItems Items
+        public List<Item> HeldItems
         {
-            get { return items; }
-            set { items = value; }
+            get { return heldItems; }
+            set { heldItems = value; }
         }
         
         //Skills available
@@ -83,22 +79,13 @@ namespace StevenUniverse.FanGame.Characters
             get { return stats; }
             set { stats = value; }
         }
-
-
+    
         public SaveData SavedData
         {
             get { return savedData; }
             set { savedData = value; }
         }
-
         
-        //Outfit
-        //public Outfit Outfit
-        //{
-        //    get { return outfit; }
-        //    set { outfit = value; }
-        //}
-
         public SupportInfo[] SupportInfos
         {
             get { return supportInfos; }
