@@ -68,7 +68,8 @@ namespace StevenUniverse.FanGame.StrategyMap
         {
             var cam = GameObject.FindObjectOfType<SmoothCamera>();
             cam.follow_ = true;
-            yield return CharacterUtility.MoveTo( actor_, cursorPos, path_ );
+            //yield return CharacterUtility.MoveTo( actor_, cursorPos, path_ );
+            yield return CharacterUtility.MoveTo( actor_, cursorPos );
             cam.follow_ = false;
         }
         

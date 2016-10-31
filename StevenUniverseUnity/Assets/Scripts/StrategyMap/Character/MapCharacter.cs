@@ -136,6 +136,14 @@ namespace StevenUniverse.FanGame.StrategyMap
             renderer_.sortingOrder = GridPosition.z * 100 + 90;
         }
 
+        public void UpdateSortingOrder(int newZ )
+        {
+            var pos = transform.position;
+            pos.z = newZ;
+            transform.position = pos;
+            UpdateSortingOrder();
+        }
+
         public void OnDeselect(BaseEventData eventData)
         {
             HighlightGrid.Clear();
@@ -150,11 +158,21 @@ namespace StevenUniverse.FanGame.StrategyMap
             IDLE,
         };
 
+        /// <summary>
+        /// Coroutine that moves the character smoothly from it's current position to the 
+        /// given position. Speed determined by <see cref="tilesMovedPerSecond_"/>
+        /// </summary>
+        /// <param name="end">Where the character will end up.</param>
         public IEnumerator MoveTo( IntVector3 end )
         {
             float startTime = Time.time;
             float dist = Vector3.Distance(transform.position, (Vector3)end );
             var start = transform.position;
+
+            if (end.z > start.z)
+            {
+                UpdateSortingOrder(end.z);
+            }
 
             while ( transform.position != (Vector3)end )
             {
@@ -162,6 +180,11 @@ namespace StevenUniverse.FanGame.StrategyMap
                 float t = distCovered / dist; 
                 transform.position = Vector3.Lerp(start, (Vector3)end, t);
                 yield return null;
+            }
+
+            if( end.z < start.z )
+            {
+                UpdateSortingOrder(end.z);
             }
         }
     }

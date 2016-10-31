@@ -266,6 +266,8 @@ namespace StevenUniverse.FanGame.StrategyMap
                 buffer.Add(pNode);
                 cameFrom.TryGetValue(pNode, out pNode);
             }
+
+            buffer.Reverse();
         }
 
         //void OnDrawGizmosSelected()
