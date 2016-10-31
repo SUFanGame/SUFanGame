@@ -1,0 +1,31 @@
+{
+	"Items": [{
+		"cameraChange": {
+			"type": "aaaaaaaaaaaaa",
+			"target": "Marth"
+		},
+		"charaAction": [{
+			"type": "Move",
+			"name": "Marth",
+			"newX": 40,
+			"newY": 60
+		}, {
+			"type": "Move",
+			"name": "Archer",
+			"newX": 40,
+			"newY": 50
+		}],
+		"dialogFileName": "marth_rekts_pirate.json",
+		"dontDestroyDialogOnEnd": true
+	},{
+		
+		"charaAction": [{
+			"type": "Dance",
+			"name": "Marth",
+			"newX": 40,
+			"newY": 60
+		}],
+		"dialogFileName": "marth_rekts_pirate.json",
+		"dontDestroyDialogOnEnd": false
+        }]
+}

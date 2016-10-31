@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using StevenUniverse.FanGame.StrategyMap;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -30,7 +27,6 @@ namespace StevenUniverse.FanGame.StrategyMap
         /// Allows actions to be restricted based on certain conditions. If this returns false
         /// an action will not show up when a character is selected.
         /// </summary>
-        /// <returns></returns>
         public virtual bool IsUsable()
         {
             return true;
