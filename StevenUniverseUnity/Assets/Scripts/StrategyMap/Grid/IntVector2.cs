@@ -85,6 +85,16 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
         }
 
+
+        /// <summary>
+        /// The manhattan distance between two points (The positive distance to 
+        /// reach b from a while moving on a four-directional grid)
+        /// </summary>
+        public static int ManhattanDistance(IntVector2 a, IntVector2 b)
+        {
+            return Mathf.Abs(b.x - a.x) + Mathf.Abs(b.y - a.y);
+        }
+
         /// <summary>
         /// Distance from origin to the end of the vector as measured at right angles.
         /// </summary>

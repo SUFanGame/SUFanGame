@@ -8,6 +8,7 @@ using StevenUniverse.FanGame.Overworld.Templates;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
+    // TODO: Cache and reuse collections in pathfinding funcs
 
     public class Grid : MonoBehaviour
     {
@@ -195,6 +196,78 @@ namespace StevenUniverse.FanGame.StrategyMap
                 }
                 
             }
+        }
+
+        /// <summary>
+        /// Estimate of the cost to reach b from a.
+        /// </summary>
+        int Hueristic( IntVector2 a, IntVector2 b )
+        {
+            // Note this is a really shitty hueristic for 3D space,
+            // but probably fine for our uses.
+            return IntVector2.ManhattanDistance(a, b);
+        }
+
+        /// <summary>
+        /// Gets the list of nodes along the path from a to b and populates the givne buffer with them.
+        /// </summary>
+        /// <param name="start">Start position.</param>
+        /// <param name="end">End position.</param>
+        /// <param name="buffer">Buffer to hold the list of nodse. Note this list will be reversed,
+        /// it's assumed to be empty.</param>
+        public void GetPath( IntVector3 start, IntVector3 end, List<Node> buffer, MovementType movementType )
+        {
+            var startNode = GetNode(start);
+            var endNode = GetNode(end);
+
+            if (startNode == null )
+                Debug.LogErrorFormat("Attempting to find path from {0} to {1}, {0} is not a valid node.", start, end );
+            if (endNode == null)
+                Debug.LogErrorFormat("Attempting to find a path from {0} to {1}, {1} is not a valid node", start, end);
+
+            var frontier = new MinPriorityQueue<Node>();
+            var cameFrom = new Dictionary<Node, Node>();
+            var costSoFar = new Dictionary<Node, int>();
+
+            cameFrom[startNode] = null;
+            costSoFar[startNode] = 0;
+
+            frontier.Add(startNode);
+
+            while( frontier.Count != 0 )
+            {
+                var current = frontier.Remove();
+
+                var adjNodes = current.Neighbours_;
+
+                if (adjNodes == null)
+                    continue;
+                
+                for( int i = 0; i < adjNodes.Count; ++i )
+                {
+                    var next = adjNodes[i];
+                    int newCost = costSoFar[current] + next.GetCost(movementType);
+                    // Check if our next node has already been visited - if so we
+                    // check if it's a cheaper alternative on our path
+                    if( !costSoFar.ContainsKey(next) || newCost < costSoFar[next] )
+                    {
+                        costSoFar[next] = newCost;
+                        frontier.Add(next, newCost + Hueristic((IntVector2)next.Pos_, (IntVector2)end));
+                        cameFrom[next] = current;
+                    }
+                }
+                
+            }
+
+            var pNode = endNode;
+
+            while( pNode != null )
+            {
+                buffer.Add(pNode);
+                cameFrom.TryGetValue(pNode, out pNode);
+            }
+
+            buffer.Reverse();
         }
 
         //void OnDrawGizmosSelected()

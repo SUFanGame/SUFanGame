@@ -57,55 +57,21 @@ namespace StevenUniverse.FanGame.StrategyMap
                 var node = grid.GetNode(cursorPos);
                 if( node != null && path_.Contains(node) )
                 {
-
-                    var cam = GameObject.FindObjectOfType<SmoothCamera>();
-                    cam.follow_ = true;
-                    StartCoroutine(MoveTo(cursorPos));
+                    StartCoroutine(MoveFollow(cursorPos));
                 }
 
                 path_.Clear();
             }
         }
 
-        IEnumerator MoveTo(IntVector3 targetPos)
+        IEnumerator MoveFollow( IntVector3 cursorPos )
         {
-            var grid = Grid.Instance;
-
-            grid.RemoveObject(actor_.GridPosition, actor_);
-            //Debug.LogFormat("Moving {0} from {1} to {2}", name, current, pos);
-
-            List<Node> path = new List<Node>();
-            path_.PathPosition(actor_.GridPosition, targetPos, path, grid);
-
-            //string pathString = string.Join("->", path.Select(p => p.Pos_.ToString()).ToArray());
-            //Debug.LogFormat("Path to {0}: {1}", targetPos, pathString );
-
-            for (int i = 0; i < path.Count; ++i)
-            {
-                var next = path[i];
-
-                var gridPos = actor_.GridPosition;
-                gridPos.z = next.Pos_.z;
-                actor_.GridPosition = gridPos;
-
-                actor_.UpdateSortingOrder();
-
-                var dest = (Vector3)next.Pos_;
-
-                float t = 0;
-                while (t <= 1f)
-                {
-                    transform.position = Vector3.Lerp(transform.position, dest, t);
-                    t += Time.deltaTime * actor_.tilesMovedPerSecond_;
-                    yield return null;
-                }
-            }
-
-            grid.AddObject(actor_.GridPosition, actor_);
-            
-            //Debug.LogFormat("Done moving");
-            yield return null;
+            var cam = GameObject.FindObjectOfType<SmoothCamera>();
+            cam.follow_ = true;
+            //yield return CharacterUtility.MoveTo( actor_, cursorPos, path_ );
+            yield return CharacterUtility.MoveTo( actor_, cursorPos );
+            cam.follow_ = false;
         }
-
+        
     }
 }
