@@ -14,16 +14,23 @@
 				"name": "Archer",
 				"newX": 40,
 				"newY": 50
-			},{
-                "type": "EnterMap",
-                "name": "Pirate",
-                "newX": 60,
-                "newY": 60
-                }],
+			}, {
+				"type": "EnterMap",
+				"name": "Pirate",
+				"newX": 60,
+				"newY": 60
+			}],
 
 			"dialogFileName": "marth_rekts_pirate.json",
 			"dontDestroyDialogOnEnd": true
 		},
+        
+        {
+			"cameraChange": {
+				"type": "Follow",
+				"target": "Marth"
+			}
+        },
 
 		{
 			"charaAction": [{

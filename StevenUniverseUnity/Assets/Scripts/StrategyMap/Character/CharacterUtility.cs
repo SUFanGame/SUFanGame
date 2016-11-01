@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using StevenUniverse.FanGame.StrategyMap;
+﻿using System.Collections;
 using System.Collections.Generic;
+using StevenUniverse.FanGame.StrategyMap;
+using StevenUniverse.FanGame;
 
 public static class CharacterUtility
 {
@@ -56,5 +56,27 @@ public static class CharacterUtility
             yield return mapChar.MoveTo(path[i].Pos_);
         }
         grid.AddObject(mapChar.GridPosition, mapChar);
+    }
+
+    /// <summary>
+    /// Scans for characters that are adjacent.
+    /// </summary>
+    /// <param name="actor">Character to conduct scan around.</param>
+    /// <param name="filter">Optional predicate to apply filters.</param>
+    public static List<MapCharacter> ScanForAdjacent(MapCharacter actor, System.Predicate<MapCharacter> filter = null)
+    {
+        List<MapCharacter> adjacentChars = new List<MapCharacter>();
+        var grid = Grid.Instance;
+        var pos = actor.GridPosition;
+        var adjacent = Directions2D.Quadrilateral;
+        
+        for (int i = 0; i < adjacent.Length; ++i)
+        {
+            var adj = pos + adjacent[i];
+
+            grid.GetObjects(adj, adjacentChars, filter);
+        }
+
+        return adjacentChars;
     }
 }

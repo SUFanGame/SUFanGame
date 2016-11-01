@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.IO;
-using StevenUniverse.FanGame.Util;
 using StevenUniverse.FanGame.StrategyMap;
 
 namespace StevenUniverse.FanGame.Interactions
@@ -8,30 +6,37 @@ namespace StevenUniverse.FanGame.Interactions
     //DEBUGGING CLASS, hooks into Marth's "Start Drama" action
     class InteractionTests : CharacterAction
     {
+        public CutsceneRunner cutsceneRunner;
 
         public override void Execute()
         {
-            executeTest1();
+            //cutsceneJsonLoadTest();
+            cutsceneFullTest();
         }
 
-        public void executeTest1()
+        // Test if a json file outputs correctly
+        public void cutsceneJsonLoadTest()
         {
             string cutsceneName = "TestScript1";
 
-            string absolutePath = Utilities.ConvertAssetPathToAbsolutePath("Assets/Resources/Cutscenes/" + cutsceneName + ".json");
-            if (!File.Exists(absolutePath))
-            {
-                throw new UnityException("Cutscene " + cutsceneName + " was not found.");
-            }
-
-            Scene[] parsedScenes = JsonHelper.FromJson<Scene>(File.ReadAllText(absolutePath));
+            Scene[] parsedScenes = CutsceneLoader.ImportCutscene(cutsceneName);
 
             foreach (Scene sce in parsedScenes)
             {
                 Debug.Log(sce.ToString());
                 
             }
+        }
 
+        //Tests if the scene executes
+        public void cutsceneFullTest()
+        {
+            string cutsceneName = "TestScript1";
+
+            Scene[] parsedScenes = CutsceneLoader.ImportCutscene(cutsceneName);
+
+            cutsceneRunner.Cutscene = parsedScenes;
+            cutsceneRunner.gameObject.SetActive(true);
         }
     }
 }

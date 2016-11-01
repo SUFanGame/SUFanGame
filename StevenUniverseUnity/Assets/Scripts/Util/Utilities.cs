@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System;
 using UnityEngine;
 
 namespace StevenUniverse.FanGame.Util
@@ -245,9 +246,9 @@ namespace StevenUniverse.FanGame.Util
         }
 
         //Get objects of type in scene
-        public static T[] GetObjectsInScene<T>() where T : Object
+        public static T[] GetObjectsInScene<T>() where T : UnityEngine.Object
         {
-            return Object.FindObjectsOfType(typeof(T)) as T[];
+            return UnityEngine.Object.FindObjectsOfType(typeof(T)) as T[];
         }
 
         public static int FloorToNearestMultiple(float value, int multiple)
@@ -270,6 +271,35 @@ namespace StevenUniverse.FanGame.Util
                 .Replace("<", replacer)
                 .Replace(">", replacer)
                 .Replace("|", replacer);
+        }
+    }
+
+    /// <summary>
+    /// Helper class to deserialize Array Json. 
+    /// Expected Format: {"Items":[ {...}, {...}, ... ] }
+    /// </summary>
+    public static class JsonHelper
+    {
+
+        public static T[] FromJson<T>(string json)
+        {
+            // Expected Format: {"Items":[ {...}, {...} ] }
+            Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
+            return wrapper.Items;
+        }
+
+        public static string ToJson<T>(T[] array)
+        {
+            // Expected Format: {"Items":[ {...}, {...} ] }
+            Wrapper<T> wrapper = new Wrapper<T>();
+            wrapper.Items = array;
+            return JsonUtility.ToJson(wrapper);
+        }
+
+        [Serializable]
+        private class Wrapper<T>
+        {
+            public T[] Items;
         }
     }
 }
