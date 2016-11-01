@@ -25,17 +25,22 @@ namespace StevenUniverse.FanGame.Interactions
         }
     }
 
-    public static class JsonHelper //Helper class to deserialize Array Json
+    /// <summary>
+    /// Helper class to deserialize Array Json. All values read-only
+    /// </summary>
+    public static class JsonHelper 
     {
 
         public static T[] FromJson<T>(string json)
         {
+            // Expected Format: {"Items":[ {...}, {...} ] }
             Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
             return wrapper.Items;
         }
 
         public static string ToJson<T>(T[] array)
         {
+            // Expected Format: {"Items":[ {...}, {...} ] }
             Wrapper<T> wrapper = new Wrapper<T>();
             wrapper.Items = array;
             return JsonUtility.ToJson(wrapper);
@@ -48,6 +53,9 @@ namespace StevenUniverse.FanGame.Interactions
         }
     }
 
+    /// <summary>
+    /// Individual lines that are used in the Support class.
+    /// </summary>
     [System.Serializable]
     public class ScriptLine
     {
