@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
 using StevenUniverse.FanGame.Util;
+using FullSerializer;
 
 namespace StevenUniverse.FanGame.Interactions
 {
@@ -18,7 +19,7 @@ namespace StevenUniverse.FanGame.Interactions
                 throw new UnityException("Support " + supportName + " was not found.");
             }
 
-            ScriptLine[] parsedLines = JsonHelper.FromJson<ScriptLine>( File.ReadAllText(absolutePath) );
+            ScriptLine[] parsedLines = JsonHelper.Deserialize<ScriptLine>(File.ReadAllText(absolutePath));
 
             return parsedLines;
         }

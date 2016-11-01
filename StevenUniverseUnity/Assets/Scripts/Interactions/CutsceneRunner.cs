@@ -29,17 +29,14 @@ namespace StevenUniverse.FanGame.Interactions
                 //Process the scenes first, they're not loaded into coroutines yet
                 //Cutscenes are loaded dynamically in this way. Unsure about performance with big cutscenes
 
-                //PROBLEM CODE HERE vvvvv
                 if (curScene.CameraChange != null)
                 {
                     //start camera routine
-                    Debug.Log("Started Camera routine");
                     StartCoroutine(ChangeCamera(curScene.CameraChange));
                 }
                 if (curScene.CharaAction != null)
                 {
                     //start character routine
-                    Debug.Log("Started Character routine");
                     foreach (CutsceneCharacterAction act in curScene.CharaAction)
                     {
                         //In this set-up actions are done sequentially and cannot happen simultaneously
@@ -52,7 +49,7 @@ namespace StevenUniverse.FanGame.Interactions
                     Debug.Log("Started dialog: "+curScene.DialogFileName);
 
                     //supportNode.Dialog = SupportLoader.ImportSupport(curScene.DialogFileName);
-                    //supportNode.DontDestroyOnEnd = curScene.DontDestroyDialogOnEnd;
+                    //supportNode.DestroyOnEnd = curScene.DestroyDialogOnEnd;
                     //supportNode.enabled = true;
                 }
 
@@ -65,13 +62,13 @@ namespace StevenUniverse.FanGame.Interactions
 
         public IEnumerator ChangeCamera(CameraChange newCam)
         {
-            switch (newCam.getCamType())
+            switch (newCam.CameraType)
             {
-                case cameraType.FIXED:
-                    Debug.Log("Camera changed to FIXED " + newCam.NewX + "," + newCam.NewY);
+                case cameraType.Fixed:
+                    Debug.Log("Camera changed to Fixed " + newCam.NewX + "," + newCam.NewY);
                     break;
-                case cameraType.FOLLOW:
-                    Debug.Log("Camera changed to FOLLOW "+ newCam.Target);
+                case cameraType.Follow:
+                    Debug.Log("Camera changed to Follow "+ newCam.Target);
                     break;
             }
             yield return null;
@@ -79,18 +76,18 @@ namespace StevenUniverse.FanGame.Interactions
 
         public IEnumerator DoAction(CutsceneCharacterAction act)
         {
-            switch (act.GetActType())
+            switch (act.ActType)
             {
-                case actionType.ATTACK:
+                case actionType.Attack:
                     Debug.Log(act.Name + " attacked " + act.Target);
                     break;
-                case actionType.MOVE:
+                case actionType.Move:
                     Debug.Log(act.Name + " moved to " + act.NewX +"," + act.NewY);
                     break;
-                case actionType.EXITMAP:
+                case actionType.ExitMap:
                     Debug.Log(act.Name + " exited the map");
                     break;
-                case actionType.ENTERMAP:
+                case actionType.EnterMap:
                     Debug.Log(act.Name + " entered the map");
                     break;
             }

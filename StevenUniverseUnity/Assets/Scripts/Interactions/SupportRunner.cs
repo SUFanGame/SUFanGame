@@ -28,12 +28,12 @@ namespace StevenUniverse.FanGame.Interactions
         private Image rightPortrait;
         private GameObject nameplate;
 
-        private bool dontDestroyOnEnd = false; //Dialog destroyed after script is done by default
+        private bool destroyOnEnd = true; //Dialog destroyed after script is done by default
         private bool preservedCanvas = false; //True if the canvas wasn't destroyed so we don't load twice
 
-        public bool DontDestroyOnEnd
+        public bool DestroyOnEnd
         {
-            set { dontDestroyOnEnd = value; }
+            set { destroyOnEnd = value; }
         }
 
 
@@ -103,17 +103,19 @@ namespace StevenUniverse.FanGame.Interactions
                 yield return new WaitWhile(() => !Input.GetKeyDown(KeyCode.Space));
             }
 
-            //Clear the GUI from the screen and return control
-            if (!dontDestroyOnEnd)
+            if (destroyOnEnd)
             {
+                //Clear the GUI from the screen
                 Destroy(newCanvas);
                 preservedCanvas = false;
             }
             else
             {
-                dontDestroyOnEnd = false; //reset to default so we don't leave accident
+                //Leave last line preserved on screen, it will be updated when the next dialog loads
+                destroyOnEnd = true; //reset to default so we don't leave false by accident
                 preservedCanvas = true;
             }
+
             dialog = null; //reset the dialog
 
             gameObject.SetActive(false); //disable itself for next support

@@ -4,6 +4,7 @@
 				"type": "Follow",
 				"target": "Marth"
 			},
+            
 			"charaAction": [{
 				"type": "Move",
 				"name": "Marth",
@@ -22,7 +23,7 @@
 			}],
 
 			"dialogFileName": "marth_rekts_pirate.json",
-			"dontDestroyDialogOnEnd": true
+			"destroyDialogOnEnd": false
 		},
         
         {
@@ -49,6 +50,7 @@
 				"newX": 45,
 				"newY": 65
 			},
+            
 			"charaAction": [{
 				"type": "Move",
 				"name": "Archer",
@@ -57,7 +59,7 @@
 			}],
 
 			"dialogFileName": "archer_is_mad.json",
-			"dontDestroyDialogOnEnd": false
+			"destroyDialogOnEnd": true
 		}
 	]
 }

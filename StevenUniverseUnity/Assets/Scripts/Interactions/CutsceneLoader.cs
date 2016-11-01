@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
 using System;
+using FullSerializer;
 using StevenUniverse.FanGame.Util;
 
 namespace StevenUniverse.FanGame.Interactions
@@ -19,7 +20,7 @@ namespace StevenUniverse.FanGame.Interactions
                 throw new UnityException("Cutscene " + cutsceneName + " was not found.");
             }
             
-            Scene[] parsedLines = JsonHelper.FromJson<Scene>(File.ReadAllText(absolutePath));
+            Scene[] parsedLines = JsonHelper.Deserialize<Scene>(File.ReadAllText(absolutePath));
 
             return parsedLines;
         }
@@ -40,7 +41,7 @@ namespace StevenUniverse.FanGame.Interactions
         [SerializeField]
         private string dialogFileName;
         [SerializeField]
-        private bool dontDestroyDialogOnEnd;
+        private bool destroyDialogOnEnd;
 
         public CameraChange CameraChange
         {
@@ -57,13 +58,17 @@ namespace StevenUniverse.FanGame.Interactions
             get { return dialogFileName; }
             set { dialogFileName = value; }
         }
-        public bool DontDestroyDialogOnEnd
+        public bool DestroyDialogOnEnd
         {
-            get { return dontDestroyDialogOnEnd; }
-            set { dontDestroyDialogOnEnd = value; }
+            get { return destroyDialogOnEnd; }
+            set { destroyDialogOnEnd = value; }
         }
 
-        public Scene()
+        public Scene(
+            CameraChange camChange = null,
+            CutsceneCharacterAction charaAction = null,
+            string dialogFile = null,
+            bool destroyDialog = false)
         {
 
         }
@@ -102,7 +107,7 @@ namespace StevenUniverse.FanGame.Interactions
     public class CameraChange
     {
         [SerializeField]
-        private string type; //Need to get json to cast to enum
+        private cameraType type; //Need to get json to cast to enum
         [SerializeField]
         private string target; //Only FOLLOW has a target
         [SerializeField]
@@ -110,30 +115,30 @@ namespace StevenUniverse.FanGame.Interactions
         [SerializeField]
         private int newY;
         
-        public CameraChange(string type)
+        public CameraChange(cameraType type, string target = null)
         {
             this.type = type;
+            this.target = target;
+            //newX newY needs to be changed
         }
 
         public override string ToString()
         {
-            return type;
+            return type.ToString();
         }
 
-        public cameraType getCamType() {
-            return (cameraType)Enum.Parse(typeof(cameraType), type, true);
-        }
-
-        public string Type
+        public cameraType CameraType
         {
             get { return type; }
             set { type = value; }
         }
+
         public string Target
         {
             get { return target; }
             set { target = value; }
         }
+
         // need to replace?
         public int NewX { get; set; }
         public int NewY { get; set; }
@@ -151,7 +156,7 @@ namespace StevenUniverse.FanGame.Interactions
     public class CutsceneCharacterAction
     {
         [SerializeField]
-        private string type; //needs to be validated as actionType
+        private actionType type; //needs to be validated as actionType
         [SerializeField]
         private string name; //Character that is doing the action
         [SerializeField]
@@ -165,7 +170,7 @@ namespace StevenUniverse.FanGame.Interactions
         [SerializeField]
         private int edgeY;
 
-        public CutsceneCharacterAction(string type, string name)
+        public CutsceneCharacterAction(actionType type, string name)
         {
             this.type = type;
             this.name = name;
@@ -176,26 +181,24 @@ namespace StevenUniverse.FanGame.Interactions
             return name + type;
         }
 
-        public actionType GetActType()
-        {
-            return (actionType)Enum.Parse(typeof(actionType), type, true);
-        }
-
-        public string Type
+        public actionType ActType
         {
             get { return type; }
             set { type = value; }
         }
+
         public string Target
         {
             get { return target; }
             set { target = value; }
         }
+
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
+
         //need to replace?
         public int NewX { get; set; }
         public int NewY { get; set; }
@@ -204,16 +207,16 @@ namespace StevenUniverse.FanGame.Interactions
 
     public enum actionType
     {
-        MOVE,
-        ATTACK,
-        EXITMAP,
-        ENTERMAP,
+        Move,
+        Attack,
+        ExitMap,
+        EnterMap,
     }
 
 
     public enum cameraType
     {
-        FOLLOW,
-        FIXED
+        Follow,
+        Fixed
     }
 }
