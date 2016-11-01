@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.IO;
-using System;
-using FullSerializer;
 using StevenUniverse.FanGame.Util;
 
 namespace StevenUniverse.FanGame.Interactions
@@ -24,7 +22,6 @@ namespace StevenUniverse.FanGame.Interactions
 
             return parsedLines;
         }
-
     }
 
     /// <summary>
@@ -66,11 +63,14 @@ namespace StevenUniverse.FanGame.Interactions
 
         public Scene(
             CameraChange camChange = null,
-            CutsceneCharacterAction charaAction = null,
+            CutsceneCharacterAction[] charaAction = null,
             string dialogFile = null,
             bool destroyDialog = false)
         {
-
+            cameraChange = camChange;
+            this.charaAction = charaAction;
+            dialogFileName = dialogFile;
+            destroyDialogOnEnd = destroyDialog;
         }
 
         //For debugging purposes

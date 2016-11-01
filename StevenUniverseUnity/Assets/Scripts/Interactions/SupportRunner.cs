@@ -6,14 +6,7 @@ namespace StevenUniverse.FanGame.Interactions
 {
     public class SupportRunner : MonoBehaviour
     {
-        /* Use this inside the controller that initiates a support:
-        SupportRunner SupportComponent = GameObject.Find("SupportObject").GetComponent<Support>();
-        SupportComponent.Dialog = SupportLoader.ImportSupport("Righty_Lefty_C");
-        SupportComponent.enabled = true;
-        */
-
         /* TODO:
-         * Control isn't totally taken away from main game. Need to disable other input.
          * Remove hardcoded values
          * Check if it's inefficient to do a Resources.Load<>() for every single line or if caching is built in
          */
@@ -36,13 +29,13 @@ namespace StevenUniverse.FanGame.Interactions
             set { destroyOnEnd = value; }
         }
 
-
         public ScriptLine[] Dialog
         {
             set { dialog = value; }
         }
 
-        public void OnEnable()
+
+        public IEnumerator DoDialog()
         {
             if (dialog == null)
             {
@@ -53,6 +46,7 @@ namespace StevenUniverse.FanGame.Interactions
             {
                 //Make the gui!
                 newCanvas = Instantiate(canvas) as GameObject;
+
                 //Convenience references, this is super, super dependent on the prefab structure.
                 //Reference SupportCanvas prefab for the child tree structure.
                 spokenText = newCanvas.transform.GetChild(2).GetChild(1).gameObject.GetComponent<Text>();
@@ -61,28 +55,25 @@ namespace StevenUniverse.FanGame.Interactions
                 rightPortrait = newCanvas.transform.GetChild(0).gameObject.GetComponent<Image>();
             }
 
-            StartCoroutine(DoDialog());
-        }
-
-        public IEnumerator DoDialog()
-        {
             foreach (ScriptLine curDialog in dialog)
             {
 
                 //Update the nameplate if speaker changed sides
                 //These numbers need to reference the prefab's settings, currently hardcoded
-                //offsetMin = new Vector2(FROM LEFT MOVE RIGHT, FROM BOTTOM MOVE UP)
-                //offsetMax = new Vector2(FROM RIGHT MOVE RIGHT, FROM TOP MOVE UP)
+                //anchor is middle top of the textbox
+                
+                //offsetMax The offset of the upper right corner of the rectangle relative to the upper right anchor.
+                //offsetMin The offset of the lower left corner of the rectangle relative to the lower left anchor.
                 RectTransform nameplateBox = nameplate.GetComponent<RectTransform>();
-                if (curDialog.CurrentSpeaker != curDialog.RightSpeaker)
+                if (curDialog.CurrentSpeaker == curDialog.RightSpeaker)
                 {  //RIGHT SIDE
-                    nameplateBox.offsetMin = new Vector2(15f, 70f);
-                    nameplateBox.offsetMax = new Vector2(-270f, 15f);
+                    nameplateBox.offsetMin = new Vector2(-140f + 265f, -15f);
+                    nameplateBox.offsetMax = new Vector2(265, 15f);
                 }
                 else
                 { //LEFT SIDE
-                    nameplateBox.offsetMin = new Vector2(270f, 70f);
-                    nameplateBox.offsetMax = new Vector2(-15f, 15f);
+                    nameplateBox.offsetMin = new Vector2(-265f, -15f);
+                    nameplateBox.offsetMax = new Vector2(140f - 265f, 15);
                 }
 
                 //Change the text and the name of the speaker
@@ -118,8 +109,6 @@ namespace StevenUniverse.FanGame.Interactions
 
             dialog = null; //reset the dialog
 
-            gameObject.SetActive(false); //disable itself for next support
         }
-        
     }
 }

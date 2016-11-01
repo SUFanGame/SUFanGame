@@ -36,7 +36,7 @@ namespace StevenUniverse.FanGame.Interactions
             Scene[] parsedScenes = CutsceneLoader.ImportCutscene(cutsceneName);
 
             cutsceneRunner.Cutscene = parsedScenes;
-            cutsceneRunner.gameObject.SetActive(true);
+            StartCoroutine(cutsceneRunner.execute());
         }
     }
 }

@@ -22,7 +22,7 @@
 				"newY": 60
 			}],
 
-			"dialogFileName": "marth_rekts_pirate.json",
+			"dialogFileName": "marth_rekts_pirate",
 			"destroyDialogOnEnd": false
 		},
         
@@ -58,7 +58,7 @@
 				"newY": 70
 			}],
 
-			"dialogFileName": "archer_is_mad.json",
+			"dialogFileName": "archer_is_mad",
 			"destroyDialogOnEnd": true
 		}
 	]
