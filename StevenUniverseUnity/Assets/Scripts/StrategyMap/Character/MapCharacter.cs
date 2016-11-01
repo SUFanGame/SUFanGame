@@ -120,11 +120,36 @@ namespace StevenUniverse.FanGame.StrategyMap
             if (CurrentActingState != ActingState.IDLE)
                 return;
 
-            eventData.selectedObject = gameObject;
+            // Perform selection action when a character is FIRST selected.
+            if (eventData.selectedObject == null || eventData.selectedObject != gameObject )
+            {
+                eventData.selectedObject = gameObject;
+            }
+            // If a character is selected again, but it's already BEEN selected previously, just pop up the context UI.
+            else
+            {
+                CharacterActionsUI.Show(this);
+            }
         }
 
         public void OnSelect(BaseEventData eventData)
         {
+            if (actions_ == null)
+                return;
+
+            // When a cahracter is first selected and they are able to move, immediately enter move prompt.
+            for( int i = 0; i < actions_.Count; ++i )
+            {
+                var action = actions_[i];
+                var move = action as MoveAction;
+                if (move != null)
+                {
+                    move.Execute();
+                    return;
+                }
+            }
+
+            // If the character doesn't have a move action, just show the Context UI.
             CharacterActionsUI.Show(this);
         }
 

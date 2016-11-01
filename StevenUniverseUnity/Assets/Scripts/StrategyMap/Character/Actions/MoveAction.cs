@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using StevenUniverse.FanGame.StrategyMap.UI;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -71,6 +72,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             yield return CharacterUtility.MoveTo( actor_, cursorPos, path_ );
             //yield return CharacterUtility.MoveTo( actor_, cursorPos );
             cam.follow_ = false;
+            CharacterActionsUI.Show(actor_);
         }
         
     }

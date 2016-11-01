@@ -18,7 +18,7 @@ namespace StevenUniverse.FanGame.StrategyMap
         [SerializeField]
         string uiName_;
 
-        public string UIName { get { return uiName_; } }
+        public virtual string UIName { get { return uiName_; } }
         public MapCharacter Actor { get { return actor_; } }
 
         protected virtual void Awake()
