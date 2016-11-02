@@ -7,27 +7,55 @@ using System;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
+    /// <summary>
+    /// Responsible for sorting players and calling each player's tick function.
+    /// </summary>
     public class TurnManager : MonoBehaviour
     {
         [SerializeField]
         List<StrategyPlayer> players_ = new List<StrategyPlayer>();
+
+        /// <summary>
+        /// Read only list of players being managed
+        /// </summary>
+        public IList<StrategyPlayer> Players_ { get; private set; }
         
+        /// <summary>
+        /// The player whose turn it is.
+        /// </summary>
+        public StrategyPlayer ActingPlayer_ { get; private set; }
+
+        TurnManagerUIPanel ui_;
 
         void Awake()
         {
-            players_ = GameObject.FindObjectsOfType<StrategyPlayer>().ToList();
+            var players = GameObject.FindObjectsOfType<StrategyPlayer>();
+
+            if( players == null || players.Length == 0 )
+            {
+                enabled = false;
+                Debug.Log("Turn manager couldn't find any StrategyPlayer components.", gameObject);
+                return;
+            }
 
             // Ensure players get to go first.
             Func<StrategyPlayer,int> orderByType = (p) => p is HumanPlayer ? 0 : 1;
 
-            players_ = players_.OrderBy(orderByType).ToList();
+            players_ = players.OrderBy(orderByType).ToList();
+            Players_ = players_.AsReadOnly();
 
+            ui_ = FindObjectOfType<TurnManagerUIPanel>();
 
+        }
+        
+        void Start()
+        {
             Grid.Instance.OnGridBuilt_ += OnGridBuilt;
         }
 
         void OnGridBuilt( Grid grid )
         {
+            //Debug.LogFormat("Beginning turn ticks");
             StartCoroutine(Tick());
         }
 
@@ -35,8 +63,24 @@ namespace StevenUniverse.FanGame.StrategyMap
         {
             while( true )
             {
+                for( int i = 0; i < players_.Count; ++i )
+                {
+                    var player = players_[i];
 
-                yield return null;
+                    ui_.SetText(string.Format("{0} turn", player.name));
+
+                    player.OnTurnStart();
+
+                    ui_.DoFadeAnim();
+
+                    ActingPlayer_ = player;
+
+                    yield return player.Tick();
+
+                    player.OnTurnEnd();
+
+                    yield return null;
+                }
             }
 
         }

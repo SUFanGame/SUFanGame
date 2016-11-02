@@ -134,7 +134,9 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            eventData.selectedObject = gameObject;
+            if (OnSelected_ != null)
+                OnSelected_(this);
+            //eventData.selectedObject = gameObject;
             //Debug.LogFormat("CharacterClicked");
             //eventData.selectedObject = gameObject;
             //if (CurrentActingState != ActingState.IDLE)
@@ -154,9 +156,9 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         public void OnSelect(BaseEventData eventData)
         {
-            // Forward selection event to listeners
-            if (OnSelected_ != null)
-                OnSelected_(this);
+            // Forward character selection event to listeners
+            //if (OnSelected_ != null)
+            //    OnSelected_(this);
             //Debug.LogFormat("{0} selected!", name);
             //CharacterActionsUI.Show(this);
             //if (actions_ == null)
