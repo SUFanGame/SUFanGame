@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace StevenUniverse.FanGame.StrategyMap
+namespace StevenUniverse.FanGame.StrategyMap.Players
 {
     /// <summary>
     /// Represents a player controlling a set of units on a strategy map.
@@ -18,6 +18,14 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         [SerializeField]
         List<MapCharacter> units_ = new List<MapCharacter>();
+
+        /// <summary>
+        /// Called when this player's turn starts.
+        /// </summary>
+        protected virtual void OnTurnStart()
+        {
+            
+        }
         
         void Awake()
         {

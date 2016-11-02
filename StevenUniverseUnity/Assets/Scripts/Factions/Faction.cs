@@ -3,6 +3,10 @@ using StevenUniverse.FanGame.Factions;
 
 namespace StevenUniverse.FanGame.Factions
 {
+    /// <summary>
+    /// Each faction has a standing which can be polled via Faction.GetStanding
+    /// or set via Faction.SetStanding.
+    /// </summary>
     public enum Faction
     {
         CRYSTALGEMS,
@@ -21,12 +25,12 @@ namespace StevenUniverse.FanGame.Factions
 public static class FactionExtensions
 {
     /// <summary>
-    /// Struct to map other factions to their standings with a faction.
+    /// Data to map other factions to their standings with a faction.
     /// </summary>
-    struct StandingData
+    class StandingData
     {
         public Faction faction_;
-        public Dictionary<Faction, Standing> standings_;
+        public Dictionary<Faction, Standing> standings_ = new Dictionary<Faction, Standing>();
     }
 
     /// <summary>
@@ -41,7 +45,7 @@ public static class FactionExtensions
         foreach( Faction faction in values )
         {
             //Debug.LogFormat("Adding {0} to factionData", v.ToString());
-            var data = new StandingData() { faction_ = faction, standings_ = new Dictionary<Faction, Standing>() };
+            var data = new StandingData() { faction_ = faction };
             factionData_.Add( faction, data );
 
             // Ensure checking a faction against itself returns friendly

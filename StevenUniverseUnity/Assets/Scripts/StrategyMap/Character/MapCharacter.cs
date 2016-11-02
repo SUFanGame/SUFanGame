@@ -46,8 +46,23 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         ActingState state_ = ActingState.IDLE;
 
-        public ActingState CurrentActingState { get { return state_; } }
+        //public ActingState CurrentActingState { get { return state_; } }
 
+        Animator animator_;
+
+        public Animator Animator_ { get { return animator_; } }
+
+        /// <summary>
+        /// Event handler for when a character is selected with the mouse.
+        /// </summary>
+        static public System.Action<MapCharacter> OnSelected_;
+
+        /// <summary>
+        /// Event handler for when this character a "deselected". Note that in unity terms
+        /// an object is deselected if the mouse is clicked outside of the object OR if ANY UI
+        /// element is clicked.
+        /// </summary>
+        static public System.Action<MapCharacter> OnDeselected_;
 
         /// <summary>
         /// Populate the given buffer with valid actions this character can perform.
@@ -79,6 +94,8 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         void Awake()
         {
+            animator_ = GetComponentInChildren<Animator>();
+            
             renderer_ = GetComponentInChildren<SpriteRenderer>();
 
             // Populate our list of actions
@@ -117,40 +134,48 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (CurrentActingState != ActingState.IDLE)
-                return;
+            eventData.selectedObject = gameObject;
+            //Debug.LogFormat("CharacterClicked");
+            //eventData.selectedObject = gameObject;
+            //if (CurrentActingState != ActingState.IDLE)
+            //    return;
 
-            // Perform selection action when a character is FIRST selected.
-            if (eventData.selectedObject == null || eventData.selectedObject != gameObject )
-            {
-                eventData.selectedObject = gameObject;
-            }
-            // If a character is selected again, but it's already BEEN selected previously, just pop up the context UI.
-            else
-            {
-                CharacterActionsUI.Show(this);
-            }
+            //// Perform selection action when a character is FIRST selected.
+            //if (eventData.selectedObject == null || eventData.selectedObject != gameObject )
+            //{
+            //    eventData.selectedObject = gameObject;
+            //}
+            //// If a character is selected again, but it's already BEEN selected previously, just pop up the context UI.
+            //else
+            //{
+            //    CharacterActionsUI.Show(this);
+            //}
         }
 
         public void OnSelect(BaseEventData eventData)
         {
-            if (actions_ == null)
-                return;
+            // Forward selection event to listeners
+            if (OnSelected_ != null)
+                OnSelected_(this);
+            //Debug.LogFormat("{0} selected!", name);
+            //CharacterActionsUI.Show(this);
+            //if (actions_ == null)
+            //    return;
 
-            // When a cahracter is first selected and they are able to move, immediately enter move prompt.
-            for( int i = 0; i < actions_.Count; ++i )
-            {
-                var action = actions_[i];
-                var move = action as MoveAction;
-                if (move != null)
-                {
-                    move.Execute();
-                    return;
-                }
-            }
+            //// When a cahracter is first selected and they are able to move, immediately enter move prompt.
+            //for( int i = 0; i < actions_.Count; ++i )
+            //{
+            //    var action = actions_[i];
+            //    var move = action as MoveAction;
+            //    if (move != null)
+            //    {
+            //        move.Execute();
+            //        return;
+            //    }
+            //}
 
-            // If the character doesn't have a move action, just show the Context UI.
-            CharacterActionsUI.Show(this);
+            //// If the character doesn't have a move action, just show the Context UI.
+            //CharacterActionsUI.Show(this);
         }
 
         /// <summary>
@@ -171,7 +196,12 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         public void OnDeselect(BaseEventData eventData)
         {
-            HighlightGrid.Clear();
+            // Forward selection event to listeners
+            if (OnDeselected_ != null)
+                OnDeselected_(this);
+            //if( eventData.selectedObject.)
+            //Debug.LogFormat("{0} deselected", name);
+            //HighlightGrid.Clear();
         }
 
         /// <summary>
@@ -181,6 +211,7 @@ namespace StevenUniverse.FanGame.StrategyMap
         {
             MOVING,
             IDLE,
+
         };
 
         /// <summary>
