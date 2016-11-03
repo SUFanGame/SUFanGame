@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using System.IO;
 using StevenUniverse.FanGame.Util;
 
@@ -19,37 +18,9 @@ namespace StevenUniverse.FanGame.Interactions
                 throw new UnityException("Support " + supportName + " was not found.");
             }
 
-            ScriptLine[] parsedLines = JsonHelper.FromJson<ScriptLine>( File.ReadAllText(absolutePath) );
+            ScriptLine[] parsedLines = JsonHelper.Deserialize<ScriptLine>(File.ReadAllText(absolutePath));
 
             return parsedLines;
-        }
-    }
-
-    /// <summary>
-    /// Helper class to deserialize Array Json. All values read-only
-    /// </summary>
-    public static class JsonHelper 
-    {
-
-        public static T[] FromJson<T>(string json)
-        {
-            // Expected Format: {"Items":[ {...}, {...} ] }
-            Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
-            return wrapper.Items;
-        }
-
-        public static string ToJson<T>(T[] array)
-        {
-            // Expected Format: {"Items":[ {...}, {...} ] }
-            Wrapper<T> wrapper = new Wrapper<T>();
-            wrapper.Items = array;
-            return JsonUtility.ToJson(wrapper);
-        }
-
-        [Serializable]
-        private class Wrapper<T>
-        {
-            public T[] Items;
         }
     }
 
@@ -64,7 +35,7 @@ namespace StevenUniverse.FanGame.Interactions
         [SerializeField]
         private string currentSpeaker; //What goes on nameplate
         [SerializeField]
-        private string leftSpeaker; //Only the names, the character instance will have to be found
+        private string leftSpeaker; //Will be used as the folder to look into for images
         [SerializeField]
         private string rightSpeaker;
         [SerializeField]
@@ -91,32 +62,38 @@ namespace StevenUniverse.FanGame.Interactions
         public string Line
         {
             get { return line; }
+            set { line = value; }
         }
 
         public string CurrentSpeaker
         {
             get { return currentSpeaker; }
+            set { currentSpeaker = value; }
         }
 
         public string LeftSpeaker
         {
             get { return leftSpeaker; }
+            set { leftSpeaker = value; }
         }
 
         public string RightSpeaker
         {
             get { return rightSpeaker; }
+            set { rightSpeaker = value; }
         }
 
         public string LeftExpr
         {
             get { return leftExpr; }
+            set { leftExpr = value; }
         }
 
         public string RightExpr
         {
             get { return rightExpr; }
+            set { rightExpr = value; }
         }
-        
+
     }
 }

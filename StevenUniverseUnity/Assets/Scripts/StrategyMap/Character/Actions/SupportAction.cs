@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
 using StevenUniverse.FanGame.Interactions;
 
-// TODO : Push character scanning stuff out from attack/support into a utility class or the grid class.
 namespace StevenUniverse.FanGame.StrategyMap
 {
     public class SupportAction : CharacterAction
     {
-        System.Predicate<MapCharacter> allyPredicate_;
+        //TODO: since a map may only have 1-2 supportable characters, it may be quicker to set talkPredicate
+        //to something specified on the map's data. That won't happen until we have a fully implemented map.
+        System.Predicate<MapCharacter> talkPredicate;
 
         List<MapCharacter> allies_ = new List<MapCharacter>();
 
         // Set through the inspector
-        public Support supportCanvas_;
+        public SupportRunner supportCanvas_;
 
         protected override void Awake()
         {
             base.Awake();
-
-            allyPredicate_ = (other) =>
+                        
+            talkPredicate = (other) =>
             {
                 return actor_.Data.Faction_.GetStanding(other.Data.Faction_) == Factions.Standing.FRIENDLY 
                 //&& actor_.Data.SupportInfos.Contains( other )
@@ -35,26 +36,13 @@ namespace StevenUniverse.FanGame.StrategyMap
         
         public override bool IsUsable()
         {
-            // First check for adjacent allies
-            var grid = Grid.Instance;
-            var pos = actor_.GridPosition;
-            var adjacent = Directions2D.Quadrilateral;
-            allies_.Clear();
-
-            for (int i = 0; i < adjacent.Length; ++i)
+            // Quicker to check if this list even has anything.
+            if (talkPredicate.GetInvocationList().Length <= 0)
             {
-                var adj = pos + adjacent[i];
-
-                grid.GetObjects(adj, allies_, allyPredicate_);
+                return false;
             }
 
-            // Check if allies can talk
-            foreach (MapCharacter ally in allies_)
-            {
-
-            }
-
-            return allies_.Count > 0;
+            return CharacterUtility.ScanForAdjacent(actor_, talkPredicate).Count > 0;
         }
     }
 }

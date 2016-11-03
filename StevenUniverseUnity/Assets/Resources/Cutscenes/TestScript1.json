@@ -4,6 +4,7 @@
 				"type": "Follow",
 				"target": "Marth"
 			},
+            
 			"charaAction": [{
 				"type": "Move",
 				"name": "Marth",
@@ -14,16 +15,23 @@
 				"name": "Archer",
 				"newX": 40,
 				"newY": 50
-			},{
-                "type": "EnterMap",
-                "name": "Pirate",
-                "newX": 60,
-                "newY": 60
-                }],
+			}, {
+				"type": "EnterMap",
+				"name": "Pirate",
+				"newX": 60,
+				"newY": 60
+			}],
 
-			"dialogFileName": "marth_rekts_pirate.json",
-			"dontDestroyDialogOnEnd": true
+			"dialogFileName": "marth_rekts_pirate",
+			"destroyDialogOnEnd": false
 		},
+        
+        {
+			"cameraChange": {
+				"type": "Follow",
+				"target": "Marth"
+			}
+        },
 
 		{
 			"charaAction": [{
@@ -42,6 +50,7 @@
 				"newX": 45,
 				"newY": 65
 			},
+            
 			"charaAction": [{
 				"type": "Move",
 				"name": "Archer",
@@ -49,8 +58,8 @@
 				"newY": 70
 			}],
 
-			"dialogFileName": "archer_is_mad.json",
-			"dontDestroyDialogOnEnd": false
+			"dialogFileName": "archer_is_mad",
+			"destroyDialogOnEnd": true
 		}
 	]
 }

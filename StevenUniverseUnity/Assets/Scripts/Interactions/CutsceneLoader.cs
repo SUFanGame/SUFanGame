@@ -1,82 +1,103 @@
 ﻿using UnityEngine;
 using System.IO;
-using System;
 using StevenUniverse.FanGame.Util;
 
 namespace StevenUniverse.FanGame.Interactions
 {
-
-    /*
-     * Cutscenes are made up of multiple Scenes. A Scene can have only one of each:
-       - A set of characters that do one action each
-       - A dialog
-       - A Camera movement
-       
-     * In a scene, Characters can:
-       - move
-       - enter map
-       - run off map
-       - attack
-       
-     */
-
+    
     public class CutsceneLoader
     {
 
-        public static Scene[] ImportSupport(string cutsceneName)
+        public static Scene[] ImportCutscene(string cutsceneName)
         {
 
             //Not sure how assets are handled in build, so check if this is the correct way to search for a file
-            string absolutePath = Utilities.ConvertAssetPathToAbsolutePath("Assets/Resources/Cutscene/" + cutsceneName + ".json");
+            string absolutePath = Utilities.ConvertAssetPathToAbsolutePath("Assets/Resources/Cutscenes/" + cutsceneName + ".json");
             if (!File.Exists(absolutePath))
             {
                 throw new UnityException("Cutscene " + cutsceneName + " was not found.");
             }
             
-            Scene[] parsedLines = JsonHelper.FromJson<Scene>(File.ReadAllText(absolutePath));
+            Scene[] parsedLines = JsonHelper.Deserialize<Scene>(File.ReadAllText(absolutePath));
 
             return parsedLines;
         }
-
     }
 
     /// <summary>
     /// Individual Scene made up of 3 components: camera changes, character actions, and dialog.
+    /// A scene can only have one of each.
     /// </summary>
     [System.Serializable]
     public class Scene
     {
         [SerializeField]
-        private CameraChange cameraChange;
+        private CameraChange cameraChange = null;
         [SerializeField]
-        private CutsceneCharacterAction[] charaAction = { }; //Default values make it easier to test
+        private CutsceneCharacterAction[] charaAction = null;
         [SerializeField]
-        private ScriptLine[] dialogParsed = { };
+        private string dialogFileName;
         [SerializeField]
-        private string dialogFileName = "n/a";
-        [SerializeField]
-        private bool dontDestroyDialogOnEnd = false;
+        private bool destroyDialogOnEnd;
+
+        public CameraChange CameraChange
+        {
+            get { return cameraChange; }
+            set { cameraChange = value; }
+        }
+        public CutsceneCharacterAction[] CharaAction
+        {
+            get { return charaAction; }
+            set { charaAction = value; }
+        }
+        public string DialogFileName
+        {
+            get { return dialogFileName; }
+            set { dialogFileName = value; }
+        }
+        public bool DestroyDialogOnEnd
+        {
+            get { return destroyDialogOnEnd; }
+            set { destroyDialogOnEnd = value; }
+        }
+
+        public Scene(
+            CameraChange camChange = null,
+            CutsceneCharacterAction[] charaAction = null,
+            string dialogFile = null,
+            bool destroyDialog = false)
+        {
+            cameraChange = camChange;
+            this.charaAction = charaAction;
+            dialogFileName = dialogFile;
+            destroyDialogOnEnd = destroyDialog;
+        }
 
         //For debugging purposes
         public override string ToString()
         {
-            
             string s = "cam: ";
 
             if (cameraChange != null) {
                 s += cameraChange;
             }
 
-            s += "\ndialog: " + dialogFileName;
+            s += "\ndialog: ";
 
-            foreach (CutsceneCharacterAction act in charaAction)
+            if (dialogFileName != null)
             {
-                s += "\naction: " + act;
+                s += dialogFileName;
             }
 
+            if (charaAction != null)
+            {
+                foreach (CutsceneCharacterAction act in charaAction)
+                {
+                    s += "\naction: " + act;
+                }
+            }
             return s;
         }
-
     }
 
     /// <summary>
@@ -86,14 +107,7 @@ namespace StevenUniverse.FanGame.Interactions
     public class CameraChange
     {
         [SerializeField]
-        public enum changeType
-        {
-            FOLLOW,
-            FIXED
-        }
-
-        [SerializeField]
-        private string type; //Need to get json to cast to enum
+        private cameraType type; //Need to get json to cast to enum
         [SerializeField]
         private string target; //Only FOLLOW has a target
         [SerializeField]
@@ -101,44 +115,48 @@ namespace StevenUniverse.FanGame.Interactions
         [SerializeField]
         private int newY;
         
-        public CameraChange(string type)
+        public CameraChange(cameraType type, string target = null)
         {
             this.type = type;
+            this.target = target;
+            //newX newY needs to be changed
         }
 
         public override string ToString()
         {
-            return type;//.ToString();
+            return type.ToString();
         }
 
-        public changeType getCamType() {
-            return (changeType)Enum.Parse(typeof(changeType), type, true);
+        public cameraType CameraType
+        {
+            get { return type; }
+            set { type = value; }
         }
 
-        public string Type { get; set; }
-        public string Target { get; set; }
+        public string Target
+        {
+            get { return target; }
+            set { target = value; }
+        }
+
+        // need to replace?
         public int NewX { get; set; }
         public int NewY { get; set; }
 
     }
 
     /// <summary>
-    /// Actions that a character can take during a cutscene.
+    /// Actions that a character can take during a cutscene such as:
+    ///  - move
+    ///  - enter map
+    ///  - exit map
+    ///  - attack
     /// </summary>
     [System.Serializable]
     public class CutsceneCharacterAction
     {
         [SerializeField]
-        public enum actionType
-        {
-            MOVE,
-            ATTACK,
-            EXITMAP,
-            ENTERMAP,
-        }
-
-        [SerializeField]
-        private string type; //Need to get json to cast to enum
+        private actionType type; //needs to be validated as actionType
         [SerializeField]
         private string name; //Character that is doing the action
         [SerializeField]
@@ -152,7 +170,7 @@ namespace StevenUniverse.FanGame.Interactions
         [SerializeField]
         private int edgeY;
 
-        public CutsceneCharacterAction(string type, string name)
+        public CutsceneCharacterAction(actionType type, string name)
         {
             this.type = type;
             this.name = name;
@@ -160,19 +178,45 @@ namespace StevenUniverse.FanGame.Interactions
 
         public override string ToString()
         {
-            return name + type;//.ToString();
+            return name + type;
         }
 
-        public actionType getCamType()
+        public actionType ActType
         {
-            return (actionType)Enum.Parse(typeof(actionType), type, true);
+            get { return type; }
+            set { type = value; }
         }
 
-        public string Type { get; set; }
-        public string Name { get; set; }
-        public string Target { get; set; }
+        public string Target
+        {
+            get { return target; }
+            set { target = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        //need to replace?
         public int NewX { get; set; }
         public int NewY { get; set; }
 
+    }
+
+    public enum actionType
+    {
+        Move,
+        Attack,
+        ExitMap,
+        EnterMap,
+    }
+
+
+    public enum cameraType
+    {
+        Follow,
+        Fixed
     }
 }

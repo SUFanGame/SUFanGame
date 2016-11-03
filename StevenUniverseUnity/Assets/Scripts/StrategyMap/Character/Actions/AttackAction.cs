@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 using StevenUniverse.FanGame.Factions;
 
@@ -16,6 +14,8 @@ namespace StevenUniverse.FanGame.StrategyMap
     {
         static Predicate<MapCharacter> opponentPredicate_ = null;
 
+        List<MapCharacter> opponents_ = new List<MapCharacter>();
+
         protected override void Awake()
         {
             base.Awake();
@@ -27,25 +27,10 @@ namespace StevenUniverse.FanGame.StrategyMap
             };
         }
 
-        List<MapCharacter> opponents_ = new List<MapCharacter>();
 
         public override bool IsUsable()
         {
-            var grid = Grid.Instance;
-
-            var pos = actor_.GridPosition;
-
-            var adjacent = Directions2D.Quadrilateral;
-
-            opponents_.Clear();
-            for ( int i = 0; i < adjacent.Length; ++i )
-            {
-                var adj = pos + adjacent[i];
-
-                grid.GetObjects(adj, opponents_, opponentPredicate_ );
-            }
-
-            return opponents_.Count > 0;
+            return CharacterUtility.ScanForAdjacent(actor_, opponentPredicate_).Count > 0;
         }
 
 
