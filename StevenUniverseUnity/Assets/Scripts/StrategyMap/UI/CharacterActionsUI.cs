@@ -56,6 +56,11 @@ namespace StevenUniverse.FanGame.StrategyMap.UI
             for( int i = 0; i < actionsBuffer_.Count; ++i )
             {
                 var action = actionsBuffer_[i];
+
+                // Skip move action since it's implicit when a character is first clicked.
+                if (action is MoveAction)
+                    continue;
+
                 var newButton = ((Button)Instantiate(Instance.pfb_ActionButton_, Instance.transform, false)).GetComponent<Button>();
                 newButton.gameObject.layer = Instance.gameObject.layer;
                 var text = newButton.GetComponentInChildren<Text>();
