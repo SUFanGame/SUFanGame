@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using StevenUniverse.FanGame.StrategyMap;
+using StevenUniverse.FanGame.Interactions;
 
-namespace StevenUniverse.FanGame.Interactions
+namespace StevenUniverse.FanGame.Actions
 {
     //DEBUGGING CLASS, hooks into Marth's "Start Drama" action
-    class InteractionTests : CharacterAction
+    class CutsceneAction : CharacterAction
     {
         public CutsceneRunner cutsceneRunner;
 

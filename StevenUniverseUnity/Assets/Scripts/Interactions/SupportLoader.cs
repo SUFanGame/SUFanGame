@@ -35,7 +35,7 @@ namespace StevenUniverse.FanGame.Interactions
         [SerializeField]
         private string currentSpeaker; //What goes on nameplate
         [SerializeField]
-        private string leftSpeaker; //Only the names, the character instance will have to be found
+        private string leftSpeaker; //Will be used as the folder to look into for images
         [SerializeField]
         private string rightSpeaker;
         [SerializeField]

@@ -5,6 +5,13 @@ namespace StevenUniverse.FanGame.Interactions
 {
     public class CutsceneRunner : MonoBehaviour
     {
+        /* TODO:
+         * Add the camera changes depending on the option
+         * Add the character movement action
+         * Add the character enter/exit action
+         * Add the character attack action
+         */
+
         public SupportRunner supportNode; //Set the support inside the editor, set canvas inside of this component
 
         private Scene[] cutscene;
@@ -32,6 +39,7 @@ namespace StevenUniverse.FanGame.Interactions
                     //add a camera routine
                     yield return ChangeCamera(curScene.CameraChange);
                 }
+
                 if (curScene.CharaAction != null)
                 {
                     foreach (CutsceneCharacterAction act in curScene.CharaAction)
@@ -40,6 +48,7 @@ namespace StevenUniverse.FanGame.Interactions
                         yield return DoAction(act);
                     }
                 }
+
                 if (curScene.DialogFileName != null)
                 {
                     //start dialog routine
