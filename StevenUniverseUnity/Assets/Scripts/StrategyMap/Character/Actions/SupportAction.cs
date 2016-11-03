@@ -27,7 +27,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             
         }
 
-        protected override IEnumerator Routine()
+        public override IEnumerator Routine()
         {
             supportCanvas_.Dialog = SupportLoader.ImportSupport("Righty_Lefty_C");
             supportCanvas_.gameObject.SetActive(true);

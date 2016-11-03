@@ -33,17 +33,18 @@ namespace StevenUniverse.FanGame.StrategyMap
             return true;
         }
 
+        /// <summary>
+        /// Starts the action's coroutine.
+        /// </summary>
         public void Execute()
         {
-            actor_.StartCoroutine(Routine());
+            StartCoroutine(Routine());
         }
 
         /// <summary>
-        /// Execute a character action. Note this might not necessarily do something immediately,
-        /// IE: For CharacterMove this will just allow the user to select a position, the character won't
-        /// actually move until selection has taken place.
+        /// Coroutine which will perform the action
         /// </summary>
-        protected virtual IEnumerator Routine()
+        public virtual IEnumerator Routine()
         {
             //Debug.Log(uiName_);
             actor_.Paused_ = true;

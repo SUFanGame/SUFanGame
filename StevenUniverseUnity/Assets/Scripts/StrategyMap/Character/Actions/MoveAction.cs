@@ -11,7 +11,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         //bool waitingForSelection_ = false;
          
-        protected override IEnumerator Routine()
+        public override IEnumerator Routine()
         {
             HighlightGrid.Clear();
 
@@ -35,14 +35,29 @@ namespace StevenUniverse.FanGame.StrategyMap
 
             yield return WaitForInput();
 
-            yield return base.Routine();
+            //yield return base.Routine();
         }
 
         IEnumerator WaitForInput()
         {
-            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+            while(true)
+            {
+                // Continue processing from click
+                if ( Input.GetMouseButtonDown(0) )
+                {
+                    HighlightGrid.Clear();
+                    break;
+                }
 
-            HighlightGrid.Clear();
+                // Cancel move function from escape
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    HighlightGrid.Clear();
+                    yield break;
+                }
+
+                yield return null;
+            }
 
             var grid = Grid.Instance;
             IntVector3 cursorPos = (IntVector3)(Camera.main.ScreenToWorldPoint(Input.mousePosition));

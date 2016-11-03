@@ -10,7 +10,7 @@ namespace StevenUniverse.FanGame.Interactions
     class InteractionTests : CharacterAction
     {
 
-        protected override IEnumerator Routine()
+        public override IEnumerator Routine()
         {
             executeTest1();
 

@@ -73,13 +73,17 @@ namespace StevenUniverse.FanGame.StrategyMap
 
                     ui_.DoFadeAnim();
 
+                    yield return new WaitForSeconds(.15f);
+
                     ActingPlayer_ = player;
 
                     yield return player.Tick();
 
                     player.OnTurnEnd();
 
-                    yield return null;
+                    // Don't complete turn transitions until the animation has finished.
+                    if (ui_.Animating_)
+                        yield return new WaitUntil(() => !ui_.Animating_);
                 }
             }
 

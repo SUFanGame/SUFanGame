@@ -218,6 +218,7 @@ GameObject:
   - 114: {fileID: 361338211}
   - 114: {fileID: 361338210}
   - 114: {fileID: 361338209}
+  - 114: {fileID: 361338212}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -296,6 +297,18 @@ MonoBehaviour:
       dataGroups: []
   tilesMovedPerSecond_: 3
   moveRange_: 5
+--- !u!114 &361338212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 361338207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c5b1aae7329154da0291fd49839dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiName_: Wait
 --- !u!1 &407179063
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +320,7 @@ GameObject:
   - 114: {fileID: 407179064}
   - 114: {fileID: 407179066}
   - 114: {fileID: 407179067}
+  - 114: {fileID: 407179068}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -385,6 +399,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiName_: 
+--- !u!114 &407179068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 407179063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c5b1aae7329154da0291fd49839dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiName_: Wait
 --- !u!1 &524275848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,7 +1802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aec8a84d6cf81646a6902584a682986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faction_: 0
+  faction_: 1
   units_: []
 --- !u!4 &1706709663
 Transform:
@@ -1912,6 +1938,7 @@ GameObject:
   - 114: {fileID: 1944956337}
   - 114: {fileID: 1944956340}
   - 114: {fileID: 1944956336}
+  - 114: {fileID: 1944956341}
   m_Layer: 0
   m_Name: Marth
   m_TagString: Untagged
@@ -2027,6 +2054,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiName_: Support
   supportCanvas_: {fileID: 0}
+--- !u!114 &1944956341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1944956333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c5b1aae7329154da0291fd49839dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiName_: Wait
 --- !u!1 &1946347259
 GameObject:
   m_ObjectHideFlags: 0

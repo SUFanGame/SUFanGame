@@ -18,7 +18,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
         }
 
-        protected override IEnumerator Routine()
+        public override IEnumerator Routine()
         {
             if (!dancing_)
             {

@@ -30,27 +30,43 @@ namespace StevenUniverse.FanGame.StrategyMap.Players
         {
             currentlyActing_ = true;
 
-            for( int i = 0; i < units_.Count; ++i )
-            {
-                units_[i].Paused_ = false;
-            }
+
         }
 
         public virtual void OnTurnEnd()
         {
             currentlyActing_ = false;
+
+            for (int i = 0; i < units_.Count; ++i)
+            {
+                units_[i].Paused_ = false;
+            }
         }
 
         
-
         /// <summary>
-        /// Coroutine where the player can perform logic. For a human player this will be
-        /// things like UI handling. For AI players they can scan the grid and make decisions.
+        /// Coroutine where the player can perform logic. 
+        /// For AI players they can scan the grid and make decisions.
         /// The player's turn will be over when this function returns.
         /// </summary>
         public virtual IEnumerator Tick()
         {
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.T));
+            while (true)
+            {
+
+                bool allActed = true;
+
+                for (int i = 0; i < units_.Count; ++i)
+                {
+                    if (units_[i].Paused_ == false)
+                        allActed = false;
+                }
+
+                if (allActed)
+                    break;
+
+                yield return null;
+            }
         }
 
 
