@@ -2,6 +2,7 @@
 using System.IO;
 using StevenUniverse.FanGame.Util;
 using StevenUniverse.FanGame.StrategyMap;
+using System.Collections;
 
 namespace StevenUniverse.FanGame.Interactions
 {
@@ -9,9 +10,11 @@ namespace StevenUniverse.FanGame.Interactions
     class InteractionTests : CharacterAction
     {
 
-        public override void Execute()
+        protected override IEnumerator Routine()
         {
             executeTest1();
+
+            yield return base.Routine();
         }
 
         public void executeTest1()

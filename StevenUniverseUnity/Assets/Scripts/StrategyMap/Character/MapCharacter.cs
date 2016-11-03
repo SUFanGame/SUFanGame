@@ -92,6 +92,32 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
         }
 
+        static Color pausedColor_ = new Color(.32f, .32f, .32f);
+
+        bool paused_ = false;
+        public bool Paused_
+        {
+            get
+            {
+                return paused_;
+            }
+            set
+            {
+                paused_ = value;
+
+                if( paused_ )
+                {
+                    animator_.speed = 0f;
+                    renderer_.color = pausedColor_;
+                }
+                else
+                {
+                    animator_.speed = 1f;
+                    renderer_.color = Color.white;
+                }
+            }
+        }
+
         void Awake()
         {
             animator_ = GetComponentInChildren<Animator>();
@@ -218,7 +244,9 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         /// <summary>
         /// Coroutine that moves the character smoothly from it's current position to the 
-        /// given position. Speed determined by <see cref="tilesMovedPerSecond_"/>
+        /// given position. Speed determined by <see cref="tilesMovedPerSecond_"/>.
+        /// Note this doesn't use any kind of pathfinding - pathfinding calls upon this to
+        /// move characters between nodes - see <see cref="CharacterUtility.MoveTo(MapCharacter, IntVector3)"/>.
         /// </summary>
         /// <param name="end">Where the character will end up.</param>
         public IEnumerator MoveTo( IntVector3 end )
@@ -245,6 +273,8 @@ namespace StevenUniverse.FanGame.StrategyMap
                 UpdateSortingOrder(end.z);
             }
         }
+
+
     }
 
 }

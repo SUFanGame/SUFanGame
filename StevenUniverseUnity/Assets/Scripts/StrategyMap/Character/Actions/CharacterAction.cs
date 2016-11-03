@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -32,14 +33,22 @@ namespace StevenUniverse.FanGame.StrategyMap
             return true;
         }
 
+        public void Execute()
+        {
+            actor_.StartCoroutine(Routine());
+        }
+
         /// <summary>
         /// Execute a character action. Note this might not necessarily do something immediately,
         /// IE: For CharacterMove this will just allow the user to select a position, the character won't
         /// actually move until selection has taken place.
         /// </summary>
-        public virtual void Execute()
+        protected virtual IEnumerator Routine()
         {
-            Debug.Log(uiName_);
+            //Debug.Log(uiName_);
+            actor_.Paused_ = true;
+
+            yield return null;
         }
     }
 }

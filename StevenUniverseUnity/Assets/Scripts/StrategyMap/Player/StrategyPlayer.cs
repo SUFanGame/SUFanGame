@@ -17,7 +17,7 @@ namespace StevenUniverse.FanGame.StrategyMap.Players
         public Faction Faction_ { get { return faction_; } }
 
         [SerializeField]
-        List<MapCharacter> units_ = new List<MapCharacter>();
+        protected List<MapCharacter> units_ = new List<MapCharacter>();
 
         bool currentlyActing_ = false;
 
@@ -29,6 +29,11 @@ namespace StevenUniverse.FanGame.StrategyMap.Players
         public virtual void OnTurnStart()
         {
             currentlyActing_ = true;
+
+            for( int i = 0; i < units_.Count; ++i )
+            {
+                units_[i].Paused_ = false;
+            }
         }
 
         public virtual void OnTurnEnd()

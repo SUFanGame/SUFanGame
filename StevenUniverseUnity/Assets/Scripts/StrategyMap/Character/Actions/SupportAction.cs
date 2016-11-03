@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using StevenUniverse.FanGame.Interactions;
+using System.Collections;
 
 // TODO : Push character scanning stuff out from attack/support into a utility class or the grid class.
 namespace StevenUniverse.FanGame.StrategyMap
@@ -26,10 +27,12 @@ namespace StevenUniverse.FanGame.StrategyMap
             
         }
 
-        public override void Execute()
+        protected override IEnumerator Routine()
         {
             supportCanvas_.Dialog = SupportLoader.ImportSupport("Righty_Lefty_C");
             supportCanvas_.gameObject.SetActive(true);
+
+            yield return base.Routine();
         }
 
         

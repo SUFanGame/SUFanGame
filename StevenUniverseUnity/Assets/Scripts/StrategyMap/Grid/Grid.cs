@@ -5,6 +5,7 @@ using StevenUniverse.FanGame.Util.Collections;
 using StevenUniverse.FanGame.Overworld;
 using System.Linq;
 using StevenUniverse.FanGame.Overworld.Templates;
+using StevenUniverse.FanGame.Factions;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -146,13 +147,21 @@ namespace StevenUniverse.FanGame.StrategyMap
         /// <param name="pos">The position to start the search.</param>
         /// <param name="range">The range of the search (in tiles).</param>
         /// <param name="nodeBuffer">All discovered nodes will be added to the buffer.</param>
-        /// <param name="movementType">The movement type to be used during the search.</param>
-        public void GetNodesInRange( IntVector3 pos, int range, GridPaths path, MovementType movementType = MovementType.GROUNDED)
+        /// <param name="movementType">Movement type determines which nodes are reachable, IE: A node might cost more to
+        /// move into for a ground unit as opposed to a floating unit.</param>
+        /// <param name="predicate">Optional predicate to filter nodes based on some condition.
+        /// IE: Could be used to ignore nodes with enemy characters in them.</param>
+        public void GetNodesInRange( 
+            IntVector3 pos, 
+            int range, 
+            GridPaths path,
+            MovementType movementType,
+            System.Predicate<Node> predicate = null )
         {
             // Use dijkstra's to retrieve all nodes in range.
             var current = GetNode(pos);
 
-            if (current == null)
+            if (current == null || (predicate != null && !predicate(current)) )
                 return;
 
             // Our frontier will be a priority queue. The cost to reach each node in our path will determine it's
@@ -178,6 +187,10 @@ namespace StevenUniverse.FanGame.StrategyMap
                 for( int i = 0; i < adjNodes.Count; ++i )
                 {
                     var next = adjNodes[i];
+
+                    // Ignore the node if our predicate returns false
+                    if (predicate != null && !predicate(next))
+                        continue;
 
                     // Get the total cost to move to this node from the start of our path
                     int newCost = costSoFar[current] + next.GetCost(movementType);
@@ -209,13 +222,20 @@ namespace StevenUniverse.FanGame.StrategyMap
         }
 
         /// <summary>
-        /// Gets the list of nodes along the path from a to b and populates the givne buffer with them.
+        /// Gets the list of nodes along the path from a to b and populates the given buffer with them.
         /// </summary>
         /// <param name="start">Start position.</param>
         /// <param name="end">End position.</param>
         /// <param name="buffer">Buffer to hold the list of nodse. Note this list will be reversed,
         /// it's assumed to be empty.</param>
-        public void GetPath( IntVector3 start, IntVector3 end, List<Node> buffer, MovementType movementType )
+        /// <param name="predicate">Optional predicate to filter nodes based on some condition.
+        /// IE: Could be used to ignore nodes with enemy characters in them.</param>
+        public void GetPath( 
+            IntVector3 start, 
+            IntVector3 end, 
+            List<Node> buffer, 
+            MovementType movementType,
+            System.Predicate<Node> predicate = null )
         {
             var startNode = GetNode(start);
             var endNode = GetNode(end);

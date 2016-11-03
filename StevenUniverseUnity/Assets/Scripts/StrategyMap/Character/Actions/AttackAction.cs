@@ -47,8 +47,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 
             return opponents_.Count > 0;
         }
-
-
+        
     }
 
 }

@@ -11,7 +11,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         //bool waitingForSelection_ = false;
          
-        public override void Execute()
+        protected override IEnumerator Routine()
         {
             HighlightGrid.Clear();
 
@@ -33,36 +33,37 @@ namespace StevenUniverse.FanGame.StrategyMap
                 HighlightGrid.HighlightPos(node.Pos_.x, node.Pos_.y, node.Pos_.z, Color.blue);
             }
 
-            //waitingForSelection_ = true;
+            yield return WaitForInput();
+
+            yield return base.Routine();
         }
 
-        void Update()
+        IEnumerator WaitForInput()
         {
-            if (Input.GetMouseButtonDown(0))
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+            HighlightGrid.Clear();
+
+            var grid = Grid.Instance;
+            IntVector3 cursorPos = (IntVector3)(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
+            int height = grid.GetHeight((IntVector2)cursorPos);
+
+            if (height == int.MinValue)
+                yield break;
+
+            cursorPos.z = height;
+
+            if ((IntVector3)cursorPos == actor_.GridPosition)
+                yield break;
+
+            var node = grid.GetNode(cursorPos);
+            if (node != null && path_.Contains(node))
             {
-                HighlightGrid.Clear();
-
-                var grid = Grid.Instance;
-                IntVector3 cursorPos = (IntVector3)(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
-                int height = grid.GetHeight((IntVector2)cursorPos);
-
-                if (height == int.MinValue)
-                    return;
-
-                cursorPos.z = height;
-
-                if ((IntVector3)cursorPos == actor_.GridPosition)
-                    return;
-
-                var node = grid.GetNode(cursorPos);
-                if( node != null && path_.Contains(node) )
-                {
-                    StartCoroutine(MoveFollow(cursorPos));
-                }
-
-                path_.Clear();
+                yield return MoveFollow(cursorPos);
             }
+
+            path_.Clear();
         }
 
         IEnumerator MoveFollow( IntVector3 cursorPos )
