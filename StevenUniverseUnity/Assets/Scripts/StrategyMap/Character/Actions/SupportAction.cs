@@ -52,10 +52,10 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
 
             // Check if allies can talk
-            foreach (MapCharacter ally in allies_)
-            {
+            //foreach (MapCharacter ally in allies_)
+            //{
 
-            }
+            //}
 
             return allies_.Count > 0;
         }

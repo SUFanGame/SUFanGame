@@ -14,6 +14,8 @@ namespace StevenUniverse.FanGame.StrategyMap.Players
         /// </summary>
         MapCharacter currentlySelected_ = null;
 
+        Coroutine selectionRoutine_ = null;
+
         void OnEnable()
         {
             MapCharacter.OnSelected_ += OnSelected;
@@ -34,34 +36,72 @@ namespace StevenUniverse.FanGame.StrategyMap.Players
         /// </summary>
         void OnSelected( MapCharacter character )
         {
-            // What to do when a unit is first selected
-            if( currentlySelected_ != character )
+            // Ignore repeated selection ( this will be handled by the coroutine )
+            if (currentlySelected_ == character)
+                return;
+
+            currentlySelected_ = character;
+
+            // Cancel previous routine if it's running.
+            if( selectionRoutine_ != null )
             {
-                CharacterActionsUI.Hide();
-
-                currentlySelected_ = character;
-
-                // If it's not our turn, the character has already acted or if the character isn't one of our units...
-                if ( !CurrentlyActing_ || character.Paused_ || !units_.Contains(character) )
-                {
-                    // Show a stats panel
-                    return;
-                }
-
-                StartCoroutine(ShowActions(character));
-
-                //Debug.LogFormat("{0} has selected {1}", name, character.name);
+                StopCoroutine(selectionRoutine_);
             }
-            // What to do if a unit is clicked again after it's already been selected
-            else if( currentlySelected_ == character )
+
+            ClearUI();
+
+            // If it's not our turn, the character has already acted or if the character isn't one of our units...
+            if (!CurrentlyActing_ || character.Paused_ || !units_.Contains(character))
             {
-                CharacterActionsUI.Show(character);
+                // Show a stats panel
+                //StatsPanelUI.Show();
+                //return;
             }
+
+            selectionRoutine_ = StartCoroutine(SelectionRoutine(character));
+            //// What to do when a unit is first selected
+            //if (currentlySelected_ != character)
+            //{
+            //    CharacterActionsUI.Hide();
+
+            //    currentlySelected_ = character;
+
+            //    // If it's not our turn, the character has already acted or if the character isn't one of our units...
+            //    if (!CurrentlyActing_ || character.Paused_ || !units_.Contains(character))
+            //    {
+            //        // Show a stats panel
+            //        return;
+            //    }
+
+            //    StartCoroutine(ContextClick(character));
+
+            //    //Debug.LogFormat("{0} has selected {1}", name, character.name);
+            //}
+            //// What to do if a unit is clicked again after it's already been selected
+            //else if (currentlySelected_ == character)
+            //{
+            //    CharacterActionsUI.Show(character);
+            //}
 
         }
 
-        // Shows available actions to the player for the given character.
-        IEnumerator ShowActions(MapCharacter character)
+        IEnumerator SelectionRoutine( MapCharacter character )
+        {
+            yield return ContextClick(character);
+
+            CharacterActionsUI.Show(character);
+
+            selectionRoutine_ = null;
+        }
+
+
+        /// <summary>
+        /// Immediately enters move mode if the character is able to move, otherwise just shows
+        /// the command ui
+        /// </summary>
+        /// <param name="character"></param>
+        /// <returns></returns>
+        IEnumerator ContextClick(MapCharacter character)
         {
             actionBuffer_.Clear();
             character.GetActions(actionBuffer_);
@@ -85,10 +125,15 @@ namespace StevenUniverse.FanGame.StrategyMap.Players
                 }
             }
 
-            // If the character doesn't have a move action, just show the Context UI.
-            CharacterActionsUI.Show(character);
         }
-        
+
+        void ClearUI()
+        {
+            HighlightGrid.Clear();
+            CharacterActionsUI.Hide();
+        }
+
+
 
         //void Update()
         //{
