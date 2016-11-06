@@ -80,6 +80,19 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
         }
 
+        /// <summary>
+        /// Returns true if the character is capable of the given action.
+        /// </summary>
+        public bool HasAction<T>() where T : CharacterAction
+        {
+            for( int i = 0; i < actions_.Count; ++i )
+            {
+                if (actions_[i] is T)
+                    return true;
+            }
+            return false;
+        }
+
         public IntVector3 GridPosition
         {
             get
@@ -160,6 +173,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            // Selection events get forwarded to HumanPlayer
             if (OnSelected_ != null)
                 OnSelected_(this);
             //eventData.selectedObject = gameObject;
