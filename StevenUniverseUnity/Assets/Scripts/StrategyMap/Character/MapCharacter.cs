@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using StevenUniverse.FanGame.StrategyMap.UI;
 using StevenUniverse.FanGame.Characters;
+using StevenUniverse.FanGame.StrategyMap.Players;
 
 // Just a note about unity's built in Selection Handlers - they require that the camera have a "Physics Raycaster"
 // and that an "EventSystem" is in the scene (GameObject->UI->EventSystem). Any objects to be selected
@@ -18,8 +19,9 @@ namespace StevenUniverse.FanGame.StrategyMap
     /// A character in the battle map.
     /// </summary>
     [SelectionBase]
-    public class MapCharacter : MonoBehaviour, IPointerClickHandler, ISelectHandler, IDeselectHandler
+    public class MapCharacter : MonoBehaviour, IPointerClickHandler
     {
+        public StrategyPlayer OwningPlayer { get; private set; }
          
         /// <summary>
         /// Character data, to be loaded in once this is instantiated.
@@ -43,8 +45,7 @@ namespace StevenUniverse.FanGame.StrategyMap
         /// on the unity side. Maybe character data just references actions by name? "Move", "Attack", etc
         /// </summary>
         List<CharacterAction> actions_ = null;
-
-        ActingState state_ = ActingState.IDLE;
+        
 
         //public ActingState CurrentActingState { get { return state_; } }
 
@@ -53,16 +54,9 @@ namespace StevenUniverse.FanGame.StrategyMap
         public Animator Animator_ { get { return animator_; } }
 
         /// <summary>
-        /// Event handler for when a character is selected with the mouse.
+        /// Event handler for when a character is clicked on.
         /// </summary>
-        static public System.Action<MapCharacter> OnSelected_;
-
-        /// <summary>
-        /// Event handler for when this character a "deselected". Note that in unity terms
-        /// an object is deselected if the mouse is clicked outside of the object OR if ANY UI
-        /// element is clicked.
-        /// </summary>
-        static public System.Action<MapCharacter> OnDeselected_;
+        static public System.Action<MapCharacter> OnClicked_;
 
         /// <summary>
         /// Populate the given buffer with valid actions this character can perform.
@@ -92,6 +86,18 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
             return false;
         }
+
+        public T GetAction<T>() where T : CharacterAction
+        {
+            for( int i = 0; i < actions_.Count; ++i )
+            {
+                if (actions_[i] is T)
+                    return actions_[i] as T;
+            }
+
+            return null;
+        }
+
 
         public IntVector3 GridPosition
         {
@@ -169,56 +175,25 @@ namespace StevenUniverse.FanGame.StrategyMap
 
             // Add our character to the grid at it's current position.
             grid.AddObject(GridPosition, this);
+
+            var players = FindObjectsOfType<StrategyPlayer>();
+            foreach( var p in players )
+            {
+                if( p.Units.Contains(this) )
+                {
+                    OwningPlayer = p;
+                    break;
+                }
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
             // Selection events get forwarded to HumanPlayer
-            if (OnSelected_ != null)
-                OnSelected_(this);
-            //eventData.selectedObject = gameObject;
-            //Debug.LogFormat("CharacterClicked");
-            //eventData.selectedObject = gameObject;
-            //if (CurrentActingState != ActingState.IDLE)
-            //    return;
-
-            //// Perform selection action when a character is FIRST selected.
-            //if (eventData.selectedObject == null || eventData.selectedObject != gameObject )
-            //{
-            //    eventData.selectedObject = gameObject;
-            //}
-            //// If a character is selected again, but it's already BEEN selected previously, just pop up the context UI.
-            //else
-            //{
-            //    CharacterActionsUI.Show(this);
-            //}
+            if (OnClicked_ != null)
+                OnClicked_(this);
         }
 
-        public void OnSelect(BaseEventData eventData)
-        {
-            // Forward character selection event to listeners
-            //if (OnSelected_ != null)
-            //    OnSelected_(this);
-            //Debug.LogFormat("{0} selected!", name);
-            //CharacterActionsUI.Show(this);
-            //if (actions_ == null)
-            //    return;
-
-            //// When a cahracter is first selected and they are able to move, immediately enter move prompt.
-            //for( int i = 0; i < actions_.Count; ++i )
-            //{
-            //    var action = actions_[i];
-            //    var move = action as MoveAction;
-            //    if (move != null)
-            //    {
-            //        move.Execute();
-            //        return;
-            //    }
-            //}
-
-            //// If the character doesn't have a move action, just show the Context UI.
-            //CharacterActionsUI.Show(this);
-        }
 
         /// <summary>
         /// Update the character's sorting order based on their current world position.
@@ -235,26 +210,6 @@ namespace StevenUniverse.FanGame.StrategyMap
             transform.position = pos;
             UpdateSortingOrder();
         }
-
-        public void OnDeselect(BaseEventData eventData)
-        {
-            // Forward selection event to listeners
-            if (OnDeselected_ != null)
-                OnDeselected_(this);
-            //if( eventData.selectedObject.)
-            //Debug.LogFormat("{0} deselected", name);
-            //HighlightGrid.Clear();
-        }
-
-        /// <summary>
-        /// Current state of the character
-        /// </summary>
-        public enum ActingState
-        {
-            MOVING,
-            IDLE,
-
-        };
 
         /// <summary>
         /// Coroutine that moves the character smoothly from it's current position to the 

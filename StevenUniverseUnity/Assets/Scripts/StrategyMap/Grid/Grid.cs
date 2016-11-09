@@ -6,6 +6,7 @@ using StevenUniverse.FanGame.Overworld;
 using System.Linq;
 using StevenUniverse.FanGame.Overworld.Templates;
 using StevenUniverse.FanGame.Factions;
+using UnityEngine.EventSystems;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -13,6 +14,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 
     public class Grid : MonoBehaviour
     {
+        GridSelectionBehaviour selection_;
         //TileMap<ITile> tileMap_ = null;
 
         // Dictionary mapping nodes to their 3D position ( x, y, elevation )
@@ -21,20 +23,25 @@ namespace StevenUniverse.FanGame.StrategyMap
         // Dictionary mapping each 2D position to the highest walkable node in that position.
         Dictionary<IntVector2, int> heightMap_ = new Dictionary<IntVector2, int>();
 
-        // Dictionary mapping sets of nodes to their 2D position
-
-        public GameObject pfb_pathSprite_;
+        /// <summary>
+        /// The current size of the map in tiles.
+        /// </summary>
+        public IntVector3 Size { get; private set; }
 
         public static Grid Instance { get; private set; }
 
         /// <summary>
-        /// Callback for when the grid is done building.
+        /// Callback for when the grid is done building from loaded chunks.
         /// </summary>
         public System.Action<Grid> OnGridBuilt_;
+
+        public System.Action<Node> OnNodeClicked_;
 
         void Awake()
         {
             Instance = this;
+            selection_ = GetComponent<GridSelectionBehaviour>();
+            selection_.OnClicked_ += HandleClick;
         }
 
         /// <summary>
@@ -48,6 +55,19 @@ namespace StevenUniverse.FanGame.StrategyMap
             if (current == null)
                 return null;
             return current.Neighbours_;
+        }
+
+        /// <summary>
+        /// Retrieve the highest pathable node at the given 2D position.
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <returns></returns>
+        public Node GetHighestNode( IntVector2 pos )
+        {
+            int h = GetHeight(pos);
+            if (h == int.MinValue)
+                return null;
+            return GetNode(new IntVector3(pos.x, pos.y, h));
         }
 
         /// <summary>
@@ -290,29 +310,10 @@ namespace StevenUniverse.FanGame.StrategyMap
             buffer.Reverse();
         }
 
-        //void OnDrawGizmosSelected()
-        //{
-        //    if( tileMap_ != null )
-        //    {
-        //        var min = tileMap_.Min;
-        //        var max = tileMap_.Max;
-
-        //        for (int x = min.x; x <= max.x; ++x)
-        //        {
-        //            for (int y = min.y; y <= max.y; ++y)
-        //            {
-        //                var tileStack = tileMap_.GetTileStack(x, y);
-        //                if (tileStack != null)
-        //                    Gizmos.DrawWireSphere(new Vector3(x, y, 1f) + Vector3.one * .5f, .5f);
-        //            }
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// Builds the grid from the given tile map and forms node connections for ground movement.
         /// </summary>
-        public IEnumerator BuildGrid( TileMap<ITile> tiles )
+        public IEnumerator BuildFromTileMap( TileMap<ITile> tiles )
         {
             //tileMap_ = tiles;
             var min = tiles.Min;
@@ -484,8 +485,27 @@ namespace StevenUniverse.FanGame.StrategyMap
                 }
             }
 
+            Size = tiles.Size;
+
             if (OnGridBuilt_ != null)
                 OnGridBuilt_(this);
+
+        }
+
+        /// <summary>
+        /// Retrieve nodes from user clicks and forward click event to listeners.
+        /// </summary>
+        void HandleClick( PointerEventData data )
+        {
+            if (OnNodeClicked_ == null)
+                return;
+
+            var pos = (IntVector2)data.pointerCurrentRaycast.worldPosition;
+
+            var node = GetHighestNode(pos);
+
+            if( node != null )
+                OnNodeClicked_.Invoke(node);
         }
 
     }

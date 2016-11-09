@@ -14,9 +14,9 @@ namespace StevenUniverse.FanGame.Overworld
     /// </summary>
     public class TileMap<T> : IEnumerable<T> where T : ITile
     {
-        IntVector2 min_;
-        IntVector2 max_;
-        IntVector2 size_;
+        IntVector3 min_;
+        IntVector3 max_;
+        IntVector3 size_;
 
         // Dictionary mapping stacks of tiles to their 2D position
         Dictionary<IntVector2, List<T>> stackDict_ = new Dictionary<IntVector2, List<T>>();
@@ -30,17 +30,17 @@ namespace StevenUniverse.FanGame.Overworld
         /// </summary>
         static TileComparer comparer_ = new TileComparer();
 
-        public IntVector2 Min
+        public IntVector3 Min
         {
             get { return min_; }
         }
 
-        public IntVector2 Max
+        public IntVector3 Max
         {
             get { return max_; }
         }
 
-        public IntVector2 Size
+        public IntVector3 Size
         {
             get { return size_; }
         }
@@ -56,7 +56,7 @@ namespace StevenUniverse.FanGame.Overworld
 
         public void Add(T t)
         {
-            IntVector2 pos = new IntVector2(t.Position);
+            IntVector3 pos = new IntVector3(t.Position.x, t.Position.y, t.Elevation );
 
             //Set the mins and maxes if there are currently no elements
             if (stackDict_.Count == 0)
@@ -66,9 +66,9 @@ namespace StevenUniverse.FanGame.Overworld
             //Otherwise, set any new mins and maxes that surpass previous values
             else
             {
-                min_ = IntVector2.Min(min_, pos);
-                max_ = IntVector2.Max(max_, pos);
-                size_ = max_ - min_ + IntVector2.one;
+                min_ = IntVector3.Min(min_, pos);
+                max_ = IntVector3.Max(max_, pos);
+                size_ = max_ - min_ + IntVector3.one;
             }
 
             AddToStackDict(t);

@@ -18,6 +18,7 @@ namespace StevenUniverse.FanGame.StrategyMap.Players
 
         [SerializeField]
         protected List<MapCharacter> units_ = new List<MapCharacter>();
+        public IList<MapCharacter> Units { get; private set; }
 
         bool currentlyActing_ = false;
 
@@ -72,7 +73,7 @@ namespace StevenUniverse.FanGame.StrategyMap.Players
 
         void Awake()
         {
-
+            Units = units_.AsReadOnly();
         }   
     }
 }

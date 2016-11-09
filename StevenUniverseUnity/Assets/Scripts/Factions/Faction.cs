@@ -73,6 +73,22 @@ public static class FactionExtensions
         factionData_[a].standings_[b] = standing;
         factionData_[b].standings_[a] = standing;
     }
+
+    ///// <summary>
+    ///// Returns the target type of one faction relative to the other( ENEMY, ALLY, or NEUTRAL )
+    ///// </summary>
+    //public static TargetType GetTargetType( Faction a, Faction b )
+    //{
+    //    switch( GetStanding(a, b) )
+    //    {
+    //        case Standing.FRIENDLY:
+    //            return TargetType.ALLY;
+    //        case Standing.HOSTILE:
+    //            return TargetType.ENEMY;
+    //        default:
+    //            return TargetType.
+    //    }
+    //}
 }
 
 

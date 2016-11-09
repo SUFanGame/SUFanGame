@@ -7,56 +7,105 @@ using StevenUniverse.FanGame.Util.Logic.States;
 
 namespace StevenUniverse.FanGame.StrategyMap.Players
 {
+    [RequireComponent(typeof(EventTrigger))]
     public class HumanPlayer : StrategyPlayer
     {
 
         /// <summary>
         /// The unit that is currently selected by this player.
         /// </summary>
-        MapCharacter currentlySelected_ = null;
-
-        Coroutine selectionRoutine_ = null;
-
-        StateMachine selectionState_ = new StateMachine();
+        //MapCharacter currentlySelected_ = null;
+        
+        /// <summary>
+        /// State machine that handles player inputs and manages the state of the ui.
+        /// Input will be forwarded from the player to the machine to whichever state is currently
+        /// active.
+        /// </summary>
+        StateMachine stateMachine_;
 
         void OnEnable()
         {
-            MapCharacter.OnSelected_ += OnSelected;
+            stateMachine_ = new StateMachine(this);
+
+            var grid = GameObject.FindObjectOfType<Grid>();
+
+            if (grid == null)
+                return;
+
+            // Register for click events.
+            grid.OnNodeClicked_ += OnNodeClicked;
+            MapCharacter.OnClicked_ += OnUnitClicked;
         }
 
         void OnDisable()
         {
-            MapCharacter.OnSelected_ -= OnSelected;
+            var grid = GameObject.FindObjectOfType<Grid>();
+
+            if (grid == null)
+                return;
+
+            // Unregister click events.
+            grid.OnNodeClicked_ -= OnNodeClicked;
+            MapCharacter.OnClicked_ -= OnUnitClicked;
         }
+
 
         /// <summary>
         /// Buffer to hold character actions.
         /// </summary>
-        List<CharacterAction> actionBuffer_ = new List<CharacterAction>();
+        //List<CharacterAction> actionBuffer_ = new List<CharacterAction>();
 
 
         void Start()
         {
-            StartCoroutine(selectionState_.TickRoutine());
+            StartCoroutine(stateMachine_.TickRoutine());
         }
 
-        /// <summary>
-        /// Called whenever a player clicks on a unit.
-        /// </summary>
-        void OnSelected( MapCharacter character )
+        void OnNodeClicked( Node node )
         {
-            // TODO : Make a "SelectCharacter" state which is the default. Selection actions can get forwarded to that and it
-            // can decide what to do from there.
-            if( selectionState_.StateCount == 0 
-                && CurrentlyActing_
-                && units_.Contains(character) 
-                && character.Paused_ == false
-                && character.HasAction<MoveAction>() )
+            //Debug.LogFormat("Node {0} clicked", node);
+            stateMachine_.OnPointSelected(node);
+        }
+        
+        void OnUnitClicked( MapCharacter character )
+        {
+            //Debug.LogFormat("Character {0} clicked", character.name );
+            stateMachine_.OnUnitSelected(character);
+        }
+
+        void Update()
+        {
+            // Handle keyboard events.
+            if( Input.GetButtonDown("Submit") )
             {
-                selectionState_.Push(new ChooseMoveState(selectionState_, character));
+                stateMachine_.OnAccept();
             }
 
+            if( Input.GetButtonDown("Cancel") )
+            {
+                stateMachine_.OnCancel();
+            }
         }
+
+        ///// <summary>
+        ///// Called whenever a player clicks on a unit.
+        ///// </summary>
+        //void OnSelected( MapCharacter character )
+        //{
+        //    // TODO : Make a "SelectCharacter" state which is the default? Selection actions could get forwarded to that and it
+        //    // can decide what to do from there.
+        //    if( selectionState_.StateCount == 0 
+        //        && CurrentlyActing_
+        //        && units_.Contains(character) 
+        //        && character.Paused_ == false )
+        //    {
+        //        if (character.HasAction<MoveAction>())
+        //            selectionState_.Push(new CharacterMoveUIState(character));
+        //        else
+        //            selectionState_.Push(new ChooseCharacterActionState(character));
+        //    }
+
+        //}
 
     }
 }

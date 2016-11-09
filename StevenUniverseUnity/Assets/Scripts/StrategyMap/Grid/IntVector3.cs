@@ -116,6 +116,20 @@ namespace StevenUniverse.FanGame.StrategyMap
 			this.y *= scale.y;
 			this.z *= scale.z;
 		}
+
+        public static IntVector3 Min( IntVector3 lhs, IntVector3 rhs )
+        {
+            for (int i = 0; i < 3; ++i)
+                lhs[i] = Mathf.Min(lhs[i], rhs[i]);
+            return lhs;
+        }
+
+        public static IntVector3 Max(IntVector3 lhs, IntVector3 rhs)
+        {
+            for (int i = 0; i < 3; ++i)
+                lhs[i] = Mathf.Max(lhs[i], rhs[i]);
+            return lhs;
+        }
 		
 		public static int SqrMagnitude (IntVector3 a)
 		{

@@ -3,18 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using StevenUniverse.FanGame.Factions;
+using StevenUniverse.FanGame.Util.Logic.States;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
-    // TODO: Adjust grid GetObjects so we can pass in a predicate to find specific objects...
-    //       in this case the predicate will be something like actor_.faction_.IsEnemy( adjacentCharacter.faction_ )
-
     /// <summary>
     /// Character attack action
     /// </summary>
     public class AttackAction : CharacterAction
     {
         static Predicate<MapCharacter> opponentPredicate_ = null;
+
+        // TODO: Attack properties should be retrieved from whatever weapon the character is currently using.
+        #region AttackProperties
+        public TargetType targetType_ = TargetType.ENEMY;
+        public int range_ = 1;
+        #endregion
+
+
+        /// <summary>
+        /// Target to be attacked
+        /// </summary>
+        //public MapCharacter Target { get; set; }
 
         protected override void Awake()
         {
@@ -47,7 +57,18 @@ namespace StevenUniverse.FanGame.StrategyMap
 
             return opponents_.Count > 0;
         }
-        
+
+        public IEnumerator Execute( MapCharacter target )
+        {
+            // Play cool attack scene animation
+            //return base.Routine();
+            yield return null;
+        }
+
+        public override State GetUIState()
+        {
+            return new ChooseTargetState(actor_, targetType_);
+        }
     }
 
 }

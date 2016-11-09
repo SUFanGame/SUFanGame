@@ -10,17 +10,14 @@ namespace StevenUniverse.FanGame.Interactions
     class InteractionTests : CharacterAction
     {
 
-        public override IEnumerator Routine()
+        public IEnumerator Execute( string cutsceneName )
         {
-            executeTest1();
-
-            yield return base.Routine();
+            executeTest1(cutsceneName);
+            yield return null;
         }
 
-        public void executeTest1()
+        public void executeTest1( string cutsceneName )
         {
-            string cutsceneName = "TestScript1";
-
             string absolutePath = Utilities.ConvertAssetPathToAbsolutePath("Assets/Resources/Cutscenes/" + cutsceneName + ".json");
             if (!File.Exists(absolutePath))
             {
