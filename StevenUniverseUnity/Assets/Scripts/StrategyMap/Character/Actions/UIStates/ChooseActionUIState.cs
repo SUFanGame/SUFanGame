@@ -9,6 +9,10 @@ namespace StevenUniverse.FanGame.Util.Logic.States
     public class ChooseActionUIState : State
     {
         MapCharacter actor_;
+
+        /// <summary>
+        /// The action selected by the player.
+        /// </summary>
         CharacterAction action_ = null;
 
         public ChooseActionUIState( MapCharacter actor )
@@ -27,11 +31,17 @@ namespace StevenUniverse.FanGame.Util.Logic.States
 
         public override void OnExit()
         {
-            base.OnExit();
+
+            CharacterActionsUI.OnActionSelected_ -= OnActionSelected;
 
             CharacterActionsUI.Hide();
+
+            base.OnExit();
         }
 
+        /// <summary>
+        /// Called when the player selects an action from the ActionsUI menu.
+        /// </summary>
         void OnActionSelected( CharacterAction action )
         {
             action_ = action;
@@ -39,13 +49,26 @@ namespace StevenUniverse.FanGame.Util.Logic.States
 
         public override IEnumerator Tick()
         {
+            // Track when the player selects an action from the UI menu.
             if( action_ != null )
             {
-                Machine.Push(action_.GetUIState());
+                var nextState = action_.GetUIState();
+                // Push the action's UI state onto our stack.
+                if ( nextState != null )
+                {
+                    Machine.Push(action_.GetUIState());
+                }
+                else
+                {
+                    actor_.Paused_ = true;
+                    Machine.Clear();
+                }
+                
                 action_ = null;
             }
             yield return null;
         }
+
 
         //public override IEnumerator Tick()
         //{

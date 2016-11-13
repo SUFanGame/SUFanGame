@@ -9,7 +9,7 @@ public class StrategyMapIdleUIState : State
 {
     public override void OnCharacterSelected(StrategyPlayer player, MapCharacter character)
     {
-        if( !character.Paused_ && character.OwningPlayer == player )
+        if( !character.Paused_ && character.OwningPlayer == player && character.OwningPlayer.CurrentlyActing_ )
         {
             var moveAction = character.GetAction<MoveAction>();
             if( moveAction != null )

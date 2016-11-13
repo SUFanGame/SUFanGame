@@ -39,32 +39,21 @@ namespace StevenUniverse.FanGame.Util.Logic.States
                     if (value == true)
                         OnPaused();
                     else
-                        OnPaused();
+                        OnUnpaused();
                 }
                 paused_ = value;
             }
         }
-
-        protected bool stopTicking_ = false;
+       
         
         public virtual void OnEnter()
         {
-            Debug.LogFormat("Entering {0}", GetType().Name);
-        }
-
-        /// <summary>
-        /// What to do if the previous state is cancelled (via player input ) and this one becomes active again. 
-        /// Note this is not what should happen if THIS STATE gets cancelled.
-        /// </summary>
-        public virtual void OnUndo()
-        {
-
+            //Debug.LogFormat("Entering {0}", GetType().Name);
         }
 
         public virtual void OnExit()
         {
-            stopTicking_ = true;
-            Debug.LogFormat("Exiting {0}", GetType().Name);
+            //Debug.LogFormat("Exiting {0}", GetType().Name);
         }
         
         /// <summary>
@@ -114,16 +103,25 @@ namespace StevenUniverse.FanGame.Util.Logic.States
             Machine.Pop();
         }
 
+        /// <summary>
+        /// What to do when the state is paused. Default behaviour is to call OnExit().
+        /// </summary>
         public virtual void OnPaused()
         {
             string name = GetType().Name;
-            Debug.LogFormat("Pausing {0}", name);
+            //Debug.LogFormat("Pausing {0}", name);
+            
+            OnExit();
         }
 
+        /// <summary>
+        /// What to do when a state is unpaused. Default behaviour is to call OnEnter().
+        /// </summary>
         public virtual void OnUnpaused()
         {
             string name = GetType().Name;
-            Debug.LogFormat("Unpausing {0}", name);
+            //Debug.LogFormat("Unpausing {0}", name);
+            OnEnter();
         }
 
     }

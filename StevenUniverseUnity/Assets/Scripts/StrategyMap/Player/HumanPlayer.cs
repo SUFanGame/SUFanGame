@@ -7,7 +7,6 @@ using StevenUniverse.FanGame.Util.Logic.States;
 
 namespace StevenUniverse.FanGame.StrategyMap.Players
 {
-    [RequireComponent(typeof(EventTrigger))]
     public class HumanPlayer : StrategyPlayer
     {
 

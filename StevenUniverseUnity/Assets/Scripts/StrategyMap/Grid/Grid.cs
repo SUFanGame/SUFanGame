@@ -23,6 +23,9 @@ namespace StevenUniverse.FanGame.StrategyMap
         // Dictionary mapping each 2D position to the highest walkable node in that position.
         Dictionary<IntVector2, int> heightMap_ = new Dictionary<IntVector2, int>();
 
+        // List of any objects added to the map.
+        List<MonoBehaviour> objects_ = new List<MonoBehaviour>();
+
         /// <summary>
         /// The current size of the map in tiles.
         /// </summary>
@@ -41,6 +44,7 @@ namespace StevenUniverse.FanGame.StrategyMap
         {
             Instance = this;
             selection_ = GetComponent<GridSelectionBehaviour>();
+            // Register to receieve user clicks on the grid.
             selection_.OnClicked_ += HandleClick;
         }
 
@@ -125,6 +129,33 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
         }
 
+        /// <summary>
+        /// Gets all objects of type T in range of pos. A predicate can optionally be specified to filter results.
+        /// </summary>
+        /// <typeparam name="T">A MonoBehaviour being searched for.</typeparam>
+        /// <param name="pos">The position to search from.</param>
+        /// <param name="range">The range from the position to consider.</param>
+        /// <param name="buffer">The buffer to be populated with results.</param>
+        /// <param name="predicate">Optional predicate to filter results.</param>
+        public void GetObjectsInArea<T>( IntVector2 pos, int range, List<T> buffer, System.Predicate<T> predicate = null ) where T : MonoBehaviour
+        {
+            // Could also search each cell in a diamond-shape starting from the position for low-range searches.
+            // For any search beyond a range of 2 this is probably going to be faster.
+            for( int i = 0; i < objects_.Count; ++i )
+            {
+                var t = objects_[i] as T;
+
+                // Check if the object is one we're actually concerned with.
+                if (t == null || (predicate != null && !predicate.Invoke(t) ) )
+                    continue;
+                
+                // Check if the object is in range.
+                IntVector2 objPos = (IntVector2)t.transform.position;
+                if (IntVector2.ManhattanDistance(pos, objPos) <= range)
+                    buffer.Add(t);
+            }
+        }
+
         public void AddObject( IntVector3 pos, MonoBehaviour obj )
         {
             var node = GetNode(pos);
@@ -133,6 +164,7 @@ namespace StevenUniverse.FanGame.StrategyMap
                 Debug.LogErrorFormat("Attempting to add object {0} to grid at {1}, but there's no node there", obj.name, pos);
 
             node.AddObject(obj);
+            objects_.Add(obj);
         }
 
         public void RemoveObject( IntVector3 pos, MonoBehaviour obj )
@@ -143,6 +175,7 @@ namespace StevenUniverse.FanGame.StrategyMap
                 Debug.LogErrorFormat("Attempting to remove object {0} to grid at {1}, but there's no node there", obj.name, pos);
 
             node.RemoveObject(obj);
+            objects_.Remove(obj);
         }
 
         public void MoveObject( IntVector3 oldPos, IntVector3 newPos, MonoBehaviour obj )

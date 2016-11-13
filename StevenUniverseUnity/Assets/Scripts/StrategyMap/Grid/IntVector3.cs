@@ -130,8 +130,17 @@ namespace StevenUniverse.FanGame.StrategyMap
                 lhs[i] = Mathf.Max(lhs[i], rhs[i]);
             return lhs;
         }
-		
-		public static int SqrMagnitude (IntVector3 a)
+        
+        public static IntVector3 Clamp(IntVector3 vec, int minValue, int maxValue)
+        {
+            for (int i = 0; i < 3; ++i)
+                vec[i] = Mathf.Clamp(vec[i], minValue, maxValue);
+
+            return vec;
+        }
+
+
+        public static int SqrMagnitude (IntVector3 a)
 		{
 			return a.x * a.x + a.y * a.y + a.z * a.z;
 		}

@@ -171,7 +171,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 198510355}
   - 114: {fileID: 198510354}
-  - 114: {fileID: 198510356}
   m_Layer: 0
   m_Name: CrystalGems
   m_TagString: Untagged
@@ -208,19 +207,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 709530032}
   m_RootOrder: 0
---- !u!114 &198510356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 198510353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
-  delegates: []
 --- !u!1 &361338207
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +216,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 361338208}
   - 114: {fileID: 361338211}
+  - 114: {fileID: 361338213}
+  - 114: {fileID: 361338214}
   - 114: {fileID: 361338210}
   - 114: {fileID: 361338209}
   - 114: {fileID: 361338212}
@@ -323,6 +311,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiName_: Wait
+--- !u!114 &361338213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 361338207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203b601db9cd8244683b2945f7fe45de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiName_: 
+--- !u!114 &361338214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 361338207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f61790b74d88eed4883f6d47183fad40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiName_: 
+  targetProperties_:
+    type_: 0
+    range_: 1
+    source_: {fileID: 0}
 --- !u!1 &407179063
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,6 +348,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 407179065}
   - 114: {fileID: 407179064}
+  - 114: {fileID: 407179069}
   - 114: {fileID: 407179066}
   - 114: {fileID: 407179067}
   - 114: {fileID: 407179068}
@@ -397,10 +414,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 407179063}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79c5b1aae7329154da0291fd49839dc1, type: 3}
+  m_Script: {fileID: 11500000, guid: f61790b74d88eed4883f6d47183fad40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiName_: Do Baclkflips
+  uiName_: Attack
+  targetProperties_:
+    type_: 0
+    range_: 2
+    source_: {fileID: 0}
 --- !u!114 &407179067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +446,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiName_: Wait
+--- !u!114 &407179069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 407179063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203b601db9cd8244683b2945f7fe45de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiName_: 
 --- !u!1 &524275848
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b2eae4029744a4fb8cf36731219d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range_: 5
+  snapTarget_: {fileID: 0}
   onGUI_: 1
 --- !u!1 &709530031
 GameObject:
@@ -1838,11 +1873,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1706709661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aec8a84d6cf81646a6902584a682986, type: 3}
+  m_Script: {fileID: 11500000, guid: f14b099fc04829549b3438841320ab3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction_: 1
-  units_: []
+  units_:
+  - {fileID: 1946347260}
+  - {fileID: 1985011208}
+  - {fileID: 1712481976}
 --- !u!4 &1706709663
 Transform:
   m_ObjectHideFlags: 0
@@ -2080,6 +2118,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiName_: Attack
+  targetProperties_:
+    type_: 0
+    range_: 1
+    source_: {fileID: 0}
 --- !u!114 &1944956340
 MonoBehaviour:
   m_ObjectHideFlags: 0

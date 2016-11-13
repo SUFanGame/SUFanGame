@@ -15,11 +15,15 @@ namespace StevenUniverse.FanGame.StrategyMap
         static Predicate<MapCharacter> opponentPredicate_ = null;
 
         // TODO: Attack properties should be retrieved from whatever weapon the character is currently using.
-        #region AttackProperties
-        public TargetType targetType_ = TargetType.ENEMY;
-        public int range_ = 1;
-        #endregion
+        public TargetProperties targetProperties_;
 
+        public override string UIName
+        {
+            get
+            {
+                return "Attack";
+            }
+        }
 
         /// <summary>
         /// Target to be attacked
@@ -33,41 +37,56 @@ namespace StevenUniverse.FanGame.StrategyMap
             // Set our predicate to search only for enemies
             opponentPredicate_ = (c) =>
             {
-                return actor_.Data.Faction_.GetStanding(c.Data.Faction_) == Standing.HOSTILE;
+                return targetProperties_.IsValid(c);
             };
+
+            //targetProperties_ = new TargetProperties(targetTy);
+            targetProperties_.type_ = TargetType.ENEMY;
+            targetProperties_.source_ = actor_;
+
+            ValidTargetsReadOnly_ = validTargets_.AsReadOnly();
         }
 
-        List<MapCharacter> opponents_ = new List<MapCharacter>();
+        List<MapCharacter> validTargets_ = new List<MapCharacter>();
+        /// <summary>
+        /// Read-Only access to the list of valid attack targets given this attack's current target properties.
+        /// </summary>
+        public IList<MapCharacter> ValidTargetsReadOnly_ { get; private set; }
 
         public override bool IsUsable()
         {
             var grid = Grid.Instance;
-
+            
             var pos = actor_.GridPosition;
 
-            var adjacent = Directions2D.Quadrilateral;
+            validTargets_.Clear();
 
-            opponents_.Clear();
-            for ( int i = 0; i < adjacent.Length; ++i )
-            {
-                var adj = pos + adjacent[i];
+            grid.GetObjectsInArea((IntVector2)pos, targetProperties_.range_, validTargets_, opponentPredicate_);
 
-                grid.GetObjects(adj, opponents_, opponentPredicate_ );
-            }
+            //var adjacent = Directions2D.Quadrilateral;
 
-            return opponents_.Count > 0;
+            //opponents_.Clear();
+            //for ( int i = 0; i < adjacent.Length; ++i )
+            //{
+            //    var adj = pos + adjacent[i];
+
+            //    grid.GetObjects(adj, opponents_, opponentPredicate_ );
+            //}
+
+            return validTargets_.Count > 0;
         }
 
         public IEnumerator Execute( MapCharacter target )
         {
             // Play cool attack scene animation
-            //return base.Routine();
+            actor_.Paused_ = true;
             yield return null;
         }
 
         public override State GetUIState()
         {
-            return new ChooseTargetState(actor_, targetType_);
+            var state = new ChooseTargetUIState(actor_, this, targetProperties_, Execute, ValidTargetsReadOnly_);
+            return state;
         }
     }
 

@@ -181,6 +181,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             {
                 if( p.Units.Contains(this) )
                 {
+                    //Debug.LogFormat("Adding {0} to map and assigning to faction {1}", name, p.name);
                     OwningPlayer = p;
                     break;
                 }

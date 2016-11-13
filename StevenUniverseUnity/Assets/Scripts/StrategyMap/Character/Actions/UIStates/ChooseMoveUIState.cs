@@ -24,6 +24,7 @@ namespace StevenUniverse.FanGame.Util.Logic.States
             actor_ = actor;
             moveAction_ = moveAction;
         }
+        
 
         //public override IEnumerator Tick()
         //{
@@ -114,7 +115,10 @@ namespace StevenUniverse.FanGame.Util.Logic.States
                 HighlightGrid.HighlightPos(node.Pos_.x, node.Pos_.y, node.Pos_.z, Color.blue);
             }
 
-            StrategyCursor.SetTargetTypes(TargetType.ALLY & TargetType.ENEMY & TargetType.POINT & TargetType.SELF);
+
+            TargetProperties targetProperties = new TargetProperties(TargetType.POINT, actor_.moveRange_, actor_); 
+
+            StrategyCursor.SetTargetTypes( targetProperties );
         }
 
 
@@ -170,6 +174,7 @@ namespace StevenUniverse.FanGame.Util.Logic.States
         public override void OnExit()
         {
             HighlightGrid.Clear();
+            StrategyCursor.SetTargetTypes(null);
             base.OnExit();
         }
     }
