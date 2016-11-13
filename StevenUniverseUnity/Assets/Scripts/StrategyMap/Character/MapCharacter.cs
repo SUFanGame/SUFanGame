@@ -8,6 +8,7 @@ using System;
 using StevenUniverse.FanGame.StrategyMap.UI;
 using StevenUniverse.FanGame.Characters;
 using StevenUniverse.FanGame.StrategyMap.Players;
+using UnityEditor;
 
 // Just a note about unity's built in Selection Handlers - they require that the camera have a "Physics Raycaster"
 // and that an "EventSystem" is in the scene (GameObject->UI->EventSystem). Any objects to be selected
@@ -37,7 +38,7 @@ namespace StevenUniverse.FanGame.StrategyMap
         public int moveRange_ = 5;
         #endregion
 
-        SpriteRenderer renderer_;
+        public SpriteRenderer renderer_;
 
         /// <summary>
         /// List of actions this character is capable of. Actions are components added to the character
@@ -110,8 +111,7 @@ namespace StevenUniverse.FanGame.StrategyMap
                 transform.position = (Vector3)value;
             }
         }
-
-        static Color pausedColor_ = new Color(.32f, .32f, .32f);
+        
 
         bool paused_ = false;
         public bool Paused_
@@ -126,12 +126,19 @@ namespace StevenUniverse.FanGame.StrategyMap
 
                 if( paused_ )
                 {
+                    Debug.Log("Pausing " + name, gameObject);
                     animator_.speed = 0f;
-                    renderer_.color = pausedColor_;
+
+                    renderer_.color = new Color(.32f, .32f, .32f);
+                    //renderer_.enabled = false;
                 }
                 else
                 {
+                    Debug.LogFormat("UnPausing {0}", name);
                     animator_.speed = 1f;
+
+
+
                     renderer_.color = Color.white;
                 }
             }

@@ -86,7 +86,8 @@ public class ChooseTargetUIState : State
             for (int i = 0; i < ValidTargets.Count; ++i)
             {
                 var sprite = ValidTargets[i].GetComponentInChildren<SpriteRenderer>();
-                sprite.color = Color.white;
+                if( sprite.color == Color.red )
+                    sprite.color = Color.white;
             }
         }
     }
@@ -109,6 +110,10 @@ public class ChooseTargetUIState : State
     // that targets a point? That could be a separate state maybe?
     public override void OnCharacterSelected(StrategyPlayer player, MapCharacter target )
     {
+        if( ValidTargets == null )
+        {
+            Debug.LogErrorFormat("Valid Targets was null, ensure action \"{0}\" is properly assigning ValidTargets array", Action.UIName );
+        }
         if (ValidTargets.Contains(target))
         {
             Target = target;

@@ -299,6 +299,7 @@ MonoBehaviour:
       dataGroups: []
   tilesMovedPerSecond_: 3
   moveRange_: 5
+  renderer_: {fileID: 0}
 --- !u!114 &361338212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +393,7 @@ MonoBehaviour:
       dataGroups: []
   tilesMovedPerSecond_: 3
   moveRange_: 5
+  renderer_: {fileID: 0}
 --- !u!4 &407179065
 Transform:
   m_ObjectHideFlags: 0
@@ -1970,6 +1972,7 @@ MonoBehaviour:
       dataGroups: []
   tilesMovedPerSecond_: 3
   moveRange_: 5
+  renderer_: {fileID: 0}
 --- !u!1 &1731134001
 GameObject:
   m_ObjectHideFlags: 0
@@ -2056,6 +2059,7 @@ MonoBehaviour:
       dataGroups: []
   tilesMovedPerSecond_: 3
   moveRange_: 5
+  renderer_: {fileID: 0}
 --- !u!4 &1944956335
 Transform:
   m_ObjectHideFlags: 0
@@ -2135,7 +2139,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiName_: Support
-  supportCanvas_: {fileID: 0}
+  targetProperties_:
+    type_: 0
+    range_: 1
+    source_: {fileID: 0}
+  supportCanvas_: {fileID: 744130490}
 --- !u!114 &1944956341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2198,6 +2206,7 @@ MonoBehaviour:
       dataGroups: []
   tilesMovedPerSecond_: 3
   moveRange_: 5
+  renderer_: {fileID: 0}
 --- !u!4 &1946347261
 Transform:
   m_ObjectHideFlags: 0
@@ -2362,6 +2371,7 @@ MonoBehaviour:
       dataGroups: []
   tilesMovedPerSecond_: 3
   moveRange_: 5
+  renderer_: {fileID: 0}
 --- !u!1 &1997691818
 GameObject:
   m_ObjectHideFlags: 0

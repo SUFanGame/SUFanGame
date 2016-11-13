@@ -50,6 +50,11 @@ public struct TargetProperties
         //Debug.LogFormat("Testing against {0}", target.name);
         //Debug.LogFormat("Source null: {0}, Target null: {0}", source_ == null, target == null);
 
+        if( source_ == null )
+        {
+            Debug.LogErrorFormat("Error checking target properties - ensure each action is correctly setting TargetProperties.Source");
+        }
+
         var sourceFaction = source_.OwningPlayer.Faction_;
         var tarFaction = target.OwningPlayer.Faction_;
 
@@ -68,7 +73,7 @@ public struct TargetProperties
         // Check if we're targeting allies
         if( (type_ & TargetType.ALLY) == TargetType.ALLY )
         {
-            if( sourceFaction.GetStanding(tarFaction) == Standing.FRIENDLY )
+            if( target != source_ && sourceFaction.GetStanding(tarFaction) == Standing.FRIENDLY )
             {
                 return true;
             }

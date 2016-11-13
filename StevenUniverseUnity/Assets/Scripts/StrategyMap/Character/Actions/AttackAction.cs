@@ -10,8 +10,6 @@ namespace StevenUniverse.FanGame.StrategyMap
     /// </summary>
     public class AttackAction : CharacterAction
     {
-        static System.Predicate<MapCharacter> opponentPredicate_ = null;
-
         // TODO: Attack properties should be retrieved from whatever weapon the character is currently using.
         public TargetProperties targetProperties_;
 
@@ -31,12 +29,6 @@ namespace StevenUniverse.FanGame.StrategyMap
         protected override void Awake()
         {
             base.Awake();
-
-            // Set our predicate to search only for enemies
-            opponentPredicate_ = (c) =>
-            {
-                return targetProperties_.IsValid(c);
-            };
 
             //targetProperties_ = new TargetProperties(targetTy);
             targetProperties_.type_ = TargetType.ENEMY;
@@ -60,7 +52,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 
             validTargets_.Clear();
 
-            grid.GetObjectsInArea((IntVector2)pos, targetProperties_.range_, validTargets_, opponentPredicate_);
+            grid.GetObjectsInArea((IntVector2)pos, targetProperties_.range_, validTargets_, targetProperties_.IsValid );
 
             //var adjacent = Directions2D.Quadrilateral;
 
