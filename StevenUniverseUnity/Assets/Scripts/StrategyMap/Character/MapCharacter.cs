@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using StevenUniverse.FanGame.StrategyMap.UI;
 using StevenUniverse.FanGame.Characters;
+using StevenUniverse.FanGame.StrategyMap.Players;
 
 // Just a note about unity's built in Selection Handlers - they require that the camera have a "Physics Raycaster"
 // and that an "EventSystem" is in the scene (GameObject->UI->EventSystem). Any objects to be selected
@@ -18,8 +19,9 @@ namespace StevenUniverse.FanGame.StrategyMap
     /// A character in the battle map.
     /// </summary>
     [SelectionBase]
-    public class MapCharacter : MonoBehaviour, IPointerClickHandler, ISelectHandler, IDeselectHandler
+    public class MapCharacter : MonoBehaviour, IPointerClickHandler
     {
+        public StrategyPlayer OwningPlayer { get; private set; }
          
         /// <summary>
         /// Character data, to be loaded in once this is instantiated.
@@ -43,11 +45,18 @@ namespace StevenUniverse.FanGame.StrategyMap
         /// on the unity side. Maybe character data just references actions by name? "Move", "Attack", etc
         /// </summary>
         List<CharacterAction> actions_ = null;
+        
 
-        ActingState state_ = ActingState.IDLE;
+        //public ActingState CurrentActingState { get { return state_; } }
 
-        public ActingState CurrentActingState { get { return state_; } }
+        Animator animator_;
 
+        public Animator Animator_ { get { return animator_; } }
+
+        /// <summary>
+        /// Event handler for when a character is clicked on.
+        /// </summary>
+        static public System.Action<MapCharacter> OnClicked_;
 
         /// <summary>
         /// Populate the given buffer with valid actions this character can perform.
@@ -65,6 +74,31 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
         }
 
+        /// <summary>
+        /// Returns true if the character is capable of the given action.
+        /// </summary>
+        public bool HasAction<T>() where T : CharacterAction
+        {
+            for( int i = 0; i < actions_.Count; ++i )
+            {
+                if (actions_[i] is T)
+                    return true;
+            }
+            return false;
+        }
+
+        public T GetAction<T>() where T : CharacterAction
+        {
+            for( int i = 0; i < actions_.Count; ++i )
+            {
+                if (actions_[i] is T)
+                    return actions_[i] as T;
+            }
+
+            return null;
+        }
+
+
         public IntVector3 GridPosition
         {
             get
@@ -77,8 +111,36 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
         }
 
+        static Color pausedColor_ = new Color(.32f, .32f, .32f);
+
+        bool paused_ = false;
+        public bool Paused_
+        {
+            get
+            {
+                return paused_;
+            }
+            set
+            {
+                paused_ = value;
+
+                if( paused_ )
+                {
+                    animator_.speed = 0f;
+                    renderer_.color = pausedColor_;
+                }
+                else
+                {
+                    animator_.speed = 1f;
+                    renderer_.color = Color.white;
+                }
+            }
+        }
+
         void Awake()
         {
+            animator_ = GetComponentInChildren<Animator>();
+            
             renderer_ = GetComponentInChildren<SpriteRenderer>();
 
             // Populate our list of actions
@@ -113,45 +175,26 @@ namespace StevenUniverse.FanGame.StrategyMap
 
             // Add our character to the grid at it's current position.
             grid.AddObject(GridPosition, this);
+
+            var players = FindObjectsOfType<StrategyPlayer>();
+            foreach( var p in players )
+            {
+                if( p.Units.Contains(this) )
+                {
+                    //Debug.LogFormat("Adding {0} to map and assigning to faction {1}", name, p.name);
+                    OwningPlayer = p;
+                    break;
+                }
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (CurrentActingState != ActingState.IDLE)
-                return;
-
-            // Perform selection action when a character is FIRST selected.
-            if (eventData.selectedObject == null || eventData.selectedObject != gameObject )
-            {
-                eventData.selectedObject = gameObject;
-            }
-            // If a character is selected again, but it's already BEEN selected previously, just pop up the context UI.
-            else
-            {
-                CharacterActionsUI.Show(this);
-            }
+            // Selection events get forwarded to HumanPlayer
+            if (OnClicked_ != null)
+                OnClicked_(this);
         }
 
-        public void OnSelect(BaseEventData eventData)
-        {
-            if (actions_ == null)
-                return;
-
-            // When a cahracter is first selected and they are able to move, immediately enter move prompt.
-            for( int i = 0; i < actions_.Count; ++i )
-            {
-                var action = actions_[i];
-                var move = action as MoveAction;
-                if (move != null)
-                {
-                    move.Execute();
-                    return;
-                }
-            }
-
-            // If the character doesn't have a move action, just show the Context UI.
-            CharacterActionsUI.Show(this);
-        }
 
         /// <summary>
         /// Update the character's sorting order based on their current world position.
@@ -169,23 +212,11 @@ namespace StevenUniverse.FanGame.StrategyMap
             UpdateSortingOrder();
         }
 
-        public void OnDeselect(BaseEventData eventData)
-        {
-            HighlightGrid.Clear();
-        }
-
-        /// <summary>
-        /// Current state of the character
-        /// </summary>
-        public enum ActingState
-        {
-            MOVING,
-            IDLE,
-        };
-
         /// <summary>
         /// Coroutine that moves the character smoothly from it's current position to the 
-        /// given position. Speed determined by <see cref="tilesMovedPerSecond_"/>
+        /// given position. Speed determined by <see cref="tilesMovedPerSecond_"/>.
+        /// Note this doesn't use any kind of pathfinding - pathfinding calls upon this to
+        /// move characters between nodes - see <see cref="CharacterUtility.MoveTo(MapCharacter, IntVector3)"/>.
         /// </summary>
         /// <param name="end">Where the character will end up.</param>
         public IEnumerator MoveTo( IntVector3 end )
@@ -212,6 +243,8 @@ namespace StevenUniverse.FanGame.StrategyMap
                 UpdateSortingOrder(end.z);
             }
         }
+
+
     }
 
 }

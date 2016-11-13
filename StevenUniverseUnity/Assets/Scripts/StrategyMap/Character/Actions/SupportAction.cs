@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using StevenUniverse.FanGame.Interactions;
+using System.Collections;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -27,10 +28,13 @@ namespace StevenUniverse.FanGame.StrategyMap
             
         }
 
-        public override void Execute()
+        public IEnumerator Execute( string supportFileName )
         {
-            supportCanvas_.Dialog = SupportLoader.ImportSupport("Righty_Lefty_C");
+            supportCanvas_.Dialog = SupportLoader.ImportSupport(supportFileName);
             supportCanvas_.gameObject.SetActive(true);
+
+            yield return null;
+            //yield return base.Routine();
         }
 
         
@@ -41,6 +45,10 @@ namespace StevenUniverse.FanGame.StrategyMap
             {
                 return false;
             }
+
+            //var adj = pos + adjacent[i];
+
+            //grid.GetObjects(adj, allies_, allyPredicate_);
 
             return CharacterUtility.ScanForAdjacent(actor_, talkPredicate).Count > 0;
         }

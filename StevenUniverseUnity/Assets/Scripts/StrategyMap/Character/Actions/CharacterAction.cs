@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using StevenUniverse.FanGame.Util.Logic.States;
+using System.Collections;
+using UnityEngine;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -33,13 +35,34 @@ namespace StevenUniverse.FanGame.StrategyMap
         }
 
         /// <summary>
-        /// Execute a character action. Note this might not necessarily do something immediately,
-        /// IE: For CharacterMove this will just allow the user to select a position, the character won't
-        /// actually move until selection has taken place.
+        /// Starts the action's coroutine.
         /// </summary>
-        public virtual void Execute()
+        //public void Execute()
+        //{
+        //    StartCoroutine(Routine());
+        //}
+
+        ///// <summary>
+        ///// Coroutine which will perform the action. Base behaviour is to pause the unit (end their turn).
+        ///// </summary>
+        //public virtual IEnumerator Routine()
+        //{
+        //    //Debug.Log(uiName_);
+        //    actor_.Paused_ = true;
+
+        //    yield return null;
+        //}
+
+        /// <summary>
+        /// Optional state that will be passed to HumanPlayer's SelectionState for processing.
+        /// The state should process player input sensibly and pop itself
+        /// off the stack if the player cancels the action
+        /// </summary>
+        //public virtual State UIState { get; protected set; }
+
+        public virtual State GetUIState()
         {
-            Debug.Log(uiName_);
+            return null;
         }
     }
 }

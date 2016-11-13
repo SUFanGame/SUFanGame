@@ -27,6 +27,12 @@ namespace StevenUniverse.FanGame.StrategyMap.UI
 
         public static CharacterActionsUI Instance { get; private set; }
 
+        public static System.Action<CharacterAction> OnActionSelected_;
+
+        //public static CharacterAction SelectedAction { get; private set; }
+
+        Transform target_;
+
         void Awake()
         {
             canvasGroup_ = GetComponent<CanvasGroup>();
@@ -47,10 +53,10 @@ namespace StevenUniverse.FanGame.StrategyMap.UI
                 Debug.LogWarningFormat("Attempting to load actions UI for {0}, but they have no actions!", character.name);
                 return;
             }
-            
-            var windowPos = RectTransformUtility.WorldToScreenPoint(Camera.main, character.transform.position + Vector3.right + Vector3.up );
 
-            Instance.transform.position = windowPos;
+            Instance.target_ = character.transform;
+
+            UpdatePosition();
 
             // Create buttons mapping to our valid actions.
             for( int i = 0; i < actionsBuffer_.Count; ++i )
@@ -65,7 +71,7 @@ namespace StevenUniverse.FanGame.StrategyMap.UI
                 newButton.gameObject.layer = Instance.gameObject.layer;
                 var text = newButton.GetComponentInChildren<Text>();
                 text.text = action.UIName;
-                newButton.onClick.AddListener(action.Execute);
+                newButton.onClick.AddListener(()=>ForwardAction(action));
                 // Hide our UI when an option is selected.
                 newButton.onClick.AddListener(Hide);
             }
@@ -73,6 +79,31 @@ namespace StevenUniverse.FanGame.StrategyMap.UI
             canvasGroup_.alpha = 1f;
             canvasGroup_.blocksRaycasts = true;
  
+        }
+
+        /// <summary>
+        /// Forward selected action to UI listeners.
+        /// </summary>
+        /// <param name="selectedAction"></param>
+        static void ForwardAction(CharacterAction selectedAction)
+        {
+            if (OnActionSelected_ != null)
+                OnActionSelected_.Invoke(selectedAction);
+        }
+
+        static void UpdatePosition()
+        {
+            if (Instance.target_ == null)
+                return;
+
+            var windowPos = RectTransformUtility.WorldToScreenPoint(Camera.main, Instance.target_.position + Vector3.right + Vector3.up);
+
+            Instance.transform.position = windowPos;
+        }
+
+        void LateUpdate()
+        {
+            UpdatePosition();
         }
 
         /// <summary>

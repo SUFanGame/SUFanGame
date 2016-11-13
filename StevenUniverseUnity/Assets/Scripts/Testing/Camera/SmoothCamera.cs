@@ -10,15 +10,20 @@ public class SmoothCamera : MonoBehaviour
     public bool follow_ = false;
     public float scrollSpeed_ = 5f;
 
+    public void SnapToTarget()
+    {
+        Vector3 point = camera_.WorldToViewportPoint(target.position);
+        Vector3 delta = (target.position + (Vector3)Vector2.one * .5f) - camera_.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
+        transform.position = transform.position + delta;
+    }
+
     void Awake()
     {
         camera_ = GetComponent<Camera>();
 
         if( target != null )
         {
-            Vector3 point = camera_.WorldToViewportPoint(target.position);
-            Vector3 delta = (target.position + (Vector3)Vector2.one * .5f) - camera_.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
-            transform.position = transform.position + delta;
+            SnapToTarget();
         }
     }
 

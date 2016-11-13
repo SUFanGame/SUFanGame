@@ -34,7 +34,7 @@ public class LoadSceneChunks : MonoBehaviour
         }
 
         var grid = GameObject.FindObjectOfType<Grid>();
-        yield return grid.BuildGrid(tileMap_);
+        yield return grid.BuildFromTileMap(tileMap_);
 
     }
 

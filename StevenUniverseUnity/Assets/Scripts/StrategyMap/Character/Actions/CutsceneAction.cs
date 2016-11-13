@@ -9,7 +9,7 @@ namespace StevenUniverse.FanGame.Actions
     {
         public CutsceneRunner cutsceneRunner;
 
-        public override void Execute()
+        public void Execute()
         {
             //cutsceneJsonLoadTest();
             cutsceneFullTest();

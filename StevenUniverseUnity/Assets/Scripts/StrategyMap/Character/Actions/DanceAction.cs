@@ -18,7 +18,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
         }
 
-        public override void Execute()
+        public IEnumerator Execute()
         {
             if (!dancing_)
             {
@@ -30,6 +30,9 @@ namespace StevenUniverse.FanGame.StrategyMap
                 rotSpeed_ += rotIncrement_;
                 Debug.LogFormat("CAN'T STOP THE FEELING!");
             }
+
+            yield return null;
+            //yield return base.Routine();
         }
 
         IEnumerator DANCE()

@@ -108,5 +108,10 @@ namespace StevenUniverse.FanGame.StrategyMap
             /// </summary>
             Transitional
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}", Pos_);
+        }
     }
 }

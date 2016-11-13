@@ -5,6 +5,8 @@ using StevenUniverse.FanGame.Util.Collections;
 using StevenUniverse.FanGame.Overworld;
 using System.Linq;
 using StevenUniverse.FanGame.Overworld.Templates;
+using StevenUniverse.FanGame.Factions;
+using UnityEngine.EventSystems;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -12,6 +14,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 
     public class Grid : MonoBehaviour
     {
+        GridSelectionBehaviour selection_;
         //TileMap<ITile> tileMap_ = null;
 
         // Dictionary mapping nodes to their 3D position ( x, y, elevation )
@@ -20,20 +23,29 @@ namespace StevenUniverse.FanGame.StrategyMap
         // Dictionary mapping each 2D position to the highest walkable node in that position.
         Dictionary<IntVector2, int> heightMap_ = new Dictionary<IntVector2, int>();
 
-        // Dictionary mapping sets of nodes to their 2D position
+        // List of any objects added to the map.
+        List<MonoBehaviour> objects_ = new List<MonoBehaviour>();
 
-        public GameObject pfb_pathSprite_;
+        /// <summary>
+        /// The current size of the map in tiles.
+        /// </summary>
+        public IntVector3 Size { get; private set; }
 
         public static Grid Instance { get; private set; }
 
         /// <summary>
-        /// Callback for when the grid is done building.
+        /// Callback for when the grid is done building from loaded chunks.
         /// </summary>
         public System.Action<Grid> OnGridBuilt_;
+
+        public System.Action<Node> OnNodeClicked_;
 
         void Awake()
         {
             Instance = this;
+            selection_ = GetComponent<GridSelectionBehaviour>();
+            // Register to receieve user clicks on the grid.
+            selection_.OnClicked_ += HandleClick;
         }
 
         /// <summary>
@@ -47,6 +59,19 @@ namespace StevenUniverse.FanGame.StrategyMap
             if (current == null)
                 return null;
             return current.Neighbours_;
+        }
+
+        /// <summary>
+        /// Retrieve the highest pathable node at the given 2D position.
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <returns></returns>
+        public Node GetHighestNode( IntVector2 pos )
+        {
+            int h = GetHeight(pos);
+            if (h == int.MinValue)
+                return null;
+            return GetNode(new IntVector3(pos.x, pos.y, h));
         }
 
         /// <summary>
@@ -104,6 +129,33 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
         }
 
+        /// <summary>
+        /// Gets all objects of type T in range of pos. A predicate can optionally be specified to filter results.
+        /// </summary>
+        /// <typeparam name="T">A MonoBehaviour being searched for.</typeparam>
+        /// <param name="pos">The position to search from.</param>
+        /// <param name="range">The range from the position to consider.</param>
+        /// <param name="buffer">The buffer to be populated with results.</param>
+        /// <param name="predicate">Optional predicate to filter results.</param>
+        public void GetObjectsInArea<T>( IntVector2 pos, int range, List<T> buffer, System.Predicate<T> predicate = null ) where T : MonoBehaviour
+        {
+            // Could also search each cell in a diamond-shape starting from the position for low-range searches.
+            // For any search beyond a range of 2 this is probably going to be faster.
+            for( int i = 0; i < objects_.Count; ++i )
+            {
+                var t = objects_[i] as T;
+
+                // Check if the object is one we're actually concerned with.
+                if (t == null || (predicate != null && !predicate.Invoke(t) ) )
+                    continue;
+                
+                // Check if the object is in range.
+                IntVector2 objPos = (IntVector2)t.transform.position;
+                if (IntVector2.ManhattanDistance(pos, objPos) <= range)
+                    buffer.Add(t);
+            }
+        }
+
         public void AddObject( IntVector3 pos, MonoBehaviour obj )
         {
             var node = GetNode(pos);
@@ -112,6 +164,7 @@ namespace StevenUniverse.FanGame.StrategyMap
                 Debug.LogErrorFormat("Attempting to add object {0} to grid at {1}, but there's no node there", obj.name, pos);
 
             node.AddObject(obj);
+            objects_.Add(obj);
         }
 
         public void RemoveObject( IntVector3 pos, MonoBehaviour obj )
@@ -122,6 +175,7 @@ namespace StevenUniverse.FanGame.StrategyMap
                 Debug.LogErrorFormat("Attempting to remove object {0} to grid at {1}, but there's no node there", obj.name, pos);
 
             node.RemoveObject(obj);
+            objects_.Remove(obj);
         }
 
         public void MoveObject( IntVector3 oldPos, IntVector3 newPos, MonoBehaviour obj )
@@ -146,13 +200,21 @@ namespace StevenUniverse.FanGame.StrategyMap
         /// <param name="pos">The position to start the search.</param>
         /// <param name="range">The range of the search (in tiles).</param>
         /// <param name="nodeBuffer">All discovered nodes will be added to the buffer.</param>
-        /// <param name="movementType">The movement type to be used during the search.</param>
-        public void GetNodesInRange( IntVector3 pos, int range, GridPaths path, MovementType movementType = MovementType.GROUNDED)
+        /// <param name="movementType">Movement type determines which nodes are reachable, IE: A node might cost more to
+        /// move into for a ground unit as opposed to a floating unit.</param>
+        /// <param name="predicate">Optional predicate to filter nodes based on some condition.
+        /// IE: Could be used to ignore nodes with enemy characters in them.</param>
+        public void GetNodesInRange( 
+            IntVector3 pos, 
+            int range, 
+            GridPaths path,
+            MovementType movementType,
+            System.Predicate<Node> predicate = null )
         {
             // Use dijkstra's to retrieve all nodes in range.
             var current = GetNode(pos);
 
-            if (current == null)
+            if (current == null || (predicate != null && !predicate(current)) )
                 return;
 
             // Our frontier will be a priority queue. The cost to reach each node in our path will determine it's
@@ -178,6 +240,10 @@ namespace StevenUniverse.FanGame.StrategyMap
                 for( int i = 0; i < adjNodes.Count; ++i )
                 {
                     var next = adjNodes[i];
+
+                    // Ignore the node if our predicate returns false
+                    if (predicate != null && !predicate(next))
+                        continue;
 
                     // Get the total cost to move to this node from the start of our path
                     int newCost = costSoFar[current] + next.GetCost(movementType);
@@ -209,13 +275,20 @@ namespace StevenUniverse.FanGame.StrategyMap
         }
 
         /// <summary>
-        /// Gets the list of nodes along the path from a to b and populates the givne buffer with them.
+        /// Gets the list of nodes along the path from a to b and populates the given buffer with them.
         /// </summary>
         /// <param name="start">Start position.</param>
         /// <param name="end">End position.</param>
         /// <param name="buffer">Buffer to hold the list of nodse. Note this list will be reversed,
         /// it's assumed to be empty.</param>
-        public void GetPath( IntVector3 start, IntVector3 end, List<Node> buffer, MovementType movementType )
+        /// <param name="predicate">Optional predicate to filter nodes based on some condition.
+        /// IE: Could be used to ignore nodes with enemy characters in them.</param>
+        public void GetPath( 
+            IntVector3 start, 
+            IntVector3 end, 
+            List<Node> buffer, 
+            MovementType movementType,
+            System.Predicate<Node> predicate = null )
         {
             var startNode = GetNode(start);
             var endNode = GetNode(end);
@@ -270,29 +343,10 @@ namespace StevenUniverse.FanGame.StrategyMap
             buffer.Reverse();
         }
 
-        //void OnDrawGizmosSelected()
-        //{
-        //    if( tileMap_ != null )
-        //    {
-        //        var min = tileMap_.Min;
-        //        var max = tileMap_.Max;
-
-        //        for (int x = min.x; x <= max.x; ++x)
-        //        {
-        //            for (int y = min.y; y <= max.y; ++y)
-        //            {
-        //                var tileStack = tileMap_.GetTileStack(x, y);
-        //                if (tileStack != null)
-        //                    Gizmos.DrawWireSphere(new Vector3(x, y, 1f) + Vector3.one * .5f, .5f);
-        //            }
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// Builds the grid from the given tile map and forms node connections for ground movement.
         /// </summary>
-        public IEnumerator BuildGrid( TileMap<ITile> tiles )
+        public IEnumerator BuildFromTileMap( TileMap<ITile> tiles )
         {
             //tileMap_ = tiles;
             var min = tiles.Min;
@@ -464,8 +518,27 @@ namespace StevenUniverse.FanGame.StrategyMap
                 }
             }
 
+            Size = tiles.Size;
+
             if (OnGridBuilt_ != null)
                 OnGridBuilt_(this);
+
+        }
+
+        /// <summary>
+        /// Retrieve nodes from user clicks and forward click event to listeners.
+        /// </summary>
+        void HandleClick( PointerEventData data )
+        {
+            if (OnNodeClicked_ == null)
+                return;
+
+            var pos = (IntVector2)data.pointerCurrentRaycast.worldPosition;
+
+            var node = GetHighestNode(pos);
+
+            if( node != null )
+                OnNodeClicked_.Invoke(node);
         }
 
     }
