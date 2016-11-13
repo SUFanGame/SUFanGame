@@ -171,6 +171,15 @@ namespace StevenUniverse.FanGame.Util.Logic.States
             target_ = point.Pos_;
         }
 
+        public override void OnCharacterSelected(StrategyPlayer player, MapCharacter character)
+        {
+            if( character == actor_ )
+            {
+                Machine.Pop();
+                Machine.Push(new ChooseActionUIState(actor_));
+            }
+        }
+
         public override void OnExit()
         {
             HighlightGrid.Clear();
