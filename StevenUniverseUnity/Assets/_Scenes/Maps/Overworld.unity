@@ -460,6 +460,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiName_: 
+--- !u!1 &437716393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 437716395}
+  - 114: {fileID: 437716394}
+  m_Layer: 0
+  m_Name: SupportObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &437716394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 437716393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40049f621953d546b6cc6457c52e716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 1000013451337116, guid: c7609fac44d760a4285c8e680d1853cd, type: 2}
+--- !u!4 &437716395
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 437716393}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 36.19228, y: 14.802287, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!1 &524275848
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,6 +899,47 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
+--- !u!1 &878719172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 878719174}
+  - 114: {fileID: 878719173}
+  m_Layer: 0
+  m_Name: CutsceneObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &878719173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878719172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07451f886914f3c48a6b255ba87df5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  supportNode: {fileID: 437716394}
+--- !u!4 &878719174
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878719172}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 36.19228, y: 14.802287, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1 &878906911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,7 +2168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiName_: Start Drama
-  cutsceneRunner: {fileID: 0}
+  cutsceneRunner: {fileID: 878719173}
 --- !u!114 &1944956337
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,6 +34,13 @@ namespace StevenUniverse.FanGame.StrategyMap
             return true;
         }
 
+        // Optional coroutine for actions which require no user inputs ( meaning they require no parameters and return no UI state ).
+        // If an action would execute immediately upon being selected it should do so here.
+        public virtual IEnumerator Execute()
+        {
+            yield return null;
+        }
+
         /// <summary>
         /// Starts the action's coroutine.
         /// </summary>

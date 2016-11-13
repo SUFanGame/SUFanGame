@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using StevenUniverse.FanGame.StrategyMap;
 using StevenUniverse.FanGame.Interactions;
+using System.Collections;
 
 namespace StevenUniverse.FanGame.Actions
 {
@@ -9,10 +10,11 @@ namespace StevenUniverse.FanGame.Actions
     {
         public CutsceneRunner cutsceneRunner;
 
-        public void Execute()
+        public override IEnumerator Execute()
         {
             //cutsceneJsonLoadTest();
             cutsceneFullTest();
+            yield return null;
         }
 
         // Test if a json file outputs correctly
@@ -39,5 +41,7 @@ namespace StevenUniverse.FanGame.Actions
             cutsceneRunner.Cutscene = parsedScenes;
             StartCoroutine(cutsceneRunner.execute());
         }
+
+        
     }
 }

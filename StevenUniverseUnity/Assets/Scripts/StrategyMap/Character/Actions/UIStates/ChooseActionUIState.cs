@@ -60,6 +60,7 @@ namespace StevenUniverse.FanGame.Util.Logic.States
                 }
                 else
                 {
+                    yield return action_.Execute();
                     actor_.Paused_ = true;
                     Machine.Clear();
                 }
