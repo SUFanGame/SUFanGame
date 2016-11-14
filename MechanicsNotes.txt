@@ -1,0 +1,7 @@
+Programming notes from mechanics meeting:
+There will be a weapon triangle of some form, details undecided
+Gems stat growth and weapons are defined by gem type.
+Unique abilities from gem type, common abilities gained from weapons
+Abilities can be shared between gems by some means, perhaps based on support levels.
+FE unit combine pair ups are NOT in, pair-up with adjacent ally of your choice IS in (defend/attack?)
+Initial impression is that most abilities will be passive like in FE.
