@@ -44,30 +44,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Water
+    uniqueID: 1766457561
+    locked: 0
+  - name: WaterOverlay
+    uniqueID: 777333237
+    locked: 0
+  - name: Ground
+    uniqueID: 1226597283
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Overworld
-    uniqueID: 1766457561
+  - name: GroundOverlay
+    uniqueID: 653255853
+    locked: 0
+  - name: Main
+    uniqueID: 1990046331
+    locked: 0
+  - name: Character
+    uniqueID: 3795056241
     locked: 0
   - name: Foreground
-    uniqueID: 1226597283
-    locked: 0
-  - name: Battle Background
-    uniqueID: 2190843115
-    locked: 0
-  - name: Battle Middle
-    uniqueID: 1131683083
-    locked: 0
-  - name: Battle Characters
-    uniqueID: 2603937523
-    locked: 0
-  - name: Battle Foreground
-    uniqueID: 4063836987
-    locked: 0
-  - name: Filter
-    uniqueID: 2453617913
-    locked: 0
-  - name: GUI
-    uniqueID: 1990046331
+    uniqueID: 2898712733
     locked: 0

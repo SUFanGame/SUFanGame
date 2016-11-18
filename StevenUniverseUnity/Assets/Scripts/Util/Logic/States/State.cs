@@ -119,7 +119,7 @@ namespace StevenUniverse.FanGame.Util.Logic.States
         /// </summary>
         public virtual void OnUnpaused()
         {
-            string name = GetType().Name;
+            //string name = GetType().Name;
             //Debug.LogFormat("Unpausing {0}", name);
             OnEnter();
         }

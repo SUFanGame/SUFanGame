@@ -1,7 +1,8 @@
-﻿using System;
+﻿using StevenUniverse.FanGame.StrategyMap;
+using System;
 using UnityEngine;
 
-namespace StevenUniverse.FanGame.StrategyMap
+namespace StevenUniverse.FanGame.Util
 {
     [System.Serializable]
     // CopyPaste of Vector2 but with Ints

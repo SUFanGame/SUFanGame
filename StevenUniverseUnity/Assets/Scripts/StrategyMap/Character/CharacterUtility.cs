@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using StevenUniverse.FanGame.StrategyMap;
 using StevenUniverse.FanGame;
+using StevenUniverse.FanGame.Util;
 
 public static class CharacterUtility
 {

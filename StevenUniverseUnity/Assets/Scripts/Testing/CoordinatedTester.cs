@@ -6,6 +6,7 @@ using StevenUniverse.FanGame.Overworld.Instances;
 using StevenUniverse.FanGame.StrategyMap;
 using System;
 using StevenUniverse.FanGame.Overworld.Templates;
+using StevenUniverse.FanGame.Util;
 
 public class CoordinatedTester : MonoBehaviour 
 {
