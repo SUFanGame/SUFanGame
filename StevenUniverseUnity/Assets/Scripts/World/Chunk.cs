@@ -16,13 +16,14 @@ namespace StevenUniverse.FanGame.World
     /// A chunk of tiles, basically representing a small portion of one cross-section of the map ( where the cross sections are divided by height ).
     /// The map maintains a structure of chunks and creates them as they are need, as tiles are added to the map.
     /// </summary>
+    [RequireComponent(typeof(ChunkMesh))]
     public class Chunk : MonoBehaviour, IEnumerable<KeyValuePair<TileIndex,Tile>>
     {
         /// <summary>
         /// Dictionary mapping stacks of tiles (where each index of the stack == Tile.SortingLayer.Value ) to their 3D position in local space.
         /// </summary>
         [SerializeField]
-        TilesToIntVector2Dict stackDict_ = new TilesToIntVector2Dict();
+        TilesToIntVector2Dict tileStackDict_ = new TilesToIntVector2Dict();
 
         /// <summary>
         /// Dictionary mapping tiles directly to their tile index ( Position & SortingLayer )
@@ -56,9 +57,9 @@ namespace StevenUniverse.FanGame.World
         public List<Tile> GetTilesLocal( IntVector2 localPos )
         {
             List<Tile> tiles;
-            if (!stackDict_.TryGetValue(localPos, out tiles))
+            if (!tileStackDict_.TryGetValue(localPos, out tiles))
             {
-                stackDict_[localPos] = tiles = new List<Tile>();
+                tileStackDict_[localPos] = tiles = new List<Tile>();
                 // Ensure tile stacks are always populated with null refs
                 for (int i = 0; i < SortingLayerUtil.LayerCount; ++i)
                 {

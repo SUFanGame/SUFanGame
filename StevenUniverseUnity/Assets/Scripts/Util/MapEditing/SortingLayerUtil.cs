@@ -7,9 +7,10 @@ namespace StevenUniverse.FanGame.Util.MapEditing
     public class SortingLayerUtil
     {
         // Note that SortingLayer.Value can be below zero if the default sorting layer is above any user created
-        // layers. We can use the "LayerIndex" functions to account for this.
+        // layers. We can use the "LayerIndex" functions to get the actual "array position" of the layers.
         /// <summary>
-        /// Returns the zero based index of the given sorting layer.
+        /// Returns the zero based index of the given sorting layer. This is the equivalent position of the layer
+        /// in the Sorting Layers list of the project.
         /// </summary>
         public static int GetLayerIndex(SortingLayer layer)
         {
@@ -17,7 +18,8 @@ namespace StevenUniverse.FanGame.Util.MapEditing
         }
 
         /// <summary>
-        /// Returns the zero-based index of the given sorting layer value.
+        /// Returns the zero-based index of the given sorting layer value. This is the equivalent position of the layer
+        /// in the Sorting Layers list of the project.
         /// </summary>
         public static int GetLayerIndex( int sortingLayerValue )
         {
@@ -50,6 +52,15 @@ namespace StevenUniverse.FanGame.Util.MapEditing
         {
             int value = SortingLayer.GetLayerValueFromID(layerID);
             return GetLayerFromValue(value);
+        }
+
+        /// <summary>
+        /// Returns a sorting layer given a layer's zero-based index. The index is the equivalent position of the layer
+        /// in the Sorting Layers list of the project.
+        /// </summary>
+        public static SortingLayer GetLayerFromIndex( int index )
+        {
+            return SortingLayer.layers[index];
         }
     }
 

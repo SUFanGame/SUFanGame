@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using StevenUniverse.FanGame.Util;
+using StevenUniverse.FanGame.Util.MapEditing;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer)), ExecuteInEditMode]
 public class TiledMesh : MonoBehaviour 
@@ -9,8 +10,6 @@ public class TiledMesh : MonoBehaviour
     /// </summary>
     public static IntVector2 textureCellCount_ = new IntVector2(8, 8);
 
-    [SerializeField]
-    int orderInLayer_ = 0;
 
     // Mesh data. We want to avoid resizing these as much as possible since it
     // can cause a lot of unneccesary allocations. Sometimes it's necessary though.
@@ -37,10 +36,23 @@ public class TiledMesh : MonoBehaviour
     IntVector2 lastSize_;
     [SerializeField]
     protected IntVector2 size_ = IntVector2.one;
-    public IntVector2 Size_ { get { return size_; } }
+    public IntVector2 Size_
+    {
+        get { return size_; }
+        set
+        {
+            value = IntVector2.Clamp(value, 1, MaxChunkSize_);
+            if (value != size_)
+                sizeChanged_ = true;
+            size_ = value;
+        }
+    }
 
-    [SerializeField, HideInInspector]
-    int sortingLayerID_ = 0;
+    //[SerializeField, HideInInspector]
+    //int sortingLayerID_ = 0;
+
+    //[SerializeField]
+    //int orderInLayer_ = 0;
 
     public const int MaxChunkSize_ = 50;
 
@@ -62,6 +74,12 @@ public class TiledMesh : MonoBehaviour
     protected bool sizeChanged_ = false;
 
     public bool showLayerOrder_ = false;
+
+    public SortingLayer SortingLayer_
+    {
+        get { return SortingLayerUtil.GetLayerFromID(renderer_.sortingLayerID); }
+        set { renderer_.sortingLayerID = value.id; }
+    }
 
     protected virtual void Awake()
     {
@@ -377,14 +395,14 @@ public class TiledMesh : MonoBehaviour
             vertsChanged_ = true;
         }
 
-        if (renderer_.sortingLayerID != sortingLayerID_)
-        {
-            renderer_.sortingLayerID = sortingLayerID_;
-        }
-        if (renderer_.sortingOrder != orderInLayer_)
-        {
-            renderer_.sortingOrder = orderInLayer_;
-        }
+        //if (renderer_.sortingLayerID != sortingLayerID_)
+        //{
+        //    renderer_.sortingLayerID = sortingLayerID_;
+        //}
+        //if (renderer_.sortingOrder != orderInLayer_)
+        //{
+        //    renderer_.sortingOrder = orderInLayer_;
+        //}
     }
 
     void MakeMesh()

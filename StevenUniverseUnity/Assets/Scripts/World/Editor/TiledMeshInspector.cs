@@ -11,22 +11,25 @@ public class TiledMeshInspector : Editor
 
     void OnEnable()
     {
-        layerIDProp_ = serializedObject.FindProperty("sortingLayerID_");
+        //layerIDProp_ = serializedObject.FindProperty("sortingLayerID_");
     }
 
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        
 
+        var tar = target as TiledMesh;
 
-        serializedObject.Update();
+        if (!tar.isActiveAndEnabled)
+            return;
 
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel("Sorting Layer");
-        layerIDProp_.intValue = CustomEditorGUI.DrawSortingLayersPopup(layerIDProp_.intValue);
+        //layerIDProp_.intValue = CustomEditorGUI.DrawSortingLayersPopup(layerIDProp_.intValue);
+        tar.renderer_.sortingLayerID = CustomEditorGUI.DrawSortingLayersPopup(tar.renderer_.sortingLayerID);
         EditorGUILayout.EndHorizontal();
-
-        serializedObject.ApplyModifiedProperties();
+        
     }
 
     [DrawGizmo(GizmoType.Active | GizmoType.InSelectionHierarchy | GizmoType.NotInSelectionHierarchy)]
