@@ -37,19 +37,19 @@ namespace StevenUniverse.FanGame.World
         
         void Awake()
         {
-            if (meshes_ == null)
-                meshes_ = new TiledMesh[SortingLayerUtil.LayerCount];
+            //if (meshes_ == null)
+            //    meshes_ = new TiledMesh[SortingLayerUtil.LayerCount];
 
-            var meshes = GetComponentsInChildren<TiledMesh>(true);
+            //var meshes = GetComponentsInChildren<TiledMesh>(true);
 
-            // Ensure we have the correct number of layer meshes.
-            // This should also account for silly things like mesh objects being deleted or moved around in the hierarchy
-            // Could still mess up if someone renames a mesh for some reason? We might just be better off hiding
-            // these in the hierarchy
-            if( meshes.Length != SortingLayerUtil.LayerCount )
-            {
-                CreateMeshes( meshes );
-            }
+            //// Ensure we have the correct number of layer meshes.
+            //// This should also account for silly things like mesh objects being deleted or moved around in the hierarchy
+            //// Could still mess up if someone renames a mesh for some reason? We might just be better off hiding
+            //// these in the hierarchy
+            //if( meshes.Length != SortingLayerUtil.LayerCount )
+            //{
+            //    CreateMeshes( meshes );
+            //}
         }
 
         /// <summary>
@@ -74,6 +74,18 @@ namespace StevenUniverse.FanGame.World
             }
         }
 
+        TiledMesh CreateMesh( int layerIndex )
+        {
+            var layer = SortingLayerUtil.GetLayerFromIndex(layerIndex);
+            var go = new GameObject(layer.name + " Mesh");
+            var mesh = go.AddComponent<TiledMesh>();
+            mesh.SortingLayer_ = layer;
+            go.transform.SetParent(transform, false);
+            go.transform.SetSiblingIndex(layerIndex);
+
+            return mesh;
+        }
+
         /// <summary>
         /// Iterate through the meshes and ensure their size and layer values are correct for this chunk mesh.
         /// </summary>
@@ -90,6 +102,29 @@ namespace StevenUniverse.FanGame.World
 
                 mesh.SortingLayer_ = SortingLayerUtil.GetLayerFromIndex(i);
             }
+        }
+
+        /// <summary>
+        /// Retrieve the tiled mesh matching the given sorting layer.
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <returns></returns>
+        public TiledMesh GetMesh( SortingLayer layer )
+        {
+            int index = SortingLayerUtil.GetLayerIndex(layer);
+
+            // Create the mesh for this layer if it doesn't already exist.
+            if (meshes_[index] == null)
+                meshes_[index] = CreateMesh(index);
+            return meshes_[index];
+        }
+
+        /// <summary>
+        /// Retrieve the Tiled Mesh matching the given zero based sorting layer index.
+        /// </summary>
+        public TiledMesh GetMesh( int layerIndex )
+        {
+            return GetMesh(SortingLayerUtil.GetLayerFromIndex(layerIndex));
         }
     }
 }

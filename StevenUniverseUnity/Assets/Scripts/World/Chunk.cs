@@ -10,7 +10,16 @@ namespace StevenUniverse.FanGame.World
     // TODO : Chunks should maintain a list of Dynamic Meshes, one for each Sorting Layer.
     // This may be better off in a separate class ( ChunkMesh ) to avoid complicating this one
     // any more than it already is.
-    
+
+    // TODO : Layers can be hidden or shown via the map editor. The chunk should ignore ANY operations attempted
+    // on a "hidden" layer. The Map class will follow these rules as well. It may be best to have the layer states set up in
+    // SortingLayerUtil, so the states can be access globally.
+    // Layers will be hidden visually as well. There's a few options - since Meshes are already divided by sorting layers it's probably
+    // easiest to just iterate through all chunks and hide/show the matching layer for each chunk.
+    // Could also use Unity's camera culling: http://answers.unity3d.com/questions/561274/using-layers-to-showhide-different-players.html
+    // Note in both the latter examples this would require setting up Layers that match the SortingLayers and having the meshes be set to the
+    // appropriate Layer.
+
 
     /// <summary>
     /// A chunk of tiles, basically representing a small portion of one cross-section of the map ( where the cross sections are divided by height ).
@@ -101,6 +110,25 @@ namespace StevenUniverse.FanGame.World
             var tiles = GetTilesLocal((IntVector2)index.Position_);
             tiles[SortingLayerUtil.GetLayerIndex(index.Layer_)] = t;
         }
+
+        // TODO : This should hide tiles visually as well as prevent the map editor (or anything else) 
+        // from accessing tiles in this layer ( reading or writing ). The layer should be locked 
+        // into it's currentstate until it's shown again.
+        /// <summary>
+        /// Hide a certain layer of tiles.
+        /// </summary>
+        /// <param name="layer"></param>
+        public void HideLayer( SortingLayer layer )
+        {
+            // ChunkMesh.HideLayer(layer);
+        }
+
+        public void ShowLayer( SortingLayer layer )
+        {
+            //ChunkMesh.ShowLayer(layer)
+        }
+
+       // public void SetTileLocal(  )
 
         public void Print()
         {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using StevenUniverse.FanGame.StrategyMap;
 using StevenUniverse.FanGame.Util.Collections;
 using StevenUniverse.FanGame.Util;
+using System;
 
 namespace StevenUniverse.FanGame.World
 {
@@ -17,13 +18,22 @@ namespace StevenUniverse.FanGame.World
 
     // TODO : Import Dust's rules for how tiles should be placed.
     // Keep in mind the features we'll need for map editing. Things like modifying entire layers of tiles, flood fill, cursor resizing, Undo, etc
-    
+
+    // TODO : Layers can be hidden or shown via the map editor. The chunk should ignore ANY operations attempted
+    // on a "hidden" layer. The Map class will follow these rules as well. It may be best to have the layer states set up in
+    // SortingLayerUtil, so the states can be access globally.
+    // Layers will be hidden visually as well. There's a few options - since Meshes are already divided by sorting layers it's probably
+    // easiest to just iterate through all chunks and hide/show the matching layer for each chunk.
+    // Could also use Unity's camera culling: http://answers.unity3d.com/questions/561274/using-layers-to-showhide-different-players.html
+    // Note in both the latter examples this would require setting up Layers that match the SortingLayers and having the meshes be set to the
+    // appropriate Layer.
+
     /// <summary>
     /// A map consisting of chunks of tiles. The map will add and manage chunks as needed as tiles are painted in.
     /// The chunks themselves (or some component of them) are responsible for rendering the tiles.
     /// The map has no actual "borders", tiles should be able to be painted anywhere in the world.
     /// </summary>
-    public class Map : MonoBehaviour
+    public class Map : MonoBehaviour, IEnumerable<Chunk>
     {
         [SerializeField]
         IntVector2 chunkSize_;
@@ -79,8 +89,10 @@ namespace StevenUniverse.FanGame.World
             return chunk.GetTilesWorld((IntVector2)pos);
         }
 
+        // TODO : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
+        //        Should do nothing if the layer was "hidden" via the map editor.
         /// <summary>
-        /// Sets the given tile in the map at the given index. NYI : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
+        /// Sets the given tile in the map at the given index. 
         /// </summary>
         public void SetTile(TileIndex tIndex, Tile t)
         {
@@ -95,12 +107,29 @@ namespace StevenUniverse.FanGame.World
             chunk.SetTileWorld(tIndex, t);
         }
 
+        // TODO : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
+        //        Should do nothing if the layer was "hidden" via the map editor.
         /// <summary>
-        /// Sets the given tile in the map at the given position. NYI : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
+        /// Sets the given tile in the map at the given position. The tile's default layer will be used.
+        ///  NYI : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
         /// </summary>
         public void SetTile( IntVector3 pos, Tile t )
         {
-            var index = new TileIndex(pos, t.SortingLayer_);
+            var index = new TileIndex(pos, t.DefaultSortingLayer_);
+            SetTile(index, t);
+        }
+
+        // TODO : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
+        //        Should do nothing if the layer was "hidden" via the map editor.
+        /// <summary>
+        /// Sets the given tile in the map at the given position and layer.
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <param name="layer"></param>
+        /// <param name="t"></param>
+        public void SetTile( IntVector3 pos, SortingLayer layer, Tile t )
+        {
+            var index = new TileIndex(pos, layer);
             SetTile(index, t);
         }
 
@@ -200,6 +229,20 @@ namespace StevenUniverse.FanGame.World
             }
 
         }
+
+        public IEnumerator<Chunk> GetEnumerator()
+        {
+            foreach( var pair in chunkDict_ )
+            {
+                yield return pair.Value;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
 
         // Subclasses so dictionaries are serializable.
         [System.Serializable]

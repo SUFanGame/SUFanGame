@@ -34,7 +34,11 @@ namespace StevenUniverse.FanGame.World
             }
         }
 
-        public SortingLayer SortingLayer_
+        /// <summary>
+        /// The default sorting layer for this tile. Note that tiles can be inserted
+        /// in the map on ANY sorting layer, this is just the default if no layer is specified.
+        /// </summary>
+        public SortingLayer DefaultSortingLayer_
         {
             get
             {
