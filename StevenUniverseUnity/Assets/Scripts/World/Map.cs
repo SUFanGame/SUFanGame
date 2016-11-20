@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.StrategyMap;
 using StevenUniverse.FanGame.Util.Collections;
 using StevenUniverse.FanGame.Util;
-using System;
+using StevenUniverse.FanGame.Util.MapEditing;
 
 namespace StevenUniverse.FanGame.World
 {
@@ -20,8 +19,7 @@ namespace StevenUniverse.FanGame.World
     // Keep in mind the features we'll need for map editing. Things like modifying entire layers of tiles, flood fill, cursor resizing, Undo, etc
 
     // TODO : Layers can be hidden or shown via the map editor. The chunk should ignore ANY operations attempted
-    // on a "hidden" layer. The Map class will follow these rules as well. It may be best to have the layer states set up in
-    // SortingLayerUtil, so the states can be access globally.
+    // on a "hidden" layer. The Map class will follow these rules as well.
     // Layers will be hidden visually as well. There's a few options - since Meshes are already divided by sorting layers it's probably
     // easiest to just iterate through all chunks and hide/show the matching layer for each chunk.
     // Could also use Unity's camera culling: http://answers.unity3d.com/questions/561274/using-layers-to-showhide-different-players.html
@@ -33,6 +31,7 @@ namespace StevenUniverse.FanGame.World
     /// The chunks themselves (or some component of them) are responsible for rendering the tiles.
     /// The map has no actual "borders", tiles should be able to be painted anywhere in the world.
     /// </summary>
+    [ExecuteInEditMode]
     public class Map : MonoBehaviour, IEnumerable<Chunk>
     {
         [SerializeField]
@@ -59,7 +58,24 @@ namespace StevenUniverse.FanGame.World
         [HideInInspector]
         ChunksToIntDict layersDict_ = new ChunksToIntDict();
 
-        // This coudl be useful for things like hiding all tiles at a certain height.
+        /// <summary>
+        /// Visibility data for the sorting layers in this map.
+        /// </summary>
+        [SerializeField]
+        SortingLayerVisibility isLayerVisible_ = null;
+
+        /// <summary>
+        /// Optional way to hide and prevent access to all tiles above a certain height. 
+        /// Useful for seeing and operating in chunks below other chunks.
+        /// </summary>
+        [SerializeField]
+        int? heightCutoff_ = null;
+
+        [SerializeField]
+        bool showDebugGUI_ = true;
+
+
+        // This could be useful for things like hiding all tiles at a certain height.
         /// <summary>
         /// Dictionary mapping chunks to their height.
         /// </summary>
@@ -73,6 +89,7 @@ namespace StevenUniverse.FanGame.World
   
         void Awake()
         {
+            isLayerVisible_.Awake();
         }
 
         /// <summary>
@@ -82,6 +99,9 @@ namespace StevenUniverse.FanGame.World
         /// </summary>
         public List<Tile> GetTiles(IntVector3 pos)
         {
+            if (heightCutoff_ != null && heightCutoff_ > pos.z)
+                return null;
+
             var chunk = GetChunkWorld(pos);
             if( chunk == null )
                 return null;
@@ -90,12 +110,18 @@ namespace StevenUniverse.FanGame.World
         }
 
         // TODO : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
-        //        Should do nothing if the layer was "hidden" via the map editor.
         /// <summary>
         /// Sets the given tile in the map at the given index. 
         /// </summary>
         public void SetTile(TileIndex tIndex, Tile t)
         {
+            if (heightCutoff_ != null && tIndex.Position_.z > heightCutoff_)
+                return;
+
+            // Do nothing if the target layer is hidden
+            if (!isLayerVisible_.Get(tIndex.Layer_))
+                return;
+
             var chunkIndex = GetChunkIndex(tIndex.Position_);
             var chunk = GetChunk(chunkIndex);
 
@@ -107,14 +133,25 @@ namespace StevenUniverse.FanGame.World
             chunk.SetTileWorld(tIndex, t);
         }
 
-        // TODO : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
-        //        Should do nothing if the layer was "hidden" via the map editor.
         /// <summary>
         /// Sets the given tile in the map at the given position. The tile's default layer will be used.
-        ///  NYI : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
         /// </summary>
         public void SetTile( IntVector3 pos, Tile t )
         {
+            if (heightCutoff_ != null && heightCutoff_ > pos.z)
+                return;
+
+            if (t == null)
+            {
+                Debug.LogErrorFormat("Attempting to set tile to null at {0}. Because the tile is null the" +
+                    " SortingLayer cannot be known, use SetTile(Pos,Layer,Tile) or SetTile(TileIndex)", pos);
+                return;
+            }
+
+            // Do nothing if the target layer is hidden
+            if ( !isLayerVisible_.Get(t.DefaultSortingLayer_) )
+                return;
+
             var index = new TileIndex(pos, t.DefaultSortingLayer_);
             SetTile(index, t);
         }
@@ -129,6 +166,13 @@ namespace StevenUniverse.FanGame.World
         /// <param name="t"></param>
         public void SetTile( IntVector3 pos, SortingLayer layer, Tile t )
         {
+            if (heightCutoff_ != null && heightCutoff_ > pos.z)
+                return;
+
+            // Do nothing if the target layer is hidden
+            if (!isLayerVisible_.Get(layer))
+                return;
+
             var index = new TileIndex(pos, layer);
             SetTile(index, t);
         }
@@ -141,6 +185,29 @@ namespace StevenUniverse.FanGame.World
             var chunkIndex = GetChunkIndex(worldPos);
 
             return GetChunk(chunkIndex);
+        }
+
+        public void SetHeightCutoff( int cutoff )
+        {
+            if( heightCutoff_ == null || cutoff != heightCutoff_ )
+            {
+                foreach( var pair in chunkDict_ )
+                {
+                    var chunk = pair.Value;
+                    int chunkHeight = (int)chunk.transform.position.z;
+                    if (chunkHeight > cutoff)
+                        chunk.gameObject.SetActive(false);
+                    else
+                        chunk.gameObject.SetActive(true);
+                }
+            }
+
+            heightCutoff_ = cutoff;
+        }
+
+        public void DisableHeightCutoff()
+        {
+            heightCutoff_ = null;
         }
 
         /// <summary>
@@ -193,6 +260,9 @@ namespace StevenUniverse.FanGame.World
 
         void OnGUI()
         {
+            if (!showDebugGUI_ || !isActiveAndEnabled)
+                return;
+
             var pos = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             GUILayout.Label("MousePos: " + pos.ToString());
             GUILayout.Label("ChunkIndex: " + GetChunkIndex((IntVector3)pos).ToString());
@@ -228,6 +298,59 @@ namespace StevenUniverse.FanGame.World
                 // where the chunks are resized.
             }
 
+        }
+
+        /// <summary>
+        /// Set the visibility state of the given layer.
+        /// </summary>
+        public void SetLayerVisible( SortingLayer layer, bool visible )
+        {
+            if( visible == false )
+            {
+                HideLayer(layer);
+            }
+            else
+            {
+                ShowLayer(layer);
+            }
+        }
+
+        /// <summary>
+        /// Hide all tiles of the given layer for the entire map.
+        /// </summary>
+        /// <param name="layer"></param>
+        public void HideLayer( SortingLayer layer )
+        {
+            if (!isLayerVisible_.Get(layer))
+                return;
+
+            isLayerVisible_.Set(layer, false);
+
+            var enumerator = chunkDict_.GetEnumerator();
+            while( enumerator.MoveNext())
+            {
+                var chunk = enumerator.Current.Value;
+                chunk.HideLayer(layer);
+            }
+        }
+
+        /// <summary>
+        /// Show all tiles of the given layer for the entire map.
+        /// </summary>
+        /// <param name="layer"></param>
+        public void ShowLayer( SortingLayer layer )
+        {
+            if (isLayerVisible_.Get(layer))
+                return;
+
+            isLayerVisible_.Set(layer, false);
+
+            var enumerator = chunkDict_.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                var chunk = enumerator.Current.Value;
+                chunk.ShowLayer(layer);
+            }
         }
 
         public IEnumerator<Chunk> GetEnumerator()

@@ -35,45 +35,6 @@ namespace StevenUniverse.FanGame.World
             }
         }
         
-        void Awake()
-        {
-            //if (meshes_ == null)
-            //    meshes_ = new TiledMesh[SortingLayerUtil.LayerCount];
-
-            //var meshes = GetComponentsInChildren<TiledMesh>(true);
-
-            //// Ensure we have the correct number of layer meshes.
-            //// This should also account for silly things like mesh objects being deleted or moved around in the hierarchy
-            //// Could still mess up if someone renames a mesh for some reason? We might just be better off hiding
-            //// these in the hierarchy
-            //if( meshes.Length != SortingLayerUtil.LayerCount )
-            //{
-            //    CreateMeshes( meshes );
-            //}
-        }
-
-        /// <summary>
-        /// Create a tiled mesh for each of the sortinglayers in the project and parent them to the chunkmesh.
-        /// </summary>
-        /// <param name="existingMeshes">Meshes that already exist, only recreate missing meshes.</param>
-        void CreateMeshes( TiledMesh[] existingMeshes)
-        {
-            var existingLayers = existingMeshes.Select(m => m.SortingLayer_ );
-            var layers = SortingLayer.layers;
-            var missingLayers = layers.Except(existingLayers).ToArray();
-
-            for( int i = 0; i < missingLayers.Length; ++i )
-            {
-                var layer = missingLayers[i];
-                var go = new GameObject(layer.name + " Mesh");
-                int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
-                meshes_[layerIndex] = go.AddComponent<TiledMesh>();
-                meshes_[layerIndex].SortingLayer_ = layer;
-                go.transform.SetParent(transform, false);
-                go.transform.SetSiblingIndex(layerIndex);
-            }
-        }
-
         TiledMesh CreateMesh( int layerIndex )
         {
             var layer = SortingLayerUtil.GetLayerFromIndex(layerIndex);
@@ -99,8 +60,9 @@ namespace StevenUniverse.FanGame.World
                 {
                     mesh.Size_ = size_;
                 }
-
+                
                 mesh.SortingLayer_ = SortingLayerUtil.GetLayerFromIndex(i);
+                mesh.transform.SetSiblingIndex(i);
             }
         }
 
@@ -125,6 +87,24 @@ namespace StevenUniverse.FanGame.World
         public TiledMesh GetMesh( int layerIndex )
         {
             return GetMesh(SortingLayerUtil.GetLayerFromIndex(layerIndex));
+        }
+
+        public void HideLayer( SortingLayer layer )
+        {
+            int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
+
+            var mesh = meshes_[layerIndex];
+            if (mesh != null)
+                mesh.renderer_.enabled = false;
+        }
+
+        public void ShowLayer( SortingLayer layer )
+        {
+            int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
+
+            var mesh = meshes_[layerIndex];
+            if (mesh != null)
+                mesh.renderer_.enabled = false;
         }
     }
 }

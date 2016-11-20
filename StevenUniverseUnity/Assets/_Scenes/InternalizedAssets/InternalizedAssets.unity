@@ -1047,6 +1047,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!1 &686006235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 686006238}
+  - 114: {fileID: 686006236}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &686006236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 686006235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15be57df0385854dac3a9318d809032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chunkSize_:
+    x: 1
+    y: 1
+  lastChunkSize_:
+    x: 1
+    y: 1
+  chunkDict_:
+    keys_: []
+    values_: []
+  layersDict_:
+    keys_: 
+    values_: []
+  isLayerVisible_:
+    layerStates_: 0000000000000000
+  showDebugGUI_: 0
+  tile_: {fileID: 0}
+  pos_:
+    x: 0
+    y: 0
+    z: 0
+--- !u!4 &686006238
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 686006235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5353425, y: 3.6805842, z: 2.9990234}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &731204173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,6 +1747,9 @@ MonoBehaviour:
   layersDict_:
     keys_: 
     values_: []
+  isLayerVisible_:
+    layerStates_: 0000000000000000
+  showDebugGUI_: 0
   tile_: {fileID: 114000010985127166, guid: 58648201103233f479930171eb249630, type: 2}
   pos_:
     x: 38

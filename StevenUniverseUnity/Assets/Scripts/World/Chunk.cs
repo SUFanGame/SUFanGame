@@ -24,12 +24,13 @@ namespace StevenUniverse.FanGame.World
     /// <summary>
     /// A chunk of tiles, basically representing a small portion of one cross-section of the map ( where the cross sections are divided by height ).
     /// The map maintains a structure of chunks and creates them as they are need, as tiles are added to the map.
+    /// For any 2D position of the chunk there can exist a stack of tiles: one tile for each sorting layer set up in the project.
     /// </summary>
-    [RequireComponent(typeof(ChunkMesh))]
+    [RequireComponent(typeof(ChunkMesh)), ExecuteInEditMode]
     public class Chunk : MonoBehaviour, IEnumerable<KeyValuePair<TileIndex,Tile>>
     {
         /// <summary>
-        /// Dictionary mapping stacks of tiles (where each index of the stack == Tile.SortingLayer.Value ) to their 3D position in local space.
+        /// Dictionary mapping stacks of tiles (where each index of the stack represents a sorting layer ) to their 3D position in local space.
         /// </summary>
         [SerializeField]
         TilesToIntVector2Dict tileStackDict_ = new TilesToIntVector2Dict();
@@ -40,11 +41,28 @@ namespace StevenUniverse.FanGame.World
         [SerializeField]
         TileToIndexDict indexDict_ = new TileToIndexDict();
 
+        [SerializeField]
+        SortingLayerVisibility isLayerVisible_ = new SortingLayerVisibility();
+
+        ChunkMesh mesh_ = null;
+        public ChunkMesh Mesh { get { return mesh_; } }
+
+        void Awake()
+        {
+            isLayerVisible_.Awake();
+            mesh_ = GetComponent<ChunkMesh>();
+        }
+
         /// <summary>
         /// Retrieve a single tile from the local position and sorting layer.
         /// </summary>
         public Tile GetTileLocal( IntVector3 localPosition, SortingLayer layer )
         {
+            if( !isLayerVisible_.Get(layer) )
+            {
+                return null;
+            }
+
             Tile t;
             indexDict_.TryGetValue(new TileIndex(localPosition, layer), out t);
             return t;
@@ -55,21 +73,28 @@ namespace StevenUniverse.FanGame.World
         /// </summary>
         public Tile GetTileWorld(IntVector3 worldPos, SortingLayer layer)
         {
+            if (!isLayerVisible_.Get(layer))
+            {
+                return null;
+            }
+
             return GetTileLocal((IntVector3)transform.position - worldPos, layer);
         }
 
         /// <summary>
-        /// Retrieve a list of tiles where each index of the list represents a SortingLayer (SortingLayer.Value).
+        /// Retrieve a list of tiles where each index of the list represents a SortingLayer.
         /// The given position should be LOCAL to the chunk. Note that raw SortingLayer.Value can start
         /// below zero, see <seealso cref="SortingLayerUtil.GetLayerIndex(SortingLayer)"/>
         /// </summary>
         public List<Tile> GetTilesLocal( IntVector2 localPos )
         {
+            // TODO: How to account for hidden layers here? Maybe we should pass in a buffer that gets populated,
+            // so we can selectively ignore tiles
             List<Tile> tiles;
             if (!tileStackDict_.TryGetValue(localPos, out tiles))
             {
+                // Ensure retrieved tile stacks are always populated with null refs
                 tileStackDict_[localPos] = tiles = new List<Tile>();
-                // Ensure tile stacks are always populated with null refs
                 for (int i = 0; i < SortingLayerUtil.LayerCount; ++i)
                 {
                     tiles.Add(null);
@@ -79,7 +104,7 @@ namespace StevenUniverse.FanGame.World
         }
 
         /// <summary>
-        /// Retrieve a list of tiles where each index of the list represents a SortingLayer (SortingLayer.Value).
+        /// Retrieve a list of tiles where each index of the list represents a SortingLayer
         /// Note that raw SortingLayer.Value can start below zero, 
         /// see <seealso cref="SortingLayerUtil.GetLayerIndex(SortingLayer)"/>
         /// </summary>
@@ -90,6 +115,11 @@ namespace StevenUniverse.FanGame.World
 
         public void SetTileWorld( TileIndex index, Tile t )
         {
+            if (!isLayerVisible_.Get(t.DefaultSortingLayer_))
+            {
+                return;
+            }
+
             //Debug.LogFormat("Setting tile at {0}", index);
             var oldPos = index.Position_;
             index.Position_ = index.Position_ - (IntVector3)transform.localPosition;
@@ -99,7 +129,12 @@ namespace StevenUniverse.FanGame.World
 
         public void SetTileLocal( TileIndex index, Tile t )
         {
-            if( t == null )
+            if (!isLayerVisible_.Get(t.DefaultSortingLayer_))
+            {
+                return;
+            }
+
+            if ( t == null )
             {
                 // Remove the tile from the mesh
             }
@@ -120,12 +155,15 @@ namespace StevenUniverse.FanGame.World
         /// <param name="layer"></param>
         public void HideLayer( SortingLayer layer )
         {
-            // ChunkMesh.HideLayer(layer);
+            isLayerVisible_.Set(layer, true);
+            mesh_.HideLayer(layer);
+            //ChunkMesh.HideLayer(layer);
         }
 
         public void ShowLayer( SortingLayer layer )
         {
-            //ChunkMesh.ShowLayer(layer)
+            isLayerVisible_.Set(layer, false);
+            mesh_.ShowLayer(layer);
         }
 
        // public void SetTileLocal(  )

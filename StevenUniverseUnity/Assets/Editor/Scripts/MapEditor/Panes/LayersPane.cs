@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using StevenUniverse.FanGame.World;
+using System.Linq;
+using StevenUniverse.FanGame.Util.MapEditing;
 
 public class LayersPane
 { 
@@ -11,16 +13,33 @@ public class LayersPane
     static bool[] toggles_ = null;
     static Map map_;
 
+    // TODO : How do we account for Tile default sorting layers? There is a "Default" Sorting LAyer,
+    // but we would have to tweak all other references to account for that matching up to the Tile's Default Sorting Oorder...
+    static int targetLayer_;
+    /// <summary>
+    /// The target layer to which all tiles will be painted.
+    /// </summary>
+    public static SortingLayer TargetLayer
+    {
+        get
+        {
+            return SortingLayerUtil.GetLayerFromIndex(targetLayer_);
+        }
+    }
+
     public static void OnSceneGUI()
     {
 
         Handles.BeginGUI();
 
-        int layerCount = SortingLayer.layers.Length;
+        var layers = SortingLayer.layers;
+
+        // One liner per layer + target layer selection.
+        int lineCount = layers.Length + 1;
 
         int w = 130;
         // H = dropdown + layer texts + area between texts
-        int h = foldOut_ ? 18 + (layerCount * 15) + (4 * layerCount) : 22;
+        int h = foldOut_ ? 18 + (lineCount * 15) + (4 * lineCount) : 22;
         int x = Screen.width - w - 15;
         int y = 15;
 
@@ -36,7 +55,6 @@ public class LayersPane
         GUI.contentColor = Color.black;
         if (foldOut_)
         {
-            var layers = SortingLayer.layers;
 
             for (int i = 0; i < layers.Length; ++i)
             {
@@ -49,6 +67,11 @@ public class LayersPane
                 toggles_[i] = userToggle;
             }
 
+            string[] targetLayerNames = new string[layers.Length + 1];
+            layers.Select(l => l.name).ToArray().CopyTo(targetLayerNames, 1);
+            targetLayerNames[0] = "Default";
+
+            targetLayer_ = EditorGUILayout.Popup(targetLayer_, targetLayerNames);
         }
         GUI.color = oldColor;
 
@@ -60,10 +83,7 @@ public class LayersPane
 
     static void OnLayerEnabled( SortingLayer layer )
     {
-        foreach( var chunk in map_ )
-        {
-            chunk.ShowLayer(layer);
-        }
+        map_.ShowLayer(layer);
     }
 
     // TODO : Load relevant editorprefs
