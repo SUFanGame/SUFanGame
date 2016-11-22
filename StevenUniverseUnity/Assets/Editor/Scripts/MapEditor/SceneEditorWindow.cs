@@ -56,6 +56,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         }
 
+        protected virtual void OnMouseScroll( Vector2 delta )
+        {
+            //Debug.LogFormat("MouseScroll: {0}", delta);
+        }
+
         /// <summary>
         /// Draws the "Toggle edit mode" button.
         /// </summary>
@@ -110,10 +115,17 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
 
         }
+        
 
         void ProcessMouseInput()
         {
             Event e = Event.current;
+            if (e.type == EventType.ScrollWheel && e.shift )
+            {
+                OnMouseScroll(e.delta);
+                e.Use();
+            }
+
             if (e.isMouse)
             {
                 Vector2 worldPos = HandleUtility.GUIPointToWorldRay(e.mousePosition).origin;

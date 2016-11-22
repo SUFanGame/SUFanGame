@@ -5,3 +5,8 @@ Unique abilities from gem type, common abilities gained from weapons
 Abilities can be shared between gems by some means, perhaps based on support levels.
 FE unit combine pair ups are NOT in, pair-up with adjacent ally of your choice IS in (defend/attack?)
 Initial impression is that most abilities will be passive like in FE.
+
+Fusion will be in the demo
+Fusion mechanics: There are active and passive fusions. Passive occurs if a unit is going to receive a deathblow and is
+adjacent to a high support ally. There is a chance for them to fuse in order to prevent the deathblow.
+Active fusion won't occur until higher levels of support - the exact levels can differ based on the characters.

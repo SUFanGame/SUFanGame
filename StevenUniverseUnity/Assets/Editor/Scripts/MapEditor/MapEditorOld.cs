@@ -404,7 +404,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
     //        var col = GUI.color;
     //        col.a = .25f;
     //        GUI.color = col;
-
+                
+              // Note the image is flipped vertically in the scene view
     //        Rect texCoords = new Rect(0, 0, 1, -1);
     //        GUI.DrawTextureWithTexCoords(area, tex, texCoords);
 
