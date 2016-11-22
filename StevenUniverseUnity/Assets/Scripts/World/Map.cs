@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using StevenUniverse.FanGame.Util.Collections;
 using StevenUniverse.FanGame.Util;
 using StevenUniverse.FanGame.Util.MapEditing;
+using System.Linq;
 
 namespace StevenUniverse.FanGame.World
 {
@@ -52,11 +53,11 @@ namespace StevenUniverse.FanGame.World
         ChunkToPosDict chunkDict_ = new ChunkToPosDict();
 
         /// <summary>
-        /// Dictionary mapping chunks to their SortingLayer.
+        /// Dictionary mapping stacks of chunks to the 2D index.
         /// </summary>
         [SerializeField]
         [HideInInspector]
-        ChunksToIntDict layersDict_ = new ChunksToIntDict();
+        ChunkStackToPos stackDict_ = new ChunkStackToPos();
 
         /// <summary>
         /// Visibility data for the sorting layers in this map.
@@ -74,107 +75,120 @@ namespace StevenUniverse.FanGame.World
         [SerializeField]
         bool showDebugGUI_ = true;
 
+        const string NULL_TILE_STR = "Calling SetTile with a null argument. If you want to erase a tile, call EraseTile";
 
-        // This could be useful for things like hiding all tiles at a certain height.
-        /// <summary>
-        /// Dictionary mapping chunks to their height.
-        /// </summary>
-        //[SerializeField]
-        //[HideInInspector]
-        //ChunksToIntDict heightDict_ = new ChunksToIntDict();
-
-        public Tile tile_;
-
-        public IntVector3 pos_;
-  
         void Awake()
         {
+            isLayerVisible_ = new SortingLayerVisibility();
             isLayerVisible_.Awake();
         }
 
         /// <summary>
-        /// Retrieve the list of tiles at the given position, where each index of the list represents a SortingLayer.Value.
-        /// The lists will be pre-populated to match the size of SortingLayer.layers.Length.
-        /// Note that raw SortingLayer.Value can start below zero, see <seealso cref="SortingLayerUtil.GetLayerIndex(SortingLayer)"/>
-        /// </summary>
-        public List<Tile> GetTiles(IntVector3 pos)
-        {
-            if (heightCutoff_ != null && heightCutoff_ > pos.z)
-                return null;
-
-            var chunk = GetChunkWorld(pos);
-            if( chunk == null )
-                return null;
-
-            return chunk.GetTilesWorld((IntVector2)pos);
-        }
-
-        // TODO : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
-        /// <summary>
-        /// Sets the given tile in the map at the given index. 
-        /// </summary>
-        public void SetTile(TileIndex tIndex, Tile t)
-        {
-            if (heightCutoff_ != null && tIndex.Position_.z > heightCutoff_)
-                return;
-
-            // Do nothing if the target layer is hidden
-            if (!isLayerVisible_.Get(tIndex.Layer_))
-                return;
-
-            var chunkIndex = GetChunkIndex(tIndex.Position_);
-            var chunk = GetChunk(chunkIndex);
-
-            if (chunk == null)
-            {
-                chunk = MakeChunk(chunkIndex, tIndex.Layer_ );
-            }
-
-            chunk.SetTileWorld(tIndex, t);
-        }
-
-        /// <summary>
-        /// Sets the given tile in the map at the given position. The tile's default layer will be used.
-        /// </summary>
-        public void SetTile( IntVector3 pos, Tile t )
-        {
-            if (heightCutoff_ != null && heightCutoff_ > pos.z)
-                return;
-
-            if (t == null)
-            {
-                Debug.LogErrorFormat("Attempting to set tile to null at {0}. Because the tile is null the" +
-                    " SortingLayer cannot be known, use SetTile(Pos,Layer,Tile) or SetTile(TileIndex)", pos);
-                return;
-            }
-
-            // Do nothing if the target layer is hidden
-            if ( !isLayerVisible_.Get(t.DefaultSortingLayer_) )
-                return;
-
-            var index = new TileIndex(pos, t.DefaultSortingLayer_);
-            SetTile(index, t);
-        }
-
-        // TODO : Should be able to set null to "erase" a cell (AKA set the alpha of the cell to 0)
-        //        Should do nothing if the layer was "hidden" via the map editor.
-        /// <summary>
-        /// Sets the given tile in the map at the given position and layer.
+        /// Sets the given tile in the map at the given position and layer. Will create a chunk at the given position
+        /// if one doesn't exist.
         /// </summary>
         /// <param name="pos"></param>
         /// <param name="layer"></param>
         /// <param name="t"></param>
         public void SetTile( IntVector3 pos, SortingLayer layer, Tile t )
         {
+            if (t == null)
+            {
+                Debug.LogError(NULL_TILE_STR);
+                return;
+            }
+
             if (heightCutoff_ != null && heightCutoff_ > pos.z)
                 return;
 
             // Do nothing if the target layer is hidden
-            if (!isLayerVisible_.Get(layer))
+            if ( !isLayerVisible_.Get(layer) )
                 return;
 
-            var index = new TileIndex(pos, layer);
-            SetTile(index, t);
+            var chunkIndex = GetChunkIndex(pos);
+            Chunk chunk;
+            if( !chunkDict_.TryGetValue(chunkIndex, out chunk ) )
+            {
+                //Debug.LogFormat("Couldn't find chunk in chunkDict at {0}", chunkIndex);
+                chunk = MakeChunk(chunkIndex, layer );
+            }
+            else if( !chunk.isActiveAndEnabled )
+            {
+                Debug.LogWarningFormat("Attempting to set tile data on a disabled chunk at {0}", pos);
+            }
+
+            chunk.SetTileWorld(new TileIndex((IntVector2)pos, layer), t);
+        }
+        
+        /// <summary>
+        /// Paints a tile on the topmost visible chunk at the given position.
+        /// If no chunks are visible, one will be created at height 0.
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <param name="t"></param>
+        public void SetTile(IntVector2 pos, Tile t)
+        {
+            var topChunk = GetTopChunk(pos);
+            
+            if (topChunk == null)
+                SetTile(new IntVector3(pos.x, pos.y, 0), t.DefaultSortingLayer_, t);
+            else
+            {
+                SetTile(new IntVector3(pos.x, pos.y, topChunk.Height_), t.DefaultSortingLayer_, t);
+            }
+        }
+        
+        /// <summary>
+        /// Sets the given tile in the map at the given position. The tile's default layer will be used.
+        /// </summary>
+        public void SetTile(IntVector3 pos, Tile t)
+        {
+            SetTile(pos, t.DefaultSortingLayer_, t);
+        }
+
+
+        /// <summary>
+        /// Erase the topmost visible tile at the given position.
+        /// </summary>
+        /// <param name="pos"></param>
+        public void EraseTile(IntVector2 pos)
+        {
+            var topChunk = GetTopChunk(pos);
+
+            if (topChunk == null)
+                return;
+
+            topChunk.EraseTileWorld(pos);
+        }
+
+        /// <summary>
+        /// Retrieve the topmost visible chunk at the given position.
+        /// Returns null if no chunks are found.
+        /// </summary>
+        public Chunk GetTopChunk( IntVector2 worldPos )
+        {
+            // First get the stack of chunks at this position ( if any )
+            var chunkIndex = GetChunkIndex(worldPos);
+
+            // Check if the there is a stack at that position:
+            ChunkList stack;
+            if (!stackDict_.TryGetValue(chunkIndex, out stack))
+            {
+                return null;
+            }
+
+            // Then get the highest active chunk.
+            for (int i = stack.Count - 1; i >= 0; --i)
+            {
+                var chunk = stack[i];
+                // Ignore disabled chunks or chunks above the height cutoff
+                if ( (heightCutoff_ != null && chunk.Height_ > heightCutoff_) || !chunk.isActiveAndEnabled)
+                    continue;
+                
+                return chunk;
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -231,56 +245,69 @@ namespace StevenUniverse.FanGame.World
             return pos;
         }
 
+        IntVector2 GetChunkIndex( IntVector2 pos )
+        {
+            pos.x = Mathf.FloorToInt((float)pos.x / (float)chunkSize_.x);
+            pos.y = Mathf.FloorToInt((float)pos.y / (float)chunkSize_.y);
+
+            return pos;
+        }
+        
+
         /// <summary>
         /// Create a chunk at the given position in the given sorting layer. The chunks name will match the given index.
         /// </summary>
         Chunk MakeChunk( IntVector3 chunkIndex, SortingLayer layer )
         {
             var go = new GameObject(chunkIndex.ToString());
-            go.transform.SetParent(transform);
+            go.transform.SetParent(transform, false);
+            //Debug.LogFormat("Making chunk at chunkindex {0}", chunkIndex);
             IntVector2 chunkXY = IntVector2.Scale((IntVector2)chunkIndex, chunkSize_);
             go.transform.localPosition = new Vector3(chunkXY.x, chunkXY.y, chunkIndex.z);
 
             var chunk = go.AddComponent<Chunk>();
 
+            //Debug.LogFormat("Adding chunk to chunkDict at index {0}", chunkIndex);
             // First add the chunk to the position dict.
             chunkDict_[chunkIndex] = chunk;
 
-            // Then to the layer dict.
-            ChunkToIntDict layerChunks;
-            if( !layersDict_.TryGetValue(layer.value, out layerChunks) )
+            // Then add the chunk to the stack dict.
+            ChunkList chunkStack;
+
+            // Ensure empty chunk stacks always contain null refs equal to the sorting layer count.
+            if( !stackDict_.TryGetValue(chunkXY, out chunkStack))
             {
-                layersDict_[layer.value] = layerChunks = new ChunkToIntDict();
+                chunkStack = new ChunkList();
+                stackDict_[chunkXY] = chunkStack;
             }
 
-            layerChunks[layer.value] = chunk;
+            chunkStack.Add(chunk);
+            
+            // Sort the stack by height;
+            chunkStack.Sort( (a,b)=>a.Height_.CompareTo(b.Height_) );
+            
+            // Set the layer visiblity values from our map values.
+            foreach( var l in SortingLayer.layers )
+            {
+                chunk.SetLayerVisibility(l, isLayerVisible_.Get(l));
+            }
 
             return chunk;
         }
+
 
         void OnGUI()
         {
             if (!showDebugGUI_ || !isActiveAndEnabled)
                 return;
 
-            var pos = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
-            GUILayout.Label("MousePos: " + pos.ToString());
-            GUILayout.Label("ChunkIndex: " + GetChunkIndex((IntVector3)pos).ToString());
-
-            if (GUILayout.Button("AddTile"))
+            if( Application.isPlaying )
             {
-                SetTile(pos_, tile_);
+                var pos = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
+                GUILayout.Label("MousePos: " + pos.ToString());
+                GUILayout.Label("ChunkIndex: " + GetChunkIndex((IntVector3)pos).ToString());
             }
 
-            if( GUILayout.Button("Print Tiles"))
-            {
-                foreach (var pair in chunkDict_)
-                {
-                    var chunk = pair.Value;
-
-                    chunk.Print();
-                }
-            }
         }
 
         void OnValidate()
@@ -353,6 +380,19 @@ namespace StevenUniverse.FanGame.World
             }
         }
 
+        public void Clear()
+        {
+            var chunks = GetComponentsInChildren<Chunk>();
+            for( int i = chunks.Length - 1; i >= 0; --i )
+            {
+                DestroyImmediate(chunks[i].gameObject);
+            }
+
+            isLayerVisible_.SetAll(true);
+            chunkDict_.Clear();
+            stackDict_.Clear();
+        }
+
         public IEnumerator<Chunk> GetEnumerator()
         {
             foreach( var pair in chunkDict_ )
@@ -371,11 +411,15 @@ namespace StevenUniverse.FanGame.World
         [System.Serializable]
         class ChunkToPosDict : SerializableDictionary<IntVector3, Chunk> { }
         [System.Serializable]
-        class ChunksToPosDict : SerializableDictionary<IntVector3, List<Chunk>> { }
-        [System.Serializable]
         class ChunkToIntDict : SerializableDictionary<int, Chunk> { }
         [System.Serializable]
         class ChunksToIntDict : SerializableDictionary<int, ChunkToIntDict> { }
+
+        [System.Serializable]
+        class ChunkList : List<Chunk> { }
+
+        [System.Serializable]
+        class ChunkStackToPos : SerializableDictionary<IntVector2, ChunkList> { }
     }
 
 

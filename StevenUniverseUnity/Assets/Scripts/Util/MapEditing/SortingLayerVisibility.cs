@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StevenUniverse.FanGame.Util.MapEditing
 {
@@ -12,7 +13,7 @@ namespace StevenUniverse.FanGame.Util.MapEditing
     {
         // Serializable list of the layers state
         [SerializeField]
-        List<bool> layerStates_ = new List<bool>();
+        BoolList layerStates_ = new BoolList();
         
         /// <summary>
         /// Should be called from a MonoBehaviour Awake, must use this for initialization since SortingLayers can only be accessed
@@ -23,8 +24,12 @@ namespace StevenUniverse.FanGame.Util.MapEditing
         {
             int layerCount = SortingLayer.layers.Length;
             if( layerStates_.Count != layerCount )
+            {
                 for (int i = 0; i < SortingLayer.layers.Length; ++i)
                     layerStates_.Add(true);
+            }
+
+            //Debug.LogFormat("Layer states after awake: {0}", string.Join(",", layerStates_.Select(b => b.ToString()).ToArray() ));
         }
 
         public void Set( SortingLayer layer, bool isVisible )
@@ -35,8 +40,18 @@ namespace StevenUniverse.FanGame.Util.MapEditing
 
         public bool Get( SortingLayer layer )
         {
+            //Debug.LogFormat("Layer states after in get function: {0}", string.Join(",", layerStates_.Select(b => b.ToString()).ToArray()));
             int i = SortingLayerUtil.GetLayerIndex(layer);
             return layerStates_[i];
         }
+
+        public void SetAll( bool areVisible )
+        {
+            for (int i = 0; i < layerStates_.Count; ++i)
+                layerStates_[i] = areVisible;
+        }
+
+        [System.Serializable]
+        class BoolList : List<bool> { }
     }
 }

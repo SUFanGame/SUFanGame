@@ -13,5 +13,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
                 return "eraser";
             }
         }
+
+        public override string Name_
+        {
+            get
+            {
+                return "Eraser";
+            }
+        }
     }
 }

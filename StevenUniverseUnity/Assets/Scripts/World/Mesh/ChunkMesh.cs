@@ -34,6 +34,11 @@ namespace StevenUniverse.FanGame.World
                 VerifyMeshValues();
             }
         }
+
+        void Awake()
+        {
+            meshes_ = new TiledMesh[SortingLayer.layers.Length];
+        }
         
         TiledMesh CreateMesh( int layerIndex )
         {

@@ -75,7 +75,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
         }
 
-        static string IconTexturePath_ = "Editor/MapEditorIcons/";
+        static string IconTexturePath_ = "Editor/MapEditorIcons";
         static Dictionary<string, Texture2D> brushTextures_ = null;
 
 
@@ -87,21 +87,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             {
                 brushTextures_ = new Dictionary<string, Texture2D>();
 
-                var separator = new string[] { "StevenUniverseUnity/" };
-                var absolutePath = Application.dataPath + "/" + IconTexturePath_;
-                // Get our brush textures
-                var paths = Directory.GetFiles(absolutePath, "*.png");
-                // Transform the absolute paths relative to our project so they can be used in AssetDatabase
-                paths = (from path in paths
-                         select path.Split(separator, System.StringSplitOptions.None)[1] ).ToArray();
-                       
-                foreach( var path in paths )
+                var textures = IOUtil.GetAssetsAtLocation<Texture2D>(IconTexturePath_, "*.png");
+
+                foreach( var tex in textures)
                 {
-                    var tex = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
-                    if (tex == null)
-                    {
-                        Debug.LogErrorFormat("Error loading brush textures, asset at {0} failed to load. Is it an image file? ", path);
-                    }
                     brushTextures_.Add(tex.name, tex);
                 }
             }
@@ -166,6 +155,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// If a brush needs to save any relevant data to editor prefs it should do so here.
         /// </summary>
         public virtual void OnDisable()
+        {
+
+        }
+
+        /// <summary>
+        /// Determines what appears in the map editor GUI. For Tile Painting this would be tiles, for tile group painting, tile groups.
+        /// </summary>
+        public virtual void MapEditorGUI()
         {
 
         }

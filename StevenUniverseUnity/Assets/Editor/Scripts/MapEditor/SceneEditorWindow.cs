@@ -87,11 +87,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             if (SceneEditorUtil.EditMode_)
             {
                 HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
-                Handles.BeginGUI();
+                //Handles.BeginGUI();
 
-                GUILayout.Label("Currently in Edit mode. Click the button in the map editor window or select a Unity tool to exit.");
+                //GUILayout.Label("Currently in Edit mode. Click the button in the map editor window or select a Unity tool to exit.");
 
-                Handles.EndGUI();
+                //Handles.EndGUI();
             }
             else
                 return;

@@ -21,15 +21,31 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         const string PREFS_BRUSHINDEX_NAME = "MEBrushIndex";
         const string PREFS_BRUSHFOLDOUT_NAME = "MeBrushFoldout";
 
+        static int brushColumns_ = 2;
+
         public override Rect Area_
         {
             get
             {
                 int x = 15;
                 int y = 15;
-                int w = foldout_ ? Screen.width - x - (Screen.width - (int)layersPanel_.Area_.x) : 75;
+
+                int brushWidth = 24 + brushColumns_ * 32 + brushColumns_ * 4;
+
+                int foldoutLabelSize = (int)GUI.skin.label.CalcSize(new GUIContent(FoldoutTitle_)).x + 20;
+
+
+                int w = foldout_ ? (int)Mathf.Max( foldoutLabelSize, brushWidth ) : foldoutLabelSize;
                 int h = foldout_ ? 65 : 22;
                 return new Rect(x, y, w, h);
+            }
+        }
+
+        string FoldoutTitle_
+        {
+            get
+            {
+                return "Brushes => Current: " + SelectedBrush_.Name_;
             }
         }
 
@@ -49,7 +65,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             //Debug.LogFormat("Rendering area for brushes panel {0}", Area_);
 
-            foldout_ = EditorGUILayout.Foldout(foldout_, "Brushes");
+
+            foldout_ = EditorGUILayout.Foldout(foldout_, FoldoutTitle_ );
 
             if (foldout_)
             {
@@ -58,7 +75,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
 
                 //selectedBrush_ = GUILayout.SelectionGrid(selectedBrush_, brushIcons_, 10);
-                selectedBrush_ = CustomGUI.SceneGUISelectionGrid.Draw(selectedBrush_, brushIcons_, 10, 32,32);
+                selectedBrush_ = CustomGUI.SelectionGrids.FromTextures(selectedBrush_, brushIcons_, 10, 32,32);
                 //foreach (var brush in brushes_)
                 //{
            

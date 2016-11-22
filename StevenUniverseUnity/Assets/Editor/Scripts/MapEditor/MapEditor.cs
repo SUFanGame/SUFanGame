@@ -21,6 +21,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         static MapEditor instance_;
 
+        static string TilePrefabPath_ = "Prefabs/Tiles";
+
         [MenuItem("Tools/SUFanGame/MapEditor")]
         static void OpenWindow()
         {
@@ -34,6 +36,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             foreach (var panel in panels_)
                 panel.OnSceneGUI();
+
+            var mousePos = Event.current.mousePosition + Vector2.right * 10;
+            var mouseWorldPos = (IntVector2)HandleUtility.GUIPointToWorldRay(mousePos).origin;
+            // Draw our elevation label.
+            Handles.BeginGUI();
+            EditorGUI.LabelField(new Rect(mousePos.x, mousePos.y, 100f, 100f), mouseWorldPos.ToString("0") );
+            Handles.EndGUI();
 
             SceneView.currentDrawingSceneView.Repaint();
 
@@ -54,7 +63,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
 
             List<MapEditorBrush> brushes = new List<MapEditorBrush>();
-            brushes.Add(new PaintTileBrush());
+            brushes.Add(new PaintTileBrush(IOUtil.GetAssetsAtLocation<Tile>(TilePrefabPath_, "*.prefab")) );
             brushes.Add(new EraseBrush());
 
             panels_.Add(new LayersPanel(map_));
@@ -81,10 +90,20 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             // Ignore mouse activity inside our panels
             //if (LayersPane.ContainsMouse_)
-             //   return;
-             
+            //   return;
+
+
+            if (map_ == null)
+                map_ = GameObject.FindObjectOfType<Map>();
+
+            if (map_ == null)
+            {
+                Debug.LogWarning("No map found in the scene");
+                return;
+            }
+
             // Ignore clicks inside the panels
-            foreach( var p in panels_ )
+            foreach ( var p in panels_ )
             {
                 if (p.ContainsMouse_)
                     return;
@@ -121,6 +140,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             if (instance_ == null)
                 return;
 
+            //var cursorPos = SceneEditorUtil.GetCursorPosition();
+            //var labelPos = HandleUtility.WorldToGUIPoint(cursorPos + Vector3.right + (Vector3.up));
+            //var mousePos = Event.current.mousePosition;
+            //// Draw our elevation label.
+            //Handles.BeginGUI();
+            //EditorGUI.LabelField(new Rect(mousePos.x, mousePos.y, 100f, 100f), "Test" );
+            //Handles.EndGUI();
+
             instance_.Brush_.RenderCursor();
 
 
@@ -132,6 +159,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             map_ = (Map)EditorGUILayout.ObjectField(map_, typeof(Map), true);
 
+            Brush_.MapEditorGUI();
 
             //GUILayout.Label("Panels: " + panels_.Count);
 
