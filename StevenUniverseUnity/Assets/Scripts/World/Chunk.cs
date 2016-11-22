@@ -17,8 +17,9 @@ namespace StevenUniverse.FanGame.World
     // Note in both the latter examples this would require setting up Layers that match the SortingLayers and having the meshes be set to the
     // appropriate Layer.
 
-    // TODO : Get rid of all instances of IntVector3 in here, including in TileIndex? From a chunk perspective height means nothing, each
-    // chunk is defined by it's height and so any incoming coordinates would only be 2D.
+
+    // TODO : Errors when attempting to assign a tile to the same location after serialization occurs - meaning the lists of tiles
+    // stay but their contents get cleared during serialization?
 
     /// <summary>
     /// A chunk of tiles, basically representing a small portion of one cross-section of the map ( where the cross sections are divided by height ).
@@ -47,6 +48,23 @@ namespace StevenUniverse.FanGame.World
         public ChunkMesh Mesh { get { return mesh_; } }
 
         public int Height_ { get { return (int)transform.position.z; } }
+
+        public Material terrainMaterial_ = null;
+
+        [SerializeField,HideInInspector]
+        IntVector2 size_;
+        public IntVector2 Size_
+        {
+            get
+            {
+                return size_;
+            }
+            set
+            {
+                value = IntVector2.Clamp(value, 1, int.MaxValue);
+                size_ = value;
+            }
+        }
 
         void Awake()
         {
@@ -119,17 +137,17 @@ namespace StevenUniverse.FanGame.World
         /// </summary>
         private List<Tile> GetTileStack( IntVector2 localPos )
         {
-            TileList tiles;
-            if (!sortingLayerDict_.TryGetValue(localPos, out tiles))
+            List<Tile> stack;
+            if (!sortingLayerDict_.TryGetValue(localPos, out stack))
             {
                 // Ensure retrieved tile stacks are always populated with null refs
-                sortingLayerDict_[localPos] = tiles = new TileList();
+                sortingLayerDict_[localPos] = stack = new List<Tile>();
                 for (int i = 0; i < SortingLayerUtil.LayerCount; ++i)
                 {
-                    tiles.Add(null);
+                    stack.Add(null);
                 }
             }
-            return tiles;
+            return stack;
         }
 
         public void SetTileWorld( TileIndex index, Tile t )
@@ -161,9 +179,18 @@ namespace StevenUniverse.FanGame.World
             //Debug.LogFormat("Setting tile for {0}", index);
             indexDict_[index] = t;
             var stack = GetTileStack(index.position_);
-            stack[index.SortingLayerIndex_] = t;
-            // TODO : Write to mesh
 
+            //Debug.LogFormat("Index: {0}, stackSize: {1}", index, stack.Count);
+
+            var layerIndex = index.SortingLayerIndex_;
+            stack[layerIndex] = t;
+            // TODO : Write to mesh
+            var layerMesh = GetLayerMesh(index.layer_);
+
+            layerMesh.SetUVs(index.position_, t.Sprite_.uv);
+            layerMesh.SetColors(index.position_, Color.white);
+
+            layerMesh.ImmediateUpdate();
         }
 
 
@@ -182,7 +209,7 @@ namespace StevenUniverse.FanGame.World
         public void EraseTileLocal( IntVector2 pos )
         {
             // First check if there are any tiles here
-            TileList stack;
+            List<Tile> stack;
             if( !sortingLayerDict_.TryGetValue(pos, out stack) )
             {
                 return;
@@ -240,13 +267,34 @@ namespace StevenUniverse.FanGame.World
             mesh_.ShowLayer(layer);
         }
 
+        /// <summary>
+        /// Retrieve the TiledMesh for the given sorting layer.
+        /// </summary>
+        public TiledMesh GetLayerMesh( SortingLayer layer )
+        {
+            int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
+
+            var mesh = mesh_.GetLayerMesh(layerIndex);
+
+            if (mesh == null)
+                mesh = mesh_.CreateLayerMesh(layerIndex, size_, terrainMaterial_);
+
+            return mesh;
+        }
+
+        public void RefreshMesh()
+        {
+            mesh_.RefreshLayers();
+        }
+        
+
        // public void SetTileLocal(  )
 
         public void Print()
         {
             foreach( var p in this )
             {
-                Debug.LogFormat("{0}: {1}", p.Key, p.Value.name);
+                Debug.LogFormat("Chunk: {0}: Index: {1} Tile : {2}", name, p.Key, p.Value.name);
             }
         }
 
@@ -267,16 +315,10 @@ namespace StevenUniverse.FanGame.World
         }
 
         [System.Serializable]
-        class TileList : List<Tile> { }
-
-        [System.Serializable]
-        class TilesToIntVector2Dict : SerializableDictionary<IntVector2, TileList> { }
+        class TilesToIntVector2Dict : SerializableDictionaryOfLists<IntVector2, Tile> { }
 
         [System.Serializable]
         class TileToIndexDict : SerializableDictionary<TileIndex, Tile> { }
-
-        [System.Serializable]
-        class TileToIntDict : SerializableDictionary<int, Tile> { }
 
         
     }

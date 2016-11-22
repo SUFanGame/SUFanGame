@@ -22,7 +22,7 @@ public class TiledMesh : MonoBehaviour
     [HideInInspector]
     int[] tris_;
     [SerializeField]
-    [HideInInspector]
+    //[HideInInspector]
     Vector2[] uvs_;
     [SerializeField, HideInInspector]
     Color32[] colors_;
@@ -33,6 +33,7 @@ public class TiledMesh : MonoBehaviour
     public MeshFilter filter_ { get; private set; }
     public MeshRenderer renderer_ { get; private set; }
 
+    [SerializeField,HideInInspector]
     IntVector2 lastSize_;
     [SerializeField]
     protected IntVector2 size_ = IntVector2.one;
@@ -43,7 +44,9 @@ public class TiledMesh : MonoBehaviour
         {
             value = IntVector2.Clamp(value, 1, MaxChunkSize_);
             if (value != size_)
+            {
                 sizeChanged_ = true;
+            }
             size_ = value;
         }
     }
@@ -67,10 +70,15 @@ public class TiledMesh : MonoBehaviour
     // Bools to determine when the mesh needs to update itself
     // These will be set when outside sources make changes to the mesh
     // and the mesh will refresh itself on it's next lateupdate.
-    protected bool uvsChanged_ = false;
+    // We want to serialize these so they get handled properly by unity's Undo/Redo system.
+    [SerializeField, HideInInspector]
+    bool uvsChanged_ = false;
+    [SerializeField, HideInInspector]
     protected bool colorsChanged_ = false;
     //protected bool normalsChanged_ = false;
+    [SerializeField, HideInInspector]
     protected bool vertsChanged_ = false;
+    [SerializeField, HideInInspector]
     protected bool sizeChanged_ = false;
 
     public bool showLayerOrder_ = false;
@@ -100,13 +108,6 @@ public class TiledMesh : MonoBehaviour
 
     void Start()
     {
-        for( int x = 0; x < size_.x; ++x )
-        {
-            for( int y = 0; y < size_.y; ++y )
-            {
-                //SetUVs(0, 0, 0, 0);
-            }
-        }
 
         vertsChanged_ = true;
         uvsChanged_ = true;
@@ -242,6 +243,7 @@ public class TiledMesh : MonoBehaviour
     /// </summary>
     void LateUpdate()
     {
+        //Debug.LogFormat("Late update for mesh {0}", name);
         if (filter_.sharedMesh == null)
             return;
 
@@ -250,6 +252,7 @@ public class TiledMesh : MonoBehaviour
             sizeChanged_ = false;
             RebuildUnderlyingArrays();
             vertsChanged_ = true;
+            lastSize_ = size_;
         }
 
         if( vertsChanged_ )
@@ -262,7 +265,7 @@ public class TiledMesh : MonoBehaviour
         if (uvsChanged_)
         {
             uvsChanged_ = false;
-            RefreshUVs();
+            PushUVs();
         }
 
         //if (normalsChanged_)
@@ -274,7 +277,7 @@ public class TiledMesh : MonoBehaviour
         if (colorsChanged_)
         {
             colorsChanged_ = false;
-            RefreshColors();
+            PushColors();
         }
 
     }
@@ -283,7 +286,7 @@ public class TiledMesh : MonoBehaviour
     /// Assign the current color data to the mesh. Note this is called automatically when
     /// changes are made via SetColors
     /// </summary>
-    void RefreshColors()
+    void PushColors()
     {
         //Debug.LogFormat("Refreshing Colors:{0}", string.Join(",", colors_.Select(c=>c.ToString()).ToArray()));
         filter_.sharedMesh.colors32 = colors_;
@@ -307,11 +310,21 @@ public class TiledMesh : MonoBehaviour
         uvsChanged_ = true;
     }
 
+    public void RefreshUVs()
+    {
+        uvsChanged_ = true;
+    }
+
+    public void RefreshColors()
+    {
+        colorsChanged_ = true;
+    }
+
     /// <summary>
     /// Assign the current uv data to the mesh. Note this is called automatically on the next
     /// update when changes are made via SetUVs. This DOES NOT cause allocations.
     /// </summary>
-    void RefreshUVs()
+    void PushUVs()
     {
         //Debug.LogFormat("Assigning UVs to mesh");
         //Debug.LogFormat("Refreshing UVs: {0}", string.Join(",", uvs_.Select(uv=> uv.ToString() ).ToArray() ));
@@ -329,6 +342,15 @@ public class TiledMesh : MonoBehaviour
         filter_.sharedMesh.triangles = tris_;
 
         filter_.sharedMesh.RecalculateBounds();
+    }
+
+    /// <summary>
+    /// Force the mesh to update immediately. 
+    /// You will need to do this if you try to resize the mesh and change the mesh data on the same frame.
+    /// </summary>
+    public void ImmediateUpdate()
+    {
+        LateUpdate();
     }
 
     ///// <summary>
@@ -385,6 +407,7 @@ public class TiledMesh : MonoBehaviour
         // If our vert or tri arrays don't match our current size.
         if (size_ != lastSize_)
         {
+            Debug.LogFormat("SIZECHANGED");
             lastSize_ = size_;
             sizeChanged_ = true;
         }
@@ -424,9 +447,6 @@ public class TiledMesh : MonoBehaviour
         tris_ = new int[cellCount * 6];
         uvs_ = new Vector2[cellCount * 4];
         colors_ = new Color32[cellCount * 4];
-
-        for (int i = 0; i < colors_.Length; ++i)
-            colors_[i] = Color.black;
 
         //normals_ = new Vector3[cellCount * 4];
 

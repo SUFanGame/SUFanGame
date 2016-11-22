@@ -37,10 +37,14 @@ namespace StevenUniverse.FanGame.World
 
         void Awake()
         {
-            meshes_ = new TiledMesh[SortingLayer.layers.Length];
+            if( meshes_ == null )
+                meshes_ = new TiledMesh[SortingLayer.layers.Length];
         }
         
-        TiledMesh CreateMesh( int layerIndex )
+        /// <summary>
+        /// Create a TiledMesh with the given Sorting Layer, parent, and size.
+        /// </summary>
+        public TiledMesh CreateLayerMesh( int layerIndex, IntVector2 size, Material material )
         {
             var layer = SortingLayerUtil.GetLayerFromIndex(layerIndex);
             var go = new GameObject(layer.name + " Mesh");
@@ -48,6 +52,13 @@ namespace StevenUniverse.FanGame.World
             mesh.SortingLayer_ = layer;
             go.transform.SetParent(transform, false);
             go.transform.SetSiblingIndex(layerIndex);
+            mesh.Size_ = size;
+            mesh.renderer_.sharedMaterial = material;
+
+            meshes_[layerIndex] = mesh;
+
+            mesh.ImmediateUpdate();
+            //Debug.LogFormat("Creating mesh of size {0}", size);
 
             return mesh;
         }
@@ -80,18 +91,15 @@ namespace StevenUniverse.FanGame.World
         {
             int index = SortingLayerUtil.GetLayerIndex(layer);
 
-            // Create the mesh for this layer if it doesn't already exist.
-            if (meshes_[index] == null)
-                meshes_[index] = CreateMesh(index);
-            return meshes_[index];
+            return GetLayerMesh(index);
         }
 
         /// <summary>
-        /// Retrieve the Tiled Mesh matching the given zero based sorting layer index.
+        /// Retrieve the Tiled Mesh matching the given zero based sorting layer index. The mesh will be created if it doesn't yet exist.
         /// </summary>
-        public TiledMesh GetMesh( int layerIndex )
+        public TiledMesh GetLayerMesh( int index )
         {
-            return GetMesh(SortingLayerUtil.GetLayerFromIndex(layerIndex));
+            return meshes_[index];
         }
 
         public void HideLayer( SortingLayer layer )
@@ -110,6 +118,19 @@ namespace StevenUniverse.FanGame.World
             var mesh = meshes_[layerIndex];
             if (mesh != null)
                 mesh.renderer_.enabled = false;
+        }
+
+        public void RefreshLayers()
+        {
+            for( int i = 0; i < meshes_.Length; ++i )
+            {
+                if (meshes_[i] != null)
+                {
+                    meshes_[i].RefreshUVs();
+                    meshes_[i].RefreshColors();
+                    //meshes_[i].ImmediateUpdate();
+                }
+            }
         }
     }
 }

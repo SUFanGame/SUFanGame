@@ -57,7 +57,7 @@ namespace StevenUniverse.FanGame.World
         /// </summary>
         [SerializeField]
         [HideInInspector]
-        ChunkStackToPos stackDict_ = new ChunkStackToPos();
+        ChunkStackToPosDict stackDict_ = new ChunkStackToPosDict();
 
         /// <summary>
         /// Visibility data for the sorting layers in this map.
@@ -76,6 +76,9 @@ namespace StevenUniverse.FanGame.World
         bool showDebugGUI_ = true;
 
         const string NULL_TILE_STR = "Calling SetTile with a null argument. If you want to erase a tile, call EraseTile";
+
+        [SerializeField]
+        Material terrainMaterial_;
 
         void Awake()
         {
@@ -110,7 +113,7 @@ namespace StevenUniverse.FanGame.World
             if( !chunkDict_.TryGetValue(chunkIndex, out chunk ) )
             {
                 //Debug.LogFormat("Couldn't find chunk in chunkDict at {0}", chunkIndex);
-                chunk = MakeChunk(chunkIndex, layer );
+                chunk = MakeChunkFromIndex(chunkIndex );
             }
             else if( !chunk.isActiveAndEnabled )
             {
@@ -171,7 +174,7 @@ namespace StevenUniverse.FanGame.World
             var chunkIndex = GetChunkIndex(worldPos);
 
             // Check if the there is a stack at that position:
-            ChunkList stack;
+            List<Chunk> stack;
             if (!stackDict_.TryGetValue(chunkIndex, out stack))
             {
                 return null;
@@ -252,12 +255,16 @@ namespace StevenUniverse.FanGame.World
 
             return pos;
         }
-        
+
+        public Chunk MakeChunk(IntVector3 worldPos)
+        {
+            return MakeChunkFromIndex(GetChunkIndex(worldPos));
+        }
 
         /// <summary>
         /// Create a chunk at the given position in the given sorting layer. The chunks name will match the given index.
         /// </summary>
-        Chunk MakeChunk( IntVector3 chunkIndex, SortingLayer layer )
+        Chunk MakeChunkFromIndex( IntVector3 chunkIndex )
         {
             var go = new GameObject(chunkIndex.ToString());
             go.transform.SetParent(transform, false);
@@ -272,27 +279,65 @@ namespace StevenUniverse.FanGame.World
             chunkDict_[chunkIndex] = chunk;
 
             // Then add the chunk to the stack dict.
-            ChunkList chunkStack;
+            List<Chunk> chunkStack;
 
             // Ensure empty chunk stacks always contain null refs equal to the sorting layer count.
-            if( !stackDict_.TryGetValue(chunkXY, out chunkStack))
+            if (!stackDict_.TryGetValue(chunkXY, out chunkStack))
             {
-                chunkStack = new ChunkList();
+                chunkStack = new List<Chunk>();
                 stackDict_[chunkXY] = chunkStack;
             }
 
             chunkStack.Add(chunk);
-            
+
             // Sort the stack by height;
-            chunkStack.Sort( (a,b)=>a.Height_.CompareTo(b.Height_) );
-            
+            chunkStack.Sort((a, b) => a.Height_.CompareTo(b.Height_));
+
             // Set the layer visiblity values from our map values.
-            foreach( var l in SortingLayer.layers )
+            foreach (var l in SortingLayer.layers)
             {
                 chunk.SetLayerVisibility(l, isLayerVisible_.Get(l));
             }
 
+            chunk.Size_ = chunkSize_;
+
+            chunk.terrainMaterial_ = terrainMaterial_;
+
             return chunk;
+        }
+
+        /// <summary>
+        /// Get the mesh at the given position and layer.
+        /// </summary>
+        public TiledMesh GetMesh( IntVector3 pos, SortingLayer layer )
+        {
+            if (heightCutoff_ != null && heightCutoff_ > pos.z)
+            {
+                Debug.LogError("Attempting to retrieve a mesh from above the height cutoff.");
+                return null;
+            }
+
+            // Do nothing if the target layer is hidden
+            if (!isLayerVisible_.Get(layer))
+            {
+                Debug.LogError("Attempting to retrieve a mesh for a hidden layer");
+                return null;
+            }
+
+            var chunkIndex = GetChunkIndex(pos);
+            Chunk chunk;
+            if (!chunkDict_.TryGetValue(chunkIndex, out chunk))
+            {
+                //Debug.LogFormat("Couldn't find chunk in chunkDict at {0}", chunkIndex);
+                chunk = MakeChunkFromIndex(chunkIndex);
+            }
+            else if (!chunk.isActiveAndEnabled)
+            {
+                Debug.LogWarningFormat("Attempting to retrieve a mesh from a disabled chunk at {0}", pos);
+            }
+
+            return chunk.GetLayerMesh(layer);
+
         }
 
 
@@ -393,12 +438,23 @@ namespace StevenUniverse.FanGame.World
             stackDict_.Clear();
         }
 
+        public void RefreshMesh()
+        {
+            var enumerator = this.GetEnumerator();
+            while( enumerator.MoveNext() )
+            {
+                var chunk = enumerator.Current;
+                chunk.RefreshMesh();
+            }
+        }
+
         public IEnumerator<Chunk> GetEnumerator()
         {
-            foreach( var pair in chunkDict_ )
+            foreach (var pair in chunkDict_)
             {
                 yield return pair.Value;
             }
+
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -406,20 +462,19 @@ namespace StevenUniverse.FanGame.World
             return GetEnumerator();
         }
 
+        public void PrintTiles()
+        {
+            foreach (var chunk in this )
+                chunk.Print();
+        }
 
         // Subclasses so dictionaries are serializable.
         [System.Serializable]
         class ChunkToPosDict : SerializableDictionary<IntVector3, Chunk> { }
-        [System.Serializable]
-        class ChunkToIntDict : SerializableDictionary<int, Chunk> { }
-        [System.Serializable]
-        class ChunksToIntDict : SerializableDictionary<int, ChunkToIntDict> { }
 
         [System.Serializable]
-        class ChunkList : List<Chunk> { }
-
-        [System.Serializable]
-        class ChunkStackToPos : SerializableDictionary<IntVector2, ChunkList> { }
+        class ChunkStackToPosDict : SerializableDictionaryOfLists<IntVector2, Chunk> { }
+        
     }
 
 

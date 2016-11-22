@@ -72,6 +72,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             panels_.Add( brushPanel_ );
 
+            Undo.undoRedoPerformed += OnUndoRedo;
         }
 
 
@@ -84,6 +85,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             foreach (var panel in panels_)
                 panel.OnDisable();
 
+            Undo.undoRedoPerformed -= OnUndoRedo;
         }
 
         protected override void OnMouseDown(int button, Vector3 cursorWorldPos)
@@ -187,5 +189,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             Handles.EndGUI();
         }
 
+        void OnUndoRedo()
+        {
+            map_.RefreshMesh();
+        }
     }
 }

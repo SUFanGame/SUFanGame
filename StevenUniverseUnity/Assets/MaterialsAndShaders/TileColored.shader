@@ -17,7 +17,7 @@
 		Cull Off
 		Lighting Off
 		ZWrite Off
-		Blend One OneMinusSrcAlpha
+		Blend SrcAlpha OneMinusSrcAlpha
 
 		Pass
 		{
@@ -56,7 +56,7 @@
 			float4 frag ( vertOutput o ) : SV_Target
 			{
 				float4 color = tex2D(_MainTex, o.uv);
-				//color *= o.color;
+				color *= o.color;
 				return color;
 			}
 			ENDCG

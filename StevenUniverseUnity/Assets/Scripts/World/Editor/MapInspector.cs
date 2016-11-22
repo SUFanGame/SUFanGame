@@ -22,8 +22,7 @@ namespace StevenUniverse.FanGameEditor
 
             if( GUILayout.Button("Print Tiles") )
             {
-                foreach (var chunk in tar)
-                    chunk.Print();
+                tar.PrintTiles();
             }
         }
     }

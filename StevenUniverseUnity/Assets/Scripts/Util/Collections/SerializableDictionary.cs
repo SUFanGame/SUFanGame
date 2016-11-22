@@ -2,6 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using StevenUniverse.FanGame.World;
+
+
+
+// TODO : So. Lists of objects as TVALUE simply will not serialize. The list object itself serializes but it loses all it's contents for some reason.
+
 
 namespace StevenUniverse.FanGame.Util.Collections
 {
@@ -69,11 +75,13 @@ namespace StevenUniverse.FanGame.Util.Collections
 
         public void OnAfterDeserialize()
         {
-            if (dict_.Count != keys_.Count)
+
+            if( dict_.Count != keys_.Count )
             {
                 for (int i = 0; i < keys_.Count; ++i)
                 {
-                    dict_.Add(keys_[i], values_[i]);
+
+                    dict_[keys_[i]] = values_[i];
                 }
             }
         }
@@ -87,6 +95,8 @@ namespace StevenUniverse.FanGame.Util.Collections
             {
                 var p = enumerator.Current;
                 keys_.Add(p.Key);
+                
+
                 values_.Add(p.Value);
             }
         }

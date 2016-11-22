@@ -35,7 +35,25 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
         protected override void OnClick(Map map, IntVector3 worldPos )
         {
-            map.SetTile((IntVector2)worldPos, tiles_[selectedSprite_]);
+            var tile = tiles_[selectedSprite_];
+            //Undo.RecordObject(map.gameObject, "SetTile");
+            //var mesh = map.GetMesh(worldPos, tiles_[selectedSprite_].DefaultSortingLayer_);
+            var chunk = map.GetChunkWorld(worldPos);
+
+            if( chunk == null )
+            {
+                chunk = map.MakeChunk(worldPos);
+            }
+
+            var mesh = chunk.GetLayerMesh(tile.DefaultSortingLayer_);
+            
+            Undo.RegisterCompleteObjectUndo(chunk, "Set Tile in Chunk");
+            Undo.RegisterCompleteObjectUndo(mesh, "Set mesh data");
+
+            chunk.SetTileWorld((IntVector2)worldPos, tile);
+
+            //mesh.ImmediateUpdate();
+            //map.SetTile((IntVector2)worldPos, tiles_[selectedSprite_]);
         }
 
         public override void OnScroll(Map map, float scrollValue)
