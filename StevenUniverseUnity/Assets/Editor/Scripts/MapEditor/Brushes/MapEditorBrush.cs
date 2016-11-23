@@ -136,6 +136,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         }
 
+        public virtual void OnKeyDown( KeyCode key )
+        {
+
+        }
+
         /// <summary>
         /// Callback for when the mouse wheel is scrolled in the scene view.
         /// </summary>

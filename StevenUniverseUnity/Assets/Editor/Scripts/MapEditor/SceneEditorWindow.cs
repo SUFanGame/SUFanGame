@@ -48,12 +48,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         /// <summary>
         /// Derived classes can override to receieve mouse drag events in the scene view.
-        /// </summary>
-        /// <param name="button"></param>
+        /// </summary>   
+        /// <param name="button"></param>  
         /// <param name="cursorWorldPos"></param>
         protected virtual void OnMouseDrag(int button, Vector3 cursorWorldPos)
         {
-
+              
         }
 
         /// <summary>
@@ -86,8 +86,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             if (!SceneEditorUtil.EditMode_)
                 return;
-
-            ProcessKeyboardInput();
+            
+             //ProcessKeyboardInput();
         }
 
 
@@ -112,7 +112,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             ProcessMouseInput();
         }
 
-        void ProcessKeyboardInput()
+        protected void ProcessKeyboardInput()
         {
             Event e = Event.current;
             if (e.isKey)

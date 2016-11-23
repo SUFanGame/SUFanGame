@@ -47,9 +47,17 @@ namespace StevenUniverse.FanGame.World
         ChunkMesh mesh_ = null;
         public ChunkMesh Mesh { get { return mesh_; } }
 
+        /// <summary>
+        /// The height (z-position) of the chunk in world space.
+        /// </summary>
         public int Height_ { get { return (int)transform.position.z; } }
 
         public Material terrainMaterial_ = null;
+
+        public bool IsEmpty
+        {
+            get { return indexDict_.Count == 0; }
+        }
 
         [SerializeField,HideInInspector]
         IntVector2 size_;
@@ -63,7 +71,19 @@ namespace StevenUniverse.FanGame.World
             {
                 value = IntVector2.Clamp(value, 1, int.MaxValue);
                 size_ = value;
+                var pos = transform.localPosition;
+                int x = Mathf.FloorToInt(pos.x / (float)size_.x);
+                int y = Mathf.FloorToInt(pos.y / (float)size_.y);
+                int z = (int)pos.z;
+                chunkIndex_ = new IntVector3(x, y, z);
             }
+        }
+
+        [SerializeField]
+        IntVector3 chunkIndex_;
+        public IntVector3 Chunkindex_
+        {
+            get { return chunkIndex_; }
         }
 
         void Awake()
@@ -217,7 +237,7 @@ namespace StevenUniverse.FanGame.World
         /// <param name="pos"></param>
         public void EraseTileLocal( IntVector2 pos )
         {
-            Debug.LogFormat("Erasing tile at {0}", pos);
+            //Debug.LogFormat("Erasing tile at {0}", pos);
             // First check if there are any tiles here
             TileListWrapper wrapper;
             if( !sortingLayerDict_.TryGetValue(pos, out wrapper) )
@@ -250,12 +270,14 @@ namespace StevenUniverse.FanGame.World
         {
             if (!indexDict_.ContainsKey(index))
             {
-                //Debug.LogFormat("Index {0} not present in {1}", index, name);
+                Debug.LogFormat("Index {0} not present in {1}", index, name);
                 return;
             }
+            //Debug.LogFormat("Erasing tile at {0}", index);
+            indexDict_[index] = null;
             indexDict_.Remove(index);
             sortingLayerDict_[index.position_].list_[index.SortingLayerIndex_] = null;
-            // TODO: Remove From Mesh
+
             var layerMesh = GetLayerMesh(index.Layer_);
             
             layerMesh.SetColors(index.position_, default(Color32));
@@ -311,7 +333,6 @@ namespace StevenUniverse.FanGame.World
         {
             mesh_.RefreshLayers();
         }
-        
 
        // public void SetTileLocal(  )
 
@@ -319,6 +340,10 @@ namespace StevenUniverse.FanGame.World
         {
             foreach( var p in this )
             {
+                if( p.Value == null )
+                {
+                    Debug.LogFormat("Print is trying to read value at {0}, but it's null", p.Key);
+                }
                 Debug.LogFormat("Chunk: {0}: Index: {1} Tile : {2}", name, p.Key, p.Value.name);
             }
         }

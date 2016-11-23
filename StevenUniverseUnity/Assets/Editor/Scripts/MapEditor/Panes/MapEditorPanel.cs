@@ -12,7 +12,7 @@ public abstract class MapEditorPanel
     public bool ContainsMouse_ { get; private set; }
     public abstract Rect Area_ { get; }
 
-    public virtual void OnSceneGUI()
+    public virtual void OnSceneGUI( Map map )
     {
         Handles.BeginGUI();
 
@@ -25,18 +25,23 @@ public abstract class MapEditorPanel
             ContainsMouse_ = Area_.Contains(Event.current.mousePosition + Area_.position);
         }
 
-        OnRenderArea();
+        OnRenderArea( map );
 
         GUILayout.EndArea();
         Handles.EndGUI();
     }
 
-    protected abstract void OnRenderArea();
+    protected abstract void OnRenderArea( Map map );
     
     /// <summary>
     /// Panels can save relevant data to editorprefs here.
     /// </summary>
     public virtual void OnDisable()
     {
+    }
+
+    public virtual void OnKeyDown(KeyCode key)
+    {
+
     }
 }

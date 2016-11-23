@@ -28,29 +28,31 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         static bool foldOut_ = true;
         static bool[] toggles_ = null;
-        static Map map_;
+        //static Map map_;
 
         const string PREFS_LAYERSFOLDOUT_NAME = "MELayersFoldout";
 
-        public LayersPanel( Map map )
+        public LayersPanel( )
         {
-            map_ = map;
+            //map_ = map;
             foldOut_ = EditorPrefs.GetBool(PREFS_LAYERSFOLDOUT_NAME, true);
             var layers = SortingLayer.layers;
             int layerCount = layers.Length;
-          
+
             toggles_ = new bool[layerCount];
-            for (int i = 0; i < layerCount; ++i)
-            {
-                toggles_[i] = map_.GetLayerVisible(layers[i]);
-            }
-            map_ = map;
+
         }
 
         
-        protected override void OnRenderArea()
+        protected override void OnRenderArea( Map map )
         {
             var layers = SortingLayer.layers;
+            int layerCount = layers.Length;
+            for (int i = 0; i < layerCount; ++i)
+            {
+                toggles_[i] = map.GetLayerVisible(layers[i]);
+            }
+            
 
             foldOut_ = EditorGUILayout.Foldout(foldOut_, "Layers");
 
@@ -67,7 +69,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
                     if (userToggle != toggles_[i])
                     {
-                        map_.SetLayerVisible(layers[i], userToggle);
+                        map.SetLayerVisible(layers[i], userToggle);
                         toggles_[i] = userToggle;
                     }
                 }
@@ -77,10 +79,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             EditorGUI.indentLevel--;
         }
 
-        static void OnLayerEnabled(SortingLayer layer)
-        {
-            map_.ShowLayer(layer);
-        }
 
         public override void OnDisable()
         {

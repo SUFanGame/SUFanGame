@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using System.Linq;
 using StevenUniverse.FanGame.World;
-using System;
 
 namespace StevenUniverse.FanGameEditor.SceneEditing
 {
@@ -24,6 +23,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         static int brushColumns_ = 2;
 
         public int BrushCount_ { get { return brushes_.Count; } }
+
+        bool skipGUI_ = false;
 
         public override Rect Area_
         {
@@ -58,15 +59,15 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             brushes_ = brushes;
             brushIcons_ = brushes.Select(b => b.Texture_).ToArray();
             selectedBrush_ = EditorPrefs.GetInt( PREFS_BRUSHINDEX_NAME, 0);
+            //Debug.LogFormat("Loading brushes panel, SelectedBrush: {0}", selectedBrush_);
             foldout_ = EditorPrefs.GetBool(PREFS_BRUSHFOLDOUT_NAME, true );
             //brushIcons_ = new Texture2D[brushes.Count];
         }
 
 
-        protected override void OnRenderArea()
+        protected override void OnRenderArea(Map map)
         {
             //Debug.LogFormat("Rendering area for brushes panel {0}", Area_);
-
 
             foldout_ = EditorGUILayout.Foldout(foldout_, FoldoutTitle_ );
 
@@ -75,8 +76,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(20f);
 
-
-                //selectedBrush_ = GUILayout.SelectionGrid(selectedBrush_, brushIcons_, 10);
+                
+                    //selectedBrush_ = GUILayout.SelectionGrid(selectedBrush_, brushIcons_, 10);
                 selectedBrush_ = CustomGUI.SelectionGrids.FromTextures(selectedBrush_, brushIcons_, 10, 32,32);
                 //foreach (var brush in brushes_)
                 //{
@@ -90,10 +91,29 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
         }
 
+        public override void OnKeyDown(KeyCode key)
+        {
+            base.OnKeyDown(key);
+            if (!Event.current.shift)
+                return;
+
+            if( key == KeyCode.Q )
+            {
+                selectedBrush_ = 0;
+            }
+
+            if( key == KeyCode.E )
+            {
+                selectedBrush_ = 1;
+            }
+            
+        }
+
         public override void OnDisable()
         {
             base.OnDisable();
 
+            //Debug.LogFormat("Disabling brushes panel, selected brush: {0}", selectedBrush_);
             EditorPrefs.SetInt(PREFS_BRUSHINDEX_NAME, selectedBrush_);
             EditorPrefs.SetBool(PREFS_BRUSHFOLDOUT_NAME, foldout_);
 

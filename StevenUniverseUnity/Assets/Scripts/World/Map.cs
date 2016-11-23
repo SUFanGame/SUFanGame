@@ -60,6 +60,12 @@ namespace StevenUniverse.FanGame.World
         ChunkStackToPosDict stackDict_ = new ChunkStackToPosDict();
 
         /// <summary>
+        /// Just a big'ol list o' chunks.
+        /// </summary>
+        [SerializeField]
+        List<Chunk> chunks_ = new List<Chunk>();
+
+        /// <summary>
         /// Visibility data for the sorting layers in this map.
         /// </summary>
         [SerializeField]
@@ -274,6 +280,9 @@ namespace StevenUniverse.FanGame.World
             go.transform.localPosition = new Vector3(chunkXY.x, chunkXY.y, chunkIndex.z);
 
             var chunk = go.AddComponent<Chunk>();
+            chunk.Size_ = chunkSize_;
+
+            chunks_.Add(chunk);
 
             //Debug.LogFormat("Adding chunk to chunkDict at index {0}", chunkIndex);
             // First add the chunk to the position dict.
@@ -283,10 +292,10 @@ namespace StevenUniverse.FanGame.World
             ChunkListWrapper wrapper;
 
             // Ensure empty chunk stacks always contain null refs equal to the sorting layer count.
-            if (!stackDict_.TryGetValue(chunkXY, out wrapper))
+            if (!stackDict_.TryGetValue((IntVector2)chunkIndex, out wrapper))
             {
                 wrapper = new ChunkListWrapper();
-                stackDict_[chunkXY] = wrapper;
+                stackDict_[(IntVector2)chunkIndex] = wrapper;
             }
 
             var chunkStack = wrapper.value_;
@@ -302,7 +311,6 @@ namespace StevenUniverse.FanGame.World
                 chunk.SetLayerVisibility(l, isLayerVisible_.Get(l));
             }
 
-            chunk.Size_ = chunkSize_;
 
             chunk.terrainMaterial_ = terrainMaterial_;
 
@@ -444,6 +452,7 @@ namespace StevenUniverse.FanGame.World
             isLayerVisible_.SetAll(true);
             chunkDict_.Clear();
             stackDict_.Clear();
+            chunks_.Clear();
         }
 
         public void RefreshMesh()
@@ -454,6 +463,32 @@ namespace StevenUniverse.FanGame.World
                 var chunk = enumerator.Current;
                 chunk.RefreshMesh();
             }
+        }
+
+        public void ClearEmptyChunks()
+        {
+            for( int i = chunks_.Count - 1; i >= 0; --i )
+            {
+                var chunk = chunks_[i];
+                if( chunk.IsEmpty )
+                {
+                    RemoveChunk(chunk.Chunkindex_);
+                }
+            }
+        }
+
+        public void RemoveChunk( IntVector3 chunkIndex )
+        {
+            var chunk = chunkDict_[chunkIndex];
+            chunkDict_.Remove(chunkIndex);
+            var stack = stackDict_[(IntVector2)chunkIndex].value_;
+            stack.Remove(chunk);
+            if( stack.Count == 0 )
+            {
+                stackDict_.Remove((IntVector2)chunkIndex);
+            }
+            chunks_.Remove(chunk);
+            DestroyImmediate(chunk.gameObject);
         }
 
         public IEnumerator<Chunk> GetEnumerator()

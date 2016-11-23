@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 /// <summary>
 /// A dictionary that can be serialized. Note that the keys and values must also be serializable for this to work.
@@ -79,7 +78,7 @@ public class SerializableDictionary<TKey,TValue> : ISerializationCallbackReceive
         dict_.Clear();
         for (int i = 0; i < keys_.Count; ++i)
         {
-            dict_.Add(keys_[i], values_[i]);
+            dict_[keys_[i]] = values_[i];
         }
     }
 

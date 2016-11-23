@@ -14,6 +14,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
         static bool dragging_ = false;
         static SortingLayer currentLayer_;
+        int dragUndoIndex_ = 0;
 
         protected override string IconTextureName_
         {
@@ -43,7 +44,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
         {
             if (Event.current.shift)
                 return;
-            Debug.LogFormat("MOUSEDOWN");
+            //Debug.LogFormat("MOUSEDOWN");
             SortingLayer layer;
             var tile = GetTopTile(map, pos, out layer);
             if( tile == null )
@@ -53,6 +54,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
             }
 
             EraseTiles(map, pos, layer);
+
+            //map.ClearEmptyChunks();
         }
 
         public override void OnDrag(Map map, IntVector3 worldPos)
@@ -79,6 +82,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
                 {
                     currentLayer_ = layer;
                     dragging_ = true;
+                    Undo.SetCurrentGroupName("Drag Erase");
+                    dragUndoIndex_ = Undo.GetCurrentGroup();
                 }
             }
 
@@ -90,7 +95,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
         {
             base.OnMouseUp(map, worldPos);
             if (dragging_)
+            {
                 dragging_ = false;
+                //map.ClearEmptyChunks();
+                //Undo.CollapseUndoOperations(dragUndoIndex_);
+                //Undo.IncrementCurrentGroup();
+            }
         }
 
         Tile GetTopTile( Map map, IntVector3 pos, out SortingLayer layer )
@@ -127,14 +137,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
                 var chunk = map.GetChunkWorld(areaPos);
                 if (chunk == null)
                 {
-                    Debug.LogFormat("No chunk found at {0}", areaPos);
+                    //Debug.LogFormat("No chunk found at {0}", areaPos);
                     continue;
                 }
                 Undo.RecordObject(chunk, "Set tiles");
                 var mesh = chunk.GetLayerMesh(layer);
                 Undo.RecordObject(mesh, "Set UVS");
 
-                //Debug.LogFormat("Calling EraseTile on chunk {0}", chunk.name);
+                //Debug.LogFormat("Calling EraseTile on {0} at {1}, Layer: {2}", chunk.name, areaPos, layer.name);
                 chunk.EraseTileWorld((IntVector2)areaPos, layer);
             }
 
