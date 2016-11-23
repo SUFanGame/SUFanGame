@@ -117,7 +117,7 @@ namespace StevenUniverse.FanGame.World
 
             var mesh = meshes_[layerIndex];
             if (mesh != null)
-                mesh.renderer_.enabled = false;
+                mesh.renderer_.enabled = true;
         }
 
         public void RefreshLayers()

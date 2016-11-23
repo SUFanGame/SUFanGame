@@ -23,6 +23,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         static int brushColumns_ = 2;
 
+        public int BrushCount_ { get { return brushes_.Count; } }
+
         public override Rect Area_
         {
             get

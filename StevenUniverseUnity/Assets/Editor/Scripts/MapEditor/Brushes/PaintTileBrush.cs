@@ -25,6 +25,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
         Vector2 scrollPos_;
 
+        public bool shiftBeingHeld_;
+
         public PaintTileBrush( Tile[] tiles ) : base()
         {
             Size_ = EditorPrefs.GetInt(PREFS_PAINTBRUSHSIZE_NAME, 0);
@@ -33,48 +35,83 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
             sprites_ = tiles.Select(t => t.Sprite_).ToList();
         }
 
-        protected override void OnClick(Map map, IntVector3 worldPos )
+        public override void OnMouseDown(Map map, IntVector3 pos)
         {
-            var tile = tiles_[selectedSprite_];
-            //Undo.RecordObject(map.gameObject, "SetTile");
-            //var mesh = map.GetMesh(worldPos, tiles_[selectedSprite_].DefaultSortingLayer_);
-            var chunk = map.GetChunkWorld(worldPos);
+            GenerateChunksAndMeshes(map, pos);
 
-            if( chunk == null )
-            {
-                chunk = map.MakeChunk(worldPos);
-            }
+            PaintTiles(map, pos);
+        }
 
-            var mesh = chunk.GetLayerMesh(tile.DefaultSortingLayer_);
-            
-            Undo.RegisterCompleteObjectUndo(chunk, "Set Tile in Chunk");
-            Undo.RegisterCompleteObjectUndo(mesh, "Set mesh data");
+        protected override void AffectMapTile(Map map, IntVector3 worldPos )
+        {
+            //PaintTiles(map, worldPos);
 
-            chunk.SetTileWorld((IntVector2)worldPos, tile);
 
             //mesh.ImmediateUpdate();
             //map.SetTile((IntVector2)worldPos, tiles_[selectedSprite_]);
         }
 
-        public override void OnScroll(Map map, float scrollValue)
+        void PaintTiles( Map map, IntVector3 pos)
         {
-            base.OnScroll(map, scrollValue);
+            var tile = tiles_[selectedSprite_];
+            var layer = tile.DefaultSortingLayer_;
 
-            var e = Event.current;
-
-            if (e.shift)
-                e.Use();
-
-            if (scrollValue < 0)
+            int undoIndex = 0;
+            if( !shiftBeingHeld_ )
             {
-                Size_++;
+                Undo.SetCurrentGroupName("Paint Tiles Single");
+                undoIndex = Undo.GetCurrentGroup();
             }
-            else if (scrollValue > 0)
+ 
+
+            foreach (var p in cursorPoints_)
             {
-                Size_--;
+                var areaPos = (IntVector3)p + pos;
+                var chunk = map.GetChunkWorld(areaPos);
+                if (chunk == null)
+                    chunk = map.MakeChunk(areaPos);
+                Undo.RecordObject(chunk, "Set tiles");
+                var mesh = chunk.GetLayerMesh(layer);
+                Undo.RecordObject(mesh, "Set UVS");
+
+                chunk.SetTileWorld((IntVector2)areaPos, tile);
             }
 
-            //Debug.Log("Scroll " + scrollValue);
+            if( !shiftBeingHeld_ )
+            {
+                Undo.CollapseUndoOperations(undoIndex);
+                Undo.IncrementCurrentGroup();
+            }
+
+            EditorUtility.SetDirty(map.gameObject);
+        }
+
+        // Generate the chunks and meshes given the current cursor position and size. 
+        // This isn't a part of the undo process, we only care about undoing tile/mesh changes
+        void GenerateChunksAndMeshes(Map map, IntVector3 pos)
+        {
+            var tile = tiles_[selectedSprite_];
+            var layer = tile.DefaultSortingLayer_;
+            
+            foreach (var p in cursorPoints_)
+            {
+                var chunk = map.GetChunkWorld(pos);
+                if (chunk == null)
+                {
+                    chunk = map.MakeChunk(pos);
+                }
+                var mesh = chunk.GetLayerMesh(layer);
+            }
+        }
+
+
+        public override void OnDrag(Map map, IntVector3 worldPos)
+        {
+            if( Event.current.shift )
+            {
+                PaintTiles(map, worldPos);
+            }
+
 
         }
 
@@ -91,6 +128,53 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
             base.MapEditorGUI();
 
             selectedSprite_ = SelectionGrids.FromSprites(selectedSprite_, sprites_, 50, 150, ref scrollPos_);
+
+
+        }
+
+        public override void RenderCursor()
+        {
+            shiftBeingHeld_ = Event.current.shift;
+
+            var oldGUIColor = GUI.color;
+            var oldGizmoColor = Gizmos.color;
+
+            var cursorPos = SceneEditorUtil.GetCursorPosition();
+
+            var cursorColor = shiftBeingHeld_ ? Color.green : Color.white;
+            Gizmos.color = cursorColor;
+            var offset = Vector2.one * .5f;
+            Gizmos.DrawWireCube(cursorPos + Vector3.back + (Vector3)offset, Vector3.one * Size_ * 2 + Vector3.one * .5f);
+
+
+
+
+            foreach ( var p in cursorPoints_)
+            {
+                // Convert world space to gui space
+                var bl = HandleUtility.WorldToGUIPoint(cursorPos + p);
+                var tr = HandleUtility.WorldToGUIPoint(cursorPos + p + Vector3.right + Vector3.up);
+                // Can't use gui functions to draw directly into the scene view.
+                Handles.BeginGUI();
+
+                var col = oldGUIColor;
+                // Draw a semi-transparent image of our current tile on the cursor.
+                col.a = .15f;
+                GUI.color = col;
+                // Vertical UVs are flipped in the scene...?
+                CustomGUI.SelectionGrids.DrawSprite(
+                    Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y),
+                    sprites_[selectedSprite_],
+                    false, true);
+                GUI.color = oldGUIColor;
+
+                Handles.EndGUI();
+            }
+
+
+            Gizmos.color = oldGizmoColor;
+
+            //base.RenderCursor();
         }
     }
 }

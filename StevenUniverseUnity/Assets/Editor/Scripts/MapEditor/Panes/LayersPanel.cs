@@ -36,8 +36,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             map_ = map;
             foldOut_ = EditorPrefs.GetBool(PREFS_LAYERSFOLDOUT_NAME, true);
-            int layerCount = SortingLayer.layers.Length;
+            var layers = SortingLayer.layers;
+            int layerCount = layers.Length;
+          
             toggles_ = new bool[layerCount];
+            for (int i = 0; i < layerCount; ++i)
+            {
+                toggles_[i] = map_.GetLayerVisible(layers[i]);
+            }
             map_ = map;
         }
 
@@ -61,9 +67,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
                     if (userToggle != toggles_[i])
                     {
-                        Debug.LogFormat(layers[i].name + " TOGGLED");
+                        map_.SetLayerVisible(layers[i], userToggle);
+                        toggles_[i] = userToggle;
                     }
-                    toggles_[i] = userToggle;
                 }
             }
             GUI.color = oldColor;

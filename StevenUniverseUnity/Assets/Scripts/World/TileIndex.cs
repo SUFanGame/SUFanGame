@@ -14,14 +14,26 @@ namespace StevenUniverse.FanGame.World
     {
         public IntVector2 position_;
 
-        public SortingLayer layer_;
+        [SerializeField,HideInInspector]
+        int sortingLayerValue_;
+        public SortingLayer Layer_
+        {
+            get
+            {
+                return SortingLayerUtil.GetLayerFromValue(sortingLayerValue_);
+            }
+            set
+            {
+                sortingLayerValue_ = value.value;
+            }
+        }
 
-        public int SortingLayerIndex_ { get { return SortingLayerUtil.GetLayerIndex(layer_); } }
+        public int SortingLayerIndex_ { get { return SortingLayerUtil.GetLayerIndex(Layer_); } }
 
         public TileIndex(IntVector2 pos, SortingLayer layer )
         {
             position_ = pos;
-            layer_ = layer;
+            sortingLayerValue_ = layer.value;
         }
 
         public TileIndex(int x, int y, SortingLayer layer) : this( new IntVector2(x,y), layer)
@@ -39,7 +51,7 @@ namespace StevenUniverse.FanGame.World
 
         public bool Equals(TileIndex other)
         {
-            return position_ == other.position_ && layer_.id == other.layer_.id;
+            return position_ == other.position_ && sortingLayerValue_ == other.sortingLayerValue_;
         }
 
         public static bool operator ==(TileIndex lhs, TileIndex rhs)
@@ -54,7 +66,7 @@ namespace StevenUniverse.FanGame.World
 
         public static TileIndex operator -(TileIndex lhs, TileIndex rhs)
         {
-            return new TileIndex(lhs.position_ - rhs.position_, lhs.layer_ );
+            return new TileIndex(lhs.position_ - rhs.position_, lhs.Layer_ );
         }
 
         //http://stackoverflow.com/questions/263400/what-is-the-best-algorithm-for-an-overridden-system-object-gethashcode/263416#263416
@@ -65,14 +77,14 @@ namespace StevenUniverse.FanGame.World
                 int hash = 17;
 
                 hash = hash * 23 + position_.GetHashCode();
-                hash = hash * 23 + layer_.id.GetHashCode();
+                hash = hash * 23 + sortingLayerValue_.GetHashCode();
                 return hash;
             }
         }
 
         public override string ToString()
         {
-            return string.Format("[Pos:{0}, Layer: {1}]", position_, layer_.name );
+            return string.Format("[{0},{1}]", position_.ToString("0"), Layer_.name );
         }
 
     }

@@ -32,7 +32,7 @@ namespace StevenUniverse.FanGame.World
     /// The chunks themselves (or some component of them) are responsible for rendering the tiles.
     /// The map has no actual "borders", tiles should be able to be painted anywhere in the world.
     /// </summary>
-    [ExecuteInEditMode]
+    [ExecuteInEditMode, SelectionBase]
     public class Map : MonoBehaviour, IEnumerable<Chunk>
     {
         [SerializeField]
@@ -49,14 +49,14 @@ namespace StevenUniverse.FanGame.World
         /// Dictionary mapping chunks to their 3D index (convert world to index via <seealso cref="GetChunkIndex(IntVector3)"/>.
         /// </summary>
         [SerializeField]
-        [HideInInspector]
+        //[HideInInspector]
         ChunkToPosDict chunkDict_ = new ChunkToPosDict();
 
         /// <summary>
         /// Dictionary mapping stacks of chunks to the 2D index.
         /// </summary>
         [SerializeField]
-        [HideInInspector]
+        //[HideInInspector]
         ChunkStackToPosDict stackDict_ = new ChunkStackToPosDict();
 
         /// <summary>
@@ -174,11 +174,12 @@ namespace StevenUniverse.FanGame.World
             var chunkIndex = GetChunkIndex(worldPos);
 
             // Check if the there is a stack at that position:
-            List<Chunk> stack;
-            if (!stackDict_.TryGetValue(chunkIndex, out stack))
+            ChunkListWrapper wrapper;
+            if (!stackDict_.TryGetValue(chunkIndex, out wrapper))
             {
                 return null;
             }
+            var stack = wrapper.value_;
 
             // Then get the highest active chunk.
             for (int i = stack.Count - 1; i >= 0; --i)
@@ -279,14 +280,16 @@ namespace StevenUniverse.FanGame.World
             chunkDict_[chunkIndex] = chunk;
 
             // Then add the chunk to the stack dict.
-            List<Chunk> chunkStack;
+            ChunkListWrapper wrapper;
 
             // Ensure empty chunk stacks always contain null refs equal to the sorting layer count.
-            if (!stackDict_.TryGetValue(chunkXY, out chunkStack))
+            if (!stackDict_.TryGetValue(chunkXY, out wrapper))
             {
-                chunkStack = new List<Chunk>();
-                stackDict_[chunkXY] = chunkStack;
+                wrapper = new ChunkListWrapper();
+                stackDict_[chunkXY] = wrapper;
             }
+
+            var chunkStack = wrapper.value_;
 
             chunkStack.Add(chunk);
 
@@ -387,6 +390,11 @@ namespace StevenUniverse.FanGame.World
             }
         }
 
+        public bool GetLayerVisible( SortingLayer layer )
+        {
+            return isLayerVisible_.Get(layer);
+        }
+
         /// <summary>
         /// Hide all tiles of the given layer for the entire map.
         /// </summary>
@@ -415,7 +423,7 @@ namespace StevenUniverse.FanGame.World
             if (isLayerVisible_.Get(layer))
                 return;
 
-            isLayerVisible_.Set(layer, false);
+            isLayerVisible_.Set(layer, true);
 
             var enumerator = chunkDict_.GetEnumerator();
             while (enumerator.MoveNext())
@@ -473,8 +481,10 @@ namespace StevenUniverse.FanGame.World
         class ChunkToPosDict : SerializableDictionary<IntVector3, Chunk> { }
 
         [System.Serializable]
-        class ChunkStackToPosDict : SerializableDictionaryOfLists<IntVector2, Chunk> { }
-        
+        class ChunkListWrapper { public List<Chunk> value_ = new List<Chunk>(); }
+
+        [System.Serializable]
+        class ChunkStackToPosDict : SerializableDictionary<IntVector2, ChunkListWrapper> { }
     }
 
 

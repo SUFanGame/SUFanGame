@@ -177,39 +177,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!1 &1481547260
+--- !u!1 &1950039963
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1481547262}
-  - 114: {fileID: 1481547261}
+  - 4: {fileID: 1950039965}
+  - 114: {fileID: 1950039964}
   m_Layer: 0
-  m_Name: MAp
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1481547261
+--- !u!114 &1950039964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1481547260}
+  m_GameObject: {fileID: 1950039963}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f15be57df0385854dac3a9318d809032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   chunkSize_:
-    x: 2
-    y: 2
+    x: 5
+    y: 5
   lastChunkSize_:
-    x: 2
-    y: 2
+    x: 5
+    y: 5
   chunkDict_:
     keys_: []
     values_: []
@@ -219,12 +219,12 @@ MonoBehaviour:
   isLayerVisible_: {}
   showDebugGUI_: 1
   terrainMaterial_: {fileID: 2100000, guid: 01584521f5e9aee4cb66c4cb1a9c44da, type: 2}
---- !u!4 &1481547262
+--- !u!4 &1950039965
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1481547260}
+  m_GameObject: {fileID: 1950039963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}

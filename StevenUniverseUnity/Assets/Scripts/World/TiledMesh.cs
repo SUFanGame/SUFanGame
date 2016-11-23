@@ -407,7 +407,7 @@ public class TiledMesh : MonoBehaviour
         // If our vert or tri arrays don't match our current size.
         if (size_ != lastSize_)
         {
-            Debug.LogFormat("SIZECHANGED");
+            //Debug.LogFormat("SIZECHANGED");
             lastSize_ = size_;
             sizeChanged_ = true;
         }

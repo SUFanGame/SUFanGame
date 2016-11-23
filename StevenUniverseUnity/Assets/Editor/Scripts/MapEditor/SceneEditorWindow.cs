@@ -56,6 +56,16 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         }
 
+        /// <summary>
+        /// Derived classes can override to receive mouse up events in the scene view.
+        /// </summary>
+        /// <param name="button"></param>
+        /// <param name="cursorWorldPos"></param>
+        protected virtual void OnMouseUp(int button, Vector3 cursorWorldPos)
+        {
+
+        }
+
         protected virtual void OnMouseScroll( Vector2 delta )
         {
             //Debug.LogFormat("MouseScroll: {0}", delta);
@@ -80,6 +90,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             ProcessKeyboardInput();
         }
 
+
+
         protected virtual void OnSceneGUI(SceneView view)
         {
 
@@ -98,8 +110,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             ProcessKeyboardInput();
             ProcessMouseInput();
-
-            Repaint();
         }
 
         void ProcessKeyboardInput()
@@ -140,6 +150,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 else if (e.type == EventType.MouseDrag)
                 {
                     OnMouseDrag(e.button, worldPos);
+                }
+                else if ( e.type == EventType.MouseUp )
+                {
+                    OnMouseUp(e.button, worldPos);
                 }
             }
         }

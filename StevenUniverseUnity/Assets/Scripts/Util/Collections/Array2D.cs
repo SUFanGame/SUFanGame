@@ -30,8 +30,10 @@ namespace StevenUniverse.FanGame.Util.Collections
                 value = IntVector2.Clamp(value, 0, int.MaxValue);
                 if( value != size_ )
                 {
-                    Resize(value);
+                    //Resize(value);
                     size_ = value;
+                    array_ = new T[size_.x * size_.y];
+                    readOnlyArray_ = System.Array.AsReadOnly(array_);
                 }
             }
         }
@@ -105,28 +107,29 @@ namespace StevenUniverse.FanGame.Util.Collections
         /// Resizes the array, maintainting as much of the current state as possible given size restraints
         /// </summary>
         /// <param name="newSize"></param>
-        public virtual void Resize( IntVector2 newSize )
-        { 
-            if (newSize.x <= 0 || newSize.y <= 0 )
-                return;
+        public virtual void Resize(IntVector2 newSize)
+        {
+            //var newArray = new T[newSize.x * newSize.y];
+            //if (newSize.x <= 0 || newSize.y <= 0)
+            //    return;
 
-            var newArray = new T[newSize.x * newSize.y];
+            //var newArray = new T[newSize.x * newSize.y];
 
-            var min = IntVector2.Min(size_, newSize);
+            //var min = IntVector2.Min(size_, newSize);
 
-            for (int x = 0; x < min.x; ++x)
-            {
-                for (int y = 0; y < min.y; ++y)
-                {
-                    int newIndex = y * newSize.x + x;
-                    int currIndex = y * size_.x + x;
-                    newArray[newIndex] = array_[currIndex]; 
-                }
-            }
-            
-            array_ = newArray;
-            readOnlyArray_ = System.Array.AsReadOnly(array_);
-            size_ = newSize;
+            //for (int x = 0; x < min.x; ++x)
+            //{
+            //    for (int y = 0; y < min.y; ++y)
+            //    {
+            //        int newIndex = y * newSize.x + x;
+            //        int currIndex = y * size_.x + x;
+            //        newArray[newIndex] = array_[currIndex];
+            //    }
+            //}
+
+            //array_ = newArray;
+            //readOnlyArray_ = System.Array.AsReadOnly(array_);
+            //size_ = newSize;
         }
 
         /// <summary>
@@ -179,16 +182,18 @@ namespace StevenUniverse.FanGame.Util.Collections
         {
             get
             {
-                return array_[y * size_.x + x];
+                int index = y * size_.x + x;
+                //Debug.LogFormat("ArrSize: {0}, Index: {1}, XY: {2},{3}", array_.Length, index, x, y);
+                return array_[index];
  
             }
             set { array_[y * size_.x + x] = value; }
         }
 
-        public T this[IntVector2 index]
+        public T this[IntVector2 i]
         {
-            get { return this[index.y * size_.x + index.x]; }
-            set { array_[index.y * size_.x + index.x] = value; }
+            get { return this[i.y * size_.x + i.x]; }
+            set { array_[i.y * size_.x + i.x] = value; }
         }
 
         public T this[int i]

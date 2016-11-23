@@ -80,12 +80,15 @@ namespace StevenUniverse.FanGame.World
         /// </summary>
         /// <param name="localPos">The 2D position to search, local to this chunk.</param>
         /// <param name="layer">Which layer a tile was found at, if any.</param>
-        public Tile GetTopTile( IntVector2 localPos, out SortingLayer layer )
+        public Tile GetTopTileLocal( IntVector2 localPos, out SortingLayer layer )
         {
             layer = default(SortingLayer);
 
             if (!sortingLayerDict_.ContainsKey(localPos))
+            {
+                //Debug.LogFormat("Local Pos {0} doesn't contain a tilestack?", localPos);
                 return null;
+            }
 
             var stack = GetTileStack(localPos);
 
@@ -93,13 +96,19 @@ namespace StevenUniverse.FanGame.World
             {
                 layer = SortingLayerUtil.GetLayerFromIndex(i);
                 // Check if this layer is enabled
-                if ( isLayerVisible_.Get(layer) )
+                if ( isLayerVisible_.Get(layer) && stack[i] != null )
                 {
                     return stack[i];
                 }
             }
 
             return null;
+        }
+
+        public Tile GetTopTileWorld( IntVector2 worldPos, out SortingLayer layer )
+        {
+            layer = default(SortingLayer);
+            return GetTopTileLocal( worldPos - (IntVector2)transform.position, out layer );
         }
 
         /// <summary>
@@ -137,23 +146,23 @@ namespace StevenUniverse.FanGame.World
         /// </summary>
         private List<Tile> GetTileStack( IntVector2 localPos )
         {
-            List<Tile> stack;
-            if (!sortingLayerDict_.TryGetValue(localPos, out stack))
+            TileListWrapper wrapper;
+            if (!sortingLayerDict_.TryGetValue(localPos, out wrapper))
             {
                 // Ensure retrieved tile stacks are always populated with null refs
-                sortingLayerDict_[localPos] = stack = new List<Tile>();
+                sortingLayerDict_[localPos] = wrapper = new TileListWrapper();
                 for (int i = 0; i < SortingLayerUtil.LayerCount; ++i)
                 {
-                    stack.Add(null);
+                    wrapper.list_.Add(null);
                 }
             }
-            return stack;
+            return wrapper.list_;
         }
 
         public void SetTileWorld( TileIndex index, Tile t )
         {
             //Debug.LogFormat("SetTileWorld index: {0}", index);
-            if ( !isLayerVisible_.Get(index.layer_) )
+            if ( !isLayerVisible_.Get(index.Layer_) )
             {
                 //Debug.LogFormat("Layer {0} is hidden for chunk {1}", index.Layer_.name, name);
                 return;
@@ -185,7 +194,7 @@ namespace StevenUniverse.FanGame.World
             var layerIndex = index.SortingLayerIndex_;
             stack[layerIndex] = t;
             // TODO : Write to mesh
-            var layerMesh = GetLayerMesh(index.layer_);
+            var layerMesh = GetLayerMesh(index.Layer_);
 
             layerMesh.SetUVs(index.position_, t.Sprite_.uv);
             layerMesh.SetColors(index.position_, Color.white);
@@ -208,12 +217,14 @@ namespace StevenUniverse.FanGame.World
         /// <param name="pos"></param>
         public void EraseTileLocal( IntVector2 pos )
         {
+            Debug.LogFormat("Erasing tile at {0}", pos);
             // First check if there are any tiles here
-            List<Tile> stack;
-            if( !sortingLayerDict_.TryGetValue(pos, out stack) )
+            TileListWrapper wrapper;
+            if( !sortingLayerDict_.TryGetValue(pos, out wrapper) )
             {
                 return;
             }
+            var stack = wrapper.list_;
 
             for( int i = stack.Count - 1; i >= 0; --i )
             {
@@ -223,20 +234,33 @@ namespace StevenUniverse.FanGame.World
                 if (t == null || !isLayerVisible_.Get(layer))
                     continue;
 
-                RemoveTile(new TileIndex(pos, layer));
+                EraseTile(new TileIndex(pos, layer));
                 return;
             }
         }
 
+        public void EraseTileWorld( IntVector2 pos, SortingLayer layer )
+        {
+            pos -= (IntVector2)transform.position;
+            EraseTile(new TileIndex(pos, layer));
+        }
+        
 
-        void RemoveTile( TileIndex index )
+        void EraseTile( TileIndex index )
         {
             if (!indexDict_.ContainsKey(index))
+            {
+                //Debug.LogFormat("Index {0} not present in {1}", index, name);
                 return;
+            }
             indexDict_.Remove(index);
-            sortingLayerDict_[index.position_][index.SortingLayerIndex_] = null;
+            sortingLayerDict_[index.position_].list_[index.SortingLayerIndex_] = null;
             // TODO: Remove From Mesh
+            var layerMesh = GetLayerMesh(index.Layer_);
+            
+            layerMesh.SetColors(index.position_, default(Color32));
 
+            layerMesh.ImmediateUpdate();
         }
 
         public void SetLayerVisibility( SortingLayer layer, bool val )
@@ -269,6 +293,7 @@ namespace StevenUniverse.FanGame.World
 
         /// <summary>
         /// Retrieve the TiledMesh for the given sorting layer.
+        /// The mesh will be created if none exists.
         /// </summary>
         public TiledMesh GetLayerMesh( SortingLayer layer )
         {
@@ -314,8 +339,14 @@ namespace StevenUniverse.FanGame.World
             return GetEnumerator();
         }
 
+        //[System.Serializable]
+        //class TilesToIntVector2Dict : SerializableDictionaryOfLists<IntVector2, Tile> { }
+
         [System.Serializable]
-        class TilesToIntVector2Dict : SerializableDictionaryOfLists<IntVector2, Tile> { }
+        class TileListWrapper { public List<Tile> list_ = new List<Tile>(); }
+
+        [System.Serializable]
+        class TilesToIntVector2Dict : SerializableDictionary<IntVector2, TileListWrapper> { }
 
         [System.Serializable]
         class TileToIndexDict : SerializableDictionary<TileIndex, Tile> { }

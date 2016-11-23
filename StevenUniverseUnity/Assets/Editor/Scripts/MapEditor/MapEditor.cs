@@ -23,6 +23,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         static string TilePrefabPath_ = "Prefabs/Tiles";
 
+        IntVector2 lastDragPos_;
+
+        bool enabled_ = false;
+
         [MenuItem("Tools/SUFanGame/MapEditor")]
         static void OpenWindow()
         {
@@ -33,6 +37,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         protected override void OnSceneGUI(SceneView view)
         {
             base.OnSceneGUI(view);
+
+            if (!SceneEditorUtil.EditMode_ || !mouseOverWindow == SceneView.currentDrawingSceneView )
+                return;
+
+
 
             foreach (var panel in panels_)
                 panel.OnSceneGUI();
@@ -61,16 +70,15 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             if (map_ == null)
                 map_ = GameObject.FindObjectOfType<Map>();
 
-
             List<MapEditorBrush> brushes = new List<MapEditorBrush>();
-            brushes.Add(new PaintTileBrush(IOUtil.GetAssetsAtLocation<Tile>(TilePrefabPath_, "*.prefab")) );
+            brushes.Add(new PaintTileBrush(IOUtil.GetAssetsAtLocation<Tile>(TilePrefabPath_, "*.prefab")));
             brushes.Add(new EraseBrush());
 
             panels_.Add(new LayersPanel(map_));
 
             brushPanel_ = new BrushesPanel(panels_[0] as LayersPanel, brushes);
 
-            panels_.Add( brushPanel_ );
+            panels_.Add(brushPanel_);
 
             Undo.undoRedoPerformed += OnUndoRedo;
         }
@@ -90,11 +98,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         protected override void OnMouseDown(int button, Vector3 cursorWorldPos)
         {
-            // Ignore mouse activity inside our panels
-            //if (LayersPane.ContainsMouse_)
-            //   return;
-
-
             if (map_ == null)
                 map_ = GameObject.FindObjectOfType<Map>();
 
@@ -114,8 +117,34 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             if (button == 0)
             {
                 var pos = (IntVector3)cursorWorldPos;
+                //Debug.LogFormat("MapEditor cursor Pos in InMouseDown: {0}", pos);
 
                 Brush_.OnMouseDown(map_, pos);
+            }
+        }
+
+        protected override void OnMouseUp(int button, Vector3 cursorWorldPos)
+        {
+            base.OnMouseUp(button, cursorWorldPos);
+
+            // Ignore clicks inside the panels
+            foreach (var p in panels_)
+            {
+                if (p.ContainsMouse_)
+                    return;
+            }
+
+
+            if (map_ == null)
+            {
+                Debug.LogWarning("No map found in the scene");
+                return;
+            }
+
+            if ( button == 0 )
+            {
+                var pos = (IntVector3)cursorWorldPos;
+                Brush_.OnMouseUp(map_, pos);
             }
         }
 
@@ -123,6 +152,17 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             base.OnMouseDrag(button, cursorWorldPos);
             
+            if( (IntVector2)cursorWorldPos == lastDragPos_ )
+            {
+                return;
+            }
+            
+            lastDragPos_ = (IntVector2)cursorWorldPos;
+
+            if( button == 0 )
+            {
+                Brush_.OnDrag(map_, (IntVector3)cursorWorldPos);
+            }
         }
 
         protected override void OnMouseScroll(Vector2 delta)
@@ -137,9 +177,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             // Bail out if we're not in "edit mode".
             if (!SceneEditorUtil.EditMode_)
-                return;
+                return; 
 
-            if (instance_ == null)
+            if (instance_ == null || instance_.brushPanel_ == null || instance_.Brush_ == null )
                 return;
 
             //var cursorPos = SceneEditorUtil.GetCursorPosition();
@@ -149,8 +189,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             //Handles.BeginGUI();
             //EditorGUI.LabelField(new Rect(mousePos.x, mousePos.y, 100f, 100f), "Test" );
             //Handles.EndGUI();
-
-            instance_.Brush_.RenderCursor();
+            //instance_.Brush_.RenderCursor();
+      
+             instance_.Brush_.RenderCursor();
 
 
         }
@@ -161,7 +202,16 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             map_ = (Map)EditorGUILayout.ObjectField(map_, typeof(Map), true);
 
-            Brush_.MapEditorGUI();
+            if (map_ == null || !map_.isActiveAndEnabled || instance_ == null )
+                return;
+
+            
+            if( brushPanel_ != null )
+            {
+                 //GUILayout.Label("Brushes: " + brushPanel_.BrushCount_);
+
+                Brush_.MapEditorGUI();
+            }
 
             //GUILayout.Label("Panels: " + panels_.Count);
 
@@ -192,6 +242,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         void OnUndoRedo()
         {
             map_.RefreshMesh();
+
+            EditorUtility.SetDirty(map_.gameObject);
         }
     }
 }

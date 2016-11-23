@@ -58,7 +58,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         }
 
         // List of points affected by our cursor.
-        List<IntVector2> cursorPoints_ = new List<IntVector2>();
+        protected List<IntVector2> cursorPoints_ = new List<IntVector2>();
 
         public virtual string Name_ { get { return "Map Editor Brush"; } }
         /// <summary>
@@ -99,23 +99,25 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// <summary>
         /// Called by the map when the mouse is clicked
         /// </summary>
-        public void OnMouseDown( Map map, IntVector3 pos )
+        public virtual void OnMouseDown( Map map, IntVector3 pos )
         {
             for( int i = 0; i < cursorPoints_.Count; ++i )
             {
                 IntVector3 targetPoint = pos + (IntVector3)cursorPoints_[i];
 
-                OnClick(map, targetPoint);
+                AffectMapTile(map, targetPoint);
 
             }
         }
 
         /// <summary>
-        /// Callback for when the mouse is being clicked in the scene view.
+        /// Callback for when the mouse is being clicked in the scene view. By default this will be called for position
+        /// within this brush's size, the brush can override <seealso cref="OnMouseDown(Map, IntVector3)"/> to change this
+        /// behaviour.
         /// </summary>
         /// <param name="map">The map being affected.</param>
-        /// <param name="localPos">The target point in world space..</param>
-        protected virtual void OnClick( Map map, IntVector3 worldPos)
+        /// <param name="localPos">The target point in world space.</param>
+        protected virtual void AffectMapTile( Map map, IntVector3 worldPos)
         {
         }
 
@@ -129,6 +131,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         }
 
+        public virtual void OnMouseUp( Map map, IntVector3 worldPos )
+        {
+
+        }
+
         /// <summary>
         /// Callback for when the mouse wheel is scrolled in the scene view.
         /// </summary>
@@ -136,7 +143,19 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// <param name="scrollValue"></param>
         public virtual void OnScroll( Map map, float scrollValue )
         {
+            var e = Event.current;
 
+            if (e.shift)
+                e.Use();
+
+            if (scrollValue < 0)
+            {
+                Size_++;
+            }
+            else if (scrollValue > 0)
+            {
+                Size_--;
+            }
         }
 
         public virtual void RenderCursor()
