@@ -37,7 +37,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
         public override void OnMouseDown(Map map, IntVector3 pos)
         {
-            GenerateChunksAndMeshes(map, pos);
 
             PaintTiles(map, pos);
         }
@@ -86,24 +85,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
             EditorUtility.SetDirty(map.gameObject);
         }
 
-        // Generate the chunks and meshes given the current cursor position and size. 
-        // This isn't a part of the undo process, we only care about undoing tile/mesh changes
-        void GenerateChunksAndMeshes(Map map, IntVector3 pos)
-        {
-            var tile = tiles_[selectedSprite_];
-            var layer = tile.DefaultSortingLayer_;
-            
-            foreach (var p in cursorPoints_)
-            {
-                var chunk = map.GetChunkWorld(pos);
-                if (chunk == null)
-                {
-                    chunk = map.MakeChunk(pos);
-                }
-                var mesh = chunk.GetLayerMesh(layer);
-            }
-        }
-
 
         public override void OnDrag(Map map, IntVector3 worldPos)
         {
@@ -132,7 +113,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
         }
 
-        public override void RenderCursor()
+        public override void RenderCursor( Map map )
         {
             shiftBeingHeld_ = Event.current.shift;
 

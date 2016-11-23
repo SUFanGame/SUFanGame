@@ -13,6 +13,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
     {
         Scene lastScene_ = default(Scene);
 
+        float lastFrameTime_;
+
         protected virtual void OnEnable()
         {
             SceneView.onSceneGUIDelegate += OnSceneGUI;
@@ -167,6 +169,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             }
         }
+
+        
+        protected virtual void Update()
+        {
+        }
+        
 
         /// <summary>
         /// NOTE: Editorwindow does some weird stuff with serialization AFTER OnEnable.

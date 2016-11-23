@@ -24,7 +24,8 @@ public class TiledMesh : MonoBehaviour
     [SerializeField]
     //[HideInInspector]
     Vector2[] uvs_;
-    [SerializeField, HideInInspector]
+    [SerializeField]
+    //[HideInInspector]
     Color32[] colors_;
     //[SerializeField, HideInInspector]
     //Vector3[] normals_;
@@ -223,6 +224,7 @@ public class TiledMesh : MonoBehaviour
     /// </summary>
     public void SetColors(IntVector2 pos, Color32 color)
     {
+        //Debug.LogFormat("Setting mesh to {0} at {1}", color, pos);
         colorsChanged_ = true;
         int colorIndex = (pos.y * Size_.x + pos.x) * 4;
         for (int i = 0; i < 4; ++i)

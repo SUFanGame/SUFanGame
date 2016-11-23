@@ -9,6 +9,9 @@ using System.Linq;
 
 namespace StevenUniverse.FanGameEditor.SceneEditing
 {
+    // TODO : Apparently EditorWindows have an update function!? Could make input handling so much simpler/better. Should be able to read keys
+    // even if the window or scene isn't focused?
+
     public class MapEditor : SceneEditorWindow
     {
         //Map SelectedMap_ = null;
@@ -52,16 +55,50 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         bool enabled_ = false;
 
+        
+
         [MenuItem("Tools/SUFanGame/MapEditor")]
         static void OpenWindow()
         {
             EditorWindow.GetWindow<MapEditor>();
         }
+        
+        protected override void OnGUI()
+        {
+            base.OnGUI();
 
+
+            if (SelectedMap_ == null)
+            {
+                GUILayout.Label("No map selected");
+                return;
+            }
+
+
+            GUI.enabled = false;
+            EditorGUILayout.ObjectField("Current Map", SelectedMap_, typeof(Map), true);
+            GUI.enabled = true;
+
+            if (!SceneEditorUtil.EditMode_)
+            {
+                GUILayout.Label("You are not currently in edit mode. Click the button above to enter edit mode.", EditorStyles.wordWrappedLabel);
+                return;
+            }
+
+            if (brushPanel_ != null)
+            {
+                Brush_.MapEditorGUI();
+            }
+
+            // We must process input after all gui calls to prevent unity's layout errors.
+            ProcessKeyboardInput();
+        }
 
         protected override void OnSceneGUI(SceneView view)
         {
             base.OnSceneGUI(view);
+
+            Repaint();
 
             if (!SceneEditorUtil.EditMode_ || !mouseOverWindow == SceneView.currentDrawingSceneView || SelectedMap_ == null )
                 return;
@@ -229,7 +266,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         static void DrawGizmos(Transform t, GizmoType gizmoType)
         {
             // Bail out if we're not in "edit mode".
-            if (!SceneEditorUtil.EditMode_ || instance_ == null || instance_.SelectedMap_ == null )
+            if (!SceneEditorUtil.EditMode_ || instance_ == null )
+                return;
+
+            var map = instance_.SelectedMap_;
+
+            if (map == null)
                 return;
 
             //var cursorPos = SceneEditorUtil.GetCursorPosition();
@@ -246,61 +288,19 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 if (p.ContainsMouse_)
                     return;
             }
-            instance_.Brush_.RenderCursor();
+            instance_.Brush_.RenderCursor( map );
 
             instance_.Repaint();
         }
 
-        protected override void OnGUI()
+
+
+
+        protected override void Update()
         {
-            base.OnGUI();
+            base.Update();
 
 
-
-            if (SelectedMap_ == null)
-            {
-                GUILayout.Label("No map selected");
-                return;
-            }
-
-            GUI.enabled = false;
-
-            EditorGUILayout.ObjectField("Current Map", SelectedMap_, typeof(Map), true);
-
-            GUI.enabled = true;
-
-            
-
-            if( !SceneEditorUtil.EditMode_ )
-            {
-                GUILayout.Label("You are not currently in edit mode. Click the button above to enter edit mode.", EditorStyles.wordWrappedLabel);
-                return;
-            }
-
-            //map_ = (Map)EditorGUILayout.ObjectField(map_, typeof(Map), true);
-
-            //if (map_ == null || !map_.isActiveAndEnabled || instance_ == null )
-             //   return;
-
-            
-            if( brushPanel_ != null )
-            {
-                 //GUILayout.Label("Brushes: " + brushPanel_.BrushCount_);
-
-                Brush_.MapEditorGUI();
-            }
-
-            //if (Event.current.type == EventType.repaint )
-            ProcessKeyboardInput();
-            //GUILayout.Label("Panels: " + panels_.Count);
-
-            //var mousePos = Event.current.mousePosition;
-            //mousePos.y = mousePos.y;
-            //GUILayout.Label(mousePos.ToString());
-
-            //GUILayout.Label("LayerPanelContainsMouse: " + LayersPane.ContainsMouse_.ToString());
-            //GUILayout.Label("LayerPanelArea: " + LayersPane.Area_);
-            //GUILayout.Label("LayersPanelMousePos: " + LayersPane.MousePos_);
         }
 
         static void DrawCursorLabel()
@@ -328,40 +328,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 return;
 
             map.RefreshMesh();
-            map.ClearEmptyChunks();
+            //map.ClearEmptyChunks();
 
 
             EditorUtility.SetDirty(map.gameObject);
         }
 
-
-
-        //void OnSelectionChange()
-        //{
-
-        //    var selection = Selection.objects;
-        //    string str = string.Join(",", selection.Select(o => o.name).ToArray());
-        //    Debug.LogFormat("CurrentlySelected: {0}", str);
-
-        //    var go = Selection.activeGameObject;
-        //    Map map = null;
-
-        //    if (go != null)
-        //        map = go.GetComponent<Map>();
-
-        //    selectedMap_ = map;
-            
-        //    if ( map == null )
-        //    {
-        //        foreach (var p in panels_)
-        //            p.OnDisable();
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        BuildPanels(selectedMap_);
-        //    }
-        //}
 
     }
 }

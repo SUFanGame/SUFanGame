@@ -163,7 +163,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
         }
 
-        public virtual void RenderCursor()
+        public virtual void RenderCursor( Map map )
         {
 
             var cursorPos = SceneEditorUtil.GetCursorPosition();

@@ -115,9 +115,10 @@ namespace StevenUniverse.FanGame.World
             for( int i = stack.Count - 1; i >= 0; --i )
             {
                 layer = SortingLayerUtil.GetLayerFromIndex(i);
-                // Check if this layer is enabled
+                // Check if this layer is enabled 
                 if ( isLayerVisible_.Get(layer) && stack[i] != null )
                 {
+                    //Debug.LogFormat("sETTING LAYER TO {0}", layer.name);
                     return stack[i];
                 }
             }
@@ -140,7 +141,7 @@ namespace StevenUniverse.FanGame.World
             {
                 return null;
             }
-
+            //Debug.LogFormat("Getting tile from chunk {0} at {1} {2}", name, localPosition, layer.name );
             Tile t;
             indexDict_.TryGetValue(new TileIndex(localPosition, layer), out t);
             return t;
@@ -156,7 +157,7 @@ namespace StevenUniverse.FanGame.World
                 return null;
             }
 
-            return GetTileLocal((IntVector2)transform.position - worldPos, layer);
+            return GetTileLocal(worldPos - (IntVector2)transform.position, layer);
         }
 
         /// <summary>
@@ -270,11 +271,10 @@ namespace StevenUniverse.FanGame.World
         {
             if (!indexDict_.ContainsKey(index))
             {
-                Debug.LogFormat("Index {0} not present in {1}", index, name);
+                //Debug.LogFormat("Index {0} not present in {1}", index, name);
                 return;
             }
             //Debug.LogFormat("Erasing tile at {0}", index);
-            indexDict_[index] = null;
             indexDict_.Remove(index);
             sortingLayerDict_[index.position_].list_[index.SortingLayerIndex_] = null;
 

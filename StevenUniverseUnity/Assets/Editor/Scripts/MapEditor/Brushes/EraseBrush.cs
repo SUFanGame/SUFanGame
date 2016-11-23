@@ -13,8 +13,16 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
         bool shiftBeingHeld_ = false;
 
         static bool dragging_ = false;
-        static SortingLayer currentLayer_;
         int dragUndoIndex_ = 0;
+
+        /// <summary>
+        /// Set of points collected during a drag-erase operation. <seealso cref="OnDragExit(Map)"/>for an explanation.
+        /// </summary>
+        HashSet<TileIndex> dragPoints_ = new HashSet<TileIndex>();
+        IntVector3 lastDragPoint = IntVector3.one * int.MinValue;
+        SortingLayer? dragLayer_ = null;
+
+        const string PREFS_ERASEBRUSHSIZE_NAME = "MEEraserBrushSize";
 
         protected override string IconTextureName_
         {
@@ -32,96 +40,182 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
             }
         }
 
-        public override void RenderCursor()
+        public EraseBrush() : base()
         {
+            Size_ = EditorPrefs.GetInt(PREFS_ERASEBRUSHSIZE_NAME, 0);
+        }
+
+        public override void RenderCursor( Map map )
+        {
+            shiftBeingHeld_ = Event.current.shift;
+            if( !shiftBeingHeld_ && dragging_ )
+            {
+                dragging_ = false;
+                OnDragExit( map );
+            }
+
             var oldColor = Gizmos.color;
             Gizmos.color = Color.red;
-            base.RenderCursor();
+            base.RenderCursor( map );
             Gizmos.color = oldColor;
         }
 
-        public override void OnMouseDown(Map map, IntVector3 pos)
+        public override void OnMouseDown(Map map, IntVector3 worldPos)
         {
+
             if (Event.current.shift)
                 return;
-            //Debug.LogFormat("MOUSEDOWN");
+
             SortingLayer layer;
-            var tile = GetTopTile(map, pos, out layer);
-            if( tile == null )
+            var chunk = map.GetChunkWorld(worldPos);
+            if (chunk == null)
+                return;
+            var tile = chunk.GetTopTileWorld((IntVector2)worldPos, out layer);
+            if ( tile == null )
             {
                 Debug.Log("You must select a starting tile to determine which layer to erase");
                 return;
             }
 
-            EraseTiles(map, pos, layer);
-
-            //map.ClearEmptyChunks();
+            EraseTiles(map, worldPos, layer);
         }
 
         public override void OnDrag(Map map, IntVector3 worldPos)
         {
             base.OnDrag(map, worldPos);
-
-            // Don't allow dragging unless shift is being held.
-            if( !Event.current.shift )
+            
+            // We're doing some expensive stuff here so avoid spamming it if possible.
+            // Don't count drags on the same grid cell and ignore drags if shift isn't being held.
+            if(!Event.current.shift )
             {
-                dragging_ = false;
                 return;
             }
 
-            // If we haven't started dragging yet we'll pick our "Current layer", which will be the one of the tile under the center cursor.
-            if( dragging_ == false )
+            // If we haven't started dragging yet we'll try to pick our "Current layer", which will be the one of the tile under the center cursor.
+            if (dragging_ == false)
             {
-                SortingLayer layer;
-                var tile = GetTopTile(map, worldPos, out layer);
-                if( tile == null )
+                // This is where our drag operation starts.
+
+                // Set up our undo group so we can undo all tile/mesh operations at once
+                Undo.IncrementCurrentGroup();
+                Undo.SetCurrentGroupName("Drag Erase");
+                dragUndoIndex_ = Undo.GetCurrentGroup();
+                // Clear our points used to track our drag area.
+                dragPoints_.Clear();
+                dragging_ = true;
+            }
+
+            if ( dragging_ )
+            {
+                // The drag layer defines which layer all cells of the erase cursor will target. Drag operations will be ignored
+                // until the CENTER cursor is dragged on a valid tile.
+                if( dragLayer_ == null )
+                {
+                    var chunk = map.GetTopChunk((IntVector2)worldPos);
+                    if (chunk == null)
+                    {
+                        DragWarning();
+                        return;
+                    }
+                    SortingLayer layer;
+                    var tile = chunk.GetTopTileWorld((IntVector2)worldPos, out layer);
+                    if (tile == null)
+                    {
+                        DragWarning();
+                        return;
+                    }
+                    //Debug.LogFormat("Setting drag layer to {0}", layer.name);
+                    dragLayer_ = layer;
+                }
+
+                if( lastDragPoint == worldPos )
                 {
                     return;
                 }
-                else
+                lastDragPoint = worldPos;
+                
+                // Iterate over all our cursor points and set the target meshes to null.
+                foreach (var p in cursorPoints_)
                 {
-                    currentLayer_ = layer;
-                    dragging_ = true;
-                    Undo.SetCurrentGroupName("Drag Erase");
-                    dragUndoIndex_ = Undo.GetCurrentGroup();
+                    var areaPos = (IntVector2)worldPos + p;
+
+                    var chunk = map.GetTopChunk(areaPos);
+                    if (chunk == null)
+                        continue;
+
+                    //Debug.LogFormat("Polling chunk for tile at {0}", areaPos);
+                    // Get the topmost tile
+                    var tile = chunk.GetTileWorld(areaPos, dragLayer_.Value);
+
+                    //Debug.LogFormat("Found tile at {0}", areaPos);
+                    if (tile != null)
+                    {
+                        // Add the point to our drag points. These will be used to erase all tiles at once since
+                        // doing one by one seems to not work with Undo. See OnDragExit for an explanation.
+                        dragPoints_.Add(new TileIndex(areaPos, dragLayer_.Value));
+
+                        // We still want to give immediate user feedback so set the mesh colors immediately, see OnDragExit for an explanation.
+                        var mesh = chunk.GetLayerMesh(dragLayer_.Value);
+                        var localPos = areaPos - (IntVector2)chunk.transform.position;
+                        Undo.RecordObject(mesh, "Hide colors");
+                        mesh.SetColors(localPos, default(Color32));
+                        mesh.ImmediateUpdate();
+                    }
                 }
             }
 
-            if( dragging_ )
-                EraseTiles(map, worldPos, currentLayer_);
+        }
+
+        void DragWarning()
+        {
+            Debug.Log("Drag erases won't start until the center of your cursor is over a valid tile.");
         }
 
         public override void OnMouseUp(Map map, IntVector3 worldPos)
         {
             base.OnMouseUp(map, worldPos);
+
             if (dragging_)
             {
                 dragging_ = false;
-                //map.ClearEmptyChunks();
-                //Undo.CollapseUndoOperations(dragUndoIndex_);
-                //Undo.IncrementCurrentGroup();
+                OnDragExit(map);
             }
         }
 
-        Tile GetTopTile( Map map, IntVector3 pos, out SortingLayer layer )
+        public override void OnDisable()
         {
-            layer = default(SortingLayer);
-            //Debug.LogFormat("CursorPos in entering Eraser Click : {0}", pos);
-            var chunk = map.GetChunkWorld(pos);
-            if (chunk == null)
-            {
-                Debug.LogFormat("No chunk found");
-                return null;
-            }
+            base.OnDisable();
             
-            return chunk.GetTopTileWorld((IntVector2)pos, out layer);
+            EditorPrefs.SetInt(PREFS_ERASEBRUSHSIZE_NAME, Size_);
+        }
+
+        /// <summary>
+        /// Called when a drag ends, either by releasing the shift key or raising the mouse button.
+        /// At this point the meshes have already been erased where we were dragging. Now we want to 
+        /// do one big operation to erase the tile data.
+        /// 
+        /// Previously I tried to erase tiles constantly during dragging, but Unity's Undo system didn't like that,
+        /// and when you tried to Undo drag erases it would restore the meshes properly but not the tile references.
+        /// 
+        /// Erasing the tile data all at once seems to solve the issue.
+        /// </summary>
+        /// <param name="map"></param>
+        void OnDragExit(Map map)
+        {
+            foreach( var index in dragPoints_ )
+            {
+                var chunk = map.GetTopChunk(index.position_);
+                Undo.RecordObject(chunk, "Erase tile");
+                chunk.EraseTileWorld(index.position_, index.Layer_);
+            }
+            Undo.CollapseUndoOperations(dragUndoIndex_);
+            lastDragPoint = IntVector3.one * int.MinValue;
+            dragLayer_ = null;
         }
         
 
         void EraseTiles(Map map, IntVector3 pos, SortingLayer layer )
         {
-            shiftBeingHeld_ = Event.current.shift;
-
             int undoIndex = 0;
             if (!shiftBeingHeld_)
             {
@@ -137,12 +231,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
                 var chunk = map.GetChunkWorld(areaPos);
                 if (chunk == null)
                 {
-                    //Debug.LogFormat("No chunk found at {0}", areaPos);
+                    Debug.LogFormat("No chunk found at {0}", areaPos);
                     continue;
                 }
-                Undo.RecordObject(chunk, "Set tiles");
+                Undo.RecordObject(chunk, "Erase tiles");
                 var mesh = chunk.GetLayerMesh(layer);
-                Undo.RecordObject(mesh, "Set UVS");
+                //Debug.LogFormat("Setting mesh values on mesh {0} Layer {1}", mesh.name, layer.name);
+                Undo.RecordObject(mesh, "Erase UVS");
 
                 //Debug.LogFormat("Calling EraseTile on {0} at {1}, Layer: {2}", chunk.name, areaPos, layer.name);
                 chunk.EraseTileWorld((IntVector2)areaPos, layer);
@@ -155,6 +250,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
             }
 
             EditorUtility.SetDirty(map.gameObject);
+        }
+
+        void SetTileTransparent( TiledMesh mesh, IntVector2 pos, SortingLayer layer )
+        {
+
         }
     }
 }
