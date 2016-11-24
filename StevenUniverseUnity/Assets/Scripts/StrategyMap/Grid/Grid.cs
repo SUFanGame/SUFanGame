@@ -8,6 +8,7 @@ using StevenUniverse.FanGame.Overworld.Templates;
 using StevenUniverse.FanGame.Factions;
 using UnityEngine.EventSystems;
 using StevenUniverse.FanGame.Util;
+using StevenUniverse.FanGame.World;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -16,7 +17,6 @@ namespace StevenUniverse.FanGame.StrategyMap
     public class Grid : MonoBehaviour
     {
         GridSelectionBehaviour selection_;
-        //TileMap<ITile> tileMap_ = null;
 
         // Dictionary mapping nodes to their 3D position ( x, y, elevation )
         Dictionary<IntVector3, Node> nodeDict_ = new Dictionary<IntVector3, Node>();
@@ -524,6 +524,35 @@ namespace StevenUniverse.FanGame.StrategyMap
             if (OnGridBuilt_ != null)
                 OnGridBuilt_(this);
 
+        }
+
+
+        // Notes about my previous take on building the grid from Dust's tile maps.
+        //It iterates through each 2D (so no z value in iteration) position and grabs the entire stack of tiles
+        // at that position. The stacks are pre-sorted such that tiles are grouped by elevation first, then by "Sorting Order" (Sorting Layer index) (Higher first in both cases)
+
+        // The stacks are iterated highest-first. If the previous (one elevation higher) tile in the stack was found to be "Grounded" then all tiles at the current
+        // elevation are skipped since it's an unwalkable tile.
+
+        // Then tiles are iterated with a single cell (Iterating through the sorting layers). It's important to iterate from the top down since
+        // pathability is dependant on the topmost tile. At this point the tile's "Mode" is examined. "Normal" tiles are skipped,
+        // Top "Collidable" tiles prevent pathability in that cell. Top "Surface" or "Transitional" mean
+        // the cell is pathable. "Grounded" tiles can be below other pathable or collidable tiles so  all tiles must be iterated though.
+
+        public void BuildFromMap( Map map )
+        {
+            foreach( var chunk in map )
+            {
+                foreach( var itPair in chunk )
+                {
+                    int height = chunk.Height_;
+                    var index = itPair.Key;
+                    var tile = itPair.Value;
+                    IntVector3 pos3D = new IntVector3(index.position_.x, index.position_.y, height);
+                    IntVector2 pos2D = index.position_;
+                    var layer = index.Layer_;
+                }
+            }
         }
 
         /// <summary>

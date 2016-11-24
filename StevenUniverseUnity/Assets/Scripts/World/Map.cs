@@ -53,7 +53,7 @@ namespace StevenUniverse.FanGame.World
         ChunkToPosDict chunkDict_ = new ChunkToPosDict();
 
         /// <summary>
-        /// Dictionary mapping stacks of chunks to the 2D index.
+        /// Dictionary mapping stacks of chunks to their 2D index.
         /// </summary>
         [SerializeField]
         //[HideInInspector]
@@ -75,13 +75,16 @@ namespace StevenUniverse.FanGame.World
         /// Optional way to hide and prevent access to all tiles above a certain height. 
         /// Useful for seeing and operating in chunks below other chunks.
         /// </summary>
-        [SerializeField]
-        int? heightCutoff_ = null;
+
+        public CutoffType cutoffType_ = CutoffType.NONE;
+        public int heightCutoff_ = 0;
 
         [SerializeField]
         bool showDebugGUI_ = true;
-
+         
         const string NULL_TILE_STR = "Calling SetTile with a null argument. If you want to erase a tile, call EraseTile";
+        
+
 
         [SerializeField]
         Material terrainMaterial_;
@@ -107,7 +110,7 @@ namespace StevenUniverse.FanGame.World
                 return;
             }
 
-            if (heightCutoff_ != null && heightCutoff_ > pos.z)
+            if (cutoffType_ != CutoffType.NONE && cutoffType_.IsCutoff(heightCutoff_, pos.z) )
                 return;
 
             // Do nothing if the target layer is hidden
@@ -187,15 +190,22 @@ namespace StevenUniverse.FanGame.World
             }
             var stack = wrapper.value_;
 
+            //Debug.LogFormat("Stack at chunk index {0}: {1}", chunkIndex, stack.Count);
+
             // Then get the highest active chunk.
-            for (int i = stack.Count - 1; i >= 0; --i)
+            for (int i = 0; i < stack.Count; ++i)
             {
                 var chunk = stack[i];
+
+                //Debug.LogFormat("Checking chunk {0}", chunk.name);
                 // Ignore disabled chunks or chunks above the height cutoff
-                if ( (heightCutoff_ != null && chunk.Height_ > heightCutoff_) || !chunk.isActiveAndEnabled)
+                if ( cutoffType_ != CutoffType.NONE && cutoffType_.IsCutoff( heightCutoff_, chunk.Height_) || !chunk.isActiveAndEnabled)
                     continue;
-                
-                return chunk;
+
+                SortingLayer layer;
+                if (chunk.GetTopTileWorld(worldPos, out layer) != null)
+                    return chunk;
+
             }
 
             return null;
@@ -211,28 +221,6 @@ namespace StevenUniverse.FanGame.World
             return GetChunk(chunkIndex);
         }
 
-        public void SetHeightCutoff( int cutoff )
-        {
-            if( heightCutoff_ == null || cutoff != heightCutoff_ )
-            {
-                foreach( var pair in chunkDict_ )
-                {
-                    var chunk = pair.Value;
-                    int chunkHeight = (int)chunk.transform.position.z;
-                    if (chunkHeight > cutoff)
-                        chunk.gameObject.SetActive(false);
-                    else
-                        chunk.gameObject.SetActive(true);
-                }
-            }
-
-            heightCutoff_ = cutoff;
-        }
-
-        public void DisableHeightCutoff()
-        {
-            heightCutoff_ = null;
-        }
 
         /// <summary>
         /// Retrieve a chunk from a ChunkIndex.
@@ -302,8 +290,8 @@ namespace StevenUniverse.FanGame.World
 
             chunkStack.Add(chunk);
 
-            // Sort the stack by height;
-            chunkStack.Sort((a, b) => a.Height_.CompareTo(b.Height_));
+            // Sort the stack by highest-first;
+            chunkStack.Sort( (a, b) => -a.Height_.CompareTo(b.Height_));
 
             // Set the layer visiblity values from our map values.
             foreach (var l in SortingLayer.layers)
@@ -314,6 +302,8 @@ namespace StevenUniverse.FanGame.World
 
             chunk.terrainMaterial_ = terrainMaterial_;
 
+            
+
             return chunk;
         }
 
@@ -322,7 +312,7 @@ namespace StevenUniverse.FanGame.World
         /// </summary>
         public TiledMesh GetMesh( IntVector3 pos, SortingLayer layer )
         {
-            if (heightCutoff_ != null && heightCutoff_ > pos.z)
+            if (cutoffType_ != CutoffType.NONE && cutoffType_.IsCutoff(heightCutoff_, pos.z) )
             {
                 Debug.LogError("Attempting to retrieve a mesh from above the height cutoff.");
                 return null;
@@ -371,7 +361,7 @@ namespace StevenUniverse.FanGame.World
             if (!isActiveAndEnabled)
                 return;
 
-            chunkSize_ = IntVector2.Clamp(chunkSize_, 1, 20);
+            chunkSize_ = IntVector2.Clamp(chunkSize_, 1, Chunk.MAXSIZE );
 
             if( chunkSize_ != lastChunkSize_ )
             {
@@ -455,6 +445,20 @@ namespace StevenUniverse.FanGame.World
             chunks_.Clear();
         }
 
+        /// <summary>
+        /// Hides/Shows all chunks based on our current cutofftype.
+        /// </summary>
+        /// <param name="map"></param>
+        public void OnCutoffHeightChanged()
+        {
+            //Debug.Log("Cutoff update");
+            foreach (var chunk in this)
+            {
+                bool cutoff = cutoffType_.IsCutoff(heightCutoff_, chunk.Height_);
+                chunk.gameObject.SetActive(!cutoff);
+            }
+        }
+
         public void RefreshMesh()
         {
             var enumerator = this.GetEnumerator();
@@ -490,6 +494,7 @@ namespace StevenUniverse.FanGame.World
             chunks_.Remove(chunk);
             DestroyImmediate(chunk.gameObject);
         }
+
 
         public IEnumerator<Chunk> GetEnumerator()
         {

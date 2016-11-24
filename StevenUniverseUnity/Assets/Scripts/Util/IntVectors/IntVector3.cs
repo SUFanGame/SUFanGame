@@ -71,7 +71,7 @@ namespace StevenUniverse.FanGame.Util
 		
 		public override string ToString ()
 		{
-			return string.Format ("({0:F1}, {1:F1}, {2:F1})", new object[]
+			return string.Format ("({0:F0}, {1:F0}, {2:F0})", new object[]
 			{
 				this.x,
 				this.y,

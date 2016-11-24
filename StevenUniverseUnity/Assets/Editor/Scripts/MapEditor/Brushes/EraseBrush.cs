@@ -6,6 +6,9 @@ using StevenUniverse.FanGame.World;
 using UnityEditor;
 using System.Linq;
 
+// TODO : Should be able to cut this down a bit, combine the single click and drag functions a bit more.
+// Note this is unfortunately pretty complicated. Unity's undo system has a lot of quirks that needed to be worked around.
+//    Specifically I ran into a lot of issues Undo-ing drag-erase operations. See OnDragExit for details.
 namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 {
     public class EraseBrush : MapEditorBrush
@@ -19,8 +22,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
         /// Set of points collected during a drag-erase operation. <seealso cref="OnDragExit(Map)"/>for an explanation.
         /// </summary>
         HashSet<TileIndex> dragPoints_ = new HashSet<TileIndex>();
-        IntVector3 lastDragPoint = IntVector3.one * int.MinValue;
         SortingLayer? dragLayer_ = null;
+        IntVector3 dragOriginPoint_;
 
         const string PREFS_ERASEBRUSHSIZE_NAME = "MEEraserBrushSize";
 
@@ -56,7 +59,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
             var oldColor = Gizmos.color;
             Gizmos.color = Color.red;
-            base.RenderCursor( map );
+            var cursorPos = SceneEditorUtil.GetCursorPosition();
+
+            var offset = Vector2.one * .5f;
+            Gizmos.DrawWireCube(cursorPos + (Vector3)offset + Vector3.back * 10, Vector3.one * (Size_ * 2 + 1));
+
+            //base.RenderCursor( map );
             Gizmos.color = oldColor;
         }
 
@@ -67,9 +75,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
                 return;
 
             SortingLayer layer;
-            var chunk = map.GetChunkWorld(worldPos);
+            var chunk = map.GetTopChunk((IntVector2)worldPos);
             if (chunk == null)
+            {
+                Debug.LogFormat("No chunks found at {0}", (IntVector2)worldPos);
                 return;
+            }
             var tile = chunk.GetTopTileWorld((IntVector2)worldPos, out layer);
             if ( tile == null )
             {
@@ -77,7 +88,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
                 return;
             }
 
-            EraseTiles(map, worldPos, layer);
+            EraseTiles(map, (IntVector2)worldPos, layer);
         }
 
         public override void OnDrag(Map map, IntVector3 worldPos)
@@ -125,38 +136,41 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
                         return;
                     }
                     //Debug.LogFormat("Setting drag layer to {0}", layer.name);
+                    // Keep track of the position and layer that the actual drag erase starts.
+                    // The drag erase will ONLY erase tiles that are on this same height and layer.
                     dragLayer_ = layer;
+
+                    dragOriginPoint_ = worldPos;
+                    dragOriginPoint_.z = chunk.Height_;
                 }
 
-                if( lastDragPoint == worldPos )
-                {
-                    return;
-                }
-                lastDragPoint = worldPos;
+                worldPos.z = dragOriginPoint_.z;
                 
                 // Iterate over all our cursor points and set the target meshes to null.
                 foreach (var p in cursorPoints_)
                 {
-                    var areaPos = (IntVector2)worldPos + p;
+                    var areaPos = worldPos + (IntVector3)p;
 
-                    var chunk = map.GetTopChunk(areaPos);
+                    // Only target chunks on the same height as the tile that started our drag erase.
+                    var chunk = map.GetChunkWorld(areaPos);
                     if (chunk == null)
                         continue;
 
                     //Debug.LogFormat("Polling chunk for tile at {0}", areaPos);
                     // Get the topmost tile
-                    var tile = chunk.GetTileWorld(areaPos, dragLayer_.Value);
+                    // Only target tiles on the same layer as the tile that started our drag erase.
+                    var tile = chunk.GetTileWorld((IntVector2)areaPos, dragLayer_.Value);
 
                     //Debug.LogFormat("Found tile at {0}", areaPos);
                     if (tile != null)
                     {
                         // Add the point to our drag points. These will be used to erase all tiles at once since
                         // doing one by one seems to not work with Undo. See OnDragExit for an explanation.
-                        dragPoints_.Add(new TileIndex(areaPos, dragLayer_.Value));
+                        dragPoints_.Add(new TileIndex((IntVector2)areaPos, dragLayer_.Value));
 
                         // We still want to give immediate user feedback so set the mesh colors immediately, see OnDragExit for an explanation.
                         var mesh = chunk.GetLayerMesh(dragLayer_.Value);
-                        var localPos = areaPos - (IntVector2)chunk.transform.position;
+                        var localPos = (IntVector2)areaPos - (IntVector2)chunk.transform.position;
                         Undo.RecordObject(mesh, "Hide colors");
                         mesh.SetColors(localPos, default(Color32));
                         mesh.ImmediateUpdate();
@@ -202,19 +216,24 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
         /// <param name="map"></param>
         void OnDragExit(Map map)
         {
+            float progress = 0;
             foreach( var index in dragPoints_ )
             {
                 var chunk = map.GetTopChunk(index.position_);
                 Undo.RecordObject(chunk, "Erase tile");
                 chunk.EraseTileWorld(index.position_, index.Layer_);
+                ++progress;
+                EditorUtility.DisplayProgressBar("Drag Erase", "Completing Drag Erase Operation", progress / (float)(dragPoints_.Count - 1));
             }
+
+            EditorUtility.ClearProgressBar();
             Undo.CollapseUndoOperations(dragUndoIndex_);
-            lastDragPoint = IntVector3.one * int.MinValue;
             dragLayer_ = null;
+            EditorUtility.SetDirty(map.gameObject);
         }
         
 
-        void EraseTiles(Map map, IntVector3 pos, SortingLayer layer )
+        void EraseTiles(Map map, IntVector2 pos, SortingLayer layer )
         {
             int undoIndex = 0;
             if (!shiftBeingHeld_)
@@ -227,8 +246,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
             foreach (var p in cursorPoints_)
             {
-                var areaPos = (IntVector3)p + pos;
-                var chunk = map.GetChunkWorld(areaPos);
+                var areaPos = (IntVector2)p + pos;
+                var chunk = map.GetTopChunk(areaPos);
                 if (chunk == null)
                 {
                     Debug.LogFormat("No chunk found at {0}", areaPos);

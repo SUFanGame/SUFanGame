@@ -6,6 +6,7 @@ using StevenUniverse.FanGame.World;
 using UnityEditor;
 using StevenUniverse.FanGameEditor.CustomGUI;
 using System.Linq;
+using StevenUniverse.FanGameEditor.SceneEditing.Util;
 
 namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 {
@@ -25,6 +26,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
         Vector2 scrollPos_;
 
+        PaintMode paintMode_ = PaintMode.SPECIFIC;
+
         public bool shiftBeingHeld_;
 
         public PaintTileBrush( Tile[] tiles ) : base()
@@ -41,15 +44,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
             PaintTiles(map, pos);
         }
 
-        protected override void AffectMapTile(Map map, IntVector3 worldPos )
-        {
-            //PaintTiles(map, worldPos);
-
-
-            //mesh.ImmediateUpdate();
-            //map.SetTile((IntVector2)worldPos, tiles_[selectedSprite_]);
-        }
-
         void PaintTiles( Map map, IntVector3 pos)
         {
             var tile = tiles_[selectedSprite_];
@@ -61,7 +55,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
                 Undo.SetCurrentGroupName("Paint Tiles Single");
                 undoIndex = Undo.GetCurrentGroup();
             }
- 
+
+            // Retrieve our target height based on our paint mode
+            pos = paintMode_.GetHeightModePosition(pos, map);
+
+            //Debug.Log("Position in brush:" + pos);
 
             foreach (var p in cursorPoints_)
             {

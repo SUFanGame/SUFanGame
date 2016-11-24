@@ -52,12 +52,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         static string TilePrefabPath_ = "Prefabs/Tiles";
          
         IntVector2 lastDragPos_;
-
-        bool enabled_ = false;
-
         
+        public static int CursorHeight_ { get; set; }
 
-        [MenuItem("Tools/SUFanGame/MapEditor")]
+        const string PREFS_CURSORHEIGHT_NAME = "MECursorHeight";
+
+        [MenuItem("Tools/MapEditor")]
         static void OpenWindow()
         {
             EditorWindow.GetWindow<MapEditor>();
@@ -108,15 +108,21 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             foreach (var panel in panels_)
                 panel.OnSceneGUI(SelectedMap_);
 
-            
-            var mousePos = Event.current.mousePosition + Vector2.right * 10;
-            var mouseWorldPos = (IntVector2)HandleUtility.GUIPointToWorldRay(mousePos).origin;
+            if (!MouseIsOverPanels_)
+            {
+                //var mousePos = Event.current.mousePosition + Vector2.right * 10;
+                //var mouseWorldPos = (IntVector3)HandleUtility.GUIPointToWorldRay(mousePos).origin;
+                //mouseWorldPos.z = CursorHeight_;
 
-            Handles.BeginGUI();
-            EditorGUI.LabelField(new Rect(mousePos.x, mousePos.y, 100f, 100f), mouseWorldPos.ToString("0") );
-            Handles.EndGUI();
+                //Handles.BeginGUI();
+                //EditorGUI.LabelField(new Rect(mousePos.x, mousePos.y, 100f, 100f), mouseWorldPos.ToString("0") );
+                //Handles.EndGUI();
+            }
 
             SceneView.currentDrawingSceneView.Repaint();
+
+
+
 
         }
 
@@ -125,6 +131,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         protected override void OnEnable()
         {
             base.OnEnable();
+
+            CursorHeight_ = EditorPrefs.GetInt(PREFS_CURSORHEIGHT_NAME, 0);
 
             //Debug.Log("ONENABLE");
 
@@ -144,6 +152,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         protected override void OnDisable()
         {
             base.OnDisable();
+
+            EditorPrefs.SetInt(PREFS_CURSORHEIGHT_NAME, CursorHeight_);
 
             //Debug.Log("ONDISABLE");
 
@@ -171,6 +181,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             brushes.Add(new EraseBrush());
 
             panels_.Add(new LayersPanel());
+            panels_.Add(new HeightPanel());
 
             brushPanel_ = new BrushesPanel(panels_[0] as LayersPanel, brushes);
 
@@ -191,6 +202,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             if (button == 0)
             { 
                 var pos = (IntVector3)cursorWorldPos;
+                pos.z = CursorHeight_;
                 //Debug.LogFormat("MapEditor cursor Pos in InMouseDown: {0}", pos);
 
                 Brush_.OnMouseDown(SelectedMap_, pos);
@@ -211,6 +223,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             if ( button == 0 )
             {
                 var pos = (IntVector3)cursorWorldPos;
+                pos.z = CursorHeight_;
                 Brush_.OnMouseUp(SelectedMap_, pos);
             }
         }
@@ -234,22 +247,58 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             if( button == 0 )
             {
-                Brush_.OnDrag(SelectedMap_, (IntVector3)cursorWorldPos);
+                var pos = (IntVector3)cursorWorldPos;
+                pos.z = CursorHeight_;
+                Brush_.OnDrag(SelectedMap_, pos);
             }
         }
 
         protected override void OnKeyDown(KeyCode key)
         {
             base.OnKeyDown(key);
+
+
+
+           
+
+
+
             if (MouseIsOverPanels_)
                 return;
 
-            if (SelectedMap_ == null)
+            var map = SelectedMap_;
+            if (map == null)
                 return;
+
+
+            if (Event.current.shift && key == KeyCode.Comma)
+            {
+                CursorHeight_++;
+                map.heightCutoff_ = CursorHeight_;
+                if ( map.cutoffType_ != CutoffType.NONE )
+                {
+                    map.OnCutoffHeightChanged();
+                }
+                return;
+            }
+
+            if (Event.current.shift && key == KeyCode.Period)
+            {
+                CursorHeight_--;
+                map.heightCutoff_ = CursorHeight_;
+                if (map.cutoffType_ != CutoffType.NONE)
+                {
+                    map.OnCutoffHeightChanged();
+                }
+                return;
+            }
+
 
             Brush_.OnKeyDown(key);
             brushPanel_.OnKeyDown(key);
         }
+
+
 
         protected override void OnMouseScroll(Vector2 delta)
         {
@@ -283,43 +332,16 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             //Handles.EndGUI();
             //instance_.Brush_.RenderCursor();
             // Dont draw the brush cursor if we're hovering over a panel.
-            foreach (var p in panels_)
-            {
-                if (p.ContainsMouse_)
-                    return;
-            }
+            if (instance_.MouseIsOverPanels_)
+                return;
+
             instance_.Brush_.RenderCursor( map );
 
             instance_.Repaint();
         }
 
-
-
-
-        protected override void Update()
-        {
-            base.Update();
-
-
-        }
-
-        static void DrawCursorLabel()
-        {
-            if (instance_.SelectedMap_ == null)
-                return;
-
-            Handles.BeginGUI();
-
-            var mousePos = Event.current.mousePosition + Vector2.right * 10;
-
-            GUILayout.BeginArea(new Rect(mousePos, new Vector2(100, 22)));
-
-            GUILayout.Label("HI");
-
-            GUILayout.EndArea();
-
-            Handles.EndGUI();
-        }
+        
+        
 
         void OnUndoRedo()
         {

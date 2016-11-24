@@ -31,7 +31,6 @@ namespace StevenUniverse.FanGame.World
             set
             {
                 size_ = value;
-                VerifyMeshValues();
             }
         }
 
@@ -49,11 +48,12 @@ namespace StevenUniverse.FanGame.World
             var layer = SortingLayerUtil.GetLayerFromIndex(layerIndex);
             var go = new GameObject(layer.name + " Mesh");
             var mesh = go.AddComponent<TiledMesh>();
-            mesh.SortingLayer_ = layer;
+            mesh.SortingLayer_ = SortingLayerUtil.GetLayerFromIndex(0);
             go.transform.SetParent(transform, false);
             go.transform.SetSiblingIndex(layerIndex);
             mesh.Size_ = size;
             mesh.renderer_.sharedMaterial = material;
+            mesh.renderer_.sortingOrder = (int)transform.position.z * 100 + layerIndex;
 
             meshes_[layerIndex] = mesh;
 
@@ -63,24 +63,6 @@ namespace StevenUniverse.FanGame.World
             return mesh;
         }
 
-        /// <summary>
-        /// Iterate through the meshes and ensure their size and layer values are correct for this chunk mesh.
-        /// </summary>
-        void VerifyMeshValues()
-        {
-            for( int i = 0; i < meshes_.Length; ++i )
-            {
-                var mesh = meshes_[i];
-                
-                if( mesh.Size_ != size_ )
-                {
-                    mesh.Size_ = size_;
-                }
-                
-                mesh.SortingLayer_ = SortingLayerUtil.GetLayerFromIndex(i);
-                mesh.transform.SetSiblingIndex(i);
-            }
-        }
 
         /// <summary>
         /// Retrieve the tiled mesh matching the given sorting layer.

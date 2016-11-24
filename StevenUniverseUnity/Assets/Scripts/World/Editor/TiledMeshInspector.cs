@@ -29,14 +29,15 @@ public class TiledMeshInspector : Editor
         //layerIDProp_.intValue = CustomEditorGUI.DrawSortingLayersPopup(layerIDProp_.intValue);
         tar.renderer_.sortingLayerID = CustomEditorGUI.DrawSortingLayersPopup(tar.renderer_.sortingLayerID);
         EditorGUILayout.EndHorizontal();
-        
+
+        EditorGUILayout.LabelField("Sorting Order", tar.renderer_.sortingOrder.ToString());
     }
 
     [DrawGizmo(GizmoType.Active | GizmoType.InSelectionHierarchy | GizmoType.NotInSelectionHierarchy)]
     static void DrawGizmos(TiledMesh mesh, GizmoType gizmoType)
     {
         //var offset = mesh.transform.position + Vector3.one * .5f;
-        Gizmos.DrawWireCube( mesh.transform.position + (Vector3)mesh.Size_ / 2f, mesh.Size_);
+        Gizmos.DrawWireCube( mesh.transform.position + (Vector3)mesh.Size_ / 2f + Vector3.forward * 5, mesh.Size_);
 
         if (mesh.showLayerOrder_)
         { 

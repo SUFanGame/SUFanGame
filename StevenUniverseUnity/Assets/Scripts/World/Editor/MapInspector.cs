@@ -24,6 +24,14 @@ namespace StevenUniverse.FanGameEditor
             {
                 tar.PrintTiles();
             }
+
+            if( GUILayout.Button("Clear Empty Chunks") )
+            {
+                if (EditorUtility.DisplayDialog("Clear Empty Chunks", "Are you sure you want to clear empty chunks? This cannot be undone and will prevent outstanding Undo operations in those chunks.", "Yes", "Cancel" ) )
+                {
+                    tar.ClearEmptyChunks();
+                }
+            }
         }
     }
 }

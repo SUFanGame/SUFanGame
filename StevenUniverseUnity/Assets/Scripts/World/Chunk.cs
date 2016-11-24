@@ -4,23 +4,12 @@ using System.Collections.Generic;
 using StevenUniverse.FanGame.Util.Collections;
 using StevenUniverse.FanGame.Util;
 using StevenUniverse.FanGame.Util.MapEditing;
+using System.Linq;
 
 namespace StevenUniverse.FanGame.World
 {
-
-    // TODO : Layers can be hidden or shown via the map editor. The chunk should ignore ANY operations attempted
-    // on a "hidden" layer. The Map class will follow these rules as well. It may be best to have the layer states set up in
-    // SortingLayerUtil, so the states can be access globally.
-    // Layers will be hidden visually as well. There's a few options - since Meshes are already divided by sorting layers it's probably
-    // easiest to just iterate through all chunks and hide/show the matching layer for each chunk.
-    // Could also use Unity's camera culling: http://answers.unity3d.com/questions/561274/using-layers-to-showhide-different-players.html
-    // Note in both the latter examples this would require setting up Layers that match the SortingLayers and having the meshes be set to the
-    // appropriate Layer.
-
-
-    // TODO : Errors when attempting to assign a tile to the same location after serialization occurs - meaning the lists of tiles
-    // stay but their contents get cleared during serialization?
-
+    
+    
     /// <summary>
     /// A chunk of tiles, basically representing a small portion of one cross-section of the map ( where the cross sections are divided by height ).
     /// The map maintains a structure of chunks and creates them as they are need, as tiles are added to the map.
@@ -29,6 +18,8 @@ namespace StevenUniverse.FanGame.World
     [RequireComponent(typeof(ChunkMesh)), ExecuteInEditMode]
     public class Chunk : MonoBehaviour, IEnumerable<KeyValuePair<TileIndex,Tile>>
     {
+        public const int MAXSIZE = 50;
+
         /// <summary>
         /// Dictionary mapping stacks of tiles (where each index of the stack represents a sorting layer ) to their 2D position in local space.
         /// </summary>
@@ -94,6 +85,11 @@ namespace StevenUniverse.FanGame.World
             mesh_ = GetComponent<ChunkMesh>();
         }
 
+        void OnEnable()
+        {
+
+        }
+
         /// <summary>
         /// Returns the topmost tile (in terms of sorting layers) at the given position.
         /// Returns null if no visible tiles exist at the given location.
@@ -125,6 +121,7 @@ namespace StevenUniverse.FanGame.World
 
             return null;
         }
+
 
         public Tile GetTopTileWorld( IntVector2 worldPos, out SortingLayer layer )
         {
@@ -179,6 +176,7 @@ namespace StevenUniverse.FanGame.World
             }
             return wrapper.list_;
         }
+
 
         public void SetTileWorld( TileIndex index, Tile t )
         {
