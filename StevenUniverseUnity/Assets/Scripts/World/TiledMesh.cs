@@ -2,6 +2,11 @@
 using StevenUniverse.FanGame.Util;
 using StevenUniverse.FanGame.Util.MapEditing;
 
+/// <summary>
+/// A dynamic mesh, where the verts are divided into one-unit cells in a 2D grid.
+/// Each cell's data can be manipulated invividually and the mesh will only update
+/// once per frame and only when something has changed.
+/// </summary>
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer)), ExecuteInEditMode]
 public class TiledMesh : MonoBehaviour 
 {
@@ -34,6 +39,9 @@ public class TiledMesh : MonoBehaviour
     public MeshFilter filter_ { get; private set; }
     public MeshRenderer renderer_ { get; private set; }
 
+    // See SetVisibleAlpha
+    byte visibleAlpha_ = 55;
+
     [SerializeField,HideInInspector]
     IntVector2 lastSize_;
     [SerializeField]
@@ -51,12 +59,6 @@ public class TiledMesh : MonoBehaviour
             size_ = value;
         }
     }
-
-    //[SerializeField, HideInInspector]
-    //int sortingLayerID_ = 0;
-
-    //[SerializeField]
-    //int orderInLayer_ = 0;
 
     public const int MaxChunkSize_ = 50;
 
@@ -76,7 +78,6 @@ public class TiledMesh : MonoBehaviour
     bool uvsChanged_ = false;
     [SerializeField, HideInInspector]
     protected bool colorsChanged_ = false;
-    //protected bool normalsChanged_ = false;
     [SerializeField, HideInInspector]
     protected bool vertsChanged_ = false;
     [SerializeField, HideInInspector]
@@ -101,15 +102,17 @@ public class TiledMesh : MonoBehaviour
         // referencing the mesh of another object.
         if( filter_.sharedMesh != null && filter_.sharedMesh.name != name )
         {
+            // Re-create our mesh if it doesn't match our name. This seems to handle
+            // duplication nicely.
             MakeMesh();
         }
 
         OnValidate();
     }
 
+    // Force an update on start.
     void Start()
     {
-
         vertsChanged_ = true;
         uvsChanged_ = true;
         colorsChanged_ = true;
@@ -220,12 +223,14 @@ public class TiledMesh : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the color data for the vertices at the given cell position.
+    /// Set the color data for the vertices at the given cell position. Note tha color's alpha value will be ignored.
+    /// Use SetAlpha to change a cells alpha value.
     /// </summary>
     public void SetColors(IntVector2 pos, Color32 color)
     {
         //Debug.LogFormat("Setting mesh to {0} at {1}", color, pos);
         colorsChanged_ = true;
+        color = new Color32(color.r, color.g, color.b, visibleAlpha_);
         int colorIndex = (pos.y * Size_.x + pos.x) * 4;
         for (int i = 0; i < 4; ++i)
             colors_[colorIndex + i] = color;
@@ -238,6 +243,7 @@ public class TiledMesh : MonoBehaviour
     {
         SetColors(new IntVector2(x, y), color);
     }
+
 
 
     /// <summary>
@@ -261,7 +267,7 @@ public class TiledMesh : MonoBehaviour
         {
             vertsChanged_ = false;
             uvsChanged_ = true;
-            RefreshVerts();
+            PushVertsAndTris();
         }
 
         if (uvsChanged_)
@@ -286,7 +292,7 @@ public class TiledMesh : MonoBehaviour
 
     /// <summary>
     /// Assign the current color data to the mesh. Note this is called automatically when
-    /// changes are made via SetColors
+    /// changes are made via SetColors or SetVisble/Hidden
     /// </summary>
     void PushColors()
     {
@@ -336,7 +342,7 @@ public class TiledMesh : MonoBehaviour
     /// <summary>
     /// Assign the current vert and triangle data to the mesh. This DOES NOT cause allocations.
     /// </summary>
-    void RefreshVerts()
+    void PushVertsAndTris()
     {
         filter_.sharedMesh.Clear();
 
@@ -364,6 +370,44 @@ public class TiledMesh : MonoBehaviour
     //}
 
 
+    /// <summary>
+    /// Defines what this mesh considers a "visible" tile's alpha.
+    /// All cells with a non-zero alpha will be set to this value.
+    /// Future tiles set to visible will have their alpha set to this.
+    /// </summary>
+    /// <param name="alpha"></param>
+    public void SetVisibleAlpha( byte alpha )
+    {
+        visibleAlpha_ = alpha;
+        colorsChanged_ = true;
+        for( int i = 0; i < colors_.Length; ++i )
+        {
+            if (colors_[i].a != 0)
+                colors_[i].a = alpha;
+        }
+    }
+
+    /// <summary>
+    /// Sets the given cell to be visible (set's it's alpha value to match <seealso cref="visibleAlpha_"/>
+    /// </summary>
+    public void SetVisible(IntVector2 pos)
+    {
+        colorsChanged_ = true;
+        int colorIndex = (pos.y * Size_.x + pos.x) * 4;
+        for (int i = 0; i < 4; ++i)
+            colors_[colorIndex + i].a = visibleAlpha_;
+    }
+
+    /// <summary>
+    /// Sets the given cell to be visible (set's it's alpha value to 0
+    /// </summary>
+    public void SetHidden(IntVector2 pos)
+    {
+        colorsChanged_ = true;
+        int colorIndex = (pos.y * Size_.x + pos.x) * 4;
+        for (int i = 0; i < 4; ++i)
+            colors_[colorIndex + i].a = 0;
+    }
 
 
 
@@ -450,6 +494,12 @@ public class TiledMesh : MonoBehaviour
         uvs_ = new Vector2[cellCount * 4];
         colors_ = new Color32[cellCount * 4];
 
+        // Set our colors to default. This will make all cells invisible
+        // but allow you to show cells via SetVisible without messing
+        // with the the colors.
+        for (int i = 0; i < colors_.Length; ++i)
+            colors_[i] = new Color32(255, 255, 255, 0);
+
         //normals_ = new Vector3[cellCount * 4];
 
         BuildVerts();
@@ -496,7 +546,7 @@ public class TiledMesh : MonoBehaviour
                 //  |/      / |
                 //  2      2--3
 
-                // Set uvs to sensible defaults
+                // Set uvs to sensible defaults. Each cell will be the entire texture.
                 uvs_[vertIndex + 0] = new Vector2(0, 1);
                 uvs_[vertIndex + 1] = new Vector2(1, 1);
                 uvs_[vertIndex + 2] = new Vector2(0, 0);

@@ -106,6 +106,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
         {
             base.MapEditorGUI();
 
+            paintMode_ = (PaintMode)EditorGUILayout.EnumPopup("Paint Mode", paintMode_);
+
             selectedSprite_ = SelectionGrids.FromSprites(selectedSprite_, sprites_, 50, 150, ref scrollPos_);
 
 
@@ -138,7 +140,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
                 var col = oldGUIColor;
                 // Draw a semi-transparent image of our current tile on the cursor.
-                col.a = .15f;
+                col.a = .65f;
                 GUI.color = col;
                 // Vertical UVs are flipped in the scene...?
                 CustomGUI.SelectionGrids.DrawSprite(

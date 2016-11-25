@@ -77,7 +77,7 @@ namespace StevenUniverse.FanGame.World
         }
 
         /// <summary>
-        /// Retrieve the Tiled Mesh matching the given zero based sorting layer index. The mesh will be created if it doesn't yet exist.
+        /// Retrieve the Tiled Mesh matching the given zero based sorting layer index.
         /// </summary>
         public TiledMesh GetLayerMesh( int index )
         {

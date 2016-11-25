@@ -38,6 +38,8 @@ namespace StevenUniverse.FanGame.World
         ChunkMesh mesh_ = null;
         public ChunkMesh Mesh { get { return mesh_; } }
 
+        static float transparency_ = .15f;
+
         /// <summary>
         /// The height (z-position) of the chunk in world space.
         /// </summary>
@@ -216,7 +218,8 @@ namespace StevenUniverse.FanGame.World
             var layerMesh = GetLayerMesh(index.Layer_);
 
             layerMesh.SetUVs(index.position_, t.Sprite_.uv);
-            layerMesh.SetColors(index.position_, Color.white);
+            //layerMesh.SetColors(index.position_, Color.white);
+            layerMesh.SetVisible(index.position_);
 
             layerMesh.ImmediateUpdate();
         }
@@ -277,8 +280,9 @@ namespace StevenUniverse.FanGame.World
             sortingLayerDict_[index.position_].list_[index.SortingLayerIndex_] = null;
 
             var layerMesh = GetLayerMesh(index.Layer_);
-            
-            layerMesh.SetColors(index.position_, default(Color32));
+
+            //layerMesh.SetColors(index.position_, default(Color32));
+            layerMesh.SetHidden(index.position_);
 
             layerMesh.ImmediateUpdate();
         }
@@ -309,6 +313,26 @@ namespace StevenUniverse.FanGame.World
         {
             isLayerVisible_.Set(layer, true);
             mesh_.ShowLayer(layer);
+        }
+
+        /// <summary>
+        /// Makes all meshes in this chunk partially transparent.
+        /// </summary>
+        /// <param name="val"></param>
+        public void SetTransparent( bool val )
+        {
+            var layers = SortingLayer.layers;
+            for (int i = 0; i < layers.Length; ++i)
+            {
+                var mesh = mesh_.GetLayerMesh(0);
+                if (mesh == null)
+                    continue;
+
+                if( val )
+                {
+                    //mesh.SetVisibleAlpha(transparency_);
+                }
+            }
         }
 
         /// <summary>

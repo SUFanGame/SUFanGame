@@ -184,8 +184,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             panels_.Add(new HeightPanel());
 
             brushPanel_ = new BrushesPanel(panels_[0] as LayersPanel, brushes);
+            
 
             panels_.Add(brushPanel_);
+
+            panels_.Add(new BrushShapePanel(brushPanel_));
         }
 
 
@@ -277,7 +280,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 map.heightCutoff_ = CursorHeight_;
                 if ( map.cutoffType_ != CutoffType.NONE )
                 {
-                    map.OnCutoffHeightChanged();
+                    //map.OnCutoffHeightChanged();
                 }
                 return;
             }
@@ -288,7 +291,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 map.heightCutoff_ = CursorHeight_;
                 if (map.cutoffType_ != CutoffType.NONE)
                 {
-                    map.OnCutoffHeightChanged();
+                    //map.OnCutoffHeightChanged();
                 }
                 return;
             }

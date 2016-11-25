@@ -449,13 +449,20 @@ namespace StevenUniverse.FanGame.World
         /// Hides/Shows all chunks based on our current cutofftype.
         /// </summary>
         /// <param name="map"></param>
-        public void OnCutoffHeightChanged()
+        public void OnCutoffHeightChanged( bool transparent )
         {
             //Debug.Log("Cutoff update");
             foreach (var chunk in this)
             {
                 bool cutoff = cutoffType_.IsCutoff(heightCutoff_, chunk.Height_);
-                chunk.gameObject.SetActive(!cutoff);
+                if( transparent )
+                {
+                    chunk.SetTransparent(cutoff);
+                }
+                else
+                {
+                    chunk.gameObject.SetActive(!cutoff);
+                }
             }
         }
 

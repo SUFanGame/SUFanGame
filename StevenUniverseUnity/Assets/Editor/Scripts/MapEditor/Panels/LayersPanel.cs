@@ -18,7 +18,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             {
                 int lineCount = SortingLayer.layers.Length;
                 int w = 130;
-                int h = foldOut_ ? 18 + (lineCount * 15) + (4 * lineCount) : 22;
+                int h = Foldout_ ? 18 + (lineCount * 15) + (4 * lineCount) : 22;
                 int x = Screen.width - w - 15;
                 int y = 15;
 
@@ -26,7 +26,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
         }
 
-        static bool foldOut_ = true;
+        protected override string FoldoutTitle_
+        {
+            get
+            {
+                return "Shape";
+            }
+        }
+        
         static bool[] toggles_ = null;
         //static Map map_;
 
@@ -35,7 +42,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         public LayersPanel( )
         {
             //map_ = map;
-            foldOut_ = EditorPrefs.GetBool(PREFS_LAYERSFOLDOUT_NAME, true);
             var layers = SortingLayer.layers;
             int layerCount = layers.Length;
 
@@ -52,38 +58,24 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             {
                 toggles_[i] = map.GetLayerVisible(layers[i]);
             }
-            
-
-            foldOut_ = EditorGUILayout.Foldout(foldOut_, "Layers");
 
             EditorGUI.indentLevel++;
             var oldColor = GUI.contentColor;
 
             GUI.contentColor = Color.black;
-            if (foldOut_)
+            for (int i = layers.Length - 1; i >= 0; --i)
             {
+                bool userToggle = EditorGUILayout.ToggleLeft(layers[i].name, toggles_[i]);
 
-                for (int i = layers.Length - 1; i >= 0; --i)
+                if (userToggle != toggles_[i])
                 {
-                    bool userToggle = EditorGUILayout.ToggleLeft(layers[i].name, toggles_[i]);
-
-                    if (userToggle != toggles_[i])
-                    {
-                        map.SetLayerVisible(layers[i], userToggle);
-                        toggles_[i] = userToggle;
-                    }
+                    map.SetLayerVisible(layers[i], userToggle);
+                    toggles_[i] = userToggle;
                 }
             }
             GUI.color = oldColor;
 
             EditorGUI.indentLevel--;
-        }
-
-
-        public override void OnDisable()
-        {
-            base.OnDisable();
-            EditorPrefs.SetBool(PREFS_LAYERSFOLDOUT_NAME, foldOut_ );
         }
 
     }

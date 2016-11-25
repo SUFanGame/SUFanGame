@@ -4,44 +4,67 @@ using System.Collections.Generic;
 using UnityEditor;
 using StevenUniverse.FanGame.World;
 
-public abstract class MapEditorPanel
+namespace StevenUniverse.FanGameEditor.SceneEditing
 {
-    /// <summary>
-    /// Whether or not the mouse is in this panel.
-    /// </summary>
-    public bool ContainsMouse_ { get; private set; }
-    public abstract Rect Area_ { get; }
-
-    public virtual void OnSceneGUI( Map map )
+    public abstract class MapEditorPanel
     {
-        Handles.BeginGUI();
+        private bool foldout_ = false;
+        protected bool Foldout_ { get { return foldout_; } }
+        /// <summary>
+        /// Whether or not the mouse is in this panel.
+        /// </summary>
+        public bool ContainsMouse_ { get; private set; }
+        public abstract Rect Area_ { get; }
+        protected abstract string FoldoutTitle_ { get; }
 
-        GUILayout.BeginArea(Area_, EditorStyles.helpBox);
+        string EditorPrefs_FoldoutName_ { get { return GetType().Name + "Foldout"; } }
 
-        // Check if the mouse is contained in our area.
-        if (Event.current.isMouse)
+        public MapEditorPanel()
         {
-            // The mouse position will be reported relative to our current area
-            ContainsMouse_ = Area_.Contains(Event.current.mousePosition + Area_.position);
+            foldout_ = EditorPrefs.GetBool(EditorPrefs_FoldoutName_, true);
         }
 
-        OnRenderArea( map );
+        public virtual void OnSceneGUI(Map map)
+        {
+            Handles.BeginGUI();
 
-        GUILayout.EndArea();
-        Handles.EndGUI();
-    }
+            GUILayout.BeginArea(Area_, EditorStyles.helpBox);
 
-    protected abstract void OnRenderArea( Map map );
-    
-    /// <summary>
-    /// Panels can save relevant data to editorprefs here.
-    /// </summary>
-    public virtual void OnDisable()
-    {
-    }
+            // Check if the mouse is contained in our area.
+            if (Event.current.isMouse)
+            {
+                // The mouse position will be reported relative to our current area
+                ContainsMouse_ = Area_.Contains(Event.current.mousePosition + Area_.position);
+            }
 
-    public virtual void OnKeyDown(KeyCode key)
-    {
+            DrawFoldOut( map );
 
+            GUILayout.EndArea();
+            Handles.EndGUI();
+        }
+
+        private void DrawFoldOut( Map map )
+        {
+            foldout_ = EditorGUILayout.Foldout(foldout_, FoldoutTitle_);
+            if( foldout_ )
+            {
+                OnRenderArea(map);
+            }
+        }
+
+        protected abstract void OnRenderArea(Map map);
+
+        /// <summary>
+        /// Panels can save relevant data to editorprefs here.
+        /// </summary>
+        public virtual void OnDisable()
+        {
+            EditorPrefs.SetBool(EditorPrefs_FoldoutName_, foldout_);
+        }
+
+        public virtual void OnKeyDown(KeyCode key)
+        {
+
+        }
     }
 }
