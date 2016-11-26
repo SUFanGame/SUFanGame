@@ -15,6 +15,11 @@ namespace StevenUniverse.FanGameEditor
 
             var tar = target as Map;
 
+            if( GUILayout.Button("Hide Scene Mesh Lines") )
+            {
+
+            }
+
             if( GUILayout.Button("Clear"))
             {
                 tar.Clear();

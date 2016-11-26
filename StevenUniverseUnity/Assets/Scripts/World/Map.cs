@@ -79,6 +79,16 @@ namespace StevenUniverse.FanGame.World
         public CutoffType cutoffType_ = CutoffType.NONE;
         public int heightCutoff_ = 0;
 
+        /// <summary>
+        /// Inside the tiled mesh we rely on the alpha of cells to define an empty cell from within that class. Thus we can't
+        /// explicitly allow the user to set all tiles in the mesh to alpha of 0, since we then have no way of knowing ( from within the tiled mesh class,
+        /// ) which tiles are hidden and what aren't.
+        /// 
+        /// To that end we will track when meshes are being "hiddeN" and instead hide the renderers.
+        /// </summary>
+        [SerializeField,HideInInspector]
+        bool cutoffChunksHidden_ = false;
+
         [SerializeField]
         bool showDebugGUI_ = true;
          
@@ -446,24 +456,64 @@ namespace StevenUniverse.FanGame.World
         }
 
         /// <summary>
-        /// Hides/Shows all chunks based on our current cutofftype.
+        /// Sets the alpha value for the meshes on all "cut off" chunks.
         /// </summary>
         /// <param name="map"></param>
-        public void OnCutoffHeightChanged( bool transparent )
+        public void SetCutoffAlphaOnChunks( byte alpha )
         {
-            //Debug.Log("Cutoff update");
+            if( alpha == 0 )
+            {
+                HideCutoffChunks();
+                return;
+            }
+
+            if( cutoffChunksHidden_ && alpha != 0 )
+            {
+                ShowCutoffChunks();
+            }  
+
+            //Debug.Log("Set cutoff alpha" );
             foreach (var chunk in this)
             {
+                //Debug.Log("sETTING ALPHA TO " + alpha.ToString() + " in " + chunk.name );
+
                 bool cutoff = cutoffType_.IsCutoff(heightCutoff_, chunk.Height_);
-                if( transparent )
-                {
-                    chunk.SetTransparent(cutoff);
-                }
+
+                if (cutoff)
+                    chunk.SetVisibleAlpha(alpha);
                 else
+                    chunk.SetVisibleAlpha(255);
+            }
+        }
+
+        
+        public void HideCutoffChunks()
+        {
+            if( cutoffChunksHidden_ == false )
+            {
+                foreach( var chunk in this )
                 {
-                    chunk.gameObject.SetActive(!cutoff);
+                    bool cutoff = cutoffType_.IsCutoff(heightCutoff_, chunk.Height_);
+
+                    chunk.Mesh.enabled = !cutoff;
                 }
             }
+
+            cutoffChunksHidden_ = true;
+        }
+
+        public void ShowCutoffChunks()
+        {
+            if( cutoffChunksHidden_ == true )
+            {
+                foreach (var chunk in this)
+                {
+                    bool cutoff = cutoffType_.IsCutoff(heightCutoff_, chunk.Height_);
+
+                    chunk.Mesh.enabled = true;
+                }
+            }
+            cutoffChunksHidden_ = false;
         }
 
         public void RefreshMesh()

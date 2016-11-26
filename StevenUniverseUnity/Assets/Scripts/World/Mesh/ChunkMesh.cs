@@ -14,11 +14,12 @@ namespace StevenUniverse.FanGame.World
     [ExecuteInEditMode]
     public class ChunkMesh : MonoBehaviour
     {
-        [SerializeField,HideInInspector]
+        [SerializeField]
         TiledMesh[] meshes_ = null;
 
         [SerializeField, HideInInspector]
         IntVector2 size_;
+        
         /// <summary>
         /// The size of each of the tiled meshes.
         /// </summary>
@@ -56,7 +57,6 @@ namespace StevenUniverse.FanGame.World
             mesh.renderer_.sortingOrder = (int)transform.position.z * 100 + layerIndex;
 
             meshes_[layerIndex] = mesh;
-
             mesh.ImmediateUpdate();
             //Debug.LogFormat("Creating mesh of size {0}", size);
 

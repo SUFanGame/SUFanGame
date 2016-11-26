@@ -37,7 +37,7 @@ public class TiledMeshInspector : Editor
     static void DrawGizmos(TiledMesh mesh, GizmoType gizmoType)
     {
         //var offset = mesh.transform.position + Vector3.one * .5f;
-        Gizmos.DrawWireCube( mesh.transform.position + (Vector3)mesh.Size_ / 2f + Vector3.forward * 5, mesh.Size_);
+        //Gizmos.DrawWireCube( mesh.transform.position + (Vector3)mesh.Size_ / 2f + Vector3.forward * 5, mesh.Size_);
 
         if (mesh.showLayerOrder_)
         { 

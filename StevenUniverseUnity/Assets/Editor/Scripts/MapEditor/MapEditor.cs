@@ -44,6 +44,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         static List<MapEditorPanel> panels_ = new List<MapEditorPanel>();
 
         BrushesPanel brushPanel_;
+        HeightPanel heightPanel_;
 
         MapEditorBrush Brush_ { get { return brushPanel_.SelectedBrush_; } }
 
@@ -67,8 +68,9 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         {
             base.OnGUI();
 
+            var map = SelectedMap_;
 
-            if (SelectedMap_ == null)
+            if (map == null)
             {
                 GUILayout.Label("No map selected");
                 return;
@@ -76,7 +78,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
 
             GUI.enabled = false;
-            EditorGUILayout.ObjectField("Current Map", SelectedMap_, typeof(Map), true);
+            EditorGUILayout.ObjectField("Current Map", map, typeof(Map), true);
             GUI.enabled = true;
 
             if (!SceneEditorUtil.EditMode_)
@@ -134,6 +136,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             CursorHeight_ = EditorPrefs.GetInt(PREFS_CURSORHEIGHT_NAME, 0);
 
+
             //Debug.Log("ONENABLE");
 
             instance_ = this;
@@ -154,7 +157,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             base.OnDisable();
 
             EditorPrefs.SetInt(PREFS_CURSORHEIGHT_NAME, CursorHeight_);
-
             //Debug.Log("ONDISABLE");
 
             instance_ = null;
@@ -181,11 +183,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             brushes.Add(new EraseBrush());
 
             panels_.Add(new LayersPanel());
-            panels_.Add(new HeightPanel());
+
+            // Need to keep track of height panel to reference CutoffAlpha when changing heights.
+            heightPanel_ = new HeightPanel();
+            panels_.Add(heightPanel_);
 
             brushPanel_ = new BrushesPanel(panels_[0] as LayersPanel, brushes);
-            
-
             panels_.Add(brushPanel_);
 
             panels_.Add(new BrushShapePanel(brushPanel_));
@@ -280,7 +283,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 map.heightCutoff_ = CursorHeight_;
                 if ( map.cutoffType_ != CutoffType.NONE )
                 {
-                    //map.OnCutoffHeightChanged();
+                    map.SetCutoffAlphaOnChunks( (byte)(heightPanel_.CutoffAlpha_ * 255f) );
+                    EditorUtility.SetDirty(map.gameObject);
                 }
                 return;
             }
@@ -291,7 +295,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
                 map.heightCutoff_ = CursorHeight_;
                 if (map.cutoffType_ != CutoffType.NONE)
                 {
-                    //map.OnCutoffHeightChanged();
+                    map.SetCutoffAlphaOnChunks( (byte)(heightPanel_.CutoffAlpha_ * 255f) );
+                    EditorUtility.SetDirty(map.gameObject);
                 }
                 return;
             }

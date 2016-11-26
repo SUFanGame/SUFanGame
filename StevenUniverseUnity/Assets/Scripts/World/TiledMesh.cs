@@ -40,7 +40,8 @@ public class TiledMesh : MonoBehaviour
     public MeshRenderer renderer_ { get; private set; }
 
     // See SetVisibleAlpha
-    byte visibleAlpha_ = 55;
+    [SerializeField,HideInInspector]
+    int visibleAlpha_ = 255;
 
     [SerializeField,HideInInspector]
     IntVector2 lastSize_;
@@ -96,11 +97,15 @@ public class TiledMesh : MonoBehaviour
         filter_ = GetComponent<MeshFilter>();
         renderer_ = GetComponent<MeshRenderer>();
 
+#if UNITY_EDITOR
+        UnityEditor.EditorUtility.SetSelectedWireframeHidden(renderer_, true);
+#endif
+
         // If we duplicate an object with a tiled mesh, the mesh doesn't get duplicated with it
         // Since the mesh is an asset the new object instead has a reference to the original object's mesh
         // If we check against the name of the new object we can know if the newly created object's mesh is 
         // referencing the mesh of another object.
-        if( filter_.sharedMesh != null && filter_.sharedMesh.name != name )
+        if ( filter_.sharedMesh != null && filter_.sharedMesh.name != name )
         {
             // Re-create our mesh if it doesn't match our name. This seems to handle
             // duplication nicely.
@@ -230,7 +235,7 @@ public class TiledMesh : MonoBehaviour
     {
         //Debug.LogFormat("Setting mesh to {0} at {1}", color, pos);
         colorsChanged_ = true;
-        color = new Color32(color.r, color.g, color.b, visibleAlpha_);
+        color = new Color32(color.r, color.g, color.b, (byte)visibleAlpha_);
         int colorIndex = (pos.y * Size_.x + pos.x) * 4;
         for (int i = 0; i < 4; ++i)
             colors_[colorIndex + i] = color;
@@ -378,6 +383,7 @@ public class TiledMesh : MonoBehaviour
     /// <param name="alpha"></param>
     public void SetVisibleAlpha( byte alpha )
     {
+        //Debug.Log("Setting alpha for " + name + ":" + alpha.ToString() );  
         visibleAlpha_ = alpha;
         colorsChanged_ = true;
         for( int i = 0; i < colors_.Length; ++i )
@@ -395,7 +401,7 @@ public class TiledMesh : MonoBehaviour
         colorsChanged_ = true;
         int colorIndex = (pos.y * Size_.x + pos.x) * 4;
         for (int i = 0; i < 4; ++i)
-            colors_[colorIndex + i].a = visibleAlpha_;
+            colors_[colorIndex + i].a = (byte)visibleAlpha_;
     }
 
     /// <summary>
