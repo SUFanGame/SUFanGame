@@ -63,7 +63,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         }
 
 
-        protected override void OnRenderArea(Map map)
+        protected override void OnPanelGUI(Map map)
         {
             GUILayout.BeginHorizontal();
             GUILayout.Space(20f);

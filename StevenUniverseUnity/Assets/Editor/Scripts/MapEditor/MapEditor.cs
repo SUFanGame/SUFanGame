@@ -122,10 +122,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             }
 
             SceneView.currentDrawingSceneView.Repaint();
-
-
-
-
         }
 
 
@@ -191,7 +187,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             brushPanel_ = new BrushesPanel(panels_[0] as LayersPanel, brushes);
             panels_.Add(brushPanel_);
 
-            panels_.Add(new BrushShapePanel(brushPanel_));
+            //panels_.Add(new BrushShapePanel(brushPanel_));
         }
 
 

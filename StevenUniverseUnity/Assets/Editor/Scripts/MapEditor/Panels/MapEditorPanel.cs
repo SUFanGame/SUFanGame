@@ -48,11 +48,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
             foldout_ = EditorGUILayout.Foldout(foldout_, FoldoutTitle_);
             if( foldout_ )
             {
-                OnRenderArea(map);
+                OnPanelGUI(map);
             }
         }
 
-        protected abstract void OnRenderArea(Map map);
+        protected abstract void OnPanelGUI(Map map);
 
         /// <summary>
         /// Panels can save relevant data to editorprefs here.

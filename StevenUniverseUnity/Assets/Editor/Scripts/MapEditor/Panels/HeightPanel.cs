@@ -49,7 +49,7 @@ public class HeightPanel : MapEditorPanel
     }
 
 
-    protected override void OnRenderArea(Map map)
+    protected override void OnPanelGUI(Map map)
     {
 
         var oldWidth = EditorGUIUtility.labelWidth;

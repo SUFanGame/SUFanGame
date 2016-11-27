@@ -13,10 +13,8 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
     public class PaintTileBrush : MapEditorBrush
     {
         public override string Name_ { get { return "Paint Tile"; } }
-
         protected override string IconTextureName_ { get { return "pencil"; } }
 
-        const string PREFS_PAINTBRUSHSIZE_NAME = "MEPaintBrushSize";
         const string PREFS_SELECTEDSPRITE_NAME = "MEPaintSpriteIndex";
 
         int selectedSprite_ = 0;
@@ -30,9 +28,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
         public bool shiftBeingHeld_;
 
+        BrushArea area_ = new BrushArea("MEPaintBrushSize");
+
         public PaintTileBrush( Tile[] tiles ) : base()
         {
-            Size_ = EditorPrefs.GetInt(PREFS_PAINTBRUSHSIZE_NAME, 0);
             selectedSprite_ = EditorPrefs.GetInt(PREFS_SELECTEDSPRITE_NAME, 0);
             tiles_ = tiles;
             sprites_ = tiles.Select(t => t.Sprite_).ToList();
@@ -61,7 +60,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
             //Debug.Log("Position in brush:" + pos);
 
-            foreach (var p in cursorPoints_)
+            foreach (var p in area_.Points_ )
             {
                 var areaPos = (IntVector3)p + pos;
                 var chunk = map.GetChunkWorld(areaPos);
@@ -98,7 +97,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
         {
             base.OnDisable();
 
-            EditorPrefs.SetInt(PREFS_PAINTBRUSHSIZE_NAME, Size_);
+            area_.OnDisable();
             EditorPrefs.SetInt(PREFS_SELECTEDSPRITE_NAME, selectedSprite_);
         }
 
@@ -107,6 +106,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
             base.MapEditorGUI();
 
             paintMode_ = (PaintMode)EditorGUILayout.EnumPopup("Paint Mode", paintMode_);
+            area_.OnGUI();
 
             selectedSprite_ = SelectionGrids.FromSprites(selectedSprite_, sprites_, 50, 150, ref scrollPos_);
 
@@ -124,13 +124,10 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
             var cursorColor = shiftBeingHeld_ ? Color.green : Color.white;
             Gizmos.color = cursorColor;
-            var offset = Vector2.one * .5f;
-            Gizmos.DrawWireCube(cursorPos + Vector3.back + (Vector3)offset, Vector3.one * Size_ * 2 + Vector3.one * .5f);
 
+            area_.RenderCursor();
 
-
-
-            foreach ( var p in cursorPoints_)
+            foreach (var p in area_.Points_)
             {
                 // Convert world space to gui space
                 var bl = HandleUtility.WorldToGUIPoint(cursorPos + p);
@@ -156,6 +153,12 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
             Gizmos.color = oldGizmoColor;
 
             //base.RenderCursor();
+        }
+
+        public override void OnScroll(Map map, float scrollValue)
+        {
+            base.OnScroll(map, scrollValue);
+            area_.OnScroll(scrollValue);
         }
     }
 }

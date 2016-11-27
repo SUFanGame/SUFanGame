@@ -50,7 +50,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         }
 
         
-        protected override void OnRenderArea( Map map )
+        protected override void OnPanelGUI( Map map )
         {
             var layers = SortingLayer.layers;
             int layerCount = layers.Length;

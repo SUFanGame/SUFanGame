@@ -25,7 +25,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
         SortingLayer? dragLayer_ = null;
         IntVector3 dragOriginPoint_;
 
+        BrushArea area_ = new BrushArea(PREFS_ERASEBRUSHSIZE_NAME);
+
         const string PREFS_ERASEBRUSHSIZE_NAME = "MEEraserBrushSize";
+
+
 
         protected override string IconTextureName_
         {
@@ -45,11 +49,11 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
         public EraseBrush() : base()
         {
-            Size_ = EditorPrefs.GetInt(PREFS_ERASEBRUSHSIZE_NAME, 0);
         }
 
         public override void RenderCursor( Map map )
         {
+
             shiftBeingHeld_ = Event.current.shift;
             if( !shiftBeingHeld_ && dragging_ )
             {
@@ -61,8 +65,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
             Gizmos.color = Color.red;
             var cursorPos = SceneEditorUtil.GetCursorPosition();
 
-            var offset = Vector2.one * .5f;
-            Gizmos.DrawWireCube(cursorPos + (Vector3)offset + Vector3.back * 10, Vector3.one * (Size_ * 2 + 1));
+            //var offset = Vector2.one * .5f;
+            ////Gizmos.DrawWireCube(cursorPos + (Vector3)offset + Vector3.back * 10, Vector3.one * (area_.Size_ * 2 + 1));
+            //foreach( var p in area_.Points_)
+            //{
+            //    Gizmos.DrawWireCube(cursorPos + (Vector3)offset + Vector3.back  + p, Vector3.one *.95f );
+            //}
+            area_.RenderCursor();
 
             //base.RenderCursor( map );
             Gizmos.color = oldColor;
@@ -147,7 +156,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
                 worldPos.z = dragOriginPoint_.z;
                 
                 // Iterate over all our cursor points and set the target meshes to null.
-                foreach (var p in cursorPoints_)
+                foreach (var p in area_.Points_)
                 {
                     var areaPos = worldPos + (IntVector3)p;
 
@@ -172,12 +181,20 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
                         var mesh = chunk.GetLayerMesh(dragLayer_.Value);
                         var localPos = (IntVector2)areaPos - (IntVector2)chunk.transform.position;
                         Undo.RecordObject(mesh, "Hide colors");
-                        mesh.SetColors(localPos, default(Color32));
+                        mesh.SetHidden(localPos);
                         mesh.ImmediateUpdate();
                     }
                 }
             }
 
+        }
+
+        public override void MapEditorGUI()
+        {
+            base.MapEditorGUI();
+
+
+            area_.OnGUI();
         }
 
         void DragWarning()
@@ -199,8 +216,14 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
         public override void OnDisable()
         {
             base.OnDisable();
-            
-            EditorPrefs.SetInt(PREFS_ERASEBRUSHSIZE_NAME, Size_);
+            area_.OnDisable();
+        }
+
+        public override void OnScroll(Map map, float scrollValue)
+        {
+            base.OnScroll(map, scrollValue);
+
+            area_.OnScroll(scrollValue);
         }
 
         /// <summary>
@@ -244,7 +267,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing.Brushes
 
             //Debug.LogFormat("CursorPoints: {0}", string.Join(",", cursorPoints_.Select(p => p.ToString()).ToArray()));
 
-            foreach (var p in cursorPoints_)
+            foreach (var p in area_.Points_)
             {
                 var areaPos = (IntVector2)p + pos;
                 var chunk = map.GetTopChunk(areaPos);

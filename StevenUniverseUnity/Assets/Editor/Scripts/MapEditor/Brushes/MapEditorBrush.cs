@@ -11,54 +11,6 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 {
     public abstract class MapEditorBrush
     {
-        int size_;
-        /// <summary>
-        /// The size of the cursor
-        /// </summary>
-        public virtual int Size_
-        {
-            get
-            {
-                return size_;
-            }
-            set
-            {
-                value = Mathf.Clamp(value, 0, int.MaxValue);
-
-                //if (value == size_)
-                //return;
-
-                cursorPoints_.Clear();
-                // 0 == one tile
-                if ( value == 0 )
-                {
-                    size_ = 0;
-                    cursorPoints_.Add(IntVector2.zero);
-                    return;
-                }
-
-                // If the size is greater than 0 then we'll cache our points list so we can quickly apply
-                // the effect to our target area.
-
-                size_ = value;
-
-                int iterSize = size_ * 2 + 1;
-
-                IntVector2 half = (IntVector2.one * iterSize) / 2;
-
-                for (int x = -half.x; x < half.x + 1; ++x)
-                {
-                    for (int y = -half.y; y < half.y + 1; ++y)
-                    {
-                        cursorPoints_.Add( new IntVector2(x, y) );
-                    }
-
-                }
-            }
-        }
-
-        // List of points affected by our cursor.
-        protected List<IntVector2> cursorPoints_ = new List<IntVector2>();
 
         public virtual string Name_ { get { return "Map Editor Brush"; } }
         /// <summary>
@@ -81,7 +33,7 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
         public MapEditorBrush()
         {
-            cursorPoints_.Add(IntVector2.zero);
+            //cursorPoints_.Add(IntVector2.zero);
 
             if( brushTextures_ == null )
             {
@@ -101,13 +53,13 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// </summary>
         public virtual void OnMouseDown( Map map, IntVector3 pos )
         {
-            for( int i = 0; i < cursorPoints_.Count; ++i )
-            {
-                IntVector3 targetPoint = pos + (IntVector3)cursorPoints_[i];
+            //for( int i = 0; i < cursorPoints_.Count; ++i )
+            //{
+            //    IntVector3 targetPoint = pos + (IntVector3)cursorPoints_[i];
 
-                AffectMapTile(map, targetPoint);
+            //    AffectMapTile(map, targetPoint);
 
-            }
+            //}
         }
 
         /// <summary>
@@ -148,31 +100,31 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
         /// <param name="scrollValue"></param>
         public virtual void OnScroll( Map map, float scrollValue )
         {
-            var e = Event.current;
+            //var e = Event.current;
 
-            if (e.shift)
-                e.Use();
+            //if (e.shift)
+            //    e.Use();
 
-            if (scrollValue < 0)
-            {
-                Size_++;
-            }
-            else if (scrollValue > 0)
-            {
-                Size_--;
-            }
+            //if (scrollValue < 0)
+            //{
+            //    //Size_++;
+            //}
+            //else if (scrollValue > 0)
+            //{
+            //    //Size_--;
+            //}
         }
 
         public virtual void RenderCursor( Map map )
         {
 
-            var cursorPos = SceneEditorUtil.GetCursorPosition();
+            //var cursorPos = SceneEditorUtil.GetCursorPosition();
 
-            var offset = Vector2.one * .5f;
-            foreach( var pos in cursorPoints_ )
-            {
-                Gizmos.DrawWireCube(cursorPos + pos + Vector3.back + (Vector3)offset, Vector3.one);
-            }
+            //var offset = Vector2.one * .5f;
+            //foreach( var pos in cursorPoints_ )
+            //{
+            //    Gizmos.DrawWireCube(cursorPos + pos + Vector3.back + (Vector3)offset, Vector3.one);
+            //}
         }
 
         /// <summary>
