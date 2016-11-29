@@ -112,14 +112,15 @@ namespace StevenUniverse.FanGameEditor.SceneEditing
 
             if (!MouseIsOverPanels_)
             {
-                //var mousePos = Event.current.mousePosition + Vector2.right * 10;
-                //var mouseWorldPos = (IntVector3)HandleUtility.GUIPointToWorldRay(mousePos).origin;
-                //mouseWorldPos.z = CursorHeight_;
+                var mousePos = Event.current.mousePosition + Vector2.right * 10;
+                var mouseWorldPos = (IntVector3)HandleUtility.GUIPointToWorldRay(mousePos).origin;
+                mouseWorldPos.z = CursorHeight_;
 
-                //Handles.BeginGUI();
-                //EditorGUI.LabelField(new Rect(mousePos.x, mousePos.y, 100f, 100f), mouseWorldPos.ToString("0") );
-                //Handles.EndGUI();
+                Handles.BeginGUI();
+                EditorGUI.LabelField(new Rect(0,Screen.height - 65, 100f, 100f), mouseWorldPos.ToString("0") );
+                Handles.EndGUI();
             }
+
 
             SceneView.currentDrawingSceneView.Repaint();
         }

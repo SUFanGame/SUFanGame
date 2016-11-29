@@ -13,6 +13,17 @@ namespace StevenUniverse.FanGame.World
     [RequireComponent(typeof(SpriteRenderer))]
     public class Tile : MonoBehaviour
     {
+        [SerializeField]
+        Mode mode_ = Mode.Normal;
+        public Mode Mode_ { get { return mode_; } }
+
+        [SerializeField]
+        bool isGrounded_ = false;
+        /// <summary>
+        /// Grounded tiles prevent pathabilty on tiles below them (Elevation wise).
+        /// </summary>
+        public bool IsGrounded_ { get { return isGrounded_; } }
+
         public Sprite Sprite_
         {
             get { return Renderer_.sprite; }
@@ -45,20 +56,16 @@ namespace StevenUniverse.FanGame.World
                 return SortingLayerUtil.GetLayerFromID(renderer_.sortingLayerID);
             }
         }
-
-        //[Tooltip( "Used when sorting tiles, for tiles that are intended to be used only in Tile Groups")]
-        //[SerializeField]
-        //bool groupExclusive_ = false;
-        //[SerializeField]
-        //bool isGrounded_ = false;
-        //[SerializeField]
-        //Mode mode_;
-
         public enum Mode
         {
+            // Normal tiles don't affect pathability
             Normal,
+            // Surface tiles are considered pathable if they're at the top of a tile stack.
             Surface,
+            // Transitional tiles are pathable and allow pathing to move up or down one level into adjacent nodes if
+            // they're at the top of a tile stack.
             Transitional,
+            // Collidable tiles prevent pathing if they're at the top of a tile stack.
             Collidable
         }
         

@@ -8,8 +8,10 @@ namespace StevenUniverse.FanGame.StrategyMap
     /// <summary>
     /// A node in the strategy graph.
     /// </summary>
+    [System.Serializable]
     public class Node
     {
+        
         List<Node> neighbours_ = null;
         // Read only list of neighbours.
         IList<Node> neighboursReadOnly_ = null;
@@ -20,6 +22,7 @@ namespace StevenUniverse.FanGame.StrategyMap
         
         public IntVector3 Pos_ { get; private set; }
         public PathType PathType_ { get; private set; }
+        public bool IsGrounded_ { get; private set; }
 
         List<MonoBehaviour> objects_ = null;
         /// <summary>
@@ -50,10 +53,11 @@ namespace StevenUniverse.FanGame.StrategyMap
             objects_.Remove(obj);
         }
 
-        public Node( IntVector3 pos, PathType pathType )
+        public Node( IntVector3 pos, PathType pathType, bool isGrounded = false )
         {
             Pos_ = pos;
             PathType_ = pathType;
+            IsGrounded_ = isGrounded;
         }
 
         public void FormConnection( Node other )

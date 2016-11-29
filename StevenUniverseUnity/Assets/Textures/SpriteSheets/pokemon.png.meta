@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 66cba55b8ab8a3147b8e671b7eaabfed
-timeCreated: 1479779500
+timeCreated: 1480387234
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -18,6 +18,9 @@ TextureImporter:
     21300022: pokemon_11
     21300024: pokemon_12
     21300026: pokemon_13
+    21300028: pokemon_14
+    21300030: pokemon_15
+    21300032: pokemon_16
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -148,8 +151,8 @@ TextureImporter:
       name: pokemon_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
+        x: 64
+        y: 96
         width: 16
         height: 16
       alignment: 6
@@ -161,7 +164,7 @@ TextureImporter:
       name: pokemon_7
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 80
         width: 16
         height: 16
@@ -174,7 +177,7 @@ TextureImporter:
       name: pokemon_8
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 80
         width: 16
         height: 16
@@ -187,7 +190,7 @@ TextureImporter:
       name: pokemon_9
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 80
         width: 16
         height: 16
@@ -200,7 +203,7 @@ TextureImporter:
       name: pokemon_10
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 80
         width: 16
         height: 16
@@ -213,7 +216,7 @@ TextureImporter:
       name: pokemon_11
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 80
         width: 16
         height: 16
@@ -226,7 +229,7 @@ TextureImporter:
       name: pokemon_12
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 80
         width: 16
         height: 16
@@ -239,8 +242,47 @@ TextureImporter:
       name: pokemon_13
       rect:
         serializedVersion: 2
+        x: 96
+        y: 80
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: pokemon_14
+      rect:
+        serializedVersion: 2
         x: 112
         y: 80
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: pokemon_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: pokemon_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
         width: 16
         height: 16
       alignment: 6

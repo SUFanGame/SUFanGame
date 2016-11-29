@@ -185,6 +185,7 @@ namespace StevenUniverse.FanGame.World
 
         /// <summary>
         /// Retrieve the topmost visible chunk at the given position.
+        /// This will ignore chunks that have no tiles at the given position.
         /// Returns null if no chunks are found.
         /// </summary>
         public Chunk GetTopChunk( IntVector2 worldPos )
@@ -552,6 +553,13 @@ namespace StevenUniverse.FanGame.World
             DestroyImmediate(chunk.gameObject);
         }
 
+        public IEnumerator<KeyValuePair<IntVector2,List<Chunk>>> GetChunkStackEnumerator()
+        {
+            foreach( var pair in stackDict_ )
+            {
+                yield return new KeyValuePair<IntVector2, List<Chunk>>(pair.Key, pair.Value.value_);
+            }
+        }
 
         public IEnumerator<Chunk> GetEnumerator()
         {

@@ -14,23 +14,28 @@ namespace StevenUniverse.FanGame.StrategyMap
 {
     // TODO: Cache and reuse collections in pathfinding funcs
 
-    public class Grid : MonoBehaviour
+        [ExecuteInEditMode]
+    public class Grid : MonoBehaviour, IEnumerable<Node>
     {
-        GridSelectionBehaviour selection_;
-
         // Dictionary mapping nodes to their 3D position ( x, y, elevation )
+        //[HideInInspector]
         Dictionary<IntVector3, Node> nodeDict_ = new Dictionary<IntVector3, Node>();
 
         // Dictionary mapping each 2D position to the highest walkable node in that position.
+        //[HideInInspector]
         Dictionary<IntVector2, int> heightMap_ = new Dictionary<IntVector2, int>();
 
         // List of any objects added to the map.
+        [SerializeField]
+        //[HideInInspector]
         List<MonoBehaviour> objects_ = new List<MonoBehaviour>();
 
         /// <summary>
         /// The current size of the map in tiles.
         /// </summary>
         public IntVector3 Size { get; private set; }
+
+        public int NodeCount_ { get { return nodeDict_.Count; } }
 
         public static Grid Instance { get; private set; }
 
@@ -44,9 +49,9 @@ namespace StevenUniverse.FanGame.StrategyMap
         void Awake()
         {
             Instance = this;
-            selection_ = GetComponent<GridSelectionBehaviour>();
+            //selection_ = GetComponent<GridSelectionBehaviour>();
             // Register to receieve user clicks on the grid.
-            selection_.OnClicked_ += HandleClick;
+            //selection_.OnClicked_ += HandleClick;
         }
 
         /// <summary>
@@ -459,65 +464,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
             yield return null;
 
-            // Form connections between adjacent nodes. Right now this only accounts
-            // for ground units. If units can fly we'll need to modify things a bit - push
-            // connection forming out to when pathfinding is actually called or model a second set of node adjacency data
-            // to account for flying units
-            foreach( var pair in nodeDict_ )
-            {
-                var node = pair.Value;
-                var pos = node.Pos_;
-
-                foreach( var dir in Directions2D.Quadrilateral )
-                {
-                    var adj = pos + dir;
-
-                    /// <summary>
-                    /// From a surface tiles you can only move to surface tiles at the same height or transitional ties
-                    /// at the same height or 1 lower.
-                    /// </summary>
-                    if ( node.PathType_ == Node.PathType.Surface )
-                    {
-                        // Check for adjacent node at the same height.
-                        var adjNode = GetNode(adj);
-                        if (adjNode != null)
-                            node.FormConnection(adjNode);
-
-                        // Check for adjacent transitional node one below
-                        adjNode = GetNode(adj + new IntVector3(0,0,-1));
-                        if( adjNode != null && adjNode.PathType_ == Node.PathType.Transitional )
-                        {
-                            node.FormConnection(adjNode);
-                        }
-                        adjNode = GetNode(adj + new IntVector3(0,0,1));
-                        if (adjNode != null && adjNode.PathType_ == Node.PathType.Transitional)
-                        {
-                            node.FormConnection(adjNode);
-                        }
-                    }
-
-                    /// <summary>
-                    /// For transitional tiles you can only move to surface or transitional tile at the same height
-                    /// or 1 higher
-                    /// </summary>
-                    if ( node.PathType_ == Node.PathType.Transitional )
-                    {
-                        // Check for adjacent node at the same height.
-                        var adjNode = GetNode(adj);
-                        if (adjNode != null)
-                            node.FormConnection(adjNode);
-
-                        // Check for adjacent node one above
-                        adjNode = GetNode(adj + new IntVector3(0,0,1) );
-                        if (adjNode != null)
-                            node.FormConnection(adjNode);
-                        //// Check for adjacent node one below
-                        adjNode = GetNode(adj + new IntVector3(0,0,-1) );
-                        if (adjNode != null)
-                           node.FormConnection(adjNode);
-                    }
-                }
-            }
+            FormConnections();
 
             Size = tiles.Size;
 
@@ -539,20 +486,185 @@ namespace StevenUniverse.FanGame.StrategyMap
         // Top "Collidable" tiles prevent pathability in that cell. Top "Surface" or "Transitional" mean
         // the cell is pathable. "Grounded" tiles can be below other pathable or collidable tiles so  all tiles must be iterated though.
 
+        // Figure out if this will work? Do we need to iterate through each stack of tiles on in each chunk in the stack? If so that's not too hard via chunkstacks
         public void BuildFromMap( Map map )
         {
-            foreach( var chunk in map )
+
+            nodeDict_.Clear();
+            heightMap_.Clear();
+            //Debug.Log("BuildingMap");
+            // We'll iterate through each chunkstack ( which are divided by chunk index )
+            // Chunkstacks are ordered from highest to lowest.
+            var chunkStackEnumerator = map.GetChunkStackEnumerator();
+            while( chunkStackEnumerator.MoveNext() )
             {
-                foreach( var itPair in chunk )
+                // Within each chunk in the stack we'll iterate through all tile stacks
+                // until we find one we can process. If we build a node at any cell then
+                // we'll consider that cell finished? <-- Doesn't work since we need to account for tiles "behind" other tiles
+                foreach ( var chunk in chunkStackEnumerator.Current.Value )
                 {
-                    int height = chunk.Height_;
-                    var index = itPair.Key;
-                    var tile = itPair.Value;
-                    IntVector3 pos3D = new IntVector3(index.position_.x, index.position_.y, height);
-                    IntVector2 pos2D = index.position_;
-                    var layer = index.Layer_;
+                    var tileStackEnumerator = chunk.GetTileStackEnumerator();
+                   
+                    while( tileStackEnumerator.MoveNext() )
+                    {
+                        var localPos = tileStackEnumerator.Current.Key;
+                        var worldPos = (IntVector3)localPos + chunk.GridPosition_;
+                        var tileStack = tileStackEnumerator.Current.Value;
+                        //var tileStack = chunk.GetTileStackLocal(localPos);
+
+                        bool pathable = false;
+                        bool collidable = false;
+                        bool grounded = false;
+                        bool transitional = false;
+
+                        //if (tileStack == null)
+                        //    continue;
+
+                        //var stack = chunk.GetTileStackLocal(localPos);
+
+
+                        //if (stack == null)
+                        //{
+                        //    Debug.Log("Unable to retrieve stack explicitly locally");
+                        //}
+                        ////else
+                        ////{
+                        ////    Debug.Log("Was able to retrieve stack explicitly");
+                        ////}
+
+                        //if (tileStack == null)
+                        //{
+                        //    Debug.LogFormat("Tile stack at worldpos {0}, localPos {1} in chunk {2} was null...", worldPos, localPos, chunk.name);
+                        //}
+
+
+
+                        //foreach ( var tile in tileStack )
+                        for (int i = tileStack.Count - 1; i >= 0; --i)
+                        {
+                            var tile = tileStack[i];
+                            // Ignore "normal" tiles
+                            if (tile == null || tile.Mode_ == Tile.Mode.Normal)
+                                continue;
+
+                            // If this node is still not collidable and this tile is pathable it means this node is pathable unless
+                            // a node above us is grounded.
+                            if (!collidable && (tile.Mode_ == Tile.Mode.Surface || tile.Mode_ == Tile.Mode.Transitional))
+                            {
+                                var posAbove = worldPos + new IntVector3(0, 0, 1);
+                                // Check if the tile node above us is "Grounded"
+                                Node nodeAbove;
+                                if (nodeDict_.TryGetValue(posAbove, out nodeAbove))
+                                {
+                                    // If the node above this node is grounded it means this one is unpathable
+                                    if (nodeAbove.IsGrounded_)
+                                    {
+                                        collidable = true;
+                                    }
+                                }
+
+                                if (!collidable)
+                                {
+                                    transitional = tile.Mode_ == Tile.Mode.Transitional;
+                                    pathable = true;
+                                }
+                            }
+
+                            if (tile.Mode_ == Tile.Mode.Collidable)
+                            {
+                                collidable = true;
+                            }
+
+                            if (tile.IsGrounded_)
+                                grounded = true;
+                        }
+
+                        if (!pathable)
+                            continue;
+
+                        var node = new Node(worldPos, transitional ? Node.PathType.Transitional : Node.PathType.Surface, grounded);
+                        nodeDict_.Add(worldPos, node);
+
+                        IntVector2 pos2D = (IntVector2)worldPos;
+
+                        // Populate our height map
+                        int existingHeight;
+                        if (!heightMap_.TryGetValue(pos2D, out existingHeight))
+                            heightMap_[pos2D] = chunk.Height_;
+                        else
+                        {
+                            heightMap_[pos2D] = Mathf.Max(chunk.Height_, existingHeight);
+                        }
+                    }
+
+ 
                 }
             }
+        }
+
+        // Form connections between adjacent nodes. Right now this only accounts
+        // for ground units. If units can fly we'll need to modify things a bit - push
+        // connection forming out to when pathfinding is actually called or model a second set of node adjacency data
+        // to account for flying units
+        void FormConnections()
+        {
+
+            foreach (var pair in nodeDict_)
+            {
+                var node = pair.Value;
+                var pos = node.Pos_;
+
+                foreach (var dir in Directions2D.Quadrilateral)
+                {
+                    var adj = pos + dir;
+
+                    /// <summary>
+                    /// From a surface tiles you can only move to surface tiles at the same height or transitional ties
+                    /// at the same height or 1 lower.
+                    /// </summary>
+                    if (node.PathType_ == Node.PathType.Surface)
+                    {
+                        // Check for adjacent node at the same height.
+                        var adjNode = GetNode(adj);
+                        if (adjNode != null)
+                            node.FormConnection(adjNode);
+
+                        // Check for adjacent transitional node one below
+                        adjNode = GetNode(adj + new IntVector3(0, 0, -1));
+                        if (adjNode != null && adjNode.PathType_ == Node.PathType.Transitional)
+                        {
+                            node.FormConnection(adjNode);
+                        }
+                        adjNode = GetNode(adj + new IntVector3(0, 0, 1));
+                        if (adjNode != null && adjNode.PathType_ == Node.PathType.Transitional)
+                        {
+                            node.FormConnection(adjNode);
+                        }
+                    }
+
+                    /// <summary>
+                    /// For transitional tiles you can only move to surface or transitional tile at the same height
+                    /// or 1 higher
+                    /// </summary>
+                    if (node.PathType_ == Node.PathType.Transitional)
+                    {
+                        // Check for adjacent node at the same height.
+                        var adjNode = GetNode(adj);
+                        if (adjNode != null)
+                            node.FormConnection(adjNode);
+
+                        // Check for adjacent node one above
+                        adjNode = GetNode(adj + new IntVector3(0, 0, 1));
+                        if (adjNode != null)
+                            node.FormConnection(adjNode);
+                        //// Check for adjacent node one below
+                        adjNode = GetNode(adj + new IntVector3(0, 0, -1));
+                        if (adjNode != null)
+                            node.FormConnection(adjNode);
+                    }
+                }
+            }
+
         }
 
         /// <summary>
@@ -571,5 +683,21 @@ namespace StevenUniverse.FanGame.StrategyMap
                 OnNodeClicked_.Invoke(node);
         }
 
+        public IEnumerator<Node> GetEnumerator()
+        {
+            var enumerator = nodeDict_.GetEnumerator();
+            while (enumerator.MoveNext())
+                yield return enumerator.Current.Value;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void AddNodeTest( Node node )
+        {
+            nodeDict_.Add(node.Pos_, node);
+        }
     }
 }

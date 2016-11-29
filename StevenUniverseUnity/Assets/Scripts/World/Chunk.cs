@@ -46,6 +46,11 @@ namespace StevenUniverse.FanGame.World
         /// </summary>
         public int Height_ { get { return (int)transform.position.z; } }
 
+        /// <summary>
+        /// The grid's world position within the map.
+        /// </summary>
+        public IntVector3 GridPosition_ { get { return (IntVector3)transform.localPosition; } }
+
         public Material terrainMaterial_ = null;
 
         public bool IsEmpty
@@ -109,7 +114,7 @@ namespace StevenUniverse.FanGame.World
                 return null;
             }
 
-            var stack = GetTileStack(localPos);
+            var stack = GetOrCreateTileStack(localPos);
 
             for( int i = stack.Count - 1; i >= 0; --i )
             {
@@ -159,13 +164,21 @@ namespace StevenUniverse.FanGame.World
 
             return GetTileLocal(worldPos - (IntVector2)transform.position, layer);
         }
+        
+        public List<Tile> GetTileStackLocal( IntVector2 localPos )
+        {
+            TileListWrapper wrapper;
+            if (sortingLayerDict_.TryGetValue(localPos, out wrapper))
+                return wrapper.list_;
+            return null;
+        }
 
         /// <summary>
         /// Retrieve a list of tiles where each index of the list represents a SortingLayer.
         /// The given position should be LOCAL to the chunk. Note that raw SortingLayer.Value can start
         /// below zero, see <seealso cref="SortingLayerUtil.GetLayerIndex(SortingLayer)"/>
         /// </summary>
-        private List<Tile> GetTileStack( IntVector2 localPos )
+        private List<Tile> GetOrCreateTileStack( IntVector2 localPos )
         {
             TileListWrapper wrapper;
             if (!sortingLayerDict_.TryGetValue(localPos, out wrapper))
@@ -209,7 +222,7 @@ namespace StevenUniverse.FanGame.World
         {
             //Debug.LogFormat("Setting tile for {0}", index);
             indexDict_[index] = t;
-            var stack = GetTileStack(index.position_);
+            var stack = GetOrCreateTileStack(index.position_);
 
             //Debug.LogFormat("Index: {0}, stackSize: {1}", index, stack.Count);
 
@@ -369,6 +382,14 @@ namespace StevenUniverse.FanGame.World
             }
         }
 
+        public IEnumerator<KeyValuePair<IntVector2,List<Tile>>> GetTileStackEnumerator()
+        {
+            foreach (var pair in sortingLayerDict_)
+            {
+                //Debug.LogFormat("Retrieveing tilestack at {0}", pair.Key);
+                yield return new KeyValuePair<IntVector2, List<Tile>>(pair.Key, pair.Value.list_);
+            }
+        }
 
         public Dictionary<TileIndex,Tile>.Enumerator GetEnumerator()
         {
