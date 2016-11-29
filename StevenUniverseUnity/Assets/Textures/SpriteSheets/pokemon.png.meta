@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 66cba55b8ab8a3147b8e671b7eaabfed
-timeCreated: 1480387234
+timeCreated: 1480388043
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -21,6 +21,9 @@ TextureImporter:
     21300028: pokemon_14
     21300030: pokemon_15
     21300032: pokemon_16
+    21300034: pokemon_17
+    21300036: pokemon_18
+    21300038: pokemon_19
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -287,6 +290,45 @@ TextureImporter:
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: pokemon_17
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: pokemon_18
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: pokemon_19
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
