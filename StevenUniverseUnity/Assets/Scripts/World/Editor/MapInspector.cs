@@ -37,6 +37,20 @@ namespace StevenUniverse.FanGameEditor
                     tar.ClearEmptyChunks();
                 }
             }
+
+            if( GUILayout.Button("UpdateBounds") )
+            {
+                tar.UpdateBounds();
+            }
+        }
+
+        [DrawGizmo(GizmoType.Active | GizmoType.Selected)]
+        static void DrawGizmos(Map map, GizmoType gizmoType)
+        {
+            Gizmos.DrawWireCube(map.Bounds_.center, map.Bounds_.size);
         }
     }
+
+
+
 }

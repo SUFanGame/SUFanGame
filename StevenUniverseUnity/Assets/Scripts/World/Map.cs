@@ -99,6 +99,10 @@ namespace StevenUniverse.FanGame.World
         [SerializeField]
         Material terrainMaterial_;
 
+        [SerializeField,HideInInspector]
+        Rect bounds_;
+        public Rect Bounds_ { get { return bounds_; } }
+
         void Awake()
         {
             isLayerVisible_ = new SortingLayerVisibility();
@@ -138,6 +142,7 @@ namespace StevenUniverse.FanGame.World
             {
                 Debug.LogWarningFormat("Attempting to set tile data on a disabled chunk at {0}", pos);
             }
+
 
             chunk.SetTileWorld(new TileIndex((IntVector2)pos, layer), t);
         }
@@ -551,6 +556,25 @@ namespace StevenUniverse.FanGame.World
             }
             chunks_.Remove(chunk);
             DestroyImmediate(chunk.gameObject);
+        }
+
+        public void UpdateBounds()
+        {
+            foreach (var pair in chunkDict_)
+                UpdateBounds(pair.Value);
+        }
+
+        void UpdateBounds( Chunk chunk )
+        {
+            if (bounds_ == default(Rect))
+            {
+                bounds_ = new Rect(chunk.transform.position, chunkSize_);
+            }
+            else
+            {
+                bounds_.min = Vector2.Min(chunk.transform.localPosition, bounds_.min);
+                bounds_.max = Vector2.Max(chunk.transform.position + chunkSize_, bounds_.max);
+            }
         }
 
         public IEnumerator<KeyValuePair<IntVector2,List<Chunk>>> GetChunkStackEnumerator()

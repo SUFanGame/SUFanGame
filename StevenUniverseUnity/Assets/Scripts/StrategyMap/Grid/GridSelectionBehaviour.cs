@@ -24,11 +24,12 @@ public class GridSelectionBehaviour : MonoBehaviour, IPointerClickHandler
     void OnGridBuilt( Grid grid )
     {
         collider_.size = (Vector2)grid.Size;
-        collider_.offset = collider_.size * .5f;
+        //collider_.offset = collider_.size * .5f;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        //Debug.Log("ONPOINTERCLICK");
         if (OnClicked_ != null)
             OnClicked_.Invoke(eventData);
     }

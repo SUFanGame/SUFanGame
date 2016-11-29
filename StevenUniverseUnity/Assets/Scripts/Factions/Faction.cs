@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using StevenUniverse.FanGame.Factions;
+using UnityEngine;
 
 namespace StevenUniverse.FanGame.Factions
 {
@@ -62,7 +63,9 @@ public static class FactionExtensions
     /// </summary>
     public static Standing GetStanding(this Faction a, Faction b)
     {
-        return factionData_[a].standings_[b];
+        var standing = factionData_[a].standings_[b];
+        //Debug.LogFormat("Checking {0} against {1}. Standing: {2}", a, b, standing);
+        return standing;
     }
 
     /// <summary>
@@ -70,6 +73,7 @@ public static class FactionExtensions
     /// </summary>
     public static void SetStanding( this Faction a, Faction b, Standing standing )
     {
+        //Debug.LogFormat("{0} and {1} are now {2}", a, b, standing);
         factionData_[a].standings_[b] = standing;
         factionData_[b].standings_[a] = standing;
     }

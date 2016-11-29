@@ -138,7 +138,7 @@ MonoBehaviour:
     supportInfos: []
     savedData:
       dataGroups: []
-  tilesMovedPerSecond_: 3
+  tilesMovedPerSecond_: 5
   moveRange_: 5
   renderer_: {fileID: 0}
 --- !u!114 &114000011066912856
@@ -220,7 +220,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1766457561
+  m_SortingLayerID: -499911055
   m_SortingOrder: 161
   m_Sprite: {fileID: 21300024, guid: 9018c0987db8ae8448839b2aed688174, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

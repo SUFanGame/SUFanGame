@@ -69,6 +69,10 @@ public struct TargetProperties
                 //Debug.LogFormat("{0} and {1} are enemies", source_.name, target.name);
                 return true;
             }
+            else
+            {
+                //Debug.LogFormat("{0} and {1} are not enemies", source_.name, target.name);
+            }
         }
 
         // Check if we're targeting allies

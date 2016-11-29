@@ -14,7 +14,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 {
     // TODO: Cache and reuse collections in pathfinding funcs
 
-        [ExecuteInEditMode]
+    [ExecuteInEditMode]
     public class Grid : MonoBehaviour, IEnumerable<Node>
     {
         // Dictionary mapping nodes to their 3D position ( x, y, elevation )
@@ -46,12 +46,14 @@ namespace StevenUniverse.FanGame.StrategyMap
 
         public System.Action<Node> OnNodeClicked_;
 
+        GridSelectionBehaviour selection_;
+
         void Awake()
         {
             Instance = this;
-            //selection_ = GetComponent<GridSelectionBehaviour>();
+            selection_ = GetComponent<GridSelectionBehaviour>();
             // Register to receieve user clicks on the grid.
-            //selection_.OnClicked_ += HandleClick;
+            selection_.OnClicked_ += HandleClick;
         }
 
         /// <summary>
@@ -169,6 +171,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             if (node == null)
                 Debug.LogErrorFormat("Attempting to add object {0} to grid at {1}, but there's no node there", obj.name, pos);
 
+            //Debug.LogFormat("Adding {0} to grid at {1}", obj.name, pos);
             node.AddObject(obj);
             objects_.Add(obj);
         }
@@ -510,36 +513,12 @@ namespace StevenUniverse.FanGame.StrategyMap
                         var localPos = tileStackEnumerator.Current.Key;
                         var worldPos = (IntVector3)localPos + chunk.GridPosition_;
                         var tileStack = tileStackEnumerator.Current.Value;
-                        //var tileStack = chunk.GetTileStackLocal(localPos);
 
                         bool pathable = false;
                         bool collidable = false;
                         bool grounded = false;
                         bool transitional = false;
-
-                        //if (tileStack == null)
-                        //    continue;
-
-                        //var stack = chunk.GetTileStackLocal(localPos);
-
-
-                        //if (stack == null)
-                        //{
-                        //    Debug.Log("Unable to retrieve stack explicitly locally");
-                        //}
-                        ////else
-                        ////{
-                        ////    Debug.Log("Was able to retrieve stack explicitly");
-                        ////}
-
-                        //if (tileStack == null)
-                        //{
-                        //    Debug.LogFormat("Tile stack at worldpos {0}, localPos {1} in chunk {2} was null...", worldPos, localPos, chunk.name);
-                        //}
-
-
-
-                        //foreach ( var tile in tileStack )
+                        
                         for (int i = tileStack.Count - 1; i >= 0; --i)
                         {
                             var tile = tileStack[i];
@@ -600,6 +579,14 @@ namespace StevenUniverse.FanGame.StrategyMap
  
                 }
             }
+
+            FormConnections();
+
+            Size = (IntVector3)map.Bounds_.size;
+
+            if (OnGridBuilt_ != null)
+                OnGridBuilt_.Invoke(this);
+
         }
 
         // Form connections between adjacent nodes. Right now this only accounts

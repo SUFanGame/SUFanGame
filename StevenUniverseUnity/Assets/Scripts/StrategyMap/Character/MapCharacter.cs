@@ -60,6 +60,18 @@ namespace StevenUniverse.FanGame.StrategyMap
         /// </summary>
         static public System.Action<MapCharacter> OnClicked_;
 
+
+        void Start()
+        {
+            Grid.Instance.OnGridBuilt_ += AddToGrid;
+        }
+
+        void OnDestroy()
+        {
+            if (Grid.Instance != null)
+                Grid.Instance.OnGridBuilt_ -= AddToGrid;
+        }
+
         /// <summary>
         /// Populate the given buffer with valid actions this character can perform.
         /// </summary>
@@ -127,7 +139,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 
                 if( paused_ )
                 {
-                    Debug.Log("Pausing " + name, gameObject);
+                   // Debug.Log("Pausing " + name, gameObject);
                     animator_.speed = 0f;
 
                     renderer_.color = new Color(.32f, .32f, .32f);
@@ -135,7 +147,7 @@ namespace StevenUniverse.FanGame.StrategyMap
                 }
                 else
                 {
-                    Debug.LogFormat("UnPausing {0}", name);
+                    //Debug.LogFormat("UnPausing {0}", name);
                     animator_.speed = 1f;
 
 
@@ -162,26 +174,20 @@ namespace StevenUniverse.FanGame.StrategyMap
             UpdateSortingOrder();
         }
 
-        void Start()
-        {
-            Grid.Instance.OnGridBuilt_ += AddToGrid;
-        }
-
-        void OnDestroy()
-        {
-            if( Grid.Instance != null )
-                Grid.Instance.OnGridBuilt_ -= AddToGrid;
-        }
 
         void AddToGrid( Grid grid )
         {
+            //Debug.LogFormat("Adding {0} to grid", name);
             // Snap our character's z position to the highest point on the grid.
             // Not ideal but for now while we're having to manually place characters in the map this works.
             var pos = transform.position;
+            pos = (Vector3)(IntVector3)pos;
             pos.z = grid.GetHeight(new IntVector2(pos.x, pos.y));
+            
             transform.position = pos;
 
             // Add our character to the grid at it's current position.
+            //Debug.LogFormat("Adding {0} to {1}", name, GridPosition);
             grid.AddObject(GridPosition, this);
 
             var players = FindObjectsOfType<StrategyPlayer>();

@@ -3,6 +3,7 @@ using StevenUniverse.FanGame.Factions;
 using StevenUniverse.FanGame.Util.Logic.States;
 using System.Collections;
 using StevenUniverse.FanGame.Util;
+using UnityEngine;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -53,6 +54,7 @@ namespace StevenUniverse.FanGame.StrategyMap
 
             validTargets_.Clear();
 
+            //Debug.Log("Checking attack targets...");
             grid.GetObjectsInArea((IntVector2)pos, targetProperties_.range_, validTargets_, targetProperties_.IsValid );
 
             //var adjacent = Directions2D.Quadrilateral;

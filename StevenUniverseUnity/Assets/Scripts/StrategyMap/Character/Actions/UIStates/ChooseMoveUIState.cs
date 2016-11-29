@@ -183,7 +183,7 @@ namespace StevenUniverse.FanGame.Util.Logic.States
         public override void OnExit()
         {
             HighlightGrid.Clear();
-            StrategyCursor.SetTargetTypes(null);
+            //StrategyCursor.SetTargetTypes(null);
             base.OnExit();
         }
     }
