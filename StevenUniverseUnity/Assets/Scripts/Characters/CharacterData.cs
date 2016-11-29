@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.Data;
 using StevenUniverse.FanGame.Characters.Customization;
 using StevenUniverse.FanGame.Util;
 using StevenUniverse.FanGame.Factions;
@@ -12,7 +11,7 @@ namespace StevenUniverse.FanGame.Characters
     /// Base character data, intended to entirely encapsulate all information needed to load characters in different contexts.
     /// </summary>
     [System.Serializable]
-    public class CharacterData : JsonBase<CharacterData>
+    public class CharacterData
     {
         
         [SerializeField]
@@ -27,19 +26,14 @@ namespace StevenUniverse.FanGame.Characters
         private UnitStats stats; //All the unit battle modifiers
         [SerializeField]
         private SupportInfo[] supportInfos;
-        
-        [SerializeField]
-        private SaveData savedData;
 
         public CharacterData(  
             string characterName,
-            string affiliation,
-            SaveData saveData
+            string affiliation
             )
         {
             this.characterName = characterName;
             this.faction = (Faction)System.Enum.Parse(typeof(Faction), affiliation, true );
-            this.savedData = saveData;
 
             // All other data parameters may want to be loaded from SaveData at instantiation.
         }
@@ -79,13 +73,7 @@ namespace StevenUniverse.FanGame.Characters
             get { return stats; }
             set { stats = value; }
         }
-    
-        public SaveData SavedData
-        {
-            get { return savedData; }
-            set { savedData = value; }
-        }
-        
+
         public SupportInfo[] SupportInfos
         {
             get { return supportInfos; }

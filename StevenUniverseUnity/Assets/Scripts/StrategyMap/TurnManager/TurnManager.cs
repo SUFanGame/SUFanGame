@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using StevenUniverse.FanGame.StrategyMap.Players;
-using System;
-using StevenUniverse.FanGame.Overworld;
 
 namespace StevenUniverse.FanGame.StrategyMap
 {
@@ -40,7 +38,7 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
 
             // Ensure players get to go first.
-            Func<StrategyPlayer,int> orderByType = (p) => p is HumanPlayer ? 0 : 1;
+            System.Func<StrategyPlayer,int> orderByType = (p) => p is HumanPlayer ? 0 : 1;
 
             players_ = players.OrderBy(orderByType).ToList();
             Players_ = players_.AsReadOnly();

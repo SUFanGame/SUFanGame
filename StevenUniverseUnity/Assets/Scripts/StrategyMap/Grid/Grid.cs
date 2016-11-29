@@ -2,9 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using StevenUniverse.FanGame.Util.Collections;
-using StevenUniverse.FanGame.Overworld;
 using System.Linq;
-using StevenUniverse.FanGame.Overworld.Templates;
 using StevenUniverse.FanGame.Factions;
 using UnityEngine.EventSystems;
 using StevenUniverse.FanGame.Util;
@@ -350,130 +348,6 @@ namespace StevenUniverse.FanGame.StrategyMap
             }
 
             buffer.Reverse();
-        }
-
-        /// <summary>
-        /// Builds the grid from the given tile map and forms node connections for ground movement.
-        /// </summary>
-        public IEnumerator BuildFromTileMap( TileMap<ITile> tiles )
-        {
-            //tileMap_ = tiles;
-            var min = tiles.Min;
-            var max = tiles.Max;
-
-            // How long should the function work before yielding if it hasn't yet finished?
-            float workTime = .1f;
-            float startTime = Time.realtimeSinceStartup;
-
-            // Run through each cell of the map...
-            for( int x = min.x; x < max.x + 1; ++x )
-            {
-                for( int y = min.y; y < max.y + 1; ++y )
-                {
-                    // Grab the stack of tiles at this cell
-                    var tileStack = tiles.GetTileStack(x, y);
-
-                    if (tileStack == null)
-                        continue;
-
-                    // Group each set of tiles by their elevation, so we can treat all tiles at
-                    // the same elevation as a separate group
-                    var query = tileStack.GroupBy(t => t.Elevation, t => t);
-
-                    // Keep track of grounded tiles. If a tile is grounded it means the space directly below it
-                    // (in terms of elevation) is not pathable.
-                    bool wasGrounded = false;
-                    foreach( var elevationGroup in query )
-                    {
-                        // The current elevation for this group of tiles in this node
-                        int elevation = elevationGroup.Key;
-
-                        // Whether or not this node is pathable.
-                        bool pathable = false;
-                        // Whether or not this node is collidable.
-                        bool collidable = false;
-                        // Whether or not this node is transitional
-                        bool transitional = false;
-
-                        // If the previously polled node was grounded, it means the node directly below it is automatically 
-                        // unpathable - so skip it.
-                        if( wasGrounded )
-                        {
-                            wasGrounded = false;
-                            continue;
-                        }
-
-                        // All tiles in this group share the same elevation, and are in descending order (high to low)
-                        foreach( var tile in elevationGroup )
-                        {
-                            TileTemplate.Mode mode = tile.TileMode;
-
-                            // Ignore "normal" tiles
-                            if (mode == TileTemplate.Mode.Normal)
-                                continue;
-
-                            // A tile is only pathable if previous tiles in this node are NOT collidable
-                            if( !collidable && (mode == TileTemplate.Mode.Transitional || mode == TileTemplate.Mode.Surface) )
-                            {
-                                if (mode == TileTemplate.Mode.Transitional)
-                                    transitional = true;
-                                pathable = true;
-                            }
-
-                            // If a tile is collidable it blocks any tiles below it in the same elevation from
-                            // being pathable. This allows for things like rocks to sit on top of pathable
-                            // tiles (at the same elevation), preventing pathability, while a bridge could sit on top of an unpathable
-                            // cliff tile (at the same elevation) but still be pathable.
-                            if ( mode == TileTemplate.Mode.Collidable)
-                            {
-                                collidable = true;
-                            }
-
-                            // If a tile is grounded it prevents pathability on tiles beneath it ( elevation-wise )
-                            if( tile.IsGrounded )
-                            {
-                                wasGrounded = true;
-                            }
-                        }
-
-                        // If we reach this point and the node is pathable then this position can officially be walked on.
-                        if(pathable)
-                        {
-                            var pos = new IntVector3(x, y, elevation);
-                            Node.PathType pathType = transitional ? Node.PathType.Transitional : Node.PathType.Surface;
-                            nodeDict_.Add(pos, new Node(pos, pathType));
-
-                            IntVector2 pos2D = new IntVector2(x, y);
-
-                            // Populate our height map
-                            int existingHeight;
-                            if (!heightMap_.TryGetValue(pos2D, out existingHeight))
-                                heightMap_[pos2D] = elevation;
-                            else
-                            {
-                                heightMap_[pos2D] = Mathf.Max(elevation, existingHeight);
-                            }
-                        }
-
-                        // Yield if we've exceeded our work time.
-                        if( Time.realtimeSinceStartup - startTime >= workTime )
-                        {
-                            startTime = Time.realtimeSinceStartup;
-                            yield return null;
-                        }
-                    }
-
-                }
-            }
-            yield return null;
-
-            FormConnections();
-
-            Size = tiles.Size;
-
-            if (OnGridBuilt_ != null)
-                OnGridBuilt_(this);
-
         }
 
 
