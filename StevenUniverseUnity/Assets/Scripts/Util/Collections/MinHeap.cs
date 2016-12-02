@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace StevenUniverse.FanGame.Util.Collections
+namespace SUGame.Util.Collections
 {
     //http://content.gpwiki.org/index.php/C_sharp:BinaryHeapOfT
     /// <summary>

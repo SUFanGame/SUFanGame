@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace StevenUniverse.FanGame.Characters.Customization
+namespace SUGame.Characters.Customization
 {
     //This class is unused but should be kept in case we ever need to do tile-splitting and layering
 

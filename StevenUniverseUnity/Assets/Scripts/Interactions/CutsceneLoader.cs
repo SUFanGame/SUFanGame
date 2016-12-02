@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.IO;
-using StevenUniverse.FanGame.Util;
+using SUGame.Util;
 
-namespace StevenUniverse.FanGame.Interactions
+namespace SUGame.Interactions
 {
     
     public class CutsceneLoader
@@ -10,15 +10,14 @@ namespace StevenUniverse.FanGame.Interactions
 
         public static Scene[] ImportCutscene(string cutsceneName)
         {
-
-            //Not sure how assets are handled in build, so check if this is the correct way to search for a file
-            string absolutePath = Utilities.ConvertAssetPathToAbsolutePath("Assets/Resources/Cutscenes/" + cutsceneName + ".json");
-            if (!File.Exists(absolutePath))
+            // Note you must omit the file extension
+            var asset = Resources.Load<TextAsset>("Cutscenes/" + cutsceneName);
+            if ( asset == null )
             {
                 throw new UnityException("Cutscene " + cutsceneName + " was not found.");
             }
             
-            Scene[] parsedLines = JsonHelper.Deserialize<Scene>(File.ReadAllText(absolutePath));
+            Scene[] parsedLines = JsonHelper.Deserialize<Scene>(asset.text);
 
             return parsedLines;
         }

@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.Util.Collections;
-using StevenUniverse.FanGame.Util;
-using StevenUniverse.FanGame.Util.MapEditing;
+using SUGame.Util.Collections;
+using SUGame.Util;
+using SUGame.Util.MapEditing;
 using System.Linq;
+using SUGame.Util.Common;
+using SUGame.World.DynamicMesh;
 
-namespace StevenUniverse.FanGame.World
+namespace SUGame.World
 {
     // For animated cells: These will be separated into a separate mesh built for this purpose?
     // FOr instance : If you have a layer consisting of a bunch of different types of non animated tiles, it may still be one mesh.
@@ -514,7 +516,7 @@ namespace StevenUniverse.FanGame.World
             {
                 foreach (var chunk in this)
                 {
-                    bool cutoff = cutoffType_.IsCutoff(heightCutoff_, chunk.Height_);
+                    //bool cutoff = cutoffType_.IsCutoff(heightCutoff_, chunk.Height_);
 
                     chunk.Mesh.enabled = true;
                 }

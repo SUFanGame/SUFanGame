@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.Util;
-using StevenUniverse.FanGame.Util.Collections;
+using SUGame.Util;
+using SUGame.Util.Collections;
 
-namespace StevenUniverse.FanGame.World
+namespace SUGame.World
 {
     /// <summary>
     /// A stack of chunks at some elevation on the map. Each Level of elevation has access to a stack chunks,

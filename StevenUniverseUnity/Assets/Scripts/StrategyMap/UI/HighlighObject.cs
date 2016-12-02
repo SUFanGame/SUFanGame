@@ -2,18 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[SelectionBase]
-public class HighlighObject : MonoBehaviour 
+
+namespace SUGame.StrategyMap.UI
 {
-    SpriteRenderer renderer_;
-
-    void Awake()
+    [SelectionBase]
+    public class HighlighObject : MonoBehaviour
     {
-        renderer_ = GetComponentInChildren<SpriteRenderer>();
-        renderer_.sortingLayerName = "Overworld";
+        SpriteRenderer renderer_;
+
+        void Awake()
+        {
+            renderer_ = GetComponentInChildren<SpriteRenderer>();
+            renderer_.sortingLayerName = "Overworld";
+        }
+
+        public Color Color { get { return renderer_.color; } set { renderer_.color = value; } }
+
+        public int SortingOrder { get { return renderer_.sortingOrder; } set { renderer_.sortingOrder = value; } }
     }
-
-    public Color Color { get { return renderer_.color; } set { renderer_.color = value; } }
-
-    public int SortingOrder { get { return renderer_.sortingOrder; } set { renderer_.sortingOrder = value; } }
 }

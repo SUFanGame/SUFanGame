@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-namespace StevenUniverse.FanGame.Interactions
+namespace SUGame.Interactions
 {
     public class SupportRunner : MonoBehaviour
     {

@@ -1,9 +1,9 @@
-﻿using StevenUniverse.FanGame.Factions;
+﻿using SUGame.Factions;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace StevenUniverse.FanGame.StrategyMap.Players
+namespace SUGame.StrategyMap.Players
 {
     /// <summary>
     /// Represents a player controlling a set of units on a strategy map.

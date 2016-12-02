@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.Util;
-using StevenUniverse.FanGame.Util.MapEditing;
+using SUGame.Util;
+using SUGame.Util.MapEditing;
+using SUGame.Util.Common;
 
-namespace StevenUniverse.FanGame.World
+namespace SUGame.World
 {
     /// <summary>
     /// Defines the index of a tile within a chunk and can be used as a dictionary key.

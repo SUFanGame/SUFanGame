@@ -1,49 +1,49 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using StevenUniverse.FanGame;
 using System.IO;
-using StevenUniverse.FanGameEditor.SceneEditing;
-using StevenUniverse.FanGame.World;
+using SUGame.World;
 
-[CustomEditor(typeof(Tile))]
-public class TileInspector : Editor
+namespace SUGame.SUGameEditor.World.Inspector
 {
-    //static string tilePrefabPath_ = "Prefabs/Tiles";
-
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(Tile))]
+    public class TileInspector : Editor
     {
-        base.OnInspectorGUI();
+        //static string tilePrefabPath_ = "Prefabs/Tiles";
 
-        var tar = target as Tile;
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
 
-        var sprite = tar.Sprite_;
+            var tar = target as Tile;
 
-        if (sprite == null)
-            return; 
+            var sprite = tar.Sprite_;
 
-        //SceneEditorUtil.DrawSprite(sprite, 150f);
-    }
+            if (sprite == null)
+                return;
 
-    [MenuItem("Create Tile", menuItem = "Assets/Create/Tile", priority = 230)]
-    static void CreateTile()
-    {
-        string path = EditorUtility.SaveFilePanel( "Create Tile", "Prefabs/Tiles", "Tile", "prefab" );
+            //SceneEditorUtil.DrawSprite(sprite, 150f);
+        }
 
-        var fileName = Path.GetFileNameWithoutExtension(path);
+        [MenuItem("Create Tile", menuItem = "Assets/Create/Tile", priority = 230)]
+        static void CreateTile()
+        {
+            string path = EditorUtility.SaveFilePanel("Create Tile", "Prefabs/Tiles", "Tile", "prefab");
 
-        if (string.IsNullOrEmpty(path))
-            return;
+            var fileName = Path.GetFileNameWithoutExtension(path);
 
-        Debug.LogFormat("Path: {0}", path);
+            if (string.IsNullOrEmpty(path))
+                return;
 
-        var go = new GameObject(fileName);
-        go.AddComponent<Tile>();
+            Debug.LogFormat("Path: {0}", path);
 
-        PrefabUtility.CreatePrefab( "Assets/Prefabs/Tiles/" + fileName + ".prefab", go, ReplacePrefabOptions.Default );
+            var go = new GameObject(fileName);
+            go.AddComponent<Tile>();
 
-        DestroyImmediate(go);
+            PrefabUtility.CreatePrefab("Assets/Prefabs/Tiles/" + fileName + ".prefab", go, ReplacePrefabOptions.Default);
+
+            DestroyImmediate(go);
+        }
+
     }
 
 }

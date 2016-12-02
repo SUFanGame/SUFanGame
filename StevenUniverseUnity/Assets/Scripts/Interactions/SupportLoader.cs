@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.IO;
-using StevenUniverse.FanGame.Util;
+using SUGame.Util;
 
-namespace StevenUniverse.FanGame.Interactions
+namespace SUGame.Interactions
 {
     public static class SupportLoader
     {
@@ -11,14 +11,14 @@ namespace StevenUniverse.FanGame.Interactions
         {
 
             //use supportName to find the correct json file
-            //Not sure how assets are handled in build, so check if this is the correct way to search for a file
-            string absolutePath = Utilities.ConvertAssetPathToAbsolutePath("Assets/Resources/Supports/" + supportName + ".json");
-            if (!File.Exists(absolutePath))
+            // Note you must omit the file extension
+            var asset = Resources.Load<TextAsset>("Supports/" + supportName);
+            if (asset == null)
             {
                 throw new UnityException("Support " + supportName + " was not found.");
             }
 
-            ScriptLine[] parsedLines = JsonHelper.Deserialize<ScriptLine>(File.ReadAllText(absolutePath));
+            ScriptLine[] parsedLines = JsonHelper.Deserialize<ScriptLine>(asset.text);
 
             return parsedLines;
         }

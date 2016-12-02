@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace StevenUniverse.FanGame.Util.MapEditing
+namespace SUGame.Util.MapEditing
 {
     /// <summary>
     /// Class managing the visibility state of sorting layers.

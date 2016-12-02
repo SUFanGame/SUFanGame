@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using StevenUniverse.FanGame.Factions;
+using SUGame.Factions;
 using UnityEngine;
 
-namespace StevenUniverse.FanGame.Factions
+namespace SUGame.Factions
 {
     /// <summary>
     /// Each faction has a standing which can be polled via Faction.GetStanding

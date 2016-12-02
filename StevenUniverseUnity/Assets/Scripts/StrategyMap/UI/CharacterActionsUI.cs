@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using SUGame.StrategyMap.Characters.Actions;
 
-namespace StevenUniverse.FanGame.StrategyMap.UI
+namespace SUGame.StrategyMap.UI
 {
     // TODO : Re-use buttons rather than destroying them each time the menu is hidden.
     //        Account for the window appearing offscreen - snap it to always be inside the canvas
@@ -23,13 +23,9 @@ namespace StevenUniverse.FanGame.StrategyMap.UI
         /// </summary>
         static List<CharacterAction> actionsBuffer_ = new List<CharacterAction>();
 
-        //static List<Button> actionButtons_ = new List<Button>();
-
         public static CharacterActionsUI Instance { get; private set; }
 
         public static System.Action<CharacterAction> OnActionSelected_;
-
-        //public static CharacterAction SelectedAction { get; private set; }
 
         Transform target_;
 

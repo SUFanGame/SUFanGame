@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace StevenUniverse.FanGame.Util.MapEditing
+namespace SUGame.Util.MapEditing
 {
     public class SortingLayerUtil
     {

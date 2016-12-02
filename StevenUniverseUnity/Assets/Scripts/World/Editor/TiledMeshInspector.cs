@@ -2,58 +2,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using StevenUniverse.FanGame.Util;
+using SUGame.Util;
+using SUGame.SUGameEditor.CustomGUI;
+using SUGame.World.DynamicMesh;
 
-[CustomEditor(typeof(TiledMesh))]
-public class TiledMeshInspector : Editor
+namespace SUGame.SUGameEditor.World.Inspector
 {
-    SerializedProperty layerIDProp_;
-
-    void OnEnable()
+    [CustomEditor(typeof(TiledMesh))]
+    public class TiledMeshInspector : Editor
     {
-        //layerIDProp_ = serializedObject.FindProperty("sortingLayerID_");
-    }
+        SerializedProperty layerIDProp_;
 
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-        
+        void OnEnable()
+        {
+            //layerIDProp_ = serializedObject.FindProperty("sortingLayerID_");
+        }
 
-        var tar = target as TiledMesh;
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
 
-        if (!tar.isActiveAndEnabled)
-            return;
 
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.PrefixLabel("Sorting Layer");
-        //layerIDProp_.intValue = CustomEditorGUI.DrawSortingLayersPopup(layerIDProp_.intValue);
-        tar.renderer_.sortingLayerID = CustomEditorGUI.DrawSortingLayersPopup(tar.renderer_.sortingLayerID);
-        EditorGUILayout.EndHorizontal();
+            var tar = target as TiledMesh;
 
-        EditorGUILayout.LabelField("Sorting Order", tar.renderer_.sortingOrder.ToString());
-    }
+            if (!tar.isActiveAndEnabled)
+                return;
 
-    [DrawGizmo(GizmoType.Active | GizmoType.InSelectionHierarchy | GizmoType.NotInSelectionHierarchy)]
-    static void DrawGizmos(TiledMesh mesh, GizmoType gizmoType)
-    {
-        //var offset = mesh.transform.position + Vector3.one * .5f;
-        //Gizmos.DrawWireCube( mesh.transform.position + (Vector3)mesh.Size_ / 2f + Vector3.forward * 5, mesh.Size_);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Sorting Layer");
+            //layerIDProp_.intValue = CustomEditorGUI.DrawSortingLayersPopup(layerIDProp_.intValue);
+            tar.renderer_.sortingLayerID = CustomEditorGUI.DrawSortingLayersPopup(tar.renderer_.sortingLayerID);
+            EditorGUILayout.EndHorizontal();
 
-        if (mesh.showLayerOrder_)
-        { 
-            //var content = new GUIContent(mesh.renderer_.sortingOrder.ToString());
-            //var style = new GUIStyle(EditorStyles.largeLabel);
-            //var height = style.CalcSize(content).y;
+            EditorGUILayout.LabelField("Sorting Order", tar.renderer_.sortingOrder.ToString());
+        }
 
-            //var newColor = Color.black;//new Color32(0, 255, 255, 120);
+        [DrawGizmo(GizmoType.Active | GizmoType.InSelectionHierarchy | GizmoType.NotInSelectionHierarchy)]
+        static void DrawGizmos(TiledMesh mesh, GizmoType gizmoType)
+        {
+            //var offset = mesh.transform.position + Vector3.one * .5f;
+            //Gizmos.DrawWireCube( mesh.transform.position + (Vector3)mesh.Size_ / 2f + Vector3.forward * 5, mesh.Size_);
 
-            //style.normal.textColor = newColor;
-            //style.normal.background = Texture2D.whiteTexture;
+            if (mesh.showLayerOrder_)
+            {
+                //var content = new GUIContent(mesh.renderer_.sortingOrder.ToString());
+                //var style = new GUIStyle(EditorStyles.largeLabel);
+                //var height = style.CalcSize(content).y;
 
-            //var pos = mesh.renderer_.bounds.min;
+                //var newColor = Color.black;//new Color32(0, 255, 255, 120);
 
-            //Handles.Label(pos + Vector3.up, mesh.renderer_.sortingOrder.ToString(), style);
+                //style.normal.textColor = newColor;
+                //style.normal.background = Texture2D.whiteTexture;
 
+                //var pos = mesh.renderer_.bounds.min;
+
+                //Handles.Label(pos + Vector3.up, mesh.renderer_.sortingOrder.ToString(), style);
+
+            }
         }
     }
+
 }

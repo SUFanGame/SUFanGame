@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace StevenUniverse.FanGame.Util.MapEditing
+namespace SUGame.Util.MapEditing
 {
     /// <summary>
     /// Wrapper for a tile map so it can be used within a scene from the map editor.

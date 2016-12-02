@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-namespace StevenUniverse.FanGame.Util.Collections
+namespace SUGame.Util.Collections
 {
     /// <summary>
     /// A priority queue which sorts and returns low-priority items first. Note this does

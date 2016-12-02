@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.StrategyMap;
-using StevenUniverse.FanGame.StrategyMap.Players;
+using SUGame.StrategyMap;
+using SUGame.StrategyMap.Players;
 
-namespace StevenUniverse.FanGame.Util.Logic.States
+namespace SUGame.Util.Logic.States
 {
     /// <summary>
     /// A simple state machine, currently used for progression through the character selection/action UI.
@@ -108,7 +108,7 @@ namespace StevenUniverse.FanGame.Util.Logic.States
         /// </summary>
         public virtual void OnPaused()
         {
-            string name = GetType().Name;
+            //string name = GetType().Name;
             //Debug.LogFormat("Pausing {0}", name);
             
             OnExit();

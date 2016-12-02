@@ -2,7 +2,7 @@
 /// <summary>
 /// Base class for all skills.
 /// </summary>
-namespace StevenUniverse.FanGame.Characters.Customization
+namespace SUGame.Characters.Skills
 {
     [System.Serializable]
     public class Skill

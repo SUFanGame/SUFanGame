@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-namespace StevenUniverse.FanGame.Util.Collections
+namespace SUGame.Util.Collections
 {
 
     // Used to convert lambdas into comparers that the binary heap can use

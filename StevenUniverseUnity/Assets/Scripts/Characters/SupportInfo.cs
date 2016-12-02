@@ -1,5 +1,5 @@
 ﻿
-namespace StevenUniverse.FanGame.Characters
+namespace SUGame.Characters
 {
     /// <summary>
     /// Any relevant information about a character's relationship.

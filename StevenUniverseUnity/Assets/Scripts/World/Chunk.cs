@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.Util.Collections;
-using StevenUniverse.FanGame.Util;
-using StevenUniverse.FanGame.Util.MapEditing;
+using SUGame.Util.Collections;
+using SUGame.Util;
+using SUGame.Util.MapEditing;
 using System.Linq;
+using SUGame.Util.Common;
+using SUGame.World.DynamicMesh;
 
-namespace StevenUniverse.FanGame.World
+namespace SUGame.World
 {
     
     
@@ -206,7 +208,7 @@ namespace StevenUniverse.FanGame.World
             {
                 //Debug.LogFormat("Layer {0} is not hidden for chunk {1}", index.Layer_.name, name);
             }
-            var oldPos = index.position_;
+            //var oldPos = index.position_;
             index.position_ = index.position_ - (IntVector2)transform.localPosition;
 
             //Debug.LogFormat("Index after localizing: {0} - {1} : {2}", (IntVector2)transform.localPosition, oldPos, index.position_ );

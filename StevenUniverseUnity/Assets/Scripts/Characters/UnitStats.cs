@@ -1,5 +1,5 @@
 ﻿
-namespace StevenUniverse.FanGame.Characters.Customization
+namespace SUGame.Characters.Customization
 {
     [System.Serializable]
     public class UnitStats

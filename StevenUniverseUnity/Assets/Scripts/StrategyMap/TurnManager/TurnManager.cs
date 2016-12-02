@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using StevenUniverse.FanGame.StrategyMap.Players;
+using SUGame.StrategyMap.Players;
+using SUGame.StrategyMap.UI;
 
-namespace StevenUniverse.FanGame.StrategyMap
+namespace SUGame.StrategyMap
 {
     /// <summary>
     /// Responsible for sorting players and calling each player's tick function.

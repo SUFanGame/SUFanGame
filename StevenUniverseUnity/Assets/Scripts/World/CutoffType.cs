@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace StevenUniverse.FanGame.World
+namespace SUGame.World
 {
     public enum CutoffType
     {

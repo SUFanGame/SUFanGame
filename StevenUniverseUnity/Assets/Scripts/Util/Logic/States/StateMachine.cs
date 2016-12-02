@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.StrategyMap;
-using StevenUniverse.FanGame.StrategyMap.Players;
+using SUGame.StrategyMap;
+using SUGame.StrategyMap.Players;
+using SUGame.StrategyMap.Characters.Actions.UIStates;
 
-namespace StevenUniverse.FanGame.Util.Logic.States
+namespace SUGame.Util.Logic.States
 {
     [System.Serializable]
     public class StateMachine

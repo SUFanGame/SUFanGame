@@ -2,7 +2,7 @@
 /// <summary>
 /// Base class for all items.
 /// </summary>
-namespace StevenUniverse.FanGame.Items
+namespace SUGame.Items
 {
     //TODO: actually implement
     [System.Serializable]

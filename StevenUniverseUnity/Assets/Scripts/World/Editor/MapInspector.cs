@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using StevenUniverse.FanGame.World;
+using SUGame.World;
 
-namespace StevenUniverse.FanGameEditor
+namespace SUGame.SUGameEditor.World.Inspector
 {
     [CustomEditor(typeof(Map))]
     public class MapInspector : Editor

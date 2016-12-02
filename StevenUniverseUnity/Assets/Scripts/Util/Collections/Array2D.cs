@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System;
+using SUGame.Util.Common;
 
-namespace StevenUniverse.FanGame.Util.Collections
+namespace SUGame.Util.Collections
 {
     /// <summary>
     /// Simulates a 2D array but mapped to a single dimension array 

@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
-using StevenUniverse.FanGame.StrategyMap.UI;
-using StevenUniverse.FanGame.Util.Logic.States;
+using SUGame.StrategyMap.UI;
+using SUGame.Util.Logic.States;
 
-namespace StevenUniverse.FanGame.StrategyMap.Players
+namespace SUGame.StrategyMap.Players
 {
     public class HumanPlayer : StrategyPlayer
     {

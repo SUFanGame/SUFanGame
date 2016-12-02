@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace StevenUniverse.FanGame.StrategyMap
+namespace SUGame.StrategyMap.Inspector
 {
     [CustomEditor(typeof(TurnManager))]
     public class TurnManagerInspector : Editor

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.StrategyMap;
-using StevenUniverse.FanGame.World;
+using SUGame.StrategyMap;
+using SUGame.World;
 
 public class GameStarter : MonoBehaviour 
 {

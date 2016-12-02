@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace StevenUniverse.FanGame.Interactions
+namespace SUGame.Interactions
 {
     public class CutsceneRunner : MonoBehaviour
     {

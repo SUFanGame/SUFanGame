@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.Characters.Customization;
-using StevenUniverse.FanGame.Util;
-using StevenUniverse.FanGame.Factions;
-using StevenUniverse.FanGame.Items;
+using SUGame.Characters.Customization;
+using SUGame.Factions;
+using SUGame.Items;
+using SUGame.Characters.Skills;
 
-namespace StevenUniverse.FanGame.Characters
+namespace SUGame.Characters
 {
     /// <summary>
     /// Base character data, intended to entirely encapsulate all information needed to load characters in different contexts.

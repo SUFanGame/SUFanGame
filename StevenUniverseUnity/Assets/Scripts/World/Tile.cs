@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using StevenUniverse.FanGame.Util.MapEditing;
+using SUGame.Util.MapEditing;
 
-namespace StevenUniverse.FanGame.World
+namespace SUGame.World
 {
     // TODO: These may be better off as ScriptableObjects....Not sure yet.
 
