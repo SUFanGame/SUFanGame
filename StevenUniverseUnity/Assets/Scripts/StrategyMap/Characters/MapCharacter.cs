@@ -45,6 +45,10 @@ namespace SUGame.StrategyMap
         /// on the unity side. Maybe character data just references actions by name? "Move", "Attack", etc
         /// </summary>
         List<CharacterAction> actions_ = null;
+
+        // FOR UI TESTING
+        public string weaponName_;
+        public Sprite portrait_;
         
 
         //public ActingState CurrentActingState { get { return state_; } }

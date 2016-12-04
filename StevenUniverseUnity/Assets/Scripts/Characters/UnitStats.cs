@@ -14,6 +14,7 @@ namespace SUGame.Characters.Customization
         public int lck;
         public int def;
         public int res;
+        public int crit;
 
         public int baseHP;
         public int avoidance;

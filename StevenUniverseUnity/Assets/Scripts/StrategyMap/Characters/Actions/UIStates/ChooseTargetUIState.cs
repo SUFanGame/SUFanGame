@@ -98,14 +98,23 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
 
         public override IEnumerator Tick()
         {
-            if (Target != null)
+
+            if( Target != null )
             {
-                yield return ActionCallback(Target);
-
                 OnExit();
-
-                Machine.Clear();
+                Machine.Push(new ConfirmTargetUIState(Actor, Target, ActionCallback));
+                Target = null;
             }
+
+            yield return null;
+            //if (Target != null)
+            //{
+            //    yield return ActionCallback(Target);
+
+            //    OnExit();
+
+            //    Machine.Clear();
+            //}
 
             //return base.Tick();
         }

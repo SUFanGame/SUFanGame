@@ -71,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012891947844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.23, y: 3.45, z: -1.49}
+  m_LocalPosition: {x: 17.23, y: 3.49, z: -1.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -167,20 +167,23 @@ MonoBehaviour:
     heldItems: []
     skills: []
     stats:
-      str: 0
+      str: 4
       mag: 0
       spd: 0
       skl: 0
       lck: 0
       def: 0
       res: 0
-      baseHP: 0
+      crit: 20
+      baseHP: 18
       avoidance: 0
-      accuracy: 0
+      accuracy: 99
     supportInfos: []
   tilesMovedPerSecond_: 5
   moveRange_: 5
   renderer_: {fileID: 0}
+  weaponName_: 
+  portrait_: {fileID: 0}
 --- !u!114 &114000013803584250
 MonoBehaviour:
   m_ObjectHideFlags: 1

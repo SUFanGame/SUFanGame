@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010315619398}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 31, y: 11, z: 3}
+  m_LocalPosition: {x: 21.18, y: 4.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -128,28 +128,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData_:
-    serializedType: 
     characterName: 
     faction: 1
     heldItems: []
     skills: []
     stats:
-      str: 0
+      str: 5
       mag: 0
       spd: 0
       skl: 0
       lck: 0
       def: 0
       res: 0
-      baseHP: 0
+      crit: 8
+      baseHP: 19
       avoidance: 0
-      accuracy: 0
+      accuracy: 95
     supportInfos: []
-    savedData:
-      dataGroups: []
   tilesMovedPerSecond_: 5
   moveRange_: 5
   renderer_: {fileID: 0}
+  weaponName_: 
+  portrait_: {fileID: 0}
 --- !u!212 &212000010435378706
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -179,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -499911055
   m_SortingOrder: 161
-  m_Sprite: {fileID: 21300030, guid: 9018c0987db8ae8448839b2aed688174, type: 3}
+  m_Sprite: {fileID: 21300072, guid: 9018c0987db8ae8448839b2aed688174, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
