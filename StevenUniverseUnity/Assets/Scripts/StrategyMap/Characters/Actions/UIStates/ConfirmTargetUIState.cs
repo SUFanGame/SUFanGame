@@ -51,6 +51,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
             if( accepted_ )
             {
                 OnExit();
+                //Debug.Log("Accepted input");
                 yield return actionCallback_.Invoke(target_);
                 Machine.Clear();
             }

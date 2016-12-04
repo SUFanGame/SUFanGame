@@ -131,6 +131,7 @@ namespace SUGame.Util.Logic.States
         #region InputHandlers
         public void OnAccept()
         {
+            //Debug.Log("Accept");
             var topState = TopState;
 
             if (topState != null)
@@ -139,6 +140,7 @@ namespace SUGame.Util.Logic.States
 
         public void OnCancel()
         {
+            //Debug.Log("Cancel");
             var topState = TopState;
 
             if(topState != null )

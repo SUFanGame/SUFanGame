@@ -3,6 +3,9 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
+		// Use the same method unity uses for pixel snap. In combination with the Pixel Snap camera asset
+		// this SEEMS to fix all artifacts from camera scrolling
+		[MaterialToggle] PixelSnap ("Pixel Snap", float) = 0
 	}
 	SubShader
 	{
@@ -24,6 +27,7 @@
 			CGPROGRAM 
 			#pragma vertex vert
 			#pragma fragment frag
+			#pragma multi_compile _ PIXELSNAP_ON
 			
 			#include "UnityCG.cginc"
 
@@ -47,7 +51,10 @@
 			vertOutput vert(vertInput i )
 			{
 				vertOutput o;
-				o.vertex = mul(UNITY_MATRIX_MVP, i.vertex); 
+				o.vertex = mul(UNITY_MATRIX_MVP, i.vertex);
+				#ifdef PIXELSNAP_ON
+				o.vertex = UnityPixelSnap(o.vertex);
+				#endif
 				o.uv = TRANSFORM_TEX(i.uv, _MainTex);
 				o.color = i.color;
 				return o;

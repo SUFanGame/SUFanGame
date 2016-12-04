@@ -8,6 +8,7 @@ using SUGame.SUGameEditor.MapEditing.Brushes;
 using System.Linq;
 using SUGame.Util.Common;
 using SUGame.SUGameEditor.MapEditing.Panels;
+using SUGame.SUGameEditor.Util;
 
 namespace SUGame.SUGameEditor.MapEditing
 {
