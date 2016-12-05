@@ -75,12 +75,12 @@ namespace SUGame.StrategyMap.Players
         void Update()
         {
             // Handle keyboard events.
-            if( Input.GetButtonDown("Submit") )
+            if( Input.GetButtonDown("Submit") || Input.GetButtonDown("XboxA") )
             {
                 stateMachine_.OnAccept();
             }
 
-            if( Input.GetButtonDown("Cancel") )
+            if( Input.GetButtonDown("Cancel") || Input.GetButtonDown("XboxB") )
             {
                 stateMachine_.OnCancel();
             }

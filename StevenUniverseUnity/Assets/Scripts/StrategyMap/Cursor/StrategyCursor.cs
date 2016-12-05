@@ -68,8 +68,10 @@ namespace SUGame.StrategyMap
             get
             {
                 var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                for (int i = 0; i < 2; ++i)
-                    pos[i] = Mathf.Floor(pos[i]);
+                pos.x = Mathf.Floor(pos.x) + 0.5f;
+                pos.y = Mathf.Floor(pos.y) + 0.5f;
+                //for (int i = 0; i < 2; ++i)
+                //    pos[i] = Mathf.Floor(pos[i]);
                 return pos;
             }
         }
@@ -185,7 +187,7 @@ namespace SUGame.StrategyMap
             if (!onGUI_)
                 return;
 
-            GUILayout.Label("Cursor Pos: " + Position_);
+            //GUILayout.Label("Cursor Pos: " + Position_);
         }
 
         /// <summary>
