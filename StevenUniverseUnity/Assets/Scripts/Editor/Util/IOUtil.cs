@@ -27,5 +27,24 @@ namespace SUGame.SUGameEditor.Util
 
             return assets;
         }
+
+        /// <summary>
+        /// Recurses through the given directory and all subdirectories and populates the given buffer with all assets of the given type.
+        /// </summary>
+        public static void GetAssetsAndChildrenAtLocation<T>( string pathFromAssetFolder, string searchPattern, List<T> buffer ) where T : UnityEngine.Object
+        {
+
+            buffer.AddRange(GetAssetsAtLocation<T>(pathFromAssetFolder, searchPattern));
+
+            var subFolders = AssetDatabase.GetSubFolders( "Assets/" + pathFromAssetFolder);
+
+            foreach( var folder in subFolders )
+            {
+                var seperator = new string[] { "Assets/" };
+                var subPath = folder.Split(seperator,  System.StringSplitOptions.None)[1];
+                GetAssetsAndChildrenAtLocation<T>(subPath, searchPattern, buffer);
+            }
+            
+        }
     }
 }
