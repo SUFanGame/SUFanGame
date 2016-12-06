@@ -29,6 +29,8 @@ namespace SUGame.StrategyMap
 
         public Transform snapTarget_ = null;
 
+        public Vector2 tile = Vector2.zero;
+
         /// <summary>
         /// The sprite currently rendered by the cursor.
         /// </summary>
@@ -61,6 +63,8 @@ namespace SUGame.StrategyMap
         }
 
         public bool onGUI_;
+
+        private bool dPadInUse = false;
 
 
         /// <summary>
@@ -149,7 +153,61 @@ namespace SUGame.StrategyMap
         {
             Vector3 cursorPos = default(Vector3);
 
-            switch( CursorMode_ )
+            if (!controllerMode)
+            {
+                cursorPos = MouseCursorPos(cursorPos);
+            }
+            else
+            {
+                cursorPos = ControllerCursorPos(cursorPos);
+            }
+
+            // TEST
+            if (snapTarget_ != null)
+            {
+                cursorPos = SnapToArea((IntVector3)snapTarget_.transform.position, range_);
+                cursorPos.z = 1;
+            }
+
+            if (cursorPos != lastCursorPosition_)
+            {
+                switch( CursorMode_ )
+                {
+                    case CursorMode.FREE:
+                        renderer_.transform.position = (Vector3)cursorPos;
+                        lastCursorPosition_ = cursorPos;
+                        tile.x = lastCursorPosition_.x - 0.5f;
+                        tile.y = lastCursorPosition_.y - 0.5f;
+                        break;
+                }
+            }
+        }
+
+        private Vector3 ControllerCursorPos(Vector3 cursorPos)
+        {
+            cursorPos = lastCursorPosition_;
+            if (Input.GetAxisRaw("XboxDpadX") != 0 && !dPadInUse)
+            {
+                cursorPos.x += Input.GetAxis("XboxDpadX");
+                dPadInUse = true;
+            }
+            else if (Input.GetAxisRaw("XboxDpadY") != 0 && !dPadInUse)
+            {
+                cursorPos.y += Input.GetAxis("XboxDpadY");
+                dPadInUse = true;
+            }
+            if (Input.GetAxisRaw("XboxDpadX") == 0 && Input.GetAxisRaw("XboxDpadY") == 0)
+            {
+                dPadInUse = false;
+            }
+            
+
+            return cursorPos;
+        }
+
+        private Vector3 MouseCursorPos(Vector3 cursorPos)
+        {
+            switch (CursorMode_)
             {
                 case CursorMode.FREE:
                     cursorPos = Position_;
@@ -161,30 +219,7 @@ namespace SUGame.StrategyMap
 
                     break;
             }
-
-            // TEST
-            if (snapTarget_ != null)
-            {
-                cursorPos = SnapToArea((IntVector3)snapTarget_.transform.position, range_);
-                cursorPos.z = 1;
-            }
-
-
-
-            if (cursorPos != lastCursorPosition_)
-            {
-                switch( CursorMode_ )
-                {
-                    case CursorMode.FREE:
-                        renderer_.transform.position = (Vector3)cursorPos;
-                        lastCursorPosition_ = cursorPos;
-                        break;
-                }
-            }
-
-
-
-
+            return cursorPos;
         }
 
         void OnGUI()
@@ -193,7 +228,7 @@ namespace SUGame.StrategyMap
             {
                 controllerMode = true;
             }
-            else if (Input.GetMouseButton(0))
+            else if (Input.GetMouseButton(1))
             {
                 controllerMode = false;
             }

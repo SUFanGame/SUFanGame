@@ -207,6 +207,18 @@ namespace SUGame.StrategyMap
                 OnClicked_(this);
         }
 
+        public void Update()
+        {
+            if (Input.GetButtonDown("XboxA") &&
+                (StrategyCursor.Instance.tile.x == transform.position.x &&
+                 StrategyCursor.Instance.tile.y == transform.position.y))
+            {
+                // Selection events get forwarded to HumanPlayer
+                if (OnClicked_ != null)
+                    OnClicked_(this);
+            }
+
+        }
 
         /// <summary>
         /// Update the character's sorting order based on their current world position.
