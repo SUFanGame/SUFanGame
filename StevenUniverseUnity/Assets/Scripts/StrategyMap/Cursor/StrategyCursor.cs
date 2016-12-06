@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using SUGame.StrategyMap;
 using SUGame.StrategyMap.Players;
 using UnityEngine.EventSystems;
@@ -20,6 +21,7 @@ namespace SUGame.StrategyMap
         static Physics2DRaycaster raycaster_;
 
         List<IntVector3> positionBuffer_ = new List<IntVector3>();
+        public bool controllerMode = false;
 
         public CursorMode CursorMode_ { get; private set; }
         // Area to which the cursor is constrained.
@@ -60,19 +62,28 @@ namespace SUGame.StrategyMap
 
         public bool onGUI_;
 
+
         /// <summary>
         /// The world position of the cursor, snapped to the grid.
         /// </summary>
-        public static Vector3 Position_
+        public Vector3 Position_
         {
             get
             {
-                var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                pos.x = Mathf.Floor(pos.x) + 0.5f;
-                pos.y = Mathf.Floor(pos.y) + 0.5f;
+                if (controllerMode)
+                {
+                    return lastCursorPosition_;
+                }
+                else
+                {
+                    var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    pos.x = Mathf.Floor(pos.x) + 0.5f;
+                    pos.y = Mathf.Floor(pos.y) + 0.5f;
+                    return pos;
+                }
                 //for (int i = 0; i < 2; ++i)
                 //    pos[i] = Mathf.Floor(pos[i]);
-                return pos;
+
             }
         }
 
@@ -136,12 +147,6 @@ namespace SUGame.StrategyMap
 
         void Update()
         {
-
-
-
-
-
-
             Vector3 cursorPos = default(Vector3);
 
             switch( CursorMode_ )
@@ -184,6 +189,17 @@ namespace SUGame.StrategyMap
 
         void OnGUI()
         {
+            if ((Input.GetAxis("XboxDpadX") != 0) || (Input.GetAxis("XboxDpadY") != 0))
+            {
+                controllerMode = true;
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                controllerMode = false;
+            }
+
+
+
             if (!onGUI_)
                 return;
 
