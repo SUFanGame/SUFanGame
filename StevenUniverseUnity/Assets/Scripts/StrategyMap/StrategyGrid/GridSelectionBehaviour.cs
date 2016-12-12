@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using SUGame.StrategyMap;
+using SUGame.Util.Common;
+using UnityEngine.UI;
 
 namespace SUGame.StrategyMap
 {
@@ -31,9 +33,20 @@ namespace SUGame.StrategyMap
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            //Debug.Log("ONPOINTERCLICK");
+            Debug.Log("GridSelectionBehaviour ONPOINTERCLICK");
             if (OnClicked_ != null)
                 OnClicked_.Invoke(eventData);
+        }
+
+        void Update()
+        {
+            if (Input.GetButtonDown("XboxA") && (Grid.Instance.GetHighestNode((IntVector2)StrategyCursor.Instance.pos).Objects == null))
+            {
+                Debug.Log("GridSelectionBehaviour A button press.");
+                if (OnClicked_ != null)
+                    OnClicked_.Invoke(new PointerEventData(EventSystem.current));
+            }
+            
         }
     }
 }

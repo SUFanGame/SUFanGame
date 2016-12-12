@@ -29,7 +29,7 @@ namespace SUGame.StrategyMap
 
         public Transform snapTarget_ = null;
 
-        public Vector2 tile = Vector2.zero;
+        public Vector2 pos = Vector2.zero;
 
         /// <summary>
         /// The sprite currently rendered by the cursor.
@@ -176,8 +176,8 @@ namespace SUGame.StrategyMap
                     case CursorMode.FREE:
                         renderer_.transform.position = (Vector3)cursorPos;
                         lastCursorPosition_ = cursorPos;
-                        tile.x = lastCursorPosition_.x - 0.5f;
-                        tile.y = lastCursorPosition_.y - 0.5f;
+                        pos.x = lastCursorPosition_.x - 0.5f;
+                        pos.y = lastCursorPosition_.y - 0.5f;
                         break;
                 }
             }
@@ -233,12 +233,33 @@ namespace SUGame.StrategyMap
                 controllerMode = false;
             }
 
+            if (Input.GetButtonDown("XboxA"))
+            {
+                Ray ray = new Ray(transform.position, Vector3.forward);
+                RaycastHit hit;
+
+                Physics.Raycast(ray, out hit);
+                //Invoke().OnControllerSubmit();
+            }
+
+            if (Input.GetButtonDown("XboxB"))
+            {
+                OnControllerCancel();
+            }
 
 
             if (!onGUI_)
                 return;
+        }
 
-            //GUILayout.Label("Cursor Pos: " + Position_);
+        void OnControllerSubmit()
+        {
+            Debug.Log("StrategyCursor OnControllerSubmit button press.");
+        }
+
+        void OnControllerCancel()
+        {
+            Debug.Log("StrategyCursor OnControllerCancel button press.");
         }
 
         /// <summary>

@@ -48,8 +48,6 @@ namespace SUGame.StrategyMap
 
         GridSelectionBehaviour selection_;
 
-        private bool Pressed = true;
-
         void Awake()
         {
             Instance = this;
@@ -540,7 +538,7 @@ namespace SUGame.StrategyMap
             if (OnNodeClicked_ == null)
                 return;
 
-            var pos = (IntVector2)data.pointerCurrentRaycast.worldPosition;
+            var pos = (IntVector2) StrategyCursor.Instance.pos;
 
             var node = GetHighestNode(pos);
 
@@ -548,28 +546,17 @@ namespace SUGame.StrategyMap
                 OnNodeClicked_.Invoke(node);
         }
 
-        void Update()
+        void HandleClick()
         {
-            if (Input.GetButtonUp("XboxA"))
-            {
-                Pressed = false;
-            }
-            if (Input.GetButtonDown("XboxA") && !Pressed)
-            {
-                Pressed = true;
-                if (OnNodeClicked_ == null)
-                    return;
+            if (OnNodeClicked_ == null)
+                return;
 
-                var pos = (IntVector2) StrategyCursor.Instance.tile;
+            var pos = (IntVector2)StrategyCursor.Instance.pos;
 
-                var node = GetHighestNode(pos);
+            var node = GetHighestNode(pos);
 
-                if (node != null)
-                    OnNodeClicked_.Invoke(node);
-
-
-            }
-
+            if (node != null)
+                OnNodeClicked_.Invoke(node);
         }
 
         public IEnumerator<Node> GetEnumerator()

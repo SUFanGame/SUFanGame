@@ -62,6 +62,9 @@ namespace SUGame.StrategyMap
         void Start()
         {
             Grid.Instance.OnGridBuilt_ += AddToGrid;
+
+            
+
         }
 
         void OnDestroy()
@@ -202,17 +205,20 @@ namespace SUGame.StrategyMap
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            Debug.Log("MapCharacter ONPOINTERCLICK");
             // Selection events get forwarded to HumanPlayer
             if (OnClicked_ != null)
                 OnClicked_(this);
         }
 
-        public void Update()
+        public void OnSubmitPressed()
         {
+            Debug.Log("MapCharacter Submit button press.");
             if (Input.GetButtonDown("XboxA") &&
-                (StrategyCursor.Instance.tile.x == transform.position.x &&
-                 StrategyCursor.Instance.tile.y == transform.position.y))
+                (StrategyCursor.Instance.pos.x == transform.position.x &&
+                 StrategyCursor.Instance.pos.y == transform.position.y))
             {
+                Debug.Log("MapCharacter A button press.");
                 // Selection events get forwarded to HumanPlayer
                 if (OnClicked_ != null)
                     OnClicked_(this);
