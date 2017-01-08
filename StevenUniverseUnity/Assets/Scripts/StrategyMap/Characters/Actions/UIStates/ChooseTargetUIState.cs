@@ -11,7 +11,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
 
     public class ChooseTargetUIState : State
     {
-        public MapCharacter Actor { get; private set; }
+        MapCharacter actor_;
         //public TargetType TargetType { get; private set; }
         public TargetProperties TargetProperties { get; private set; }
         public CharacterAction Action { get; private set; }
@@ -39,12 +39,16 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
             System.Func<MapCharacter, IEnumerator> actionCallback,
             IList<MapCharacter> validTargets = null)
         {
-            Actor = actor;
+            actor_ = actor;
             TargetProperties = targetProperties;
             Action = action;
             ValidTargets = validTargets;
             ActionCallback = actionCallback;
             //this.TargetType = targetType;
+            if( actor == null )
+            {
+                Debug.Log("Actor is null in choose target constructyor");
+            }
 
         }
 
@@ -102,7 +106,8 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
             if( Target != null )
             {
                 OnExit();
-                Machine.Push(new ConfirmTargetUIState(Actor, Target, ActionCallback));
+                //Debug.LogFormat("Actor null when calling new ConfirmTarget from ChooseTarget {0}", actor_ == null);
+                Machine.Push(new ConfirmTargetUIState(actor_, Target, ActionCallback));
                 Target = null;
             }
 

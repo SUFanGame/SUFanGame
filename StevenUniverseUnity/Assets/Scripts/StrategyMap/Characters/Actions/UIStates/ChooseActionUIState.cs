@@ -57,7 +57,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
                 // Push the action's UI state onto our stack.
                 if ( nextState != null )
                 {
-                    Machine.Push(action_.GetUIState());
+                    Machine.Push(nextState);
                 }
                 else
                 {

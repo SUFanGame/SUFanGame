@@ -75,12 +75,14 @@ namespace SUGame.StrategyMap.Characters.Actions
         public IEnumerator Execute( MapCharacter target )
         {
             // Play cool attack scene animation
+            target.Data.Stats.currentHP -= actor_.Data.Stats.str;
             actor_.Paused_ = true;
             yield return null;
         }
 
         public override State GetUIState()
         {
+            //Debug.Log("Pushing choose target state from " + actor_.name);
             var state = new ChooseTargetUIState(actor_, this, targetProperties_, Execute, ValidTargetsReadOnly_);
             return state;
         }

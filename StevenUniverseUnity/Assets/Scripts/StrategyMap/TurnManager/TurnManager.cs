@@ -56,7 +56,8 @@ namespace SUGame.StrategyMap
         void OnGridBuilt( Grid grid )
         {
             //Debug.LogFormat("Beginning turn ticks");
-            StartCoroutine(Tick());
+            if (ui_ != null )
+                StartCoroutine(Tick());
         }
 
         IEnumerator Tick()

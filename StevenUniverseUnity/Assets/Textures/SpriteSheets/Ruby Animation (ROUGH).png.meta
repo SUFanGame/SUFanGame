@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8cf794ab4139e764691c517aa8a0d608
-timeCreated: 1481008222
+timeCreated: 1481043680
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -75,10 +75,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 37
-        height: 37
+        x: 4
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -88,10 +88,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_1
       rect:
         serializedVersion: 2
-        x: 37
-        y: 1
-        width: 37
-        height: 37
+        x: 40
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -101,10 +101,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_2
       rect:
         serializedVersion: 2
-        x: 75
-        y: 1
+        x: 76
+        y: 3
         width: 32
-        height: 37
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,10 +114,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_3
       rect:
         serializedVersion: 2
-        x: 111
-        y: 1
+        x: 112
+        y: 3
         width: 32
-        height: 37
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,10 +127,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_4
       rect:
         serializedVersion: 2
-        x: 147
-        y: 1
+        x: 148
+        y: 3
         width: 32
-        height: 37
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +140,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_5
       rect:
         serializedVersion: 2
-        x: 183
-        y: 1
+        x: 184
+        y: 3
         width: 32
-        height: 37
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +153,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_6
       rect:
         serializedVersion: 2
-        x: 219
-        y: 1
+        x: 220
+        y: 3
         width: 32
-        height: 37
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,10 +166,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_7
       rect:
         serializedVersion: 2
-        x: 254
-        y: 1
+        x: 255
+        y: 3
         width: 32
-        height: 37
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,10 +179,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_8
       rect:
         serializedVersion: 2
-        x: 289
-        y: 1
+        x: 290
+        y: 4
         width: 32
-        height: 37
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,9 +193,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 323
-        y: 1
+        y: 3
         width: 32
-        height: 37
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_10
       rect:
         serializedVersion: 2
-        x: 359
-        y: 1
-        width: 42
-        height: 37
+        x: 361
+        y: 4
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,10 +218,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_11
       rect:
         serializedVersion: 2
-        x: 401
-        y: 1
-        width: 29
-        height: 37
+        x: 400
+        y: 2
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,10 +231,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_12
       rect:
         serializedVersion: 2
-        x: 434
-        y: 1
-        width: 29
-        height: 37
+        x: 433
+        y: 2
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,10 +244,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_13
       rect:
         serializedVersion: 2
-        x: 466
-        y: 1
-        width: 29
-        height: 37
+        x: 465
+        y: 2
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,10 +257,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_14
       rect:
         serializedVersion: 2
-        x: 501
-        y: 1
-        width: 29
-        height: 37
+        x: 500
+        y: 2
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -270,10 +270,10 @@ TextureImporter:
       name: Ruby Animation (ROUGH)_15
       rect:
         serializedVersion: 2
-        x: 536
-        y: 1
-        width: 29
-        height: 37
+        x: 535
+        y: 2
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,9 +284,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 570
-        y: 1
-        width: 29
-        height: 37
+        y: 2
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,9 +297,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 599
-        y: 1
-        width: 29
-        height: 37
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,9 +310,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 632
-        y: 1
-        width: 31
-        height: 37
+        y: 3
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

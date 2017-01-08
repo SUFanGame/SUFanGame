@@ -13,7 +13,7 @@ namespace SUGame.StrategyMap.Characters.Actions
         protected override void Awake()
         {
             base.Awake();
-            cutsceneJsonLoadTest();
+            //cutsceneJsonLoadTest();
         }
 
         public override IEnumerator Execute()

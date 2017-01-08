@@ -49,6 +49,7 @@ namespace SUGame.StrategyMap
         // FOR UI TESTING
         public string weaponName_;
         public Sprite portrait_;
+        public Sprite combatSprite_;
         
 
         //public ActingState CurrentActingState { get { return state_; } }
@@ -61,6 +62,8 @@ namespace SUGame.StrategyMap
         /// Event handler for when a character is clicked on.
         /// </summary>
         static public System.Action<MapCharacter> OnClicked_;
+
+        static public System.Action<MapCharacter> OnKilled_;
 
 
         void Start()
@@ -124,6 +127,14 @@ namespace SUGame.StrategyMap
             set
             {
                 transform.position = (Vector3)value;
+            }
+        }
+
+        public Vector3 CenteredWorldPosition
+        {
+            get
+            {
+                return transform.position + Vector3.one * .5f;
             }
         }
         
@@ -260,6 +271,14 @@ namespace SUGame.StrategyMap
             }
         }
 
+        public void Kill()
+        {
+            LeanTween.alpha(gameObject, 0, 1f).setEaseInOutQuad().setDelay(1f);
+            Grid.Instance.RemoveObject(GridPosition, this);
+            enabled = false;
+            if (OnKilled_ != null)
+                OnKilled_.Invoke( this);
+        }
 
     }
 

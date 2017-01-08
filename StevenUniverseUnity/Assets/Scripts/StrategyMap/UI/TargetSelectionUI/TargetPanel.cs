@@ -31,7 +31,7 @@ namespace SUGame.StrategyMap.UI.ConfirmTargetUI
             weaponNameText_.text = character.weaponName_;
             atkValueText_.text = character.Data.Stats.str.ToString();
             hitValueText_.text = character.Data.Stats.accuracy.ToString();
-            hpValueText_.text = character.Data.Stats.baseHP.ToString();
+            hpValueText_.text = character.Data.Stats.maxHP.ToString();
             portrait_.sprite = character.portrait_;
             critValueText_.text = character.Data.Stats.crit.ToString();
             //weaponNameText_.text = character.

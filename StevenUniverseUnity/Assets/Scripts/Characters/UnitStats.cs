@@ -16,7 +16,8 @@ namespace SUGame.Characters.Customization
         public int res;
         public int crit;
 
-        public int baseHP;
+        public int maxHP;
+        public int currentHP;
         public int avoidance;
         public int accuracy;
 

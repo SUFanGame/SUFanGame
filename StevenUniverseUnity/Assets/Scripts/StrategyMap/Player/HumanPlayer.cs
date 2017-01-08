@@ -72,6 +72,8 @@ namespace SUGame.StrategyMap.Players
             stateMachine_.OnUnitSelected(character);
         }
 
+
+
         void Update()
         {
             // Handle keyboard events.

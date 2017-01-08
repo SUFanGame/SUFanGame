@@ -74,6 +74,24 @@ namespace SUGame.StrategyMap.Players
         void Awake()
         {
             Units = units_.AsReadOnly();
+
         }   
+
+        void OnEnable()
+        {
+
+            MapCharacter.OnKilled_ += HandleCharacterKilled;
+        }
+
+        void OnDisable()
+        {
+
+            MapCharacter.OnKilled_ -= HandleCharacterKilled;
+        }
+
+        void HandleCharacterKilled( MapCharacter character )
+        {
+
+        }
     }
 }

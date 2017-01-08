@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using SUGame.Util.Logic.States;
 using SUGame.StrategyMap.UI.ConfirmTargetUI;
 using SUGame.StrategyMap.Players;
+using SUGame.StrategyMap.UI.CombatPanelUI;
 
 namespace SUGame.StrategyMap.Characters.Actions.UIStates
 {
@@ -17,26 +18,35 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
 
         public ConfirmTargetUIState(MapCharacter actor, MapCharacter target, System.Func<MapCharacter,IEnumerator> actionCallback ) : base()
         {
+
             actor_ = actor;
             target_ = target;
             actionCallback_ = actionCallback;
+
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
 
+            //Debug.Log("Initializing target panel");
+            CombatPanel.Initialize(actor_, target_);
+            CombatPanel.ShowPanel();
 
-            ConfirmTargetPanel.SetAttacker(actor_);
-            ConfirmTargetPanel.SetDefender(target_);
-            ConfirmTargetPanel.Toggle();
+            //ConfirmTargetPanel.SetAttacker(actor_);
+            //ConfirmTargetPanel.SetDefender(target_);
+            //ConfirmTargetPanel.Toggle();
+        }
+
+        public override void OnPaused()
+        {
         }
 
         public override void OnExit()
         {
             base.OnExit();
-
-            ConfirmTargetPanel.Toggle();
+            
+            CombatPanel.Clear();
         }
 
         public override void OnAcceptInput(StrategyPlayer player)
@@ -50,10 +60,12 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         {
             if( accepted_ )
             {
-                OnExit();
-                //Debug.Log("Accepted input");
-                yield return actionCallback_.Invoke(target_);
-                Machine.Clear();
+                Machine.Push(new CombatUIState(actor_, target_, actionCallback_));
+                accepted_ = false;
+                //OnExit();
+                ////Debug.Log("Accepted input");
+                //yield return actionCallback_.Invoke(target_);
+                //Machine.Clear();
             }
 
             yield return null;

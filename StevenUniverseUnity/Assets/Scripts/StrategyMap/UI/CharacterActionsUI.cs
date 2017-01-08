@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using SUGame.StrategyMap.Characters.Actions;
+using System.Linq;
 
 namespace SUGame.StrategyMap.UI
 {
@@ -29,10 +30,17 @@ namespace SUGame.StrategyMap.UI
 
         Transform target_;
 
+        RectTransform rt_;
+        RectTransform canvasRT_;
+
+        static Vector3[] corners_ = new Vector3[4];
+
         void Awake()
         {
             canvasGroup_ = GetComponent<CanvasGroup>();
             Instance = this;
+            rt_ = transform as RectTransform;
+            canvasRT_ = GetComponentInParent<Canvas>().transform as RectTransform;
         }
 
         /// <summary>
@@ -95,6 +103,9 @@ namespace SUGame.StrategyMap.UI
             var windowPos = RectTransformUtility.WorldToScreenPoint(Camera.main, Instance.target_.position + Vector3.right + Vector3.up);
 
             Instance.transform.position = windowPos;
+
+            Instance.SnapToParent(corners_, Instance.rt_, Instance.canvasRT_);
+            
         }
 
         void LateUpdate()
@@ -123,6 +134,50 @@ namespace SUGame.StrategyMap.UI
                     Destroy(button.gameObject);
                 }
             }
+        }
+
+        // TODO : This and SnapInto are probably better off in a utility class.
+        void SnapToParent( Vector3[] corners, RectTransform child, RectTransform parent )
+        {
+            // Child corners in world space
+            child.GetWorldCorners(corners);
+            // Get our rect from bottom left and top right corners.
+            Rect childRect = Rect.MinMaxRect(corners[0].x, corners[0].y, corners[2].x, corners[2].y);
+
+            // Same for our parent.
+            parent.GetWorldCorners(corners);
+            Rect parentRect = Rect.MinMaxRect(corners[0].x, corners[0].y, corners[2].x, corners[2].y);
+
+            // Get the snapped rect.
+            childRect.position = SnapInto(childRect, parentRect);
+
+            // Assign our transform to the snapped rect.
+            child.offsetMin = childRect.min;
+            child.offsetMax = childRect.max;
+        }
+        
+        void OnGUI()
+        {
+            if (!isActiveAndEnabled || rt_ == null)
+                return;
+            //corners_ = GetSnappedCorners(corners_, rt_, canvasRT_);
+            //GUILayout.Label("Rect: " + string.Join(",", corners_.Select(c=>c.ToString()).ToArray() ));
+            //GUILayout.Label("Anchored pos: " + rt_.anchoredPosition);
+        }
+
+        /// <summary>
+        /// Returns a new position for snapper where it's entirely contained with container.
+        /// </summary>
+        public static Vector2 SnapInto(Rect snapper, Rect container)
+        {
+            snapper.x = Mathf.Max(snapper.x, container.xMin);
+            snapper.y = Mathf.Max(snapper.y, container.yMin);
+            snapper.x = Mathf.Min(snapper.x, container.xMax - snapper.width);
+            snapper.y = Mathf.Min(snapper.y, container.yMax - snapper.height);
+
+            //Debug.LogFormat("Snapping in, NewPos: {0}", snapper.position );
+
+            return snapper.position;
         }
     }
 }
