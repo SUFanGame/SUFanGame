@@ -104,6 +104,7 @@ namespace SUGame.StrategyMap.UI
 
             Instance.transform.position = windowPos;
 
+            // Note this REQUIRES that the ANCHOR for the character actions panel is at the bottom left. Pivot can be anywhere
             Instance.SnapToParent(corners_, Instance.rt_, Instance.canvasRT_);
             
         }
@@ -139,21 +140,21 @@ namespace SUGame.StrategyMap.UI
         // TODO : This and SnapInto are probably better off in a utility class.
         void SnapToParent( Vector3[] corners, RectTransform child, RectTransform parent )
         {
-            // Child corners in world space
-            child.GetWorldCorners(corners);
-            // Get our rect from bottom left and top right corners.
-            Rect childRect = Rect.MinMaxRect(corners[0].x, corners[0].y, corners[2].x, corners[2].y);
-
-            // Same for our parent.
-            parent.GetWorldCorners(corners);
-            Rect parentRect = Rect.MinMaxRect(corners[0].x, corners[0].y, corners[2].x, corners[2].y);
-
-            // Get the snapped rect.
+            var childRect = RectFromRT(child);
+            var parentRect = new Rect(Vector2.zero, parent.sizeDelta);
             childRect.position = SnapInto(childRect, parentRect);
-
-            // Assign our transform to the snapped rect.
             child.offsetMin = childRect.min;
             child.offsetMax = childRect.max;
+        }
+
+        /// <summary>
+        /// Get a rect from a rect transform, assumes the anchor is bottom left
+        /// </summary>
+        Rect RectFromRT(RectTransform rt )
+        {
+            var bl = rt.anchoredPosition - (Vector2.Scale(rt.sizeDelta, rt.pivot ));
+            var tr = rt.anchoredPosition + (Vector2.Scale(rt.sizeDelta, (Vector2.one - rt.pivot)));
+            return Rect.MinMaxRect(bl.x, bl.y, tr.x, tr.y);
         }
         
         void OnGUI()
