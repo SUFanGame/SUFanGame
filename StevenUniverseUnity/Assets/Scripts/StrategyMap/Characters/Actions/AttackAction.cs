@@ -75,7 +75,7 @@ namespace SUGame.StrategyMap.Characters.Actions
         public IEnumerator Execute( MapCharacter target )
         {
             // Play cool attack scene animation
-            target.Data.Stats.currentHP -= actor_.Data.Stats.str;
+            //target.Data.Stats.currentHP -= actor_.Data.Stats.str;
             actor_.Paused_ = true;
             yield return null;
         }

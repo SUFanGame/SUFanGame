@@ -64,13 +64,13 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
 
         public void Initialize( MapCharacter character )
         {
-            healthBar_.MaxHealth_ = character.Data.Stats.maxHP;
-            healthBar_.CurrentHealth_ = character.Data.Stats.currentHP;
-            hitValueText_.text = character.Data.Stats.accuracy.ToString();
-            critValueText_.text = character.Data.Stats.crit.ToString();
-            dmgValueText_.text = character.Data.Stats.str.ToString();
-            weaponNameText_.text = character.weaponName_;
-            unitImage_.sprite = character.combatSprite_;
+            healthBar_.MaxHealth_ = character.Data.Stats[Stat.Type.HP].MaxLevelValue_;
+            healthBar_.CurrentHealth_ = character.Data.Stats[Stat.Type.HP].Current_;
+            //hitValueText_.text = character.Data.Stats.accuracy.ToString();
+            //critValueText_.text = character.Data.Stats.crit.ToString();
+            //dmgValueText_.text = character.Data.Stats.str.ToString();
+            //weaponNameText_.text = character.weaponName_;
+            //unitImage_.sprite = character.combatSprite_;
             LeanTween.alphaCanvas(unitImage_.GetComponent<CanvasGroup>(), 1, 0.001f);
             character_ = character;
 
@@ -92,7 +92,7 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
             //  having to go into the animation itself to see it is tedious and dumb
             if( eventName == "AttackHit")
             {
-                otherPanelHealthBar_.TweenCurrentHealth(otherPanelHealthBar_.CurrentHealth_ - character_.Data.Stats.str);
+                otherPanelHealthBar_.TweenCurrentHealth(otherPanelHealthBar_.CurrentHealth_ - character_.Data.Stats[Stat.Type.STR]);
             }
         }
 

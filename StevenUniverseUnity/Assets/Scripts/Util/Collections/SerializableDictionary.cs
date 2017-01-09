@@ -78,10 +78,14 @@ namespace SUGame.Util.Collections
         public void OnAfterDeserialize()
         {
             dict_.Clear();
-            for (int i = 0; i < keys_.Count; ++i)
+            for (int i = 0; i < keys_.Count ; ++i)
             {
-                dict_[keys_[i]] = values_[i];
+                if (i >= values_.Count)
+                    dict_[keys_[i]] = default(TValue);
+                else
+                    dict_[keys_[i]] = values_[i];
             }
+            
         }
 
 

@@ -408,7 +408,7 @@ namespace SUGame.World.DynamicMesh
         }
 
         /// <summary>
-        /// Sets the given cell to be visible (set's it's alpha value to 0
+        /// Sets the given cell to be hidden (set's it's alpha value to 0
         /// </summary>
         public void SetHidden(IntVector2 pos)
         {

@@ -18,12 +18,14 @@ namespace SUGame.Characters
         private string characterName; //Name
         [SerializeField]
         private Faction faction; //What team?
+
+        [SerializeField]
+        private Stats stats; //All the unit battle modifiers
+
         [SerializeField]
         private List<Item> heldItems; //WILDCATS
         [SerializeField]
         private Skill[] skills; //All available skills
-        [SerializeField]
-        private UnitStats stats; //All the unit battle modifiers
         [SerializeField]
         private SupportInfo[] supportInfos;
 
@@ -68,7 +70,7 @@ namespace SUGame.Characters
         }
         
         //Unit stats
-        public UnitStats Stats
+        public Stats Stats
         {
             get { return stats; }
             set { stats = value; }

@@ -28,12 +28,12 @@ namespace SUGame.StrategyMap.UI.ConfirmTargetUI
         public void SetTarget( MapCharacter character )
         {
             characterNameText_.text = character.name;
-            weaponNameText_.text = character.weaponName_;
-            atkValueText_.text = character.Data.Stats.str.ToString();
-            hitValueText_.text = character.Data.Stats.accuracy.ToString();
-            hpValueText_.text = character.Data.Stats.maxHP.ToString();
-            portrait_.sprite = character.portrait_;
-            critValueText_.text = character.Data.Stats.crit.ToString();
+            //weaponNameText_.text = character.weaponName_;
+            //atkValueText_.text = character.Data.Stats.str.ToString();
+            //hitValueText_.text = character.Data.Stats.accuracy.ToString();
+            //hpValueText_.text = character.Data.Stats.maxHP.ToString();
+            //portrait_.sprite = character.portrait_;
+            //critValueText_.text = character.Data.Stats.crit.ToString();
             //weaponNameText_.text = character.
         }
     }

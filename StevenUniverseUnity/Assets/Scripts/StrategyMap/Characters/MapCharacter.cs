@@ -8,6 +8,7 @@ using SUGame.StrategyMap.Players;
 using SUGame.Util;
 using SUGame.StrategyMap.Characters.Actions;
 using SUGame.Util.Common;
+using SUGame.Config;
 
 // Just a note about unity's built in Selection Handlers - they require that the camera have a "Physics Raycaster"
 // and that an "EventSystem" is in the scene (GameObject->UI->EventSystem). Any objects to be selected
@@ -22,7 +23,10 @@ namespace SUGame.StrategyMap
     public class MapCharacter : MonoBehaviour, IPointerClickHandler
     {
         public StrategyPlayer OwningPlayer { get; private set; }
-         
+        
+
+
+
         /// <summary>
         /// Character data, to be loaded in once this is instantiated.
         /// </summary>
@@ -31,13 +35,8 @@ namespace SUGame.StrategyMap
         public CharacterData Data { get { return characterData_; } }
 
 
-        #region possiblecharacterdata
-        public float tilesMovedPerSecond_ = 3f;
-
         public int moveRange_ = 5;
-        #endregion
 
-        public SpriteRenderer renderer_;
 
         /// <summary>
         /// List of actions this character is capable of. Actions are components added to the character
@@ -46,14 +45,16 @@ namespace SUGame.StrategyMap
         /// </summary>
         List<CharacterAction> actions_ = null;
 
-        // FOR UI TESTING
-        public string weaponName_;
-        public Sprite portrait_;
-        public Sprite combatSprite_;
-        
+        //// FOR UI TESTING
+        //public string weaponName_;
+        //public Sprite portrait_;
+        //public Sprite combatSprite_;
+
 
         //public ActingState CurrentActingState { get { return state_; } }
 
+        [SerializeField]
+        SpriteRenderer renderer_;
         Animator animator_;
 
         public Animator Animator_ { get { return animator_; } }
@@ -68,7 +69,8 @@ namespace SUGame.StrategyMap
 
         void Start()
         {
-            Grid.Instance.OnGridBuilt_ += AddToGrid;
+            if( Grid.Instance != null )
+                Grid.Instance.OnGridBuilt_ += AddToGrid;
         }
 
         void OnDestroy()
@@ -259,7 +261,7 @@ namespace SUGame.StrategyMap
 
             while ( transform.position != (Vector3)end )
             {
-                float distCovered = (Time.time - startTime) * tilesMovedPerSecond_;
+                float distCovered = (Time.time - startTime) * UserSettings.TilesMovedPerSecond_;
                 float t = distCovered / dist; 
                 transform.position = Vector3.Lerp(start, (Vector3)end, t);
                 yield return null;

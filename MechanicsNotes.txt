@@ -10,3 +10,6 @@ Fusion will be in the demo
 Fusion mechanics: There are active and passive fusions. Passive occurs if a unit is going to receive a deathblow and is
 adjacent to a high support ally. There is a chance for them to fuse in order to prevent the deathblow.
 Active fusion won't occur until higher levels of support - the exact levels can differ based on the characters.
+
+Weapon Triangle:
+Heavy>Medium>Light
