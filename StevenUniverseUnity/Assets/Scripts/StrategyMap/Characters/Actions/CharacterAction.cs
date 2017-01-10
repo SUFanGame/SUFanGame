@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace SUGame.StrategyMap.Characters.Actions
 {
+    /// <summary>
+    /// Character actions which can be performed on the strategy map.
+    /// </summary>
     public class CharacterAction : MonoBehaviour
     {
         /// <summary>

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3070ce29ad6040a608fa8eb549772, type: 3}
+  m_Name: CombatSkill
+  m_EditorClassIdentifier: 
+  phase_: 0
+  a_:
+  - s_: 
+  - s_: 
+  - s_: Hi
+  - s_: Hi

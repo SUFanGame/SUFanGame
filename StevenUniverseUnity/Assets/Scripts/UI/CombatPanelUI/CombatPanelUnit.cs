@@ -64,8 +64,8 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
 
         public void Initialize( MapCharacter character )
         {
-            healthBar_.MaxHealth_ = character.Data.Stats[Stat.Type.HP].MaxLevelValue_;
-            healthBar_.CurrentHealth_ = character.Data.Stats[Stat.Type.HP].Current_;
+            healthBar_.MaxHealth_ = character.Data.Stats_[Stat.Type.HP].MaxLevelValue_;
+            healthBar_.CurrentHealth_ = character.Data.Stats_[Stat.Type.HP].CurrentValue_;
             //hitValueText_.text = character.Data.Stats.accuracy.ToString();
             //critValueText_.text = character.Data.Stats.crit.ToString();
             //dmgValueText_.text = character.Data.Stats.str.ToString();
@@ -92,7 +92,7 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
             //  having to go into the animation itself to see it is tedious and dumb
             if( eventName == "AttackHit")
             {
-                otherPanelHealthBar_.TweenCurrentHealth(otherPanelHealthBar_.CurrentHealth_ - character_.Data.Stats[Stat.Type.STR]);
+                otherPanelHealthBar_.TweenCurrentHealth(otherPanelHealthBar_.CurrentHealth_ - character_.Data.Stats_[Stat.Type.STR]);
             }
         }
 

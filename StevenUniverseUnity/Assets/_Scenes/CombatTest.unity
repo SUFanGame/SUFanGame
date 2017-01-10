@@ -90,101 +90,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &78094108
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 78094109}
-  - 114: {fileID: 78094110}
-  m_Layer: 8
-  m_Name: Stats
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &78094109
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 78094108}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 969494372}
-  m_RootOrder: 1
---- !u!114 &78094110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 78094108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64b7470ebe33de84cb39e8374b3a2e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level_: 1
-  stats_:
-  - minLevelValue_: 5
-    maxLevelValue_: 13
-    current_: 6
-    max_: 11
-    levellingCurve_:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 0.67458516
-        outSlope: 0.67458516
-        tangentMode: 0
-      - time: 0.34830856
-        value: 0.19096404
-        inSlope: 0.54916143
-        outSlope: 0.54916143
-        tangentMode: 0
-      - time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    modifiers_:
-      keys_: []
-      values_: 
-  testStat_:
-    minLevelValue_: 0
-    maxLevelValue_: 0
-    current_: 0
-    max_: 0
-    levellingCurve_:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      - time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    modifiers_:
-      keys_: []
-      values_: 
-  vitalityMultiplier_: 1
 --- !u!1001 &841110860
 Prefab:
   m_ObjectHideFlags: 0
@@ -192,10 +97,15 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114000013365806486, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
         type: 2}
-      propertyPath: characterData_.stats.Stats_.Array.size
-      value: 5
+      propertyPath: stats_.Array.data[0].modifiers_.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000012822606316, guid: ddd9b93d365eed34d9d1073b5ca3401a, type: 2}
       propertyPath: m_LocalPosition.x
@@ -228,6 +138,231 @@ Prefab:
     - target: {fileID: 4000012822606316, guid: ddd9b93d365eed34d9d1073b5ca3401a, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[0].name_
+      value: Amulet of Ultimate Boogening
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[1].name_
+      value: Homesick
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[2].name_
+      value: STUFF
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[2].operandValue_
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[2].operator_
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[2].value_
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[1].operandValue_
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[1].operator_
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].current_
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].base_
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: level_
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].baseValue_
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].maxLevelValue_
+      value: 87
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[1].modValue_
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[2].modValue_
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[0].operandValue_
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[0].operator_
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[0].modValue_
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[0].priority_
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[3].name_
+      value: STUFF
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[3].operandValue_
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[3].modValue_
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[3].operator_
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[3].value_
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[0].rightOperand_
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[1].rightOperand_
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[2].rightOperand_
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[3].rightOperand_
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[3].leftOperand_
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modifiers_.Array.data[0].leftOperand_
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].currentValue_
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].level_
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].modValue_
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].maxValue_
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].minLevelValue_
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.data[0].tangentMode
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.data[1].tangentMode
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010318345046, guid: ddd9b93d365eed34d9d1073b5ca3401a,
+        type: 2}
+      propertyPath: stats_.Array.data[0].levellingCurve_.m_Curve.Array.data[2].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ddd9b93d365eed34d9d1073b5ca3401a, type: 2}
@@ -275,11 +410,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!4 &969494372 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000012822606316, guid: ddd9b93d365eed34d9d1073b5ca3401a,
-    type: 2}
-  m_PrefabInternal: {fileID: 841110860}
 --- !u!1 &1044693689
 GameObject:
   m_ObjectHideFlags: 0

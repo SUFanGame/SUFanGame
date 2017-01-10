@@ -15,72 +15,93 @@ namespace SUGame.Characters
     {
         
         [SerializeField]
-        private string characterName; //Name
+        private string characterName_; //Name
         [SerializeField]
-        private Faction faction; //What team?
+        private Faction faction_; //What team?
 
         [SerializeField]
-        private Stats stats; //All the unit battle modifiers
+        private Stats stats_; //All the unit battle modifiers
 
         [SerializeField]
-        private List<Item> heldItems; //WILDCATS
+        private List<Item> heldItems_; //WILDCATS
+
         [SerializeField]
-        private Skill[] skills; //All available skills
+        private Weapon equippedWeapon_ = null;
+        /// <summary>
+        /// The weapon this character currently has equipped.
+        /// </summary>
+        public Weapon EquippedWeapon_ { get { return equippedWeapon_; } }
+
         [SerializeField]
-        private SupportInfo[] supportInfos;
+        private List<Skill> skills_; //All available skills
+        [SerializeField]
+        private SupportInfo[] supportInfos_;
+        
 
         public CharacterData(  
             string characterName,
             string affiliation
             )
         {
-            this.characterName = characterName;
-            this.faction = (Faction)System.Enum.Parse(typeof(Faction), affiliation, true );
+            this.characterName_ = characterName;
+            this.faction_ = (Faction)System.Enum.Parse(typeof(Faction), affiliation, true );
 
             // All other data parameters may want to be loaded from SaveData at instantiation.
         }
 
 
         //Name
-        public string EntityName
+        public string CharacterName_
         {
-            get { return characterName; }
-            set { characterName = value; }
+            get { return characterName_; }
+            set { characterName_ = value; }
         }
 
         //Team name
         public Faction Faction_
         {
-            get { return faction; }
-            set { faction = value; }
+            get { return faction_; }
+            set { faction_ = value; }
         }
 
         //Held items
-        public List<Item> HeldItems
+        public List<Item> HeldItems_
         {
-            get { return heldItems; }
-            set { heldItems = value; }
+            get { return heldItems_; }
+            set { heldItems_ = value; }
         }
         
         //Skills available
-        public Skill[] Skills
+        public List<Skill> Skills_
         {
-            get { return skills; }
-            set { skills = value; }
+            get { return skills_; }
+            set { skills_ = value; }
         }
         
         //Unit stats
-        public Stats Stats
+        public Stats Stats_
         {
-            get { return stats; }
-            set { stats = value; }
+            get { return stats_; }
+            set { stats_ = value; }
         }
 
-        public SupportInfo[] SupportInfos
+        public SupportInfo[] SupportInfos_
         {
-            get { return supportInfos; }
-            set { supportInfos = value; }
+            get { return supportInfos_; }
+            set { supportInfos_ = value; }
         }
         
+        /// <summary>
+        /// Populate the given buffer with all skills of type T
+        /// </summary>
+        public void GetSkills<T>( List<T> buffer ) where T : Skill
+        {
+            foreach (var s in skills_)
+            {
+                var t = s as T;
+                if (t != null)
+                    buffer.Add(t);
+            }
+        }
     } 
 }

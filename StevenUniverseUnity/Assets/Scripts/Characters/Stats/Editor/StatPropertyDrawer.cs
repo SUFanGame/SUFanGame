@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 
 
-[CustomPropertyDrawer(typeof(Stat))]
+//[CustomPropertyDrawer(typeof(Stat))]
 public class StatPropertyDrawer : PropertyDrawer
 {
     int indent = 15;

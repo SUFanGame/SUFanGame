@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CombatAbility : ScriptableObject
+[System.Serializable]
+public class TestA
 {
-
+    public string s_ = "Hi";
 }

@@ -2,10 +2,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using SUGame.Util.Collections;
+using SUGame.PropertyAttributes;
 
 [System.Serializable]
 public class Stat
 {
+    [SerializeField]
+    string name_;
+    public string Name_ { get { return name_; } }
+
+    [SerializeField]
+    int level_;
+    /// <summary>
+    /// Current "Level" for this stat. Determine's the stat's <see cref="BaseValue_"/> which in turn determines
+    /// the stat's <see cref="MaxValue_"/>.
+    /// </summary>
+    public int Level_
+    {
+        get { return level_; }
+        set
+        {
+            if (value == level_)
+                return;
+            SetBaseValueForLevel(value);
+            level_ = value;
+        }
+    }
+
+    [SerializeField]
+    AnimationCurve levellingCurve_;
+    /// <summary>
+    /// Determines a stat's base value at any given level from 1 to <see cref="Stats.MAX_LEVEL_"/>.
+    /// <see cref="GetBaseValueAtLevel(int)"/> can be used to retrieve a value.
+    /// </summary>
+    public AnimationCurve LevellingCurve_ { get { return levellingCurve_; } }
+
+    [Header("Range")]
     [SerializeField]
     int minLevelValue_;
     /// <summary>
@@ -18,6 +50,7 @@ public class Stat
         {
             minLevelValue_ = Mathf.Clamp(value, 0, int.MaxValue);
             MaxLevelValue_ = maxLevelValue_;
+            SetBaseValueForLevel(level_);
         }
     }
 
@@ -33,111 +66,171 @@ public class Stat
         set
         {
             maxLevelValue_ = Mathf.Clamp(value, minLevelValue_, int.MaxValue);
+            SetBaseValueForLevel(level_);
         }
     }
 
 
+    [Header("Current/Max")]
     [SerializeField]
-    int current_;
+    int currentValue_;
     /// <summary>
-    /// The current value of the stat. Clamps from 0 to max_
+    /// The current value of the stat. Clamped from 0 to <see cref="MaxValue_"/>
     /// </summary>
-    public int Current_
+    public int CurrentValue_
     {
-        get { return current_; }
-        set { current_ = Mathf.Clamp(value,0, max_); }
+        get { return currentValue_; }
+        set { currentValue_ = Mathf.Clamp(value, 0, MaxValue_); }
     }
 
 
-    [SerializeField]
-    int max_;
+
+    // Editor only
+    [SerializeField, ReadOnly]
+    int maxValue_;
+
     /// <summary>
-    /// The maximum value of this stat at the current level, AFTER modifiers. <see cref="Current_"/> is 
-    /// clamped from 0 to this.
+    /// The maximum possible value of this stat including current modifiers.
+    /// <see cref="CurrentValue_"/> is clamped from 0 to this.
     /// </summary>
-    public int Max_
+    public int MaxValue_
     {
         get
         {
-            return max_;
+            int val = baseValue_ + modValue_;
+            return Mathf.Clamp(val, 0, int.MaxValue);
         }
     }
 
 
-    [SerializeField]
-    AnimationCurve levellingCurve_;
+
+    [Header("Base Value")]
+    [SerializeField, ReadOnly]
+    int baseValue_;
     /// <summary>
-    /// Determines a stat's base value at any given level from 1 to <see cref="Stats.MAX_LEVEL_"/>.
-    /// <see cref="GetBaseValueAtLevel(int)"/> can be used to retrieve a value.
+    /// The base value of this stat at a given level. This can be set from <see cref="SetBaseValueForLevel(int)"/>
     /// </summary>
-    public AnimationCurve LevellingCurve_ { get { return levellingCurve_; } }
-    
+    public int BaseValue_ { get { return baseValue_; } }
+
     /// <summary>
-    /// Modifiers which are applied to a state's Max_ value.
+    /// The value added to <see cref="BaseValue_"/> to determine <see cref="MaxValue_"/>.
+    /// Note this is not a direct sum of modifiers, but result of each modifier being applied in sequence.
+    /// This means that if any modifier is removed, all modifications AFTER the removed modification must
+    /// be reapplied, since their results might be different.
     /// </summary>
-    [SerializeField]
-    ModifiersDict modifiers_ = new ModifiersDict();
+    [SerializeField, ReadOnly]
+    int modValue_ = 0;
+   
 
 
-    // Not sure this is the best route for modifiers, but should be fine for now.
-    // It will be caller's responsibility to remove modifiers as appropriate.
     /// <summary>
-    /// Add or change a modifier to this stat. Pass in 0 to
-    /// remove a modifier. By default <see cref="Current_"/> will automatically be
-    /// set to <see cref="Max_"/> for this stat based on the argument 
-    /// <paramref name="currentBecomesMax"/>
+    /// Modifiers which are applied to a stat's base value to result in <see cref="MaxValue_"/>.
     /// </summary>
-    /// <param name="name">The name of the modifier.</param>
-    /// <param name="value">The value of the modifier.</param>
-    /// <param name="currentBecomesMax">If true, the current value will be set to max.</param>
-    public void SetModifier( string name, int value, bool currentBecomesMax = true )
+    //[SerializeField]
+    //ModifiersDict modifiers_ = new ModifiersDict();
+    [Space(10)]
+    [SerializeField]
+    List<StatModifier> modifiers_ = new List<StatModifier>();
+
+    public void Initialize(string name, int minValue, int maxValue, int level, int current)
     {
-        if (value == 0 )
-        {
-            // If we pass in 0 but the modifier doesn't exist then nothing happens.
-            if (!modifiers_.ContainsKey(name))
-                return;
+        name_ = name;
+        minLevelValue_ = minValue;
+        maxLevelValue_ = maxValue;
+        SetBaseValueForLevel(level);
+        currentValue_ = MaxValue_;
+    }
 
-            // Otherwise remove the previously added modifier.
-            max_ -= modifiers_[name];
-            modifiers_.Remove(name);
-            return;
+    // TODO : Rather than replace modifiers of the same type we could make them additive in some way,
+    // so maybe some stack or some don't. Rather than replace exising, we get new modifier value
+    // and add it to existing? Then there would be no easy way to undo only one of the modifiers...
+    /// <summary>
+    /// Add the given modifier to this stat if valid. Note if a modifier of this type
+    /// (name) already exists, this will only be applied if it's a higher priority.
+    /// </summary>
+    public void AddModifier( StatModifier modifier )
+    {
+        // Get index of existing modifiers of this type if any - note modifiers
+        // are equated by name only, no other factor is considered for equality.
+        int index = modifiers_.IndexOf(modifier);
+        if( index == -1 )
+        {
+            // If there are none, apply our new modifier.
+            modifiers_[index] = modifier;
+            modValue_ += modifiers_[index].ModValue_;
+        }
+        else
+        {
+            // If there is one, check if our priority is higher
+            // Not sure about this priority system.
+            var existing = modifiers_[index];
+            //if (existing.priority_ < modifier.priority_)
+            {
+                // If so, remove our old modifier and apply this new one
+                modifier.UpdateValue(this);
+                modifiers_[index] = modifier;
+            }
+            // Otherwise do nothing
         }
 
-        if( modifiers_.ContainsKey(name) )
-        {
-            max_ -= modifiers_[name];
-            max_ += value;
-            modifiers_[name] = value;
-            return;
-        }
-
-        modifiers_[name] = value;
-        max_ += value;
     }
 
     /// <summary>
-    /// Sets the stat's max and current values based on the given level and current modifiers.
+    /// This should be called any time a modification is added or removed since modifiers 
+    /// are applied in a sequence.
+    /// </summary>
+    void RefreshModifiers()
+    {
+        // If we want each mod to only refer to the original stat's values, this is how.
+        //float t = Mathf.InverseLerp(0, MaxValue_, CurrentValue_);
+        // Debug.LogFormat("From: {0}, To: {1}, T: {2}, Curr: {3}", 0, MaxValue_, t, CurrentValue_);
+        int diff = MaxValue_ - CurrentValue_;
+
+        modValue_ = 0;
+
+        foreach ( var m in modifiers_ )
+        {
+            m.UpdateValue(this);
+            // If we want to immediately apply each mod in sequence, this is how
+            //float t = Mathf.InverseLerp(0, MaxValue_, CurrentValue_);
+            modValue_ += m.ModValue_;
+            
+            //Debug.LogFormat("Name: {0}, Current: {1}, Max: {2}, Mod: {3}, T: {4}", m.name_, CurrentValue_, MaxValue_, m.ModValue_, t);
+
+            //CurrentValue_ = Mathf.CeilToInt(Mathf.Lerp(0, MaxValue_, t));
+        }
+
+        CurrentValue_ = MaxValue_ - diff;
+        //CurrentValue_ = LerpCurrent(t);
+        //Debug.LogFormat("Current after mods: {0}", CurrentValue_);
+
+        //Debug.LogFormat("Stat after modifiers: Base: {0}, Current: {1}, Max: {2}, Mod: {3}", BaseValue_, CurrentValue_, MaxValue_, modValue_);
+        //currentValue_ = oldVal;
+    }
+
+    /// <summary>
+    /// Sets the stat's base value for the given level.
     /// </summary>
     /// <param name="level">The level of the value we want.</param>
-    /// <param name="currentBecomesMax">If set to true the current value will be set to max, otherwise
-    /// it will remain unchanged, or lower if max is now below current.</param>
-    public void SetValueForLevel( int level, bool currentBecomesMax = false )
+    void SetBaseValueForLevel( int level )
     {
-        int val = GetBaseValueAtLevel(level);
-        foreach( var mod in modifiers_ )
-        {
-            val += mod.Value;
-        }
-        max_ = val;
-        Current_ = currentBecomesMax ? max_ : current_;
+        int diff = MaxValue_ - CurrentValue_;
+        //float t = Mathf.InverseLerp(0, MaxValue_, CurrentValue_);
+        baseValue_ = GetBaseValueAtLevel(level);
+
+        currentValue_ = MaxValue_ - diff;
+        //CurrentValue_ = LerpCurrent(t);
+        RefreshModifiers();
+    }
+
+    int LerpCurrent( float t )
+    {
+        return Mathf.RoundToInt(Mathf.Lerp(0, MaxValue_, t));
     }
 
     /// <summary>
-    /// Retrieve the value for this stat at the given level based on the levelling curve.
+    /// Retrieve the base value for this stat at the given level based on the levelling curve and the stat range.
     /// </summary>
-    /// <param name="level"></param>
-    /// <returns></returns>
     public int GetBaseValueAtLevel( int level )
     {
         // Get our T value from our current level.
@@ -150,18 +243,6 @@ public class Stat
         return Mathf.RoundToInt(Mathf.Lerp(minLevelValue_, maxLevelValue_, normalizedCurveVal));
     }
 
-
-    public Stat( int value ) : this( value, value + 1, value) {}
-
-    public Stat( int minLevel, int maxLevel, int current )
-    {
-        minLevelValue_ = minLevel;
-        maxLevelValue_ = maxLevel;
-        current_ = current;
-        max_ = current;
-        levellingCurve_ = AnimationCurve.Linear(0, 0, 1, 1);
-    }
-
     /// <summary>
     /// Returns the stat's value in the range 0-1
     /// </summary>
@@ -169,113 +250,99 @@ public class Stat
     {
         get
         {
-            return Mathf.InverseLerp(0, Max_, Current_);
+            return Mathf.InverseLerp(0, MaxValue_, CurrentValue_);
         }
 
     }
 
     #region operators
 
-
-    public static implicit operator Stat(int val)
-    {
-        return new Stat(val);
-    }
-
     public static implicit operator int (Stat stat)
     {
-        return stat.Current_;
+        return stat.CurrentValue_;
     }
 
-    public static Stat operator --(Stat value)
+    
+
+    public static int operator +(Stat left, int right)
     {
-        return value.Current_--;
+        return left.CurrentValue_ + right;
     }
 
-    public static Stat operator ++(Stat value)
+    public static int operator -(Stat left, int right)
     {
-        return value.Current_++;
+        return left.CurrentValue_ - right;
     }
 
-    public static Stat operator +(Stat left, int right)
+    public static int operator +(Stat left, Stat right)
     {
-        return left.Current_ + right;
+        return left.currentValue_ + right.CurrentValue_;
     }
 
-    public static Stat operator -(Stat left, int right)
+    public static int operator -(Stat left, Stat right)
     {
-        return left.Current_ - right;
-    }
-
-    public static Stat operator +(Stat left, Stat right)
-    {
-        return left.current_ + right.Current_;
-    }
-
-    public static Stat operator -(Stat left, Stat right)
-    {
-        return left.Current_ - right.current_;
+        return left.CurrentValue_ - right.currentValue_;
     }
 
     public static bool operator ==(Stat left, Stat right)
     {
-        return left.Current_ == right.Current_;
+        return left.CurrentValue_ == right.CurrentValue_;
     }
 
     public static bool operator !=(Stat left, Stat right)
     {
-        return left.Current_ != right.Current_;
+        return left.CurrentValue_ != right.CurrentValue_;
     }
     
     public static bool operator <(Stat left, Stat right)
     {
-        return left.Current_ < right.current_;
+        return left.CurrentValue_ < right.currentValue_;
     }
 
     public static bool operator >(Stat left, Stat right)
     {
-        return left.Current_ > right.Current_;
+        return left.CurrentValue_ > right.CurrentValue_;
     }
 
     public static bool operator >=(Stat left, Stat right)
     {
-        return left.Current_ >= right.Current_;
+        return left.CurrentValue_ >= right.CurrentValue_;
     }
 
     public static bool operator <=(Stat left, Stat right)
     {
-        return left.Current_ <= right.Current_;
+        return left.CurrentValue_ <= right.CurrentValue_;
     }
 
     public static bool operator ==(Stat left, int right)
     {
-        return left.Current_ == right;
+        return left.CurrentValue_ == right;
     }
 
     public static bool operator !=(Stat left, int right)
     {
-        return left.Current_ != right;
+        return left.CurrentValue_ != right;
     }
 
 
     public static bool operator <(Stat left, int right)
     {
-        return left.Current_ < right;
+        return left.CurrentValue_ < right;
     }
 
     public static bool operator >(Stat left, int right)
     {
-        return left.Current_ > right;
+        return left.CurrentValue_ > right;
     }
 
     public static bool operator >=(Stat left, int right)
     {
-        return left.Current_ >= right;
+        return left.CurrentValue_ >= right;
     }
 
     public static bool operator <=(Stat left, int right)
     {
-        return left.Current_ <= right;
+        return left.CurrentValue_ <= right;
     }
 
     #endregion
@@ -283,7 +350,7 @@ public class Stat
     #region comparisoninterfaces
     public int CompareTo(Stat other)
     {
-        return Current_.CompareTo(other.Current_);
+        return CurrentValue_.CompareTo(other.CurrentValue_);
     }
 
     public override bool Equals(object obj)
@@ -293,12 +360,12 @@ public class Stat
 
     public bool Equals(Stat other)
     {
-        return Current_.Equals(other.Current_);
+        return CurrentValue_.Equals(other.CurrentValue_);
     }
 
     public override int GetHashCode()
     {
-        return Current_.GetHashCode();
+        return CurrentValue_.GetHashCode();
     }
     #endregion
 
@@ -333,13 +400,44 @@ public class Stat
         "Experience",
     };
 
+    //public void Print()
+    //{
+    //    var val = GetBaseValueAtLevel(1);
+    //    int originalVal = currentValue_;
+    //    modValue_ = 0;
+    //    foreach (var mod in modifiers_)
+    //    {
+    //        Debug.LogFormat("Before mod Base: {0}, Current: {1}, Max: {2}", BaseValue_, CurrentValue_, MaxValue_);
+    //        mod.UpdateValue(this);
+    //        float t = Mathf.InverseLerp(0, MaxValue_, CurrentValue_);
+    //        modValue_ += mod.ModValue_;
+    //        CurrentValue_ = Mathf.FloorToInt(Mathf.Lerp(0, MaxValue_, t));
+    //        Debug.LogFormat("Modding stat by {0} {1} {2} ({3})", mod.leftOperand_, mod.operator_, mod.rightOperand_, mod.ModValue_ );
+    //    }
+    //    Debug.LogFormat("Base: {0}, Current: {1}, Max: {2}, ModValue: {3}", BaseValue_, CurrentValue_, MaxValue_, modValue_);
+    //    modValue_ = 0;
+    //    currentValue_ = originalVal;
+    //}
+
     /// <summary>
     /// The total count of all stat types.
     /// </summary>
     public static int TypeCount_ { get { return properStatNames_.Length; } }
 
-    public Dictionary<string,int>.Enumerator ModifiersEnumerator_ { get { return modifiers_.GetEnumerator(); } }
+    public void OnValidate()
+    {
+        MinLevelValue_ = minLevelValue_;
+        MaxLevelValue_ = maxLevelValue_;
+        Level_ = level_;
+        CurrentValue_ = currentValue_;
 
-    [System.Serializable]
-    class ModifiersDict : SerializableDictionary<string, int> { }
+        // Editor only
+        maxValue_ = MaxValue_;
+
+    }
+
+   // public Dictionary<string,StatModifier>.Enumerator ModifiersEnumerator_ { get { return modifiers_.GetEnumerator(); } }
+
+    //[System.Serializable]
+    //class ModifiersDict : SerializableDictionary<string, StatModifier> { }
 }

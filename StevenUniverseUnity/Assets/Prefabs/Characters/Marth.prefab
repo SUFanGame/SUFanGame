@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000012891947844}
   m_IsPrefabParent: 1
+--- !u!1 &1000010557274972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013936492974}
+  - 114: {fileID: 114000010318345046}
+  m_Layer: 8
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000012349123318
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,13 +87,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012891947844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.23, y: 3.49, z: -1.49}
+  m_LocalPosition: {x: -1.41, y: -0.07, z: -1.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010970409036}
+  - {fileID: 4000013936492974}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &4000013936492974
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010557274972}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012822606316}
+  m_RootOrder: 1
 --- !u!61 &61000011099733318
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -109,6 +139,72 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010318345046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010557274972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b7470ebe33de84cb39e8374b3a2e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level_: 1
+  stats_:
+  - minLevelValue_: 5
+    maxLevelValue_: 13
+    current_: 6
+    max_: 11
+    levellingCurve_:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0.67458516
+        outSlope: 0.67458516
+        tangentMode: 0
+      - time: 0.34830856
+        value: 0.19096404
+        inSlope: 0.54916143
+        outSlope: 0.54916143
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    modifiers_:
+      keys_: []
+      values_: 
+  testStat_:
+    minLevelValue_: 0
+    maxLevelValue_: 0
+    current_: 0
+    max_: 0
+    levellingCurve_:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 10
+      - time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    modifiers_:
+      keys_: []
+      values_: 
+  vitalityMultiplier_: 1
 --- !u!114 &114000011223491176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,28 +258,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData_:
-    characterName: 
-    faction: 0
-    heldItems: []
-    skills: []
-    stats:
-      str: 4
-      mag: 0
-      spd: 0
-      skl: 0
-      lck: 0
-      def: 0
-      res: 0
-      crit: 20
-      baseHP: 18
-      avoidance: 0
-      accuracy: 99
-    supportInfos: []
-  tilesMovedPerSecond_: 5
+    characterName_: 
+    faction_: 0
+    stats_: {fileID: 0}
+    heldItems_: []
+    equippedWeapon_: {fileID: 0}
+    skills_: []
+    supportInfos_: []
   moveRange_: 5
   renderer_: {fileID: 0}
-  weaponName_: 
-  portrait_: {fileID: 0}
 --- !u!114 &114000013803584250
 MonoBehaviour:
   m_ObjectHideFlags: 1

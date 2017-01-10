@@ -5,7 +5,7 @@ using UnityEditor;
 using System.Linq;
 using SUGame.Characters.Customization;
 
-[CustomEditor(typeof(Stats))]
+//[CustomEditor(typeof(Stats))]
 public class StatsInspector : Editor
 {
     SerializedProperty statsArrayProp_;
