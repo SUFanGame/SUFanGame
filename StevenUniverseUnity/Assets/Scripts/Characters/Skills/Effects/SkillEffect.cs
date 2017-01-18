@@ -8,4 +8,5 @@ using System.Collections.Generic;
 public class SkillEffect : ScriptableObject
 {
     public virtual void Execute() { }
+    public virtual void OnCancel() { }
 }

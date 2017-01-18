@@ -8,12 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35f3070ce29ad6040a608fa8eb549772, type: 3}
-  m_Name: CombatSkill
+  m_Script: {fileID: 11500000, guid: 66e5da5de9fb55f4e9d1e4b40ff5b43a, type: 3}
+  m_Name: DoubleStrengthEffect
   m_EditorClassIdentifier: 
-  phase_: 0
-  a_:
-  - s_: 
-  - s_: 
-  - s_: Hi
-  - s_: Hi
+  stat_: 1
+  valueModifier_:
+    name_: DoubleStrengthEffect
+    modifierType_: 1
+    modValue_: 200
+    tickType_: 3
+    ticksRemaining_: 1

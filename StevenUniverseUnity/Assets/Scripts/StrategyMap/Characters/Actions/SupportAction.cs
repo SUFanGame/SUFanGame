@@ -16,10 +16,10 @@ namespace SUGame.StrategyMap.Characters.Actions
         public TargetProperties targetProperties_;
 
         //TODO: since a map may only have 1-2 supportable characters, it may be quicker to set talkPredicate
-        //to something specified on the map's data. That won't happen until we have a fully implemented map.
-       // System.Predicate<MapCharacter> talkPredicate;
+        // to something specified on the map's data. That won't happen until we have a fully implemented map.
+        // System.Predicate<MapCharacter> talkPredicate;
 
-        //List<MapCharacter> allies_ = new List<MapCharacter>();
+        // List<MapCharacter> allies_ = new List<MapCharacter>();
 
         // Set through the inspector
         public SupportRunner supportCanvas_;

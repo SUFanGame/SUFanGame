@@ -12,6 +12,9 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
     {
         MapCharacter actor_;
         MapCharacter target_;
+        /// <summary>
+        /// Callback for the action being performed. We pass this forward to the Combat
+        /// </summary>
         System.Func<MapCharacter, IEnumerator> actionCallback_;
 
         bool accepted_ = false;
@@ -60,7 +63,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         {
             if( accepted_ )
             {
-                Machine.Push(new CombatUIState(actor_, target_, actionCallback_));
+                Machine.Push(new CombatUIState(actor_, target_));
                 accepted_ = false;
                 //OnExit();
                 ////Debug.Log("Accepted input");

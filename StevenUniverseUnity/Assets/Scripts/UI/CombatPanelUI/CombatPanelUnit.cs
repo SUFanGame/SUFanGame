@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
+using SUGame.Characters.Skills;
 
 namespace SUGame.StrategyMap.UI.CombatPanelUI
 {
@@ -11,7 +13,8 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
     /// </summary>
     public class CombatPanelUnit : MonoBehaviour
     {
-        // TODO : NOT LIKE THIS? In theory I should be able to drop this component onto
+        // TODO : NOT LIKE THIS? This is a lot of components to have to manually assign.
+        // In theory I should be able to drop this component onto
         // a gameobject and it should be able to assign all it's own stuff. Maybe by name?
         // Not sure what would be better, but having to manually re-set fields is a bummer.
         // Though doing it this way does prevent things breaking from hierarchy and name changes...
@@ -33,7 +36,7 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
         [SerializeField]
         public FEHealthBar healthBar_;
         [SerializeField]
-        public Animator unitAnimator_;
+        Animator unitAnimator_;
 
         [SerializeField]
         Text unitNameText_;
@@ -51,6 +54,12 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
         
         public MapCharacter character_;
 
+        IEnumerable<string> cachedClipNames_;
+
+        [SerializeField]
+        UICombatSkillPanel skillLabelPanel_;
+        
+
         // For death "animation"
         public LeanTweenType fadeTweenType_;
         public float fadeTweenTime_ = 1f;
@@ -62,18 +71,25 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
             animCallback_.onAnimationEvent_ += OnAnimationEvent;
         }
 
-        public void Initialize( MapCharacter character )
+        public void Initialize( MapCharacter attacker, MapCharacter defender )
         {
-            healthBar_.MaxHealth_ = character.Data.Stats_[Stat.Type.HP].MaxLevelValue_;
-            healthBar_.CurrentHealth_ = character.Data.Stats_[Stat.Type.HP].CurrentValue_;
-            //hitValueText_.text = character.Data.Stats.accuracy.ToString();
-            //critValueText_.text = character.Data.Stats.crit.ToString();
-            //dmgValueText_.text = character.Data.Stats.str.ToString();
-            //weaponNameText_.text = character.weaponName_;
-            //unitImage_.sprite = character.combatSprite_;
-            LeanTween.alphaCanvas(unitImage_.GetComponent<CanvasGroup>(), 1, 0.001f);
-            character_ = character;
+            RefreshValues(attacker, defender);
+            character_ = attacker;
+            var sprite = character_.CombatSprite_;
+            var controller = character_.CombatAnimController_;
+            if( sprite == null )
+            {
+                Debug.LogErrorFormat(character_.gameObject, "Error initializing combat UI, {0} has no combat sprite", character_.name);
+            }
+            if( controller == null )
+            {
+                Debug.LogErrorFormat(character_.gameObject, "Error initializing combat UI, {0} has no combat animator controller", character_.name);
+            }
 
+            unitAnimator_.runtimeAnimatorController = controller;
+            unitImage_.sprite = sprite;
+
+            cachedClipNames_ = controller.animationClips.Select(c => c.name);
 
             healthBar_.HealthZeroed_ -= OnHealthZero;
             healthBar_.HealthZeroed_ += OnHealthZero;
@@ -83,8 +99,46 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
             //    Debug.Log("Character was null in " + name + " init");
             //}
             //Debug.LogFormat("Setting character for {0} to {1}", name, character_.name);
-            unitNameText_.text = character.name;
+            unitNameText_.text = attacker.name;
         }
+
+        void RefreshValues(MapCharacter attacker, MapCharacter defender )
+        {
+
+            healthBar_.MaxHealth_ = attacker.Data.Stats_[Stats.PrimaryStat.HP].MaxValue_;
+            healthBar_.CurrentHealth_ = attacker.Data.Stats_[Stats.PrimaryStat.HP].CurrentValue_;
+            hitValueText_.text = Combat.GetHitChance(attacker, defender, attacker.Data.EquippedWeapon_).ToString();
+            critValueText_.text = Combat.GetCritChance(attacker, defender, attacker.Data.EquippedWeapon_).ToString();
+            dmgValueText_.text = Combat.GetDamage(attacker, defender, attacker.Data.EquippedWeapon_).ToString();
+            //LeanTween.value(null, (f) => healthBar_.CurrentHealth_ = Mathf.RoundToInt(f), 20, 5, 1f);
+            //LeanTween.value(20, 5, 1f).setOnUpdate(f => healthBar_.CurrentHealth_ = Mathf.RoundToInt(f));
+        }
+
+        public void TweenDamage(int newVal, float animTime )
+        {
+            var oldValue = int.Parse(dmgValueText_.text);
+            LeanTween.value( gameObject,
+                (f)=>dmgValueText_.text = Mathf.RoundToInt(f).ToString(),
+                oldValue,
+                newVal,
+                animTime
+                );
+        }
+
+        public void RefreshStatsTween(float time)
+        {
+            var oldValue = int.Parse(dmgValueText_.text);
+            int newValue = Combat.GetDamage(character_, otherPanel_.character_, character_.Data.EquippedWeapon_);
+            Debug.Log("New damage:" + newValue);
+            LeanTween.value(gameObject,
+                (f) => dmgValueText_.text = Mathf.RoundToInt(f).ToString(),
+                oldValue,
+                newValue,
+                time
+                );
+
+        }
+        
 
         void OnAnimationEvent( string eventName, int side )
         {
@@ -92,28 +146,19 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
             //  having to go into the animation itself to see it is tedious and dumb
             if( eventName == "AttackHit")
             {
-                otherPanelHealthBar_.TweenCurrentHealth(otherPanelHealthBar_.CurrentHealth_ - character_.Data.Stats_[Stat.Type.STR]);
+                otherPanelHealthBar_.TweenCurrentHealth(otherPanelHealthBar_.CurrentHealth_ - character_.Data.Stats_[Stats.PrimaryStat.STR]);
             }
         }
 
-        public void ShowAnimation( Vector3 worldPos, float animTime )
+        /// <summary>
+        /// Does a Sacred Stones-esque animation to show the two units facing off on their respective
+        /// terrain tiles.
+        /// </summary>
+        public void DoTerrainAnim( Vector3 worldPos, float animTime )
         {
-            //var rt = transform as RectTransform;
             var canvasPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, worldPos);
             terrain_.localScale = Vector3.zero;
             
-
-            //float x = terrain_.sizeDelta.x * (terrain_.pivot.x - .5f);
-
-            //canvasPoint.x += x;
-
-            //terrain_.position = canvasPoint;
-            //rt.anc = canvasPoint;
-            //Debug.Log(canvasPoint);
-            //Util.TransformUtil.RectTransformUtil.MoveCentered(terrain_, canvasPoint);
-
-            // terrain_.position = canvasPoint;
-            //terrain_.anchoredPosition = terrain_.InverseTransformPoint(canvasPoint);
             terrain_.position = canvasPoint;
 
             LeanTween.scale(terrain_.gameObject, Vector3.one, animTime).setEaseLinear();
@@ -140,61 +185,32 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
             character_ = null;
         }
 
-        //public Animator[] characterAnimators_;
+        public void PlayAnimation(string name)
+        {
+            terrain_.SetAsLastSibling();
+            if( !cachedClipNames_.Contains(name) )
+            {
+                Debug.LogErrorFormat(character_.gameObject, "Error playing animation {0}, {1}s combat controller doesn't have that animation clip", name, character_.name);
+            }
 
-        //static CombatPanel instance_;
+            // Note you MUST use hashed ids for this, it silently fails otherwise.
+            var id = Animator.StringToHash(name);
 
-        //MapCharacter attacker_;
-        //MapCharacter defender_;
+            //Debug.Log("Playing animation " + name + " on " + unitImage_.name);
+            unitAnimator_.Play(id, -1, 0);
+            unitAnimator_.speed = 1;
+            animCallback_.SignalWhenComplete(name);
+        }
 
-        //[SerializeField]
-        //Image attackerImage_;
-        //[SerializeField]
-        //Image defenderImage_;
+        float labelTime_ = 1.5f;
+        public IEnumerator DoSkillLabel(UICombatSkillLabel prefab, CombatSkill skill)
+        {
+            unitAnimator_.enabled = false;
+            skillLabelPanel_.ShowLabel(prefab, skill);
+            yield return new WaitForSeconds(labelTime_);
+            skillLabelPanel_.RemoveLabel();
+            unitAnimator_.enabled = true;
+        }
 
-        //Animator animator_;
-
-
-
-        //void Awake()
-        //{
-        //    characterAnimators_ = new Animator[]
-        //    {
-        //        attackerImage_.GetComponent<Animator>(),
-        //        defenderImage_.GetComponent<Animator>(),
-        //    };
-
-        //    StartCoroutine(PlayAnims(characterAnimators_));
-        //    instance_ = this;
-        //    animator_ = GetComponent<Animator>();
-        //}
-
-        //IEnumerator PlayAnims(Animator[] animators)
-        //{
-
-
-        //    for (int i = 0; i < animators.Length; ++i)
-        //    {
-        //        var a = animators[i];
-        //        a.SetTrigger("Attack");
-
-        //        yield return new WaitUntil(() => (a.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !a.IsInTransition(0)));
-        //    }
-
-
-
-        //    yield return null;
-        //}
-
-        //public static void Toggle()
-        //{
-        //    //animator
-        //}
-
-        //public static void Initialize( MapCharacter attacker, MapCharacter defender )
-        //{
-        //    instance_.attackerImage_.sprite = attacker.combatSprite_;
-        //    instance_.defenderImage_.sprite = defender.combatSprite_;
-        //}
     }
 }

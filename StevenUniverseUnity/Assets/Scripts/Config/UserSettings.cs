@@ -8,5 +8,6 @@ namespace SUGame.Config
     {
 
         public static float TilesMovedPerSecond_ = 3f;
+
     }
 }

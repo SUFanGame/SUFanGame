@@ -11,15 +11,19 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
     {
         MapCharacter attacker_;
         MapCharacter defender_;
-        System.Func<MapCharacter, IEnumerator> actionCallback_;
+       // System.Func<MapCharacter, IEnumerator> actionCallback_;
 
         bool animsComplete_ = false;
 
-        public CombatUIState( MapCharacter attacker, MapCharacter defender, System.Func<MapCharacter, IEnumerator> actionCallback )
+        public CombatUIState( 
+            MapCharacter attacker, 
+            MapCharacter defender
+            //System.Func<MapCharacter, IEnumerator> actionCallback 
+            )
         {
             attacker_ = attacker;
             defender_ = defender;
-            actionCallback_ = actionCallback;
+            //actionCallback_ = actionCallback;
         }
 
         public override void OnEnter()
@@ -54,7 +58,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
                 animsComplete_ = false;
 
                 OnExit();
-                yield return actionCallback_.Invoke(defender_);
+                //yield return actionCallback_.Invoke(defender_);
                 Machine.Clear();
             }
 

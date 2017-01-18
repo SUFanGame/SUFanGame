@@ -117,6 +117,16 @@ namespace SUGame.SUGameEditor.CustomGUI
             normalizedRect.height /= tex.height;
             return normalizedRect;
         }
+
+        /// <summary>
+        /// Draws the script field shown on default inspectors.
+        /// </summary>
+        public static void DrawScriptField( SerializedObject serializedObject )
+        {
+            GUI.enabled = false;
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("m_Script"));
+            GUI.enabled = true;
+        }
     }
 
 }

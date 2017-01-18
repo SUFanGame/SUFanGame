@@ -14,19 +14,19 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         MapCharacter actor_;
         //public TargetType TargetType { get; private set; }
         public TargetProperties TargetProperties { get; private set; }
-        public CharacterAction Action { get; private set; }
+        public CharacterAction Action_ { get; private set; }
         /// <summary>
         /// List of valid targets for this action (if any)
         /// </summary>
-        public IList<MapCharacter> ValidTargets { get; private set; }
+        public IList<MapCharacter> ValidTargets_ { get; private set; }
 
         // Selected target.
-        MapCharacter Target { get; set; }
+        MapCharacter Target_ { get; set; }
 
         /// <summary>
         /// Callback to execute the action once a target has been selected.
         /// </summary>
-        System.Func<MapCharacter, IEnumerator> ActionCallback;
+        System.Func<MapCharacter, IEnumerator> ActionCallback_;
 
         /// <summary>
         /// State for choosing the target of an action. This will read the given AttackProperties
@@ -41,13 +41,13 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         {
             actor_ = actor;
             TargetProperties = targetProperties;
-            Action = action;
-            ValidTargets = validTargets;
-            ActionCallback = actionCallback;
+            Action_ = action;
+            ValidTargets_ = validTargets;
+            ActionCallback_ = actionCallback;
             //this.TargetType = targetType;
             if( actor == null )
             {
-                Debug.Log("Actor is null in choose target constructyor");
+                Debug.Log("Actor is null in choose target constructor");
             }
 
         }
@@ -74,11 +74,11 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
             }
 
             // TODO : Change this so if we're targeting an ally it colors them blue.
-            if (ValidTargets != null)
+            if (ValidTargets_ != null)
             {
-                for (int i = 0; i < ValidTargets.Count; ++i)
+                for (int i = 0; i < ValidTargets_.Count; ++i)
                 {
-                    var sprite = ValidTargets[i].GetComponentInChildren<SpriteRenderer>();
+                    var sprite = ValidTargets_[i].GetComponentInChildren<SpriteRenderer>();
                     sprite.color = Color.red;
                 }
             }
@@ -89,11 +89,11 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
             base.OnExit();
 
 
-            if (ValidTargets != null)
+            if (ValidTargets_ != null)
             {
-                for (int i = 0; i < ValidTargets.Count; ++i)
+                for (int i = 0; i < ValidTargets_.Count; ++i)
                 {
-                    var sprite = ValidTargets[i].GetComponentInChildren<SpriteRenderer>();
+                    var sprite = ValidTargets_[i].GetComponentInChildren<SpriteRenderer>();
                     if (sprite.color == Color.red)
                         sprite.color = Color.white;
                 }
@@ -103,12 +103,12 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         public override IEnumerator Tick()
         {
 
-            if( Target != null )
+            if( Target_ != null )
             {
                 OnExit();
                 //Debug.LogFormat("Actor null when calling new ConfirmTarget from ChooseTarget {0}", actor_ == null);
-                Machine.Push(new ConfirmTargetUIState(actor_, Target, ActionCallback));
-                Target = null;
+                Machine.Push(new ConfirmTargetUIState(actor_, Target_, ActionCallback_));
+                Target_ = null;
             }
 
             yield return null;
@@ -128,13 +128,13 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         // that targets a point? That could be a separate state maybe?
         public override void OnCharacterSelected(StrategyPlayer player, MapCharacter target)
         {
-            if (ValidTargets == null)
+            if (ValidTargets_ == null)
             {
-                Debug.LogErrorFormat("Valid Targets was null, ensure action \"{0}\" is properly assigning ValidTargets array", Action.UIName);
+                Debug.LogErrorFormat("Valid Targets was null, ensure action \"{0}\" is properly assigning ValidTargets array", Action_.UIName);
             }
-            if (ValidTargets.Contains(target))
+            if (ValidTargets_.Contains(target))
             {
-                Target = target;
+                Target_ = target;
             }
         }
 

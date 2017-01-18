@@ -4,6 +4,8 @@ using SUGame.Characters.Customization;
 using SUGame.Factions;
 using SUGame.Items;
 using SUGame.Characters.Skills;
+using System.Linq;
+using SUGame.PropertyAttributes;
 
 namespace SUGame.Characters
 {
@@ -20,7 +22,7 @@ namespace SUGame.Characters
         private Faction faction_; //What team?
 
         [SerializeField]
-        private Stats stats_; //All the unit battle modifiers
+        private Stats stats_ = new Stats();
 
         [SerializeField]
         private List<Item> heldItems_; //WILDCATS
@@ -34,19 +36,58 @@ namespace SUGame.Characters
 
         [SerializeField]
         private List<Skill> skills_; //All available skills
+        
+        private List<CombatSkill> combatSkills_;
+        /// <summary>
+        /// List of the character's combat skills.
+        /// </summary>
+        public IList<CombatSkill> CombatSkills_ { get; private set; }
+
         [SerializeField]
         private SupportInfo[] supportInfos_;
+
+
         
+        public CharacterData()
+        {
+
+        }
 
         public CharacterData(  
             string characterName,
             string affiliation
-            )
+            ) : this()
         {
             this.characterName_ = characterName;
             this.faction_ = (Faction)System.Enum.Parse(typeof(Faction), affiliation, true );
 
             // All other data parameters may want to be loaded from SaveData at instantiation.
+        }
+
+        /// <summary>
+        /// Called from monobehaviour during awake.
+        /// </summary>
+        public void Awake()
+        {
+            BuildSkillLists();
+            
+            stats_.Awake();
+        }
+
+        void BuildSkillLists()
+        {
+            if( skills_ != null )
+            {
+                //Debug.Log("Adding combat skills to " + characterName_);
+                if (combatSkills_ == null)
+                    combatSkills_ = new List<CombatSkill>();
+                if (CombatSkills_ == null)
+                    CombatSkills_ = combatSkills_.AsReadOnly();
+
+                combatSkills_.Clear();
+                GetSkills(combatSkills_);
+                //Debug.LogFormat("Combat skills after refresh for {0} are null: {1}. Read only null: {2}", characterName_, combatSkills_ == null, CombatSkills_ == null);
+            }
         }
 
 

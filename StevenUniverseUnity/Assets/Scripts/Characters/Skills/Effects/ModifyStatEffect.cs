@@ -7,87 +7,27 @@ using SUGame.StrategyMap;
 /// Modify a stat in some way
 /// </summary>
 [CreateAssetMenu(fileName = "Modify Stat", menuName = "Skills/Effects/Modify Stat", order = 9000)]
-public class ModifyStatEffect : CombatEffect
+public class ModifyStatEffect : SkillEffect
 {
-    public Stat.Type stat_;
+    [SerializeField]
+    Stats.PrimaryStat stat_ = Stats.PrimaryStat.STR;
 
-    public Operator operator_ = Operator.ADD;
+    [SerializeField]
+    ValueModifier valueModifier_ = new ValueModifier("Modify Stat");
 
-    public Target target_;
+    // Cache the modified stat so our modifier can be removed when this effect expires.
+  //  Stats.Primary modifiedStatType_;
+    // The stats this effect is modifying.
+   // Stats modifiedStats_ = null;
 
-    public StatModifier mod_;
-
-    [ContextMenuItem("PrintResult", "PrintResult")]
-    public int operand_ = 0;
-
-    System.Func<int, int, int> operation_ = null;
-
-    public override void Execute(Combat combat)
+    public virtual void Execute(Stats stats)
     {
-        var tar = target_ == Target.ATTACKER ? combat.Attacker_ : combat.Defender_;
-        //tar.Data.Stats_[stat_] = 
+        // Note we have to allocate a new modifier, since the modifier contains unique
+        // state ( tick count ) we don't want to share it among different values.
+        var mod = new ValueModifier(valueModifier_);
+        stats[stat_].AddModifier( mod );
     }
 
-    public enum Operator
-    {
-        ADD = 0,
-        SUBTRACT = 1,
-        MULTIPLY = 2,
-        DIVIDE = 3
-    };
-
-    public enum Target
-    {
-        ATTACKER,
-        DEFENDER,
-    };
-
-    void OnEnable()
-    {
-        OnValidate();
-    }
-
-    void OnValidate()
-    {
-        switch( operator_ )
-        {
-            case Operator.ADD: operation_ = Add; break;
-            case Operator.SUBTRACT: operation_ = Sub; break;
-            case Operator.MULTIPLY: operation_ = Mul; break;
-            case Operator.DIVIDE: operation_ = Div; break;
-        }
-    }
-
-    // For testing purposes
-    void PrintResult()
-    {
-        if( operation_ == null )
-        {
-            Debug.LogError("Delegate is null");
-        }
-        Debug.Log(operation_(2, operand_));
-    }
-
-    static int Mul(int a, int b )
-    {
-        return a * b;
-    }
-
-    static int Add( int a, int b )
-    {
-        return a + b;
-    }
-
-    static int Sub( int a, int b )
-    {
-        return a - b;
-    }
-
-    static int Div( int a, int b )
-    {
-
-        return b == 0 ? 0 : Mathf.RoundToInt((float)a / (float)b);
-    }
 
 
 }

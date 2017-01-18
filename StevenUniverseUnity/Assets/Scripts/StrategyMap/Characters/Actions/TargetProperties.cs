@@ -24,15 +24,15 @@ namespace SUGame.StrategyMap.Characters.Actions
         /// <summary>
         /// The range of the action, where 1 is a single tile, and each subsequent point of range adds to the area
         /// in a manhattan distance style:
-        ///    1: X
+        ///    0: X
         ///    ---------
         ///        X
-        ///    2: XXX
+        ///    1: XXX
         ///        X
         ///     -------
         ///          X
         ///         XXX
-        ///    3:  XXXXX
+        ///    2:  XXXXX
         ///         XXX
         ///          X
         /// </summary>
@@ -50,6 +50,9 @@ namespace SUGame.StrategyMap.Characters.Actions
             source_ = source;
         }
 
+        /// <summary>
+        /// Returns true if the target is valid given our target properties.
+        /// </summary>
         public bool IsValid(MapCharacter target)
         {
             //Debug.LogFormat("Testing against {0}", target.name);
@@ -103,10 +106,10 @@ namespace SUGame.StrategyMap.Characters.Actions
         /// </summary>
         /// <param name="pos">The position on the map to search from.</param>
         /// <param name="buffer">A buffer that will be populated with valid targets.</param>
-        public void GetTargets(IntVector2 pos, List<MapCharacter> buffer)
-        {
+        //public void GetTargets(IntVector2 pos, List<MapCharacter> buffer)
+        //{
 
-        }
+        //}
 
         // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv For if abilities get more complicated.
         //public int area_;

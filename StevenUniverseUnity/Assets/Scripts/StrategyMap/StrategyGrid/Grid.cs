@@ -562,5 +562,10 @@ namespace SUGame.StrategyMap
         {
             nodeDict_.Add(node.Pos_, node);
         }
+
+        public bool IsInRange( IntVector2 pos, IntVector2 other, int range )
+        {
+            return IntVector2.ManhattanDistance(pos, other) <= range;
+        }
     }
 }

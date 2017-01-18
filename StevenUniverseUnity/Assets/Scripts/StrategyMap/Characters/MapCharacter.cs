@@ -9,6 +9,7 @@ using SUGame.Util;
 using SUGame.StrategyMap.Characters.Actions;
 using SUGame.Util.Common;
 using SUGame.Config;
+using UnityEngine.UI;
 
 // Just a note about unity's built in Selection Handlers - they require that the camera have a "Physics Raycaster"
 // and that an "EventSystem" is in the scene (GameObject->UI->EventSystem). Any objects to be selected
@@ -23,9 +24,6 @@ namespace SUGame.StrategyMap
     public class MapCharacter : MonoBehaviour, IPointerClickHandler
     {
         public StrategyPlayer OwningPlayer { get; private set; }
-        
-
-
 
         /// <summary>
         /// Character data, to be loaded in once this is instantiated.
@@ -33,6 +31,24 @@ namespace SUGame.StrategyMap
         [SerializeField]
         CharacterData characterData_;
         public CharacterData Data { get { return characterData_; } }
+
+        /// <summary>
+        /// The animator used for this character in combat scenes.
+        /// </summary>
+        //[SerializeField]
+        //Animator combatAnimator_;
+        //public Animator CombatAnimator_;
+
+        [SerializeField]
+        RuntimeAnimatorController combatAnimController_;
+        public RuntimeAnimatorController CombatAnimController_ { get { return combatAnimController_; } }
+
+        /// <summary>
+        /// Image used by this character in the UI of combat scenes.
+        /// </summary>
+        [SerializeField]
+        Sprite combatSprite_;
+        public Sprite CombatSprite_ { get { return combatSprite_; } }
 
 
         public int moveRange_ = 5;
@@ -44,14 +60,6 @@ namespace SUGame.StrategyMap
         /// on the unity side. Maybe character data just references actions by name? "Move", "Attack", etc
         /// </summary>
         List<CharacterAction> actions_ = null;
-
-        //// FOR UI TESTING
-        //public string weaponName_;
-        //public Sprite portrait_;
-        //public Sprite combatSprite_;
-
-
-        //public ActingState CurrentActingState { get { return state_; } }
 
         [SerializeField]
         SpriteRenderer renderer_;
@@ -65,6 +73,15 @@ namespace SUGame.StrategyMap
         static public System.Action<MapCharacter> OnClicked_;
 
         static public System.Action<MapCharacter> OnKilled_;
+
+
+        // TODO : Encapsulate this in a separate class.
+        List<System.Action> gameEventCallbacks_ = new List<System.Action>();
+        /// <summary>
+        /// List of actions mapped to Game Events. Currently used to
+        /// tick ValueModifiers during Game Events that match <seealso cref="ValueModifier.TickType_"/>
+        /// </summary>
+        public IList<System.Action> EventCallbacks_;
 
 
         void Start()
@@ -164,9 +181,6 @@ namespace SUGame.StrategyMap
                 {
                     //Debug.LogFormat("UnPausing {0}", name);
                     animator_.speed = 1f;
-
-
-
                     renderer_.color = Color.white;
                 }
             }
@@ -174,19 +188,50 @@ namespace SUGame.StrategyMap
 
         void Awake()
         {
+            if (string.IsNullOrEmpty(Data.CharacterName_))
+            {
+                Data.CharacterName_ = name;
+            }
+
             animator_ = GetComponentInChildren<Animator>();
-            
+
             renderer_ = GetComponentInChildren<SpriteRenderer>();
 
             // Populate our list of actions
             var actions = GetComponentsInChildren<CharacterAction>();
 
-            if( actions != null && actions.Length != 0 )
+            if (actions != null && actions.Length != 0)
             {
                 actions_ = actions.ToList();
             }
-            
+
             UpdateSortingOrder();
+
+
+            Data.Awake();
+            var stats = Data.Stats_;
+            foreach (var s in stats.PrimaryStats_)
+            {
+                //Debug.LogFormat("Adding handler for {0}", s.Name_);
+                s.onModifierAdded_ += HandleStatModifierAdded;
+                s.onModifierRemoved_ += HandleStatModifierRemoved;
+            }
+
+            //stats.onModifierAdded_ += HandleStatModifierAdded;
+            //stats.onModifierRemoved_ += HandleStatModifierRemoved;
+
+            // Populate our event actions array. This should be in it's own class probably.
+            int eventCount = System.Enum.GetValues(typeof(GameEvent)).Length;
+            if( gameEventCallbacks_ == null ||gameEventCallbacks_.Count < eventCount )
+            {
+                for( int i = 0; i < eventCount; ++i )
+                {
+                    gameEventCallbacks_.Add(null);
+                }
+                EventCallbacks_ = gameEventCallbacks_.AsReadOnly();
+            }
+
+            OnValidate();
         }
 
 
@@ -282,6 +327,40 @@ namespace SUGame.StrategyMap
                 OnKilled_.Invoke( this);
         }
 
+        void OnValidate()
+        {
+            if (!isActiveAndEnabled)
+                return;
+
+            Data.Stats_.OnValidate();
+
+        }
+
+        /// <summary>
+        /// Called whenever a value modifier is applied to a stat
+        /// </summary>
+        /// <param name="stat">The stat being modified.</param>
+        /// <param name="mod">The modifier being applied to the stat.</param>
+        void HandleStatModifierAdded( ModifiableValue stat, ValueModifier mod )
+        {
+            // When a modifier is applied to a stat we want to register it with our 
+            // event callback so we tick it any time our character recieves the event 
+            // matching that modifier's ticktype.
+            gameEventCallbacks_[(int)mod.TickType_] += mod.Tick;
+            //Debug.LogFormat("{0} had a {1} mod applied to {2}", name, mod.name_, stat.Name_);
+        }
+
+        /// <summary>
+        /// Called whenever a value modifier is removed from a stat.
+        /// </summary>
+        /// <param name="stat">The stat being modified.</param>
+        /// <param name="mod">The modifier being applied to the stat.</param>
+        void HandleStatModifierRemoved( ModifiableValue stat, ValueModifier mod )
+        {
+            //Debug.LogFormat("{0} had a {1} mod removed from {2}", name, mod.name_, stat.Name_);
+            // Unregister removed modifiers from subscribed game events.
+            gameEventCallbacks_[(int)mod.TickType_] -= mod.Tick;
+        }
     }
 
 }
