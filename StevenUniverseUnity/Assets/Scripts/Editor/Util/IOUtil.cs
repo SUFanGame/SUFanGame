@@ -10,7 +10,7 @@ namespace SUGame.SUGameEditor.Util
     public class IOUtil 
     {
         /// <summary>
-        /// Retrieves all assets of type T at the given folder location which is relative to the assets folder, IE:
+        /// Retrieves all assets of type T at the given folder location which is relative to the assets folder, EG:
         /// "Textures/Spritesheets"
         /// </summary>
         public static T[] GetAssetsAtLocation<T>( string pathFromAssetFolder, string searchPattern ) where T : UnityEngine.Object

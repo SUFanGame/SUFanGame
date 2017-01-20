@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d28c4591c42ff24aa0849c6c57f14b0, type: 3}
+  m_Name: ShiverMeTimbers
+  m_EditorClassIdentifier: 
+  triggerEvent_: 7
+  showLabel_: 0
+  canvasPrefab_: {fileID: 114000013451500978, guid: 9cb141f75ecfc65499535f228744210c,
+    type: 2}
+  supportAsset_: {fileID: 4900000, guid: 174a7ff1a419f8d4eada96d47de00135, type: 3}

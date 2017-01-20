@@ -16,5 +16,5 @@ MonoBehaviour:
     name_: DoubleStrengthEffect
     modifierType_: 1
     modValue_: 200
-    tickType_: 3
+    tickType_: 8
     ticksRemaining_: 1

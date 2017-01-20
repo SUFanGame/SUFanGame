@@ -33,8 +33,22 @@ namespace SUGame.Characters.Skills
 
         //public abstract void Execute();
 
-        public virtual void Execute(Combat combat)
+        protected virtual void OnExecute(Combat combat)
         {
+        }
+
+        public void Execute( Combat combat )
+        {
+            foreach( var c in conditions_ )
+            {
+                if (!c.Success())
+                {
+                    Debug.LogFormat("Skill {0} failed condiiton {1}", name, c.name);
+                    return;
+                }
+            }
+
+            OnExecute( combat );
         }
 
         // [SerializeField]

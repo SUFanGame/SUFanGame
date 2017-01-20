@@ -11,8 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce61585bf3cf9b49ad8e8b304c9d59c, type: 3}
   m_Name: Big Swing
   m_EditorClassIdentifier: 
-  triggerEvent_: 1
+  triggerEvent_: 2
   showLabel_: 1
   target_: 0
   effects_:
   - {fileID: 11400000, guid: 674453c21e285774fa8a7550bf6ee471, type: 2}
+  coolUIEffects_: {fileID: 1000013004182268, guid: 11ef0929a13f7974d8dd6cdba9f73ee9,
+    type: 2}

@@ -17,9 +17,8 @@ namespace SUGame.World
     // Create a new animating mesh and build a cell at that position
     // Populate the cell on the animating mesh with the animating tile.
     // ^^ This method seems awkward. Is there a better solution?
-
-    // TODO : Import Dust's rules for how tiles should be placed.
-    // Keep in mind the features we'll need for map editing. Things like modifying entire layers of tiles, flood fill, cursor resizing, Undo, etc
+    
+    // Keep in mind the features we'll need for map editing. Things like modifying entire layers of tiles, bucket fill, etc
 
     // TODO : Layers can be hidden or shown via the map editor. The chunk should ignore ANY operations attempted
     // on a "hidden" layer. The Map class will follow these rules as well.

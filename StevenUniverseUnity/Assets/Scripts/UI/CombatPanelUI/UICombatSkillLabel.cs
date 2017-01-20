@@ -4,23 +4,34 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using SUGame.Characters.Skills;
 
-/// <summary>
-/// Script for skill label prefabs on the combat UI.
-/// </summary>
-public class UICombatSkillLabel : MonoBehaviour 
+namespace SUGame.StrategyMap.UI.CombatPanelUI
 {
-    Text text_;
-    Image image_;
-
-    void Awake()
+    /// <summary>
+    /// Script for skill label prefabs on the combat UI.
+    /// </summary>
+    public class UICombatSkillLabel : MonoBehaviour
     {
-        text_ = GetComponentInChildren<Text>();
-        image_ = GetComponentInChildren<Image>();
-    }
+        Text text_;
+        //Image image_;
+        CanvasGroup canvasGroup_;
+        public CanvasGroup CanvasGroup_ { get { return canvasGroup_; } }
 
-    public void SetFromSkill( CombatSkill skill )
-    {
-        text_.text = skill.name;
+        void Awake()
+        {
+            text_ = GetComponentInChildren<Text>();
+            //image_ = GetComponentInChildren<Image>();
+            canvasGroup_ = GetComponent<CanvasGroup>();
+        }
 
+        public void SetFromSkill(CombatSkill skill)
+        {
+            text_.text = skill.name;
+
+        }
+
+        public void SetAlpha(float f)
+        {
+            canvasGroup_.alpha = f;
+        }
     }
 }

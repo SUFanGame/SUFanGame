@@ -6,6 +6,8 @@ using SUGame.Util.Common;
 using SUGame.Util.Logic.States;
 using SUGame.StrategyMap.Characters.Actions.UIStates;
 using SUGame.Util;
+using SUGame.StrategyMap.UI.CombatPanelUI;
+using SUGame.Characters;
 
 namespace SUGame.StrategyMap
 {
@@ -27,6 +29,31 @@ namespace SUGame.StrategyMap
 
         bool cancelled_ = false;
 
+
+        public delegate IEnumerator UIWaitForEventFunc(CombatAnimEvent evt);
+        public delegate void UIAnimCallback(string anim, int side);
+        public delegate IEnumerator UIHandleSkill(CombatSkill skill, int side);
+
+        /// <summary>
+        /// This coroutine can be yielded to in order to wait for certain
+        /// animation events to occur. It's intended for control to returned to
+        /// the combat function once the given combat event is triggered from the UI.
+        /// </summary>
+        UIWaitForEventFunc uiWaitForEvent_;
+
+        /// <summary>
+        /// This action should be called to trigger certain animations on the UI side.
+        /// </summary>
+        UIAnimCallback uiPlayAnimation_;
+
+        /// <summary>
+        /// This coroutine can be yielded to to allow the UI to handle a to
+        /// handle a triggered skill in some way, IE: Showing a label for the skill.
+        /// </summary>
+        UIHandleSkill uiHandleSkill_;
+
+        bool UIActive_ { get { return uiHandleSkill_ != null && uiPlayAnimation_ != null && uiWaitForEvent_ != null; } }
+
         
         // Combat consists of rounds where units take turns attacking eachother.
         // Often the attack order or number of attacks can vary. 
@@ -36,25 +63,18 @@ namespace SUGame.StrategyMap
         // user cancels during combat animations.
         List<AttackRound> rounds_ = new List<AttackRound>();
 
-        // RE: Combat events
-        // it's not possible for combat to send messages at specific times since
-        // some event times (ie: when a "physical" hit occurs during an animation)
-        // are tied to each unit's individual animation.
-
-        // Combat events are generated into a queue as combat is processed,
-        // then the UI animation can process that queue in order to play the 
-        // combat out visually.
-        // Of course this means that combat has already ended by the time the queue is
-        // populated. We'll have to account for that on the UI side or maybe tweak this a bit so
-        // things happen "concurrently" between this and UI. Not sure yet which would be easier.
-        List<CombatEvent> combatEvents_ = new List<CombatEvent>();
-        public IList<CombatEvent> CombatEvents_ { get; private set; }
-
-        public Combat(MapCharacter attacker, MapCharacter defender)
+        public Combat(
+            MapCharacter attacker, 
+            MapCharacter defender, 
+            UIWaitForEventFunc uiAnimEventRoutine = null,
+            UIAnimCallback uiAnimCallback = null,
+            UIHandleSkill uiHandleSkill = null )
         {
             attacker_ = attacker;
             defender_ = defender;
-            CombatEvents_ = combatEvents_.AsReadOnly();
+            uiWaitForEvent_ += uiAnimEventRoutine;
+            uiPlayAnimation_ = uiAnimCallback;
+            uiHandleSkill_ = uiHandleSkill;
         }
 
         /// <summary>
@@ -99,28 +119,28 @@ namespace SUGame.StrategyMap
         /// instantly and <seealso cref="CombatEvents_"/> should be processed by the Combat UI
         /// to replay the events.
         /// </summary>
-        public void Resolve()
+        public IEnumerator Resolve()
         {
-            DoPhaseSkills(GameEvent.EVT_PRE_COMBAT, attacker_);
-            DoPhaseSkills(GameEvent.EVT_PRE_COMBAT, defender_);
+            //yield return new WaitForSeconds(1f);
+            //Debug.Log("Starting combat");
+            yield return DoPhaseSkills(GameEvent.EVT_PRE_COMBAT, attacker_);
+            yield return DoPhaseSkills(GameEvent.EVT_PRE_COMBAT, defender_);
 
             foreach (var round in rounds_)
             {
                 if (cancelled_)
                     break;
 
-                DoAttack(round);
+                yield return DoAttack(round);
             }
 
-            DoPhaseSkills(GameEvent.EVT_POST_COMBAT, attacker_);
-            DoPhaseSkills(GameEvent.EVT_POST_COMBAT, defender_);
-
-            // Signal for combat to end.
-            combatEvents_.Add(new CombatEvent(CombatEventType.END, 0));
+            yield return DoPhaseSkills(GameEvent.EVT_POST_COMBAT, attacker_);
+            yield return DoPhaseSkills(GameEvent.EVT_POST_COMBAT, defender_);
+            
 
             ClearAttacks();
 
-           // yield return null;
+            yield return null;
         }
 
         public static int GetDamage( MapCharacter att, MapCharacter defender, Weapon weapon )
@@ -145,15 +165,37 @@ namespace SUGame.StrategyMap
         /// <summary>
         /// Go through an attack round for a single unit.
         /// </summary>
-        void DoAttack(AttackRound round)
+        IEnumerator DoAttack(AttackRound round)
         {
+            if( !round.attacker_.IsAlive() )
+            {
+                yield break;
+            }
+
             //Debug.Log("Doing attack round");
             // Note we have to use round.attacker/round.defender instead of the Combat member variables
             // defender_ and attacker_. 
-            DoPhaseSkills(GameEvent.EVT_PRE_ATTACK, round.attacker_);
-            
+            int attackerSide = round.attacker_ == attacker_ ? 0 : 1;
+            int defenderSide = 1 - attackerSide;
+
+            if( uiPlayAnimation_ == null && uiWaitForEvent_ != null ||
+                uiPlayAnimation_ != null && uiWaitForEvent_ == null )
+            {
+                Debug.LogErrorFormat("Error in combat routine, ui callbacks must either both be null or both be valid to function properly");
+            }
+
+            bool uiActive = UIActive_;
+
+            if ( uiActive )
+            {
+                // Play the attack animation and wait for our pre attack event
+                uiPlayAnimation_("Attack", attackerSide);
+                yield return uiWaitForEvent_(CombatAnimEvent.PRE_ATTACK);
+            }
+
+            yield return DoPhaseSkills(GameEvent.EVT_PRE_ATTACK, round.attacker_);
+
             var weapon = round.attacker_.Data.EquippedWeapon_;
-            var attackerStats = round.attacker_.Data.Stats_;
             var defenderStats = round.defender_.Data.Stats_;
 
             int hitChance = GetHitChance(round.attacker_, round.defender_, weapon);
@@ -165,7 +207,11 @@ namespace SUGame.StrategyMap
             int damage = GetDamage(round.attacker_, round.defender_, weapon) * critMod;
 
 
-
+            if (uiActive)
+            {
+                // Wait for the attack hit event
+                yield return uiWaitForEvent_(CombatAnimEvent.ATTACK_HIT);
+            }
             if (hit)
             {
                 string critMessage = critMod == 1 ? "" : "It was a critical hit!";
@@ -178,27 +224,43 @@ namespace SUGame.StrategyMap
                     critMessage
                     );
                 defenderStats[Stats.PrimaryStat.HP].CurrentValue_ -= damage;
-                DoPhaseSkills(GameEvent.EVT_DEALT_DAMAGE, round.attacker_);
-                DoPhaseSkills(GameEvent.EVT_TOOK_DAMAGE, round.defender_);
 
-                var evtType = critMod == 1 ? CombatEventType.HIT : CombatEventType.CRIT;
-                combatEvents_.Add(new CombatEvent(evtType, Side(round.attacker_), damage));
+                yield return DoPhaseSkills(GameEvent.EVT_DEALT_DAMAGE, round.attacker_);
+                yield return DoPhaseSkills(GameEvent.EVT_TOOK_DAMAGE, round.defender_);
+
+                if (!round.defender_.IsAlive())
+                {
+                    Debug.LogFormat("{0} was killed!", round.defender_.name);
+                    yield return DoPhaseSkills(GameEvent.EVT_KILLED, round.defender_);
+                    if( uiActive )
+                    {
+                        uiPlayAnimation_("Killed", defenderSide);
+                    }
+                }
+                
 
             }
             else
             {
                 // We missed...
                 Debug.LogFormat("{0} missed {1} with a hit chance of {2}.", round.attacker_.name, round.defender_.name, hitChance);
-                DoPhaseSkills(GameEvent.EVT_MISS, round.attacker_);
-                combatEvents_.Add(new CombatEvent(CombatEventType.MISS, Side(round.attacker_)));
+                yield return DoPhaseSkills(GameEvent.EVT_MISS, round.attacker_);
             }
 
-            DoPhaseSkills(GameEvent.EVT_POST_ATTACK, round.attacker_);
+            if( uiActive )
+            {
+                // Wait for our attack animation to complete
+                yield return uiWaitForEvent_(CombatAnimEvent.ANIM_COMPLETE);
+            }
+
+            yield return DoPhaseSkills(GameEvent.EVT_POST_ATTACK, round.attacker_);
+
         }
 
-        public void DoPhaseSkills(GameEvent phase, MapCharacter character)
+        public IEnumerator DoPhaseSkills(GameEvent phase, MapCharacter character)
         {
-
+            bool uiActive = UIActive_;
+            //Debug.LogFormat("Doing phase {0}", phase);
             // Tick game event for this character.
             if (character.EventCallbacks_[(int)phase] != null)
                 character.EventCallbacks_[(int)phase]();
@@ -206,29 +268,33 @@ namespace SUGame.StrategyMap
             if (character.Data.CombatSkills_ == null)
             {
                 //Debug.LogFormat("{0}'s Combat skills is null", character.name);
-                //yield break;
-                return;
+                yield break;
+                //return;
             }
-
+           
             //Debug.LogFormat("{0} has some combat skills", character.name);
             foreach (var s in character.Data.CombatSkills_)
             {
                 if (s.TriggerEvent_ == phase)
                 {
-                    Debug.LogFormat("Executing {0}'s skill {1} in phase {2}", attacker_.name, s.name, phase);
-
-                    combatEvents_.Add(new CombatEvent( CombatEventType.SKILL, Side(character), s, phase )) ;
+                    Debug.LogFormat("Executing {0}'s skill {1} in phase {2}", character.name, s.name, phase);
 
                     s.Execute(this);
+                    if(uiActive)
+                    {
+                        yield return uiHandleSkill_(s, GetSide(character));
+                    }
                 }
             }
 
+            //yield return new WaitForSeconds(.5f);
+            //Debug.Log("Waiting in " + phase);
         }
 
         /// <summary>
         /// Which side of the combat animation the character is on ( left or right ).
         /// </summary>
-        int Side(MapCharacter c)
+        int GetSide(MapCharacter c)
         {
             return c == attacker_ ? 0 : 1;
         }

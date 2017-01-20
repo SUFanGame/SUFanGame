@@ -6,6 +6,12 @@ using UnityEditor;
 
 namespace SUGame.SUGameEditor.Util.Tools
 {
+    /// <summary>
+    /// Forces text assets to use Point Filter. If you notice text is blurry in the UI, select
+    /// the "fonts" folder and use this.
+    /// 
+    /// Note that unity likes to reset the font's to use bilinear filtering on first load.
+    /// </summary>
     public class ForceFontPointFilter
     {
         [MenuItem("Tools/SetFontsToPointFilter")]

@@ -14,6 +14,8 @@ namespace SUGame.SUGameEditor.MapEditing
 {
     // TODO : Apparently EditorWindows have an update function!? Could make input handling so much simpler/better. Should be able to read keys
     // even if the window or scene isn't focused?
+    // Note that update function won't work - the only possible way to read input in edit mode is from the GUI Event structs, which 
+    // can only be read in GUI functions
 
     public class MapEditor : SceneEditorWindow
     {

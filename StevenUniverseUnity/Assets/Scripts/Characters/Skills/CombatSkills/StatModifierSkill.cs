@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using SUGame.StrategyMap;
 using SUGame.StrategyMap.UI.CombatPanelUI;
+using SUGame.Characters.Effects;
 
 namespace SUGame.Characters.Skills
 {
@@ -24,7 +25,7 @@ namespace SUGame.Characters.Skills
             TARGET
         }
 
-        public override void Execute(Combat combat)
+        protected override void OnExecute(Combat combat)
         {
             var tar = target_ == Target.SELF ? combat.Attacker_ : combat.Defender_;
 
@@ -39,9 +40,9 @@ namespace SUGame.Characters.Skills
             var effects = Instantiate(coolUIEffects_);
             effects.transform.position = Vector3.zero;
             effects.transform.SetParent(uiPanel.transform, true);
-            effects.transform.position = Vector3.zero;
+            effects.transform.position = new Vector3(120, 80, 0);
             uiPanel.StartCoroutine(ShowCoolEffects(effects));
-            uiPanel.RefreshStatsTween(1f);
+            //uiPanel.RefreshStatsTween(1f);
             yield return null;
         }
 

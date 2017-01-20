@@ -69,7 +69,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         public override void OnCancelInput(StrategyPlayer player)
         {
             animsComplete_ = true;
-            CombatPanel.StopAnimations();
+            //CombatPanel.StopAnimations();
         }
 
     }

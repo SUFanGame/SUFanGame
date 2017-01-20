@@ -16,6 +16,6 @@ public class CombatSimulator : MonoBehaviour
 
         var combat = new Combat(attacker_, defender_);
         combat.Initialize();
-        combat.Resolve();
+        StartCoroutine(combat.Resolve());
     }
 }

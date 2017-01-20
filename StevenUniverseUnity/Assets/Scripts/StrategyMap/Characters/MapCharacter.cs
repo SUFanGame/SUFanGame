@@ -78,8 +78,13 @@ namespace SUGame.StrategyMap
         // TODO : Encapsulate this in a separate class.
         List<System.Action> gameEventCallbacks_ = new List<System.Action>();
         /// <summary>
-        /// List of actions mapped to Game Events. Currently used to
-        /// tick ValueModifiers during Game Events that match <seealso cref="ValueModifier.TickType_"/>
+        /// List of callbacks mapped to Game Events. Each index of the list maps
+        /// to the corresponding event in <seealso cref="GameEvent"/>.
+        /// 
+        /// Used to tick ValueModifiers during Game Events that match <seealso cref="ValueModifier.TickType_"/>.
+        /// EG: During the pre-combat phase the <seealso cref="Combat"/> class will raise
+        /// Pre-Combat events and forward them to the MapCharacters in combat, who will then forward them
+        /// to listeners (including <seealso cref="ValueModifier"/>s) using this callback.
         /// </summary>
         public IList<System.Action> EventCallbacks_;
 
@@ -94,6 +99,11 @@ namespace SUGame.StrategyMap
         {
             if (Grid.Instance != null)
                 Grid.Instance.OnGridBuilt_ -= AddToGrid;
+        }
+
+        public bool IsAlive()
+        {
+            return Data.Stats_[Stats.PrimaryStat.HP] > 0;
         }
 
         /// <summary>
@@ -321,11 +331,16 @@ namespace SUGame.StrategyMap
         public void Kill()
         {
             LeanTween.alpha(gameObject, 0, 1f).setEaseInOutQuad().setDelay(1f);
-            Grid.Instance.RemoveObject(GridPosition, this);
-            enabled = false;
+
+            if( Grid.Instance != null )
+            {
+                Grid.Instance.RemoveObject(GridPosition, this);
+            }
+            //enabled = false;
             if (OnKilled_ != null)
                 OnKilled_.Invoke( this);
         }
+
 
         void OnValidate()
         {

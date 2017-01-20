@@ -15,7 +15,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         /// <summary>
         /// Callback for the action being performed. We pass this forward to the Combat
         /// </summary>
-        System.Func<MapCharacter, IEnumerator> actionCallback_;
+        //System.Func<MapCharacter, IEnumerator> actionCallback_;
 
         bool accepted_ = false;
 
@@ -24,7 +24,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
 
             actor_ = actor;
             target_ = target;
-            actionCallback_ = actionCallback;
+            //actionCallback_ = actionCallback;
 
         }
 
