@@ -75,12 +75,20 @@ namespace SUGame.StrategyMap
             uiWaitForEvent_ += uiAnimEventRoutine;
             uiPlayAnimation_ = uiAnimCallback;
             uiHandleSkill_ = uiHandleSkill;
+            Initialize();
+        }
+
+        public void SetUICallbacks(CombatPanel panel)
+        {
+            uiWaitForEvent_ += CombatPanel.WaitForAnimEvent;
+            uiPlayAnimation_ += CombatPanel.PlayAnim;
+            uiHandleSkill_ += CombatPanel.HandleSkillTrigger;
         }
 
         /// <summary>
         /// Initialize a typical round of combat.
         /// </summary>
-        public void Initialize()
+        void Initialize()
         {
             AddAttack(attacker_, defender_);
             AddAttack(defender_, attacker_);
@@ -121,8 +129,7 @@ namespace SUGame.StrategyMap
         /// </summary>
         public IEnumerator Resolve()
         {
-            //yield return new WaitForSeconds(1f);
-            //Debug.Log("Starting combat");
+            //Debug.Log("Resolving combat");
             yield return DoPhaseSkills(GameEvent.EVT_PRE_COMBAT, attacker_);
             yield return DoPhaseSkills(GameEvent.EVT_PRE_COMBAT, defender_);
 
@@ -145,7 +152,7 @@ namespace SUGame.StrategyMap
 
         public static int GetDamage( MapCharacter att, MapCharacter defender, Weapon weapon )
         {
-            int weaponDmg = weapon.Damage_;
+            int weaponDmg = weapon == null ? 0 : weapon.Damage_;
             int str = att.Data.Stats_[Stats.PrimaryStat.STR];
             int def = defender.Data.Stats_[Stats.PrimaryStat.DEF];
             return Mathf.Clamp(((weaponDmg + str) - def), 0, int.MaxValue);

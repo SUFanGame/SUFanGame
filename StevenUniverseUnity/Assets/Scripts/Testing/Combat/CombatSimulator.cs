@@ -15,7 +15,7 @@ public class CombatSimulator : MonoBehaviour
             Debug.LogError("Defender was null");
 
         var combat = new Combat(attacker_, defender_);
-        combat.Initialize();
+        //combat.Initialize();
         StartCoroutine(combat.Resolve());
     }
 }

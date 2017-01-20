@@ -30,11 +30,23 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         {
             base.OnEnter();
 
-            CombatPanel.OnAttackAnimsComplete_ += OnAttacksComplete;
-
             CombatPanel.HidePortraits();
 
-            CombatPanel.BeginAttackAnimations(attacker_.transform.position, defender_.transform.position);
+            CombatPanel.ShowTerrains();
+
+            var combat = new Combat(attacker_, defender_);
+            combat.SetUICallbacks(CombatPanel.Instance);
+
+            // Not using the Combat Panel for any particular reason, we just need a gameobject to
+            // run the coroutine.
+            CombatPanel.Instance.StartCoroutine( ResolveCombat(combat) );
+            //CombatPanel.BeginAttackAnimations(attacker_.transform.position, defender_.transform.position);
+        }
+
+        IEnumerator ResolveCombat( Combat combat )
+        {
+            yield return combat.Resolve();
+            OnAttacksComplete();
         }
 
         public override void OnExit()
@@ -48,6 +60,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
 
         void OnAttacksComplete()
         {
+            //Debug.Log("Attacks completed");
             animsComplete_ = true;
         }
 
@@ -60,6 +73,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
                 OnExit();
                 //yield return actionCallback_.Invoke(defender_);
                 Machine.Clear();
+                attacker_.Paused_ = true;
             }
 
 

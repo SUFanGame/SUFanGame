@@ -236,8 +236,8 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
 
             // Note you MUST use hashed ids for this, it silently fails otherwise.
             var id = Animator.StringToHash(name);
-
             //Debug.Log("Playing animation " + name + " on " + unitImage_.name);
+            //Debug.LogFormat("Anim {0} should be playing on {1}", name, attacker_);
             unitAnimator_.Play(id, -1, 0);
             unitAnimator_.speed = 1;
             animCallback_.SignalWhenComplete(name);

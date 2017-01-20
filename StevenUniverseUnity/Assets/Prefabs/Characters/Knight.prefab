@@ -184,28 +184,237 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData_:
-    characterName: 
-    faction: 0
-    heldItems: []
-    skills: []
-    stats:
-      str: 4
-      mag: 0
-      spd: 0
-      skl: 0
-      lck: 0
-      def: 0
-      res: 0
-      crit: 5
-      baseHP: 25
-      avoidance: 0
-      accuracy: 95
-    supportInfos: []
-  tilesMovedPerSecond_: 5
+    characterName_: 
+    faction_: 0
+    stats_:
+      level_: 1
+      primaryStats_:
+      - name_: Hit Points
+        level_: 1
+        levelingCurve_:
+          serializedVersion: 2
+          m_Curve:
+          - time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+          - time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minLevelValue_: 10
+        maxLevelValue_: 100
+        currentValue_: 10
+        maxValue_: 10
+        baseValueUnmodified_: 10
+        baseModValue_: 0
+        bonusPercentValue_: 100
+        flatModValue_: 0
+        modifiers_: []
+      - name_: Strength
+        level_: 1
+        levelingCurve_:
+          serializedVersion: 2
+          m_Curve:
+          - time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+          - time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minLevelValue_: 10
+        maxLevelValue_: 100
+        currentValue_: 10
+        maxValue_: 10
+        baseValueUnmodified_: 10
+        baseModValue_: 0
+        bonusPercentValue_: 100
+        flatModValue_: 0
+        modifiers_: []
+      - name_: Magic Power
+        level_: 1
+        levelingCurve_:
+          serializedVersion: 2
+          m_Curve:
+          - time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+          - time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minLevelValue_: 10
+        maxLevelValue_: 100
+        currentValue_: 10
+        maxValue_: 10
+        baseValueUnmodified_: 10
+        baseModValue_: 0
+        bonusPercentValue_: 100
+        flatModValue_: 0
+        modifiers_: []
+      - name_: Skill
+        level_: 1
+        levelingCurve_:
+          serializedVersion: 2
+          m_Curve:
+          - time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+          - time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minLevelValue_: 10
+        maxLevelValue_: 100
+        currentValue_: 10
+        maxValue_: 10
+        baseValueUnmodified_: 10
+        baseModValue_: 0
+        bonusPercentValue_: 100
+        flatModValue_: 0
+        modifiers_: []
+      - name_: Speed
+        level_: 1
+        levelingCurve_:
+          serializedVersion: 2
+          m_Curve:
+          - time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+          - time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minLevelValue_: 10
+        maxLevelValue_: 100
+        currentValue_: 10
+        maxValue_: 10
+        baseValueUnmodified_: 10
+        baseModValue_: 0
+        bonusPercentValue_: 100
+        flatModValue_: 0
+        modifiers_: []
+      - name_: Luck
+        level_: 1
+        levelingCurve_:
+          serializedVersion: 2
+          m_Curve:
+          - time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+          - time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minLevelValue_: 10
+        maxLevelValue_: 100
+        currentValue_: 10
+        maxValue_: 10
+        baseValueUnmodified_: 10
+        baseModValue_: 0
+        bonusPercentValue_: 100
+        flatModValue_: 0
+        modifiers_: []
+      - name_: Defense
+        level_: 1
+        levelingCurve_:
+          serializedVersion: 2
+          m_Curve:
+          - time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+          - time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minLevelValue_: 10
+        maxLevelValue_: 100
+        currentValue_: 10
+        maxValue_: 10
+        baseValueUnmodified_: 10
+        baseModValue_: 0
+        bonusPercentValue_: 100
+        flatModValue_: 0
+        modifiers_: []
+      - name_: Resistance
+        level_: 1
+        levelingCurve_:
+          serializedVersion: 2
+          m_Curve:
+          - time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+          - time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minLevelValue_: 10
+        maxLevelValue_: 100
+        currentValue_: 10
+        maxValue_: 10
+        baseValueUnmodified_: 10
+        baseModValue_: 0
+        bonusPercentValue_: 100
+        flatModValue_: 0
+        modifiers_: []
+      experience_: 0
+    heldItems_: []
+    equippedWeapon_: {fileID: 0}
+    skills_: []
+    supportInfos_: []
+  combatAnimController_: {fileID: 9100000, guid: 1c89f5d683c520e41b3d3f45d57faae6,
+    type: 2}
+  combatSprite_: {fileID: 0}
   moveRange_: 5
   renderer_: {fileID: 0}
-  weaponName_: 
-  portrait_: {fileID: 0}
 --- !u!212 &212000013061558414
 SpriteRenderer:
   m_ObjectHideFlags: 1

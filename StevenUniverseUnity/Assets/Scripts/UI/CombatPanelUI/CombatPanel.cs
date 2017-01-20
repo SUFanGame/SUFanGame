@@ -8,6 +8,7 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
     public class CombatPanel : MonoBehaviour
     {
         static CombatPanel instance_;
+        public static CombatPanel Instance { get { return instance_; } }
 
         Animator animator_;
 
@@ -90,7 +91,7 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
         /// <param name="side">0 for left, 1 for right.</param>
         public static void PlayAnim(string anim, int side )
         {
-            Debug.Log("Play anim " + anim + " Side: " + side );
+            //Debug.Log("Play anim " + anim + " Side: " + side );
             instance_.unitPanels_[side].PlayAnimation(anim);
         }
 
@@ -102,10 +103,12 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
         /// <returns></returns>
         public static IEnumerator WaitForAnimEvent( CombatAnimEvent evt )
         {
+            //Debug.LogFormat("Waiting for {0}", evt);
             while( true )
             {
                 if( instance_.triggeredEvent_ == evt )
                 {
+                    //Debug.Log("Received event" + evt);
                     instance_.triggeredEvent_ = CombatAnimEvent.NONE;
                     yield break;
                 }
@@ -129,7 +132,7 @@ namespace SUGame.StrategyMap.UI.CombatPanelUI
                     break;
 
                 case CombatAnimEvent.ANIM_COMPLETE:
-                    Debug.Log("ANIMCOMPLETE");
+                    //Debug.Log("ANIMCOMPLETE");
                     triggeredEvent_ = CombatAnimEvent.ANIM_COMPLETE;
                     break;
 

@@ -52,6 +52,7 @@ namespace SUGame.StrategyMap
         /// </summary>
         public void SignalWhenComplete(string animName)
         {
+            //Debug.Log("Calling startcoroutine");
             StartCoroutine(SignalRoutine(animName));
         }
 
@@ -63,24 +64,31 @@ namespace SUGame.StrategyMap
         /// <returns></returns>
         IEnumerator SignalRoutine(string animName)
         {
+            // Must allow the animator to be ticked by the engine after calling animator_.Play
+            // Only then will get proper state information.
+            yield return null;
+            //Debug.Log("Signal routine has been called");
             while (true)
             {
                 var state = animator_.GetCurrentAnimatorStateInfo(0);
                 if (!state.IsName(animName))
                 {
+                    //Debug.LogFormat("Waiting until current anim is {0}.", animName );
                     yield return wait_;
                     continue;
                 }
 
                 if (state.normalizedTime < 1)
                 {
+                    //Debug.LogFormat("Waiting until normalizedTime >= 1. Current: {0}", state.normalizedTime);
                     yield return wait_;
                     continue;
                 }
+
                 break;
             }
-
-
+        
+            //Debug.Log("SIGNAL ROUTINE COMPLETE");
             onAnimationEvent_(CombatAnimEvent.ANIM_COMPLETE, side_);
         }
 

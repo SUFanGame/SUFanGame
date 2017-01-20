@@ -44,14 +44,16 @@ namespace SUGame.Characters
         {
             int halfLuck = Mathf.RoundToInt(this[PrimaryStat.LCK] / 2f);
             int doubleSkill = this[PrimaryStat.SKL] * 2;
-            return Mathf.Clamp(weapon.Accuracy_ + doubleSkill + halfLuck, 0, int.MaxValue);
+            int weaponMod = weapon == null ? 0 : weapon.Accuracy_;
+            return Mathf.Clamp(weaponMod + doubleSkill + halfLuck, 0, int.MaxValue);
         }
 
         public int GetCritChance(Weapon weapon)
         {
             // FE Formula: Crit Chance = Weapon Crit + Skill / 2 + Bond Bonus + Class Crit - Enemy Luck
             int halfSkill = Mathf.RoundToInt(this[PrimaryStat.SKL] / 2f);
-            return Mathf.Clamp(weapon.CritChance_ + halfSkill, 0, int.MaxValue);
+            int weaponMod = weapon == null ? 0 : weapon.CritChance_;
+            return Mathf.Clamp(weaponMod + halfSkill, 0, int.MaxValue);
         }
 
         [SerializeField]
