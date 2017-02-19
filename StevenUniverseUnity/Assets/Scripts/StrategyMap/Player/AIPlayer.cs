@@ -161,8 +161,14 @@ namespace SUGame.StrategyMap.Players
                 if (pathCompleted)
                 {
                     Debug.LogFormat("{0} would attack {1}", unit.name, targetCharacter.name);
-                    //CombatPanel.Initialize(unit, targetCharacter);
-                    //HumanPlayer.Instance.StateMachine_.Push(new CombatUIState(unit, targetCharacter));
+                    CombatPanel.Initialize(unit, targetCharacter);
+
+                    var state = new CombatUIState(unit, targetCharacter);
+                    HumanPlayer.Instance.StateMachine_.Push(state);
+
+
+
+                    yield return state.WaitForAnimations();
                 }
 
                 //Pause the unit

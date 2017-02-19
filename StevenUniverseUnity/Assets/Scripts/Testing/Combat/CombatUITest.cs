@@ -25,8 +25,6 @@ public class CombatUITest : MonoBehaviour
         CombatPanel.Initialize(attacker_, defender_);
         CombatPanel.ShowTerrains();
         var combat = new Combat(attacker_, defender_, CombatPanel.WaitForAnimEvent, CombatPanel.PlayAnim, CombatPanel.HandleSkillTrigger );
-        //combat.Initialize();
         StartCoroutine(combat.Resolve());
-        //CombatPanel.ProcessCombatEvents(combat.CombatEvents_);
     }
 }

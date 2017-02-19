@@ -190,10 +190,9 @@ namespace SUGame.StrategyMap
             {
                 Debug.LogErrorFormat("Error in combat routine, ui callbacks must either both be null or both be valid to function properly");
             }
+            
 
-            bool uiActive = UIActive_;
-
-            if ( uiActive )
+            if ( UIActive_ )
             {
                 // Play the attack animation and wait for our pre attack event
                 uiPlayAnimation_("Attack", attackerSide);
@@ -214,7 +213,7 @@ namespace SUGame.StrategyMap
             int damage = GetDamage(round.attacker_, round.defender_, weapon) * critMod;
 
 
-            if (uiActive)
+            if (UIActive_)
             {
                 // Wait for the attack hit event
                 yield return uiWaitForEvent_(CombatAnimEvent.ATTACK_HIT);
@@ -239,7 +238,7 @@ namespace SUGame.StrategyMap
                 {
                     Debug.LogFormat("{0} was killed!", round.defender_.name);
                     yield return DoPhaseSkills(GameEvent.EVT_KILLED, round.defender_);
-                    if( uiActive )
+                    if( UIActive_ )
                     {
                         uiPlayAnimation_("Killed", defenderSide);
                     }
@@ -254,7 +253,7 @@ namespace SUGame.StrategyMap
                 yield return DoPhaseSkills(GameEvent.EVT_MISS, round.attacker_);
             }
 
-            if( uiActive )
+            if( UIActive_ )
             {
                 // Wait for our attack animation to complete
                 yield return uiWaitForEvent_(CombatAnimEvent.ANIM_COMPLETE);
@@ -352,6 +351,16 @@ namespace SUGame.StrategyMap
             SKILL,
             END
         };
+
+        /// <summary>
+        /// Clear the ui delegates
+        /// </summary>
+        public void UnhookUI()
+        {
+            uiWaitForEvent_ = null;
+            uiPlayAnimation_ = null;
+            uiHandleSkill_ = null;
+        }
 
     }
 

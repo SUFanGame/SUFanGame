@@ -15,6 +15,8 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
 
         bool animsComplete_ = false;
 
+        Combat currentlyRunningCombat_ = null;
+
         public CombatUIState( 
             MapCharacter attacker, 
             MapCharacter defender
@@ -30,16 +32,25 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         {
             base.OnEnter();
 
+            //var cg = CombatPanel.Instance.GetComponent<CanvasGroup>();
+            //cg.alpha = 1;
+
+            // TODO: Currently looks pretty as you just see the portraits slide away if the UI
+            // initiates combat
             CombatPanel.HidePortraits();
+
+            CombatPanel.ShowPanel();
 
             CombatPanel.ShowTerrains();
 
-            var combat = new Combat(attacker_, defender_);
-            combat.SetUICallbacks(CombatPanel.Instance);
+            animsComplete_ = false;
+
+            currentlyRunningCombat_ = new Combat(attacker_, defender_);
+            currentlyRunningCombat_.SetUICallbacks(CombatPanel.Instance);
 
             // Not using the Combat Panel for any particular reason, we just need a gameobject to
             // run the coroutine.
-            CombatPanel.Instance.StartCoroutine( ResolveCombat(combat) );
+            CombatPanel.Instance.StartCoroutine( ResolveCombat(currentlyRunningCombat_) );
             //CombatPanel.BeginAttackAnimations(attacker_.transform.position, defender_.transform.position);
         }
 
@@ -51,6 +62,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
 
         public override void OnExit()
         {
+            Debug.Log("Exiting combat state");
             base.OnExit();
 
             CombatPanel.OnAttackAnimsComplete_ -= OnAttacksComplete;
@@ -82,8 +94,26 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
 
         public override void OnCancelInput(StrategyPlayer player)
         {
+            currentlyRunningCombat_.UnhookUI();
             animsComplete_ = true;
             //CombatPanel.StopAnimations();
+        }
+
+        /// <summary>
+        /// Wait until the combat state completes.
+        /// </summary>
+        public IEnumerator WaitForAnimations()
+        {
+            var wait = new WaitForSeconds(.01f);
+            while(true)
+            {
+                if( animsComplete_ == false )
+                {
+                    yield return wait;
+                    continue;
+                }
+                yield break;
+            }
         }
 
     }
