@@ -54,9 +54,12 @@ namespace SUGame.StrategyMap.Players
         /// </summary>
         //List<CharacterAction> actionBuffer_ = new List<CharacterAction>();
 
+        public static HumanPlayer Instance { get; private set; }
+
 
         void Start()
         {
+            Instance = this;
             StartCoroutine(stateMachine_.TickRoutine());
         }
 
@@ -87,6 +90,8 @@ namespace SUGame.StrategyMap.Players
                 stateMachine_.OnCancel();
             }
         }
+
+        public StateMachine StateMachine_ { get { return stateMachine_; } }
 
         ///// <summary>
         ///// Called whenever a player clicks on a unit.

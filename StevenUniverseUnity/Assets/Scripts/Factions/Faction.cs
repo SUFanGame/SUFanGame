@@ -69,6 +69,27 @@ public static class FactionExtensions
     }
 
     /// <summary>
+    /// Get an array of factions that have a given standing with the selected faction.
+    /// </summary>
+    public static Faction[] GetFactionsWithStanding(this Faction a, Standing targetStanding)
+    {
+        List<Faction> factionsWithStanding = new List<Faction>();
+
+        StandingData myStandingData = factionData_[a];
+
+        foreach (Faction otherFaction in myStandingData.standings_.Keys)
+        {
+            Standing otherStanding = myStandingData.standings_[otherFaction];
+            if (otherStanding == targetStanding)
+            {
+                factionsWithStanding.Add(otherFaction);
+            }
+        }
+
+        return factionsWithStanding.ToArray();
+    }
+
+    /// <summary>
     /// Set the standing between two factions.
     /// </summary>
     public static void SetStanding( this Faction a, Faction b, Standing standing )
