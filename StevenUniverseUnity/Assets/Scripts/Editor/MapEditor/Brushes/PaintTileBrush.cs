@@ -57,7 +57,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
             }
 
             // Retrieve our target height based on our paint mode
-            pos = paintMode_.GetHeightModePosition(pos, map);
+            pos = GetTargetPosition(map, pos);
 
             //Debug.Log("Position in brush:" + pos);
 
@@ -160,6 +160,40 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         {
             base.OnScroll(map, scrollValue);
             area_.OnScroll(scrollValue);
+        }
+
+        public PaintMode PaintMode_ { get { return paintMode_;  } }
+
+        public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos)
+        {
+            switch (paintMode_)
+            {
+                case PaintMode.OVERWRITE:
+                    {
+                        var chunk = map.GetTopChunk((IntVector2)worldPos);
+                        if (chunk == null)
+                            break;
+                        worldPos.z = chunk.Height_;
+                        //SortingLayer topLayer;
+                        //var tile = chunk.GetTopTileWorld( worldPos, out topLayer );
+                    }
+                    break;
+                case PaintMode.ADDITIVE:
+                    {
+                        var chunk = map.GetTopChunk((IntVector2)worldPos);
+                        if (chunk == null)
+                            break;
+                        worldPos.z = chunk.Height_ + 1;
+                    }
+                    break;
+                case PaintMode.SPECIFIC:
+                    {
+                        worldPos.z = MapEditor.SpecificCursorHeight_;
+                    }
+                    break;
+            }
+
+            return worldPos;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace SUGame.SUGameEditor.MapEditing.Panels
             {
                 if (Foldout_)
                     return "Elevation";
-                return string.Format("Elevation [{0}]", MapEditor.CursorHeight_);
+                return string.Format("Elevation [{0}]", MapEditor.SpecificCursorHeight_);
             }
         }
 
@@ -54,7 +54,7 @@ namespace SUGame.SUGameEditor.MapEditing.Panels
             var oldWidth = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = 60f;
 
-            MapEditor.CursorHeight_ = EditorGUILayout.IntField("Elevation", MapEditor.CursorHeight_);
+            MapEditor.SpecificCursorHeight_ = EditorGUILayout.IntField("Elevation", MapEditor.SpecificCursorHeight_);
 
             var newType = (CutoffType)EditorGUILayout.EnumPopup("Cutoff", map.cutoffType_);
 

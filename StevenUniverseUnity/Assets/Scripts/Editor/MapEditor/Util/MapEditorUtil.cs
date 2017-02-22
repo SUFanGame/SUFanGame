@@ -44,47 +44,6 @@ namespace SUGame.SUGameEditor.MapEditing.Util
         //HeightMode heightMode_;
         //LayerMode layerMode_;
 
-        /// <summary>
-        /// Returns a 3D position on the map matching the given HeightMode.
-        /// </summary>
-        /// <param name="mode">The height mode to us.</param>
-        /// <param name="worldPos">The 3D world position on the map. The z value represents the current height.</param>
-        /// <param name="map">The map to poll.</param>
-        /// <returns></returns>
-        public static IntVector3 GetHeightModePosition( this PaintMode paintMode, IntVector3 worldPos, Map map )
-        {
-
-            switch( paintMode )
-            {
-                case PaintMode.OVERWRITE:
-                    {
-                        var chunk = map.GetTopChunk((IntVector2)worldPos);
-                        if (chunk == null)
-                            break;
-                        worldPos.z = chunk.Height_;
-                        //SortingLayer topLayer;
-                        //var tile = chunk.GetTopTileWorld( worldPos, out topLayer );
-                    }
-                    break;
-                case PaintMode.ADDITIVE:
-                    {
-                        var chunk = map.GetTopChunk((IntVector2)worldPos);
-                        if (chunk == null)
-                            break;
-                        worldPos.z = chunk.Height_ + 1;
-                    }
-                    break;
-                //case HeightMode.SPECIFIC:
-                //    {
-
-                //    }
-                //    break;
-            }
-
-
-            return worldPos;
-        }
-
         //public SortingLayer GetTargetLayer( IntVector2 pos, Map map )
         //{
 

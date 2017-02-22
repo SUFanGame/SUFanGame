@@ -9,6 +9,7 @@ using System.Linq;
 using SUGame.Util.Common;
 using SUGame.SUGameEditor.MapEditing.Panels;
 using SUGame.SUGameEditor.Util;
+using SUGame.SUGameEditor.MapEditing.Util;
 
 namespace SUGame.SUGameEditor.MapEditing
 {
@@ -38,6 +39,7 @@ namespace SUGame.SUGameEditor.MapEditing
         {
             get
             {
+                
                 for (int i = 0; i < panels_.Count; ++i)
                     if (panels_[i].ContainsMouse_)
                         return true;
@@ -59,7 +61,7 @@ namespace SUGame.SUGameEditor.MapEditing
          
         IntVector2 lastDragPos_;
         
-        public static int CursorHeight_ { get; set; }
+        public static int SpecificCursorHeight_ { get; set; }
 
         const string PREFS_CURSORHEIGHT_NAME = "MECursorHeight";
 
@@ -119,7 +121,8 @@ namespace SUGame.SUGameEditor.MapEditing
             {
                 var mousePos = Event.current.mousePosition + Vector2.right * 10;
                 var mouseWorldPos = (IntVector3)HandleUtility.GUIPointToWorldRay(mousePos).origin;
-                mouseWorldPos.z = CursorHeight_;
+
+                mouseWorldPos = Brush_.GetTargetPosition(SelectedMap_, mouseWorldPos);
 
                 Handles.BeginGUI();
                 EditorGUI.LabelField(new Rect(0,Screen.height - 65, 100f, 100f), mouseWorldPos.ToString("0") );
@@ -136,7 +139,7 @@ namespace SUGame.SUGameEditor.MapEditing
         {
             base.OnEnable();
 
-            CursorHeight_ = EditorPrefs.GetInt(PREFS_CURSORHEIGHT_NAME, 0);
+            SpecificCursorHeight_ = EditorPrefs.GetInt(PREFS_CURSORHEIGHT_NAME, 0);
 
 
             //Debug.Log("ONENABLE");
@@ -158,7 +161,7 @@ namespace SUGame.SUGameEditor.MapEditing
         {
             base.OnDisable();
 
-            EditorPrefs.SetInt(PREFS_CURSORHEIGHT_NAME, CursorHeight_);
+            EditorPrefs.SetInt(PREFS_CURSORHEIGHT_NAME, SpecificCursorHeight_);
             //Debug.Log("ONDISABLE");
 
             instance_ = null;
@@ -210,7 +213,7 @@ namespace SUGame.SUGameEditor.MapEditing
             if (button == 0)
             { 
                 var pos = (IntVector3)cursorWorldPos;
-                pos.z = CursorHeight_;
+                pos.z = SpecificCursorHeight_;
                 //Debug.LogFormat("MapEditor cursor Pos in InMouseDown: {0}", pos);
 
                 Brush_.OnMouseDown(SelectedMap_, pos);
@@ -231,7 +234,7 @@ namespace SUGame.SUGameEditor.MapEditing
             if ( button == 0 )
             {
                 var pos = (IntVector3)cursorWorldPos;
-                pos.z = CursorHeight_;
+                pos.z = SpecificCursorHeight_;
                 Brush_.OnMouseUp(SelectedMap_, pos);
             }
         }
@@ -256,7 +259,7 @@ namespace SUGame.SUGameEditor.MapEditing
             if( button == 0 )
             {
                 var pos = (IntVector3)cursorWorldPos;
-                pos.z = CursorHeight_;
+                pos.z = SpecificCursorHeight_;
                 Brush_.OnDrag(SelectedMap_, pos);
             }
         }
@@ -281,8 +284,8 @@ namespace SUGame.SUGameEditor.MapEditing
 
             if (Event.current.shift && key == KeyCode.Comma)
             {
-                CursorHeight_++;
-                map.heightCutoff_ = CursorHeight_;
+                SpecificCursorHeight_++;
+                map.heightCutoff_ = SpecificCursorHeight_;
                 if ( map.cutoffType_ != CutoffType.NONE )
                 {
                     map.SetCutoffAlphaOnChunks( (byte)(heightPanel_.CutoffAlpha_ * 255f) );
@@ -293,8 +296,8 @@ namespace SUGame.SUGameEditor.MapEditing
 
             if (Event.current.shift && key == KeyCode.Period)
             {
-                CursorHeight_--;
-                map.heightCutoff_ = CursorHeight_;
+                SpecificCursorHeight_--;
+                map.heightCutoff_ = SpecificCursorHeight_;
                 if (map.cutoffType_ != CutoffType.NONE)
                 {
                     map.SetCutoffAlphaOnChunks( (byte)(heightPanel_.CutoffAlpha_ * 255f) );
@@ -365,7 +368,5 @@ namespace SUGame.SUGameEditor.MapEditing
 
             EditorUtility.SetDirty(map.gameObject);
         }
-
-
     }
 }

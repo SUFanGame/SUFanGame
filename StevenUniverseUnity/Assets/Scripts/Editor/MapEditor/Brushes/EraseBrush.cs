@@ -301,5 +301,18 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         {
 
         }
+
+        public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos)
+        {
+            var chunk = map.GetTopChunk((IntVector2)worldPos);
+            if (chunk != null)
+            {
+                worldPos.z = chunk.Height_;
+            }
+
+            //worldPos.z = MapEditor.SpecificCursorHeight_;
+            return worldPos;
+            
+        }
     }
 }
