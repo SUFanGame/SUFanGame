@@ -122,13 +122,13 @@ namespace SUGame.SUGameEditor.MapEditing
                 var mousePos = Event.current.mousePosition + Vector2.right * 10;
                 var mouseWorldPos = (IntVector3)HandleUtility.GUIPointToWorldRay(mousePos).origin;
 
-                mouseWorldPos = Brush_.GetTargetPosition(SelectedMap_, mouseWorldPos);
+                SortingLayer targetLayer;
+                mouseWorldPos = Brush_.GetTargetPosition(SelectedMap_, mouseWorldPos, out targetLayer);
 
                 Handles.BeginGUI();
-                EditorGUI.LabelField(new Rect(0,Screen.height - 65, 100f, 100f), mouseWorldPos.ToString("0") );
+                EditorGUI.LabelField(new Rect(0,Screen.height - 65, 250f, 100f), string.Format("Target: {0} ({1})", mouseWorldPos.ToString("0"), targetLayer.name ));
                 Handles.EndGUI();
             }
-
 
             SceneView.currentDrawingSceneView.Repaint();
         }

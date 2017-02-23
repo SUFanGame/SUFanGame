@@ -25,8 +25,6 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
 
         Vector2 scrollPos_;
 
-        PaintMode paintMode_ = PaintMode.SPECIFIC;
-
         public bool shiftBeingHeld_;
 
         BrushArea area_ = new BrushArea("MEPaintBrushSize");
@@ -46,7 +44,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
 
         void PaintTiles( Map map, IntVector3 pos)
         {
-            var tile = tiles_[selectedSprite_];
+            var tile = GetSelectedTile();
             var layer = tile.DefaultSortingLayer_;
 
             int undoIndex = 0;
@@ -106,7 +104,6 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         {
             base.MapEditorGUI();
 
-            paintMode_ = (PaintMode)EditorGUILayout.EnumPopup("Paint Mode", paintMode_);
             area_.OnGUI();
 
             selectedSprite_ = SelectionGrids.FromSprites(selectedSprite_, sprites_, 50, 150, ref scrollPos_);
@@ -162,37 +159,51 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
             area_.OnScroll(scrollValue);
         }
 
-        public PaintMode PaintMode_ { get { return paintMode_;  } }
+        private Tile GetSelectedTile()
+        {
+            return tiles_[selectedSprite_]; ;
+        }
 
         public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos)
         {
-            switch (paintMode_)
+            SortingLayer targetLayer;
+            return GetTargetPosition(map, worldPos, out targetLayer);
+        }
+
+        public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos, out SortingLayer targetLayer)
+        {
+            Tile selectedTile = GetSelectedTile();
+
+            switch (brushMode_)
             {
-                case PaintMode.OVERWRITE:
+                case BrushMode.TOP:
                     {
                         var chunk = map.GetTopChunk((IntVector2)worldPos);
                         if (chunk == null)
                             break;
-                        worldPos.z = chunk.Height_;
-                        //SortingLayer topLayer;
-                        //var tile = chunk.GetTopTileWorld( worldPos, out topLayer );
+
+                        SortingLayer topLayer;
+                        Tile topTile = chunk.GetTopTileWorld((IntVector2)worldPos, out topLayer);
+
+                        //The target position should be the minimum position required to draw the new Tile on top of the current top Tile
+                        if (topTile.DefaultSortingLayer_.value >= selectedTile.DefaultSortingLayer_.value)
+                        {
+                            worldPos.z = chunk.Height_ + 1;
+                        }
+                        else
+                        {
+                            worldPos.z = chunk.Height_;
+                        }
                     }
                     break;
-                case PaintMode.ADDITIVE:
-                    {
-                        var chunk = map.GetTopChunk((IntVector2)worldPos);
-                        if (chunk == null)
-                            break;
-                        worldPos.z = chunk.Height_ + 1;
-                    }
-                    break;
-                case PaintMode.SPECIFIC:
+                case BrushMode.SPECIFIC:
                     {
                         worldPos.z = MapEditor.SpecificCursorHeight_;
                     }
                     break;
             }
 
+            targetLayer = selectedTile.DefaultSortingLayer_;
             return worldPos;
         }
     }

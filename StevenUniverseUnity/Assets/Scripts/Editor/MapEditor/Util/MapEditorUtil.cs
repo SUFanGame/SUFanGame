@@ -7,20 +7,16 @@ using SUGame.Util.Common;
 
 namespace SUGame.SUGameEditor.MapEditing.Util
 {
-    public enum PaintMode
+    public enum BrushMode
     {
         /// <summary>
-        /// Returns the highest active tile position.
+        /// Returns the minimum position required to draw on top of the current top Tile at the target location.
         /// </summary>
-        OVERWRITE = 0,
-        /// <summary>
-        /// Returns one above the highest active tile position.
-        /// </summary>
-        ADDITIVE = 1,
+        TOP = 0,
         /// <summary>
         /// Returns a specified height.
         /// </summary>
-        SPECIFIC = 2,
+        SPECIFIC = 1,
     }
 
     //public enum LayerMode

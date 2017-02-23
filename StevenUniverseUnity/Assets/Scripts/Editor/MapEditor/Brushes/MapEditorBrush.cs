@@ -8,6 +8,7 @@ using System.Linq;
 using UnityEditor;
 using SUGame.Util.Common;
 using SUGame.SUGameEditor.Util;
+using SUGame.SUGameEditor.MapEditing.Util;
 
 namespace SUGame.SUGameEditor.MapEditing
 {
@@ -28,6 +29,10 @@ namespace SUGame.SUGameEditor.MapEditing
                 return brushTextures_[IconTextureName_];
             }
         }
+
+        protected BrushMode brushMode_ = BrushMode.SPECIFIC;
+
+        public BrushMode BrushMode_ { get { return brushMode_; } }
 
         static string IconTexturePath_ = "Textures/MapEditorIcons";
         static Dictionary<string, Texture2D> brushTextures_ = null;
@@ -142,15 +147,24 @@ namespace SUGame.SUGameEditor.MapEditing
         /// </summary>
         public virtual void MapEditorGUI()
         {
-
+            brushMode_ = (BrushMode)EditorGUILayout.EnumPopup("Brush Mode", brushMode_);
         }
 
         /// <summary>
         /// Returns a 3D position on the map based on the given world position and the configuration of the Brush
         /// </summary>
-        /// /// <param name="map">The map to poll.</param>
+        /// <param name="map">The map to poll.</param>
         /// <param name="worldPos">The 3D world position on the map. The z value represents the current height.</param>
-        /// <returns></returns>
+        /// <returns>The target position</returns>
         public abstract IntVector3 GetTargetPosition(Map map, IntVector3 worldPos);
+
+        /// <summary>
+        /// Returns a 3D position on the map based on the given world position and the configuration of the Brush
+        /// </summary>
+        /// <param name="map">The map to poll.</param>
+        /// <param name="worldPos">The 3D world position on the map. The z value represents the current height.</param>
+        /// <param name="targetLayer">Will be set to the SortingLayer of the target</param>
+        /// <returns>The target position</returns>
+        public abstract IntVector3 GetTargetPosition(Map map, IntVector3 worldPos, out SortingLayer targetLayer);
     }
 }

@@ -40,8 +40,6 @@ namespace SUGame.World
         ChunkMesh mesh_ = null;
         public ChunkMesh Mesh { get { return mesh_; } }
 
-        
-
 
         /// <summary>
         /// The height (z-position) of the chunk in world space.

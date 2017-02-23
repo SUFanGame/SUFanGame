@@ -86,21 +86,11 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
             if (Event.current.shift)
                 return;
 
+            //Get the layer and adjusted worldPos of the click based on the burhs settings and the click location
             SortingLayer layer;
-            var chunk = map.GetTopChunk((IntVector2)worldPos);
-            if (chunk == null)
-            {
-                Debug.LogFormat("No chunks found at {0}", (IntVector2)worldPos);
-                return;
-            }
-            var tile = chunk.GetTopTileWorld((IntVector2)worldPos, out layer);
-            if ( tile == null )
-            {
-                Debug.Log("You must select a starting tile to determine which layer to erase");
-                return;
-            }
+            worldPos = GetTargetPosition(map, worldPos, out layer);
 
-            EraseTiles(map, (IntVector2)worldPos, layer);
+            EraseTiles(map, worldPos, layer);
         }
 
         public override void OnDrag(Map map, IntVector3 worldPos)
@@ -196,7 +186,6 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         {
             base.MapEditorGUI();
 
-
             area_.OnGUI();
         }
 
@@ -259,7 +248,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         }
         
 
-        void EraseTiles(Map map, IntVector2 pos, SortingLayer layer )
+        void EraseTiles(Map map, IntVector3 worldPos, SortingLayer layer )
         {
             int undoIndex = 0;
             if (!shiftBeingHeld_)
@@ -272,8 +261,9 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
 
             foreach (var p in area_.Points_)
             {
-                var areaPos = (IntVector2)p + pos;
-                var chunk = map.GetTopChunk(areaPos);
+                IntVector3 offset = new IntVector3(p.x, p.y, 0);
+                IntVector3 areaPos = worldPos + offset;
+                var chunk = map.GetChunkWorld(areaPos);
                 if (chunk == null)
                 {
                     Debug.LogFormat("No chunk found at {0}", areaPos);
@@ -301,18 +291,41 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         {
 
         }
-
         public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos)
         {
-            var chunk = map.GetTopChunk((IntVector2)worldPos);
-            if (chunk != null)
+            SortingLayer targetLayer;
+            return GetTargetPosition(map, worldPos, out targetLayer);
+        }
+
+        public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos, out SortingLayer targetLayer)
+        {
+            targetLayer = SortingLayer.layers[0];
+
+            switch (brushMode_)
             {
-                worldPos.z = chunk.Height_;
+                case BrushMode.TOP:
+                    {
+                        var chunk = map.GetTopChunk((IntVector2)worldPos);
+                        if (chunk == null)
+                            break;
+
+                        //Set the target layer to the layer of the top tile
+                        chunk.GetTopTileWorld((IntVector2)worldPos, out targetLayer);
+
+                        worldPos.z = chunk.Height_;
+                    }
+                    break;
+                case BrushMode.SPECIFIC:
+                    {
+                        //TODO allow the user to choose a specific layer to erase as well (only show this drop-down when the "specific" BrushMode is selected)
+                        targetLayer = SortingLayer.layers[0];
+
+                        worldPos.z = MapEditor.SpecificCursorHeight_;
+                    }
+                    break;
             }
 
-            //worldPos.z = MapEditor.SpecificCursorHeight_;
             return worldPos;
-            
         }
     }
 }
