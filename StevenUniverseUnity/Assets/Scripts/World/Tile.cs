@@ -24,6 +24,9 @@ namespace SUGame.World
         /// </summary>
         public bool IsGrounded_ { get { return isGrounded_; } }
 
+        [SerializeField]
+        TileLayer tileLayer_ = TileLayer.Ground;
+
         public Sprite Sprite_
         {
             get { return Renderer_.sprite; }
@@ -49,11 +52,12 @@ namespace SUGame.World
         /// The default sorting layer for this tile. Note that tiles can be inserted
         /// in the map on ANY sorting layer, this is just the default if no layer is specified.
         /// </summary>
-        public SortingLayer DefaultSortingLayer_
+        public TileLayer DefaultSortingLayer_
         {
             get
             {
-                return SortingLayerUtil.GetLayerFromID(renderer_.sortingLayerID);
+                return tileLayer_;
+                    //SortingLayerUtil.GetLayerFromID(renderer_.sortingLayerID);
             }
         }
         public enum Mode

@@ -51,8 +51,9 @@ namespace SUGame.SUGameEditor.MapEditing.Panels
         
         protected override void OnPanelGUI( Map map )
         {
-            var layers = SortingLayer.layers;
-            int layerCount = layers.Length;
+            //var layers = SortingLayer.layers;
+            var layers = EnumUtil.GetEnumValues<TileLayer>();
+            int layerCount = layers.Count;
             for (int i = 0; i < layerCount; ++i)
             {
                 toggles_[i] = map.GetLayerVisible(layers[i]);
@@ -62,9 +63,9 @@ namespace SUGame.SUGameEditor.MapEditing.Panels
             var oldColor = GUI.contentColor;
 
             GUI.contentColor = Color.black;
-            for (int i = layers.Length - 1; i >= 0; --i)
+            for (int i = layers.Count - 1; i >= 0; --i)
             {
-                bool userToggle = EditorGUILayout.ToggleLeft(layers[i].name, toggles_[i]);
+                bool userToggle = EditorGUILayout.ToggleLeft(layers[i].ToString(), toggles_[i]);
 
                 if (userToggle != toggles_[i])
                 {

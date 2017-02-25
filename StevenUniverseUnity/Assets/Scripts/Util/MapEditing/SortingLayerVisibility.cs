@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using SUGame.World;
 
 namespace SUGame.Util.MapEditing
 {
@@ -32,16 +33,17 @@ namespace SUGame.Util.MapEditing
             //Debug.LogFormat("Layer states after awake: {0}", string.Join(",", layerStates_.Select(b => b.ToString()).ToArray() ));
         }
 
-        public void Set( SortingLayer layer, bool isVisible )
+        public void Set( TileLayer layer, bool isVisible )
         {
-            int i = SortingLayerUtil.GetLayerIndex(layer);
+            //int i = SortingLayerUtil.GetLayerIndex(layer);
+            int i = (int)layer;
             layerStates_[i] = isVisible;
         }
 
-        public bool Get( SortingLayer layer )
+        public bool Get( TileLayer layer )
         {
             //Debug.LogFormat("Layer states after in get function: {0}", string.Join(",", layerStates_.Select(b => b.ToString()).ToArray()));
-            int i = SortingLayerUtil.GetLayerIndex(layer);
+            int i = (int)layer;//SortingLayerUtil.GetLayerIndex(layer);
             return layerStates_[i];
         }
 

@@ -25,7 +25,8 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         /// Set of points collected during a drag-erase operation. <seealso cref="OnDragExit(Map)"/>for an explanation.
         /// </summary>
         HashSet<TileIndex> dragPoints_ = new HashSet<TileIndex>();
-        SortingLayer? dragLayer_ = null;
+        //SortingLayer? dragLayer_ = null;
+        TileLayer? dragLayer_ = null;
         IntVector3 dragOriginPoint_;
 
         BrushArea area_ = new BrushArea(PREFS_ERASEBRUSHSIZE_NAME);
@@ -87,7 +88,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
                 return;
 
             //Get the layer and adjusted worldPos of the click based on the burhs settings and the click location
-            SortingLayer layer;
+            TileLayer layer;
             worldPos = GetTargetPosition(map, worldPos, out layer);
 
             EraseTiles(map, worldPos, layer);
@@ -130,7 +131,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
                         DragWarning();
                         return;
                     }
-                    SortingLayer layer;
+                    TileLayer layer;
                     var tile = chunk.GetTopTileWorld((IntVector2)worldPos, out layer);
                     if (tile == null)
                     {
@@ -248,7 +249,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         }
         
 
-        void EraseTiles(Map map, IntVector3 worldPos, SortingLayer layer )
+        void EraseTiles(Map map, IntVector3 worldPos, TileLayer layer )
         {
             int undoIndex = 0;
             if (!shiftBeingHeld_)
@@ -293,13 +294,14 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         }
         public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos)
         {
-            SortingLayer targetLayer;
+            TileLayer targetLayer;
             return GetTargetPosition(map, worldPos, out targetLayer);
         }
 
-        public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos, out SortingLayer targetLayer)
+        public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos, out TileLayer targetLayer)
         {
-            targetLayer = SortingLayer.layers[0];
+            //targetLayer = SortingLayer.layers[0];
+            targetLayer = TileLayer.Default;
 
             switch (brushMode_)
             {
@@ -318,7 +320,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
                 case BrushMode.SPECIFIC:
                     {
                         //TODO allow the user to choose a specific layer to erase as well (only show this drop-down when the "specific" BrushMode is selected)
-                        targetLayer = SortingLayer.layers[0];
+                        targetLayer = TileLayer.Default;
 
                         worldPos.z = MapEditor.SpecificCursorHeight_;
                     }
@@ -326,6 +328,79 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
             }
 
             return worldPos;
+        }
+
+        /// <summary>
+        /// Defines the index of a tile within a chunk. Used to batch erase operations
+        /// in a list.
+        /// </summary>
+        [System.Serializable]
+        public struct TileIndex : System.IEquatable<TileIndex>
+        {
+            public IntVector2 position_;
+
+            [SerializeField]
+            TileLayer layer_;
+
+            public TileLayer Layer_ { get { return layer_; } }
+
+            public TileIndex(IntVector2 pos, TileLayer layer)
+            {
+                position_ = pos;
+                layer_ = layer;
+            }
+
+            public TileIndex(int x, int y, TileLayer layer) : this(new IntVector2(x, y), layer)
+            { }
+
+            public override bool Equals(object obj)
+            {
+                if (!(obj is TileIndex))
+                    return false;
+
+                TileIndex p = (TileIndex)obj;
+
+                return this.Equals(p);
+            }
+
+            public bool Equals(TileIndex other)
+            {
+                return position_ == other.position_ && layer_ == other.layer_;
+            }
+
+            public static bool operator ==(TileIndex lhs, TileIndex rhs)
+            {
+                return lhs.Equals(rhs);
+            }
+
+            public static bool operator !=(TileIndex lhs, TileIndex rhs)
+            {
+                return !lhs.Equals(rhs);
+            }
+
+            public static TileIndex operator -(TileIndex lhs, TileIndex rhs)
+            {
+                return new TileIndex(lhs.position_ - rhs.position_, lhs.Layer_);
+            }
+
+            //http://stackoverflow.com/questions/263400/what-is-the-best-algorithm-for-an-overridden-system-object-gethashcode/263416#263416
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    int hash = 17;
+
+                    hash = hash * 23 + position_.GetHashCode();
+                    hash = hash * 23 + layer_.GetHashCode();
+                    return hash;
+                }
+            }
+
+            public override string ToString()
+            {
+                return string.Format("[{0},{1}]", position_.ToString("0"), layer_.ToString());
+            }
+
         }
     }
 }

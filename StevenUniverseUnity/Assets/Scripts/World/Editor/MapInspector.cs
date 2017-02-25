@@ -27,7 +27,7 @@ namespace SUGame.SUGameEditor.World.Inspector
 
             if( GUILayout.Button("Print Tiles") )
             {
-                tar.PrintTiles();
+                //tar.PrintTiles();
             }
 
             if( GUILayout.Button("Clear Empty Chunks") )

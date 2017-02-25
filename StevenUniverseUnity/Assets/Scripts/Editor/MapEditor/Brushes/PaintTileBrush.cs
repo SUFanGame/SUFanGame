@@ -166,11 +166,12 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
 
         public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos)
         {
-            SortingLayer targetLayer;
-            return GetTargetPosition(map, worldPos, out targetLayer);
+            //SortingLayer targetLayer;
+            TileLayer layer;
+            return GetTargetPosition(map, worldPos, out layer);
         }
 
-        public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos, out SortingLayer targetLayer)
+        public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos, out TileLayer targetLayer)
         {
             Tile selectedTile = GetSelectedTile();
 
@@ -182,11 +183,12 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
                         if (chunk == null)
                             break;
 
-                        SortingLayer topLayer;
+                        //SortingLayer topLayer;
+                        TileLayer topLayer;
                         Tile topTile = chunk.GetTopTileWorld((IntVector2)worldPos, out topLayer);
 
                         //The target position should be the minimum position required to draw the new Tile on top of the current top Tile
-                        if (topTile.DefaultSortingLayer_.value >= selectedTile.DefaultSortingLayer_.value)
+                        if ((int)topTile.DefaultSortingLayer_ >= (int)selectedTile.DefaultSortingLayer_)
                         {
                             worldPos.z = chunk.Height_ + 1;
                         }

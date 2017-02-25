@@ -112,8 +112,6 @@ namespace SUGame.SUGameEditor.MapEditing
             if (!SceneEditorUtil.EditMode_ || !mouseOverWindow == SceneView.currentDrawingSceneView || SelectedMap_ == null )
                 return;
 
-
-
             foreach (var panel in panels_)
                 panel.OnSceneGUI(SelectedMap_);
 
@@ -122,11 +120,12 @@ namespace SUGame.SUGameEditor.MapEditing
                 var mousePos = Event.current.mousePosition + Vector2.right * 10;
                 var mouseWorldPos = (IntVector3)HandleUtility.GUIPointToWorldRay(mousePos).origin;
 
-                SortingLayer targetLayer;
+                //SortingLayer targetLayer;
+                TileLayer targetLayer;
                 mouseWorldPos = Brush_.GetTargetPosition(SelectedMap_, mouseWorldPos, out targetLayer);
 
                 Handles.BeginGUI();
-                EditorGUI.LabelField(new Rect(0,Screen.height - 65, 250f, 100f), string.Format("Target: {0} ({1})", mouseWorldPos.ToString("0"), targetLayer.name ));
+                EditorGUI.LabelField(new Rect(0,Screen.height - 65, 250f, 100f), string.Format("Target: {0} ({1})", mouseWorldPos.ToString("0"), targetLayer.ToString() ));
                 Handles.EndGUI();
             }
 
@@ -267,12 +266,6 @@ namespace SUGame.SUGameEditor.MapEditing
         protected override void OnKeyDown(KeyCode key)
         {
             base.OnKeyDown(key);
-
-
-
-           
-
-
 
             if (MouseIsOverPanels_)
                 return;

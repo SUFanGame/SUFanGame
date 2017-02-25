@@ -18,7 +18,7 @@ namespace SUGame.World
     /// For any 2D position of the chunk there can exist a stack of tiles: one tile for each sorting layer set up in the project.
     /// </summary>
     [RequireComponent(typeof(ChunkMesh)), ExecuteInEditMode]
-    public class Chunk : MonoBehaviour, IEnumerable<KeyValuePair<TileIndex,Tile>>
+    public class Chunk : MonoBehaviour
     {
         public const int MAXSIZE = 50;
 
@@ -31,8 +31,8 @@ namespace SUGame.World
         /// <summary>
         /// Dictionary mapping tiles directly to their tile index ( Position & SortingLayer )
         /// </summary>
-        [SerializeField]
-        TileToIndexDict indexDict_ = new TileToIndexDict();
+        //[SerializeField]
+        //TileToIndexDict indexDict_ = new TileToIndexDict();
 
         [SerializeField]
         SortingLayerVisibility isLayerVisible_ = new SortingLayerVisibility();
@@ -55,7 +55,7 @@ namespace SUGame.World
 
         public bool IsEmpty
         {
-            get { return indexDict_.Count == 0; }
+            get { return sortingLayerDict_.Count == 0; }
         }
 
         [SerializeField,HideInInspector]
@@ -104,9 +104,10 @@ namespace SUGame.World
         /// </summary>
         /// <param name="localPos">The 2D position to search, local to this chunk.</param>
         /// <param name="layer">Which layer a tile was found at, if any.</param>
-        public Tile GetTopTileLocal( IntVector2 localPos, out SortingLayer layer )
+        public Tile GetTopTileLocal( IntVector2 localPos, out TileLayer layer )
         {
-            layer = default(SortingLayer);
+            //layer = default(SortingLayer);
+            layer = TileLayer.Default;
 
             if (!sortingLayerDict_.ContainsKey(localPos))
             {
@@ -118,7 +119,8 @@ namespace SUGame.World
 
             for( int i = stack.Count - 1; i >= 0; --i )
             {
-                layer = SortingLayerUtil.GetLayerFromIndex(i);
+                layer = (TileLayer)i;
+                //layer = SortingLayerUtil.GetLayerFromIndex(i);
                 // Check if this layer is enabled 
                 if ( isLayerVisible_.Get(layer) && stack[i] != null )
                 {
@@ -131,31 +133,40 @@ namespace SUGame.World
         }
 
 
-        public Tile GetTopTileWorld( IntVector2 worldPos, out SortingLayer layer )
+        public Tile GetTopTileWorld( IntVector2 worldPos, out TileLayer layer )
         {
-            layer = default(SortingLayer);
+            //layer = default(SortingLayer);
+            layer = TileLayer.Default;
             return GetTopTileLocal( worldPos - (IntVector2)transform.position, out layer );
         }
 
         /// <summary>
         /// Retrieve a single tile from the local position and sorting layer.
         /// </summary>
-        public Tile GetTileLocal( IntVector2 localPosition, SortingLayer layer )
+        public Tile GetTileLocal( IntVector2 localPosition, TileLayer layer )
         {
             if( !isLayerVisible_.Get(layer) )
             {
                 return null;
             }
+
+            int layerIndex = (int)layer;
+
+            var stack = GetTileStackLocal(localPosition);
+            if (stack == null)
+                return null;
+
+            return stack[layerIndex];
             //Debug.LogFormat("Getting tile from chunk {0} at {1} {2}", name, localPosition, layer.name );
-            Tile t;
-            indexDict_.TryGetValue(new TileIndex(localPosition, layer), out t);
-            return t;
+            //Tile t;
+            //indexDict_.TryGetValue(new TileIndex(localPosition, layer), out t);
+            //return t;
         }
 
         /// <summary>
         /// Retrieve a single tile from the chunk via the given world position and sorting layer.
         /// </summary>
-        public Tile GetTileWorld(IntVector2 worldPos, SortingLayer layer)
+        public Tile GetTileWorld(IntVector2 worldPos, TileLayer layer)
         {
             if (!isLayerVisible_.Get(layer))
             {
@@ -194,10 +205,11 @@ namespace SUGame.World
         }
 
 
-        public void SetTileWorld( TileIndex index, Tile t )
+        //public void SetTileWorld( TileIndex index, Tile t )
+        public void SetTileWorld( IntVector2 pos, TileLayer layer, Tile t )
         {
             //Debug.LogFormat("SetTileWorld index: {0}", index);
-            if ( !isLayerVisible_.Get(index.Layer_) )
+            if ( !isLayerVisible_.Get(layer) )
             {
                 //Debug.LogFormat("Layer {0} is hidden for chunk {1}", index.Layer_.name, name);
                 return;
@@ -207,33 +219,33 @@ namespace SUGame.World
                 //Debug.LogFormat("Layer {0} is not hidden for chunk {1}", index.Layer_.name, name);
             }
             //var oldPos = index.position_;
-            index.position_ = index.position_ - (IntVector2)transform.localPosition;
+            pos = pos - (IntVector2)transform.localPosition;
 
             //Debug.LogFormat("Index after localizing: {0} - {1} : {2}", (IntVector2)transform.localPosition, oldPos, index.position_ );
-            SetTileLocal(index, t);
+            SetTileLocal(pos, layer, t);
         }
 
         public void SetTileWorld(IntVector2 pos, Tile t)
         {
-            SetTileWorld(new TileIndex(pos, t.DefaultSortingLayer_), t);
+            SetTileWorld(pos, TileLayer.Default, t);
         }
 
-        void SetTileLocal(TileIndex index, Tile t)
+        void SetTileLocal(IntVector2 pos, TileLayer layer, Tile t)
         {
             //Debug.LogFormat("Setting tile for {0}", index);
-            indexDict_[index] = t;
-            var stack = GetOrCreateTileStack(index.position_);
+            //indexDict_[index] = t;
+            var stack = GetOrCreateTileStack(pos);
 
             //Debug.LogFormat("Index: {0}, stackSize: {1}", index, stack.Count);
 
-            var layerIndex = index.SortingLayerIndex_;
+            var layerIndex = (int)layer;
             stack[layerIndex] = t;
             // TODO : Write to mesh
-            var layerMesh = GetLayerMesh(index.Layer_);
+            var layerMesh = GetLayerMesh(layer);
 
-            layerMesh.SetUVs(index.position_, t.Sprite_.uv);
+            layerMesh.SetUVs(pos, t.Sprite_.uv);
             //layerMesh.SetColors(index.position_, Color.white);
-            layerMesh.SetVisible(index.position_);
+            layerMesh.SetVisible(pos);
 
             layerMesh.ImmediateUpdate();
         }
@@ -244,14 +256,14 @@ namespace SUGame.World
         /// </summary>
         public void EraseTileWorld( IntVector2 worldPos )
         {
-            EraseTileLocal( worldPos - (IntVector2)transform.localPosition );
+            EraseTopTileLocal( worldPos - (IntVector2)transform.localPosition );
         }
 
         /// <summary>
         /// Erase the top most tile at the given position.
         /// </summary>
         /// <param name="pos"></param>
-        public void EraseTileLocal( IntVector2 pos )
+        void EraseTopTileLocal( IntVector2 pos )
         {
             //Debug.LogFormat("Erasing tile at {0}", pos);
             // First check if there are any tiles here
@@ -265,43 +277,44 @@ namespace SUGame.World
             for( int i = stack.Count - 1; i >= 0; --i )
             {
                 var t = stack[i];
-                var layer = SortingLayerUtil.GetLayerFromIndex(i);
+                var layer = (TileLayer)i;
                 // Ignore layers that aren't visible
                 if (t == null || !isLayerVisible_.Get(layer))
                     continue;
 
-                EraseTile(new TileIndex(pos, layer));
+                EraseTileLocal(pos, layer);
                 return;
             }
         }
 
-        public void EraseTileWorld( IntVector2 pos, SortingLayer layer )
+        public void EraseTileWorld( IntVector2 pos, TileLayer layer )
         {
             pos -= (IntVector2)transform.position;
-            EraseTile(new TileIndex(pos, layer));
+            EraseTileLocal(pos, layer);
         }
         
 
-        void EraseTile( TileIndex index )
+        void EraseTileLocal( IntVector2 localPos, TileLayer layer )
         {
-            if (!indexDict_.ContainsKey(index))
-            {
-                //Debug.LogFormat("Index {0} not present in {1}", index, name);
-                return;
-            }
-            //Debug.LogFormat("Erasing tile at {0}", index);
-            indexDict_.Remove(index);
-            sortingLayerDict_[index.position_].list_[index.SortingLayerIndex_] = null;
+            //if (!indexDict_.ContainsKey(index))
+            //{
+            //    //Debug.LogFormat("Index {0} not present in {1}", index, name);
+            //    return;
+            //}
+            ////Debug.LogFormat("Erasing tile at {0}", index);
+            //indexDict_.Remove(index);
 
-            var layerMesh = GetLayerMesh(index.Layer_);
+            sortingLayerDict_[localPos].list_[(int)layer] = null;
+
+            var layerMesh = GetLayerMesh(layer);
 
             //layerMesh.SetColors(index.position_, default(Color32));
-            layerMesh.SetHidden(index.position_);
+            layerMesh.SetHidden(localPos);
 
             layerMesh.ImmediateUpdate();
         }
 
-        public void SetLayerVisibility( SortingLayer layer, bool val )
+        public void SetLayerVisibility( TileLayer layer, bool val )
         {
             if (val)
                 ShowLayer(layer);
@@ -316,14 +329,14 @@ namespace SUGame.World
         /// Hide a certain layer of tiles.
         /// </summary>
         /// <param name="layer"></param>
-        public void HideLayer( SortingLayer layer )
+        public void HideLayer( TileLayer layer )
         {
             isLayerVisible_.Set(layer, false );
             mesh_.HideLayer(layer);
             //ChunkMesh.HideLayer(layer);
         }
 
-        public void ShowLayer( SortingLayer layer )
+        public void ShowLayer( TileLayer layer )
         {
             isLayerVisible_.Set(layer, true);
             mesh_.ShowLayer(layer);
@@ -348,12 +361,13 @@ namespace SUGame.World
         }
 
         /// <summary>
-        /// Retrieve the TiledMesh for the given sorting layer.
+        /// Retrieve the TiledMesh for the given Tile layer.
         /// The mesh will be created if none exists.
         /// </summary>
-        public TiledMesh GetLayerMesh( SortingLayer layer )
+        public TiledMesh GetLayerMesh( TileLayer layer )
         {
-            int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
+            //int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
+            int layerIndex = (int)layer;
 
             var mesh = mesh_.GetLayerMesh(layerIndex);
 
@@ -370,17 +384,17 @@ namespace SUGame.World
 
        // public void SetTileLocal(  )
 
-        public void Print()
-        {
-            foreach( var p in this )
-            {
-                if( p.Value == null )
-                {
-                    Debug.LogFormat("Print is trying to read value at {0}, but it's null", p.Key);
-                }
-                Debug.LogFormat("Chunk: {0}: Index: {1} Tile : {2}", name, p.Key, p.Value.name);
-            }
-        }
+        //public void Print()
+        //{
+        //    foreach( var p in this )
+        //    {
+        //        if( p.Value == null )
+        //        {
+        //            Debug.LogFormat("Print is trying to read value at {0}, but it's null", p.Key);
+        //        }
+        //        Debug.LogFormat("Chunk: {0}: Index: {1} Tile : {2}", name, p.Key, p.Value.name);
+        //    }
+        //}
 
         public IEnumerator<KeyValuePair<IntVector2,List<Tile>>> GetTileStackEnumerator()
         {
@@ -391,20 +405,20 @@ namespace SUGame.World
             }
         }
 
-        public Dictionary<TileIndex,Tile>.Enumerator GetEnumerator()
-        {
-            return indexDict_.GetEnumerator();
-        }
+        //public Dictionary<TileIndex,Tile>.Enumerator GetEnumerator()
+        //{
+        //    return indexDict_.GetEnumerator();
+        //}
 
-        IEnumerator<KeyValuePair<TileIndex, Tile>> IEnumerable<KeyValuePair<TileIndex, Tile>>.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        //IEnumerator<KeyValuePair<TileIndex, Tile>> IEnumerable<KeyValuePair<TileIndex, Tile>>.GetEnumerator()
+        //{
+        //    return GetEnumerator();
+        //}
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        //IEnumerator IEnumerable.GetEnumerator()
+        //{
+        //    return GetEnumerator();
+        //}
 
         //[System.Serializable]
         //class TilesToIntVector2Dict : SerializableDictionaryOfLists<IntVector2, Tile> { }
@@ -415,8 +429,8 @@ namespace SUGame.World
         [System.Serializable]
         class TilesToIntVector2Dict : SerializableDictionary<IntVector2, TileListWrapper> { }
 
-        [System.Serializable]
-        class TileToIndexDict : SerializableDictionary<TileIndex, Tile> { }
+        //[System.Serializable]
+        //class TileToIndexDict : SerializableDictionary<TileIndex, Tile> { }
         
     }
 

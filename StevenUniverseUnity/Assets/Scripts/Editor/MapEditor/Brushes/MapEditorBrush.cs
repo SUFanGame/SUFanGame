@@ -163,8 +163,8 @@ namespace SUGame.SUGameEditor.MapEditing
         /// </summary>
         /// <param name="map">The map to poll.</param>
         /// <param name="worldPos">The 3D world position on the map. The z value represents the current height.</param>
-        /// <param name="targetLayer">Will be set to the SortingLayer of the target</param>
+        /// <param name="targetLayer">Will be set to the TileLayer of the target</param>
         /// <returns>The target position</returns>
-        public abstract IntVector3 GetTargetPosition(Map map, IntVector3 worldPos, out SortingLayer targetLayer);
+        public abstract IntVector3 GetTargetPosition(Map map, IntVector3 worldPos, out TileLayer targetLayer);
     }
 }

@@ -85,24 +85,29 @@ namespace SUGame.World.DynamicMesh
             return meshes_[index];
         }
 
-        public void HideLayer( SortingLayer layer )
+        public void HideLayer( TileLayer layer )
         {
-            int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
+            //int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
+            int layerIndex = (int)layer;
 
             var mesh = meshes_[layerIndex];
             if (mesh != null)
                 mesh.renderer_.enabled = false;
         }
 
-        public void ShowLayer( SortingLayer layer )
+        public void ShowLayer( TileLayer layer )
         {
-            int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
+            //int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
+            int layerIndex = (int)layer;
 
             var mesh = meshes_[layerIndex];
             if (mesh != null)
                 mesh.renderer_.enabled = true;
         }
 
+        /// <summary>
+        /// Refresh uv and color data for all layers in this chunk.
+        /// </summary>
         public void RefreshLayers()
         {
             for( int i = 0; i < meshes_.Length; ++i )

@@ -76,7 +76,6 @@ namespace SUGame.World
         /// Optional way to hide and prevent access to all tiles above a certain height. 
         /// Useful for seeing and operating in chunks below other chunks.
         /// </summary>
-
         public CutoffType cutoffType_ = CutoffType.NONE;
         public int heightCutoff_ = 0;
 
@@ -85,7 +84,7 @@ namespace SUGame.World
         /// explicitly allow the user to set all tiles in the mesh to alpha of 0, since we then have no way of knowing ( from within the tiled mesh class,
         /// ) which tiles are hidden and what aren't.
         /// 
-        /// To that end we will track when meshes are being "hiddeN" and instead hide the renderers.
+        /// To that end we will track when meshes are being "hidden" and instead hide the renderers.
         /// </summary>
         [SerializeField,HideInInspector]
         bool cutoffChunksHidden_ = false;
@@ -117,7 +116,7 @@ namespace SUGame.World
         /// <param name="pos"></param>
         /// <param name="layer"></param>
         /// <param name="t"></param>
-        public void SetTile( IntVector3 pos, SortingLayer layer, Tile t )
+        public void SetTile( IntVector3 pos, TileLayer layer, Tile t )
         {
             if (t == null)
             {
@@ -145,7 +144,7 @@ namespace SUGame.World
             }
 
 
-            chunk.SetTileWorld(new TileIndex((IntVector2)pos, layer), t);
+            chunk.SetTileWorld((IntVector2)pos, layer, t);
         }
         
         /// <summary>
@@ -154,15 +153,15 @@ namespace SUGame.World
         /// </summary>
         /// <param name="pos"></param>
         /// <param name="t"></param>
-        public void SetTile(IntVector2 pos, Tile t)
+        public void SetTopTile(IntVector2 pos, Tile t)
         {
             var topChunk = GetTopChunk(pos);
             
             if (topChunk == null)
-                SetTile(new IntVector3(pos.x, pos.y, 0), t.DefaultSortingLayer_, t);
+                SetTile(new IntVector3(pos.x, pos.y, 0), TileLayer.Default, t);
             else
             {
-                SetTile(new IntVector3(pos.x, pos.y, topChunk.Height_), t.DefaultSortingLayer_, t);
+                SetTile(new IntVector3(pos.x, pos.y, topChunk.Height_), TileLayer.Default, t);
             }
         }
         
@@ -171,7 +170,7 @@ namespace SUGame.World
         /// </summary>
         public void SetTile(IntVector3 pos, Tile t)
         {
-            SetTile(pos, t.DefaultSortingLayer_, t);
+            SetTile(pos, TileLayer.Default, t);
         }
 
 
@@ -219,7 +218,7 @@ namespace SUGame.World
                 if ( cutoffType_ != CutoffType.NONE && cutoffType_.IsCutoff( heightCutoff_, chunk.Height_) || !chunk.isActiveAndEnabled)
                     continue;
 
-                SortingLayer layer;
+                TileLayer layer;
                 if (chunk.GetTopTileWorld(worldPos, out layer) != null)
                     return chunk;
 
@@ -310,8 +309,9 @@ namespace SUGame.World
             // Sort the stack by highest-first;
             chunkStack.Sort( (a, b) => -a.Height_.CompareTo(b.Height_));
 
+            var layers = EnumUtil.GetEnumValues<TileLayer>();
             // Set the layer visiblity values from our map values.
-            foreach (var l in SortingLayer.layers)
+            foreach (var l in layers)
             {
                 chunk.SetLayerVisibility(l, isLayerVisible_.Get(l));
             }
@@ -327,7 +327,7 @@ namespace SUGame.World
         /// <summary>
         /// Get the mesh at the given position and layer.
         /// </summary>
-        public TiledMesh GetMesh( IntVector3 pos, SortingLayer layer )
+        public TiledMesh GetMesh( IntVector3 pos, TileLayer layer )
         {
             if (cutoffType_ != CutoffType.NONE && cutoffType_.IsCutoff(heightCutoff_, pos.z) )
             {
@@ -393,7 +393,7 @@ namespace SUGame.World
         /// <summary>
         /// Set the visibility state of the given layer.
         /// </summary>
-        public void SetLayerVisible( SortingLayer layer, bool visible )
+        public void SetLayerVisible( TileLayer layer, bool visible )
         {
             if( visible == false )
             {
@@ -405,7 +405,7 @@ namespace SUGame.World
             }
         }
 
-        public bool GetLayerVisible( SortingLayer layer )
+        public bool GetLayerVisible( TileLayer layer )
         {
             return isLayerVisible_.Get(layer);
         }
@@ -414,7 +414,7 @@ namespace SUGame.World
         /// Hide all tiles of the given layer for the entire map.
         /// </summary>
         /// <param name="layer"></param>
-        public void HideLayer( SortingLayer layer )
+        public void HideLayer( TileLayer  layer )
         {
             if (!isLayerVisible_.Get(layer))
                 return;
@@ -433,7 +433,7 @@ namespace SUGame.World
         /// Show all tiles of the given layer for the entire map.
         /// </summary>
         /// <param name="layer"></param>
-        public void ShowLayer( SortingLayer layer )
+        public void ShowLayer( TileLayer layer )
         {
             if (isLayerVisible_.Get(layer))
                 return;
@@ -600,11 +600,11 @@ namespace SUGame.World
             return GetEnumerator();
         }
 
-        public void PrintTiles()
-        {
-            foreach (var chunk in this )
-                chunk.Print();
-        }
+        //public void PrintTiles()
+        //{
+        //    foreach (var chunk in this )
+        //        chunk.Print();
+        //}
 
         // Subclasses so dictionaries are serializable.
         [System.Serializable]
