@@ -80,30 +80,6 @@ namespace SUGame.SUGameEditor.CustomGUI
 
         }
 
-
-        /// <summary>
-        /// Draws a popup of the project's existing sorting layers.
-        /// </summary>
-        /// <param name="layerID">The internal layer id, can be assigned to renderer.SortingLayerID to change sorting layers.</param>
-        public static int DrawSortingLayersPopup(int layerID)
-        {
-            var layers = SortingLayer.layers;
-            var names = layers.Select(l => l.name).ToArray();
-
-            if (!SortingLayer.IsValid(layerID))
-            {
-                layerID = layers[0].id;
-            }
-
-            var layerValue = SortingLayer.GetLayerValueFromID(layerID);
-
-            int index = SortingLayerUtil.GetLayerIndex(layerValue);
-
-            index = EditorGUILayout.Popup(index, names);
-
-            return layers[index].id;
-        }
-
         public static Rect GetNormalizedSpriteRect(Sprite sprite)
         {
             var tex = sprite.texture;

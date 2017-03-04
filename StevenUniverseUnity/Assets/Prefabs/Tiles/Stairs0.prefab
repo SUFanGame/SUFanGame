@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode_: 2
   isGrounded_: 0
+  tileLayer_: 3
   renderer_: {fileID: 212000013275996290}
 --- !u!212 &212000013275996290
 SpriteRenderer:
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 653255853
+  m_SortingLayerID: 166219751
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300034, guid: 66cba55b8ab8a3147b8e671b7eaabfed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

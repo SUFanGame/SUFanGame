@@ -45,7 +45,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         void PaintTiles( Map map, IntVector3 pos)
         {
             var tile = GetSelectedTile();
-            var layer = tile.DefaultSortingLayer_;
+            var layer = tile.DefaultTileLayer_;
 
             int undoIndex = 0;
             if( !shiftBeingHeld_ )
@@ -166,7 +166,6 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
 
         public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos)
         {
-            //SortingLayer targetLayer;
             TileLayer layer;
             return GetTargetPosition(map, worldPos, out layer);
         }
@@ -183,12 +182,11 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
                         if (chunk == null)
                             break;
 
-                        //SortingLayer topLayer;
                         TileLayer topLayer;
                         Tile topTile = chunk.GetTopTileWorld((IntVector2)worldPos, out topLayer);
 
                         //The target position should be the minimum position required to draw the new Tile on top of the current top Tile
-                        if ((int)topTile.DefaultSortingLayer_ >= (int)selectedTile.DefaultSortingLayer_)
+                        if ((int)topTile.DefaultTileLayer_ >= (int)selectedTile.DefaultTileLayer_)
                         {
                             worldPos.z = chunk.Height_ + 1;
                         }
@@ -205,7 +203,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
                     break;
             }
 
-            targetLayer = selectedTile.DefaultSortingLayer_;
+            targetLayer = selectedTile.DefaultTileLayer_;
             return worldPos;
         }
     }

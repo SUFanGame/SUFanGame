@@ -25,7 +25,6 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
         /// Set of points collected during a drag-erase operation. <seealso cref="OnDragExit(Map)"/>for an explanation.
         /// </summary>
         HashSet<TileIndex> dragPoints_ = new HashSet<TileIndex>();
-        //SortingLayer? dragLayer_ = null;
         TileLayer? dragLayer_ = null;
         IntVector3 dragOriginPoint_;
 
@@ -183,9 +182,16 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
 
         }
 
+        private TileLayer specificModeLayerToErase_;
+
         public override void MapEditorGUI()
         {
             base.MapEditorGUI();
+
+            if (brushMode_ == BrushMode.SPECIFIC)
+            {
+                specificModeLayerToErase_ = (TileLayer)EditorGUILayout.EnumPopup("TileLayer to Erase", specificModeLayerToErase_);
+            }
 
             area_.OnGUI();
         }
@@ -288,7 +294,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
             EditorUtility.SetDirty(map.gameObject);
         }
 
-        void SetTileTransparent( TiledMesh mesh, IntVector2 pos, SortingLayer layer )
+        void SetTileTransparent( TiledMesh mesh, IntVector2 pos, TileLayer layer )
         {
 
         }
@@ -300,7 +306,6 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
 
         public override IntVector3 GetTargetPosition(Map map, IntVector3 worldPos, out TileLayer targetLayer)
         {
-            //targetLayer = SortingLayer.layers[0];
             targetLayer = TileLayer.Default;
 
             switch (brushMode_)
@@ -320,7 +325,7 @@ namespace SUGame.SUGameEditor.MapEditing.Brushes
                 case BrushMode.SPECIFIC:
                     {
                         //TODO allow the user to choose a specific layer to erase as well (only show this drop-down when the "specific" BrushMode is selected)
-                        targetLayer = TileLayer.Default;
+                        targetLayer = specificModeLayerToErase_;
 
                         worldPos.z = MapEditor.SpecificCursorHeight_;
                     }

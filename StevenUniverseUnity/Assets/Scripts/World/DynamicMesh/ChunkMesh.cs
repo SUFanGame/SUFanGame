@@ -39,25 +39,28 @@ namespace SUGame.World.DynamicMesh
         void Awake()
         {
             if( meshes_ == null )
-                meshes_ = new TiledMesh[SortingLayer.layers.Length];
+                meshes_ = new TiledMesh[EnumUtil.GetEnumValues<TileLayer>().Count];
         }
         
         /// <summary>
         /// Create a TiledMesh with the given Sorting Layer, parent, and size.
         /// </summary>
-        public TiledMesh CreateLayerMesh( int layerIndex, IntVector2 size, Material material )
+        public TiledMesh CreateLayerMesh( TileLayer tileLayer, IntVector2 size, Material material )
         {
-            var layer = SortingLayerUtil.GetLayerFromIndex(layerIndex);
-            var go = new GameObject(layer.name + " Mesh");
+            int overworldLayerValue = SortingLayer.GetLayerValueFromName("Overworld");
+            var go = new GameObject(tileLayer.ToString() + " Mesh");
             var mesh = go.AddComponent<TiledMesh>();
-            mesh.SortingLayer_ = SortingLayerUtil.GetLayerFromIndex(0);
+            mesh.TileLayer_ = tileLayer;
             go.transform.SetParent(transform, false);
-            go.transform.SetSiblingIndex(layerIndex);
+            go.transform.SetSiblingIndex(overworldLayerValue);
             mesh.Size_ = size;
             mesh.renderer_.sharedMaterial = material;
-            mesh.renderer_.sortingOrder = (int)transform.position.z * 100 + layerIndex;
 
-            meshes_[layerIndex] = mesh;
+            int elevation = (int)transform.position.z;
+            mesh.renderer_.sortingLayerName = "Overworld";
+            mesh.renderer_.sortingOrder = tileLayer.GetSortingOrder(elevation);
+
+            meshes_[(int)tileLayer] = mesh;
             mesh.ImmediateUpdate();
             //Debug.LogFormat("Creating mesh of size {0}", size);
 
@@ -70,9 +73,9 @@ namespace SUGame.World.DynamicMesh
         /// </summary>
         /// <param name="layer"></param>
         /// <returns></returns>
-        public TiledMesh GetMesh( SortingLayer layer )
+        public TiledMesh GetMesh( TileLayer layer )
         {
-            int index = SortingLayerUtil.GetLayerIndex(layer);
+            int index = (int)layer;
 
             return GetLayerMesh(index);
         }
@@ -87,7 +90,6 @@ namespace SUGame.World.DynamicMesh
 
         public void HideLayer( TileLayer layer )
         {
-            //int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
             int layerIndex = (int)layer;
 
             var mesh = meshes_[layerIndex];
@@ -97,7 +99,6 @@ namespace SUGame.World.DynamicMesh
 
         public void ShowLayer( TileLayer layer )
         {
-            //int layerIndex = SortingLayerUtil.GetLayerIndex(layer);
             int layerIndex = (int)layer;
 
             var mesh = meshes_[layerIndex];

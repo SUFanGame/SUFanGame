@@ -120,7 +120,6 @@ namespace SUGame.SUGameEditor.MapEditing
                 var mousePos = Event.current.mousePosition + Vector2.right * 10;
                 var mouseWorldPos = (IntVector3)HandleUtility.GUIPointToWorldRay(mousePos).origin;
 
-                //SortingLayer targetLayer;
                 TileLayer targetLayer;
                 mouseWorldPos = Brush_.GetTargetPosition(SelectedMap_, mouseWorldPos, out targetLayer);
 

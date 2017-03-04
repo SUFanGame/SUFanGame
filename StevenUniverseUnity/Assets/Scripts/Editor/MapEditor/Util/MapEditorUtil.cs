@@ -37,12 +37,5 @@ namespace SUGame.SUGameEditor.MapEditing.Util
 
     public static class MapEditorUtil
     {
-        //HeightMode heightMode_;
-        //LayerMode layerMode_;
-
-        //public SortingLayer GetTargetLayer( IntVector2 pos, Map map )
-        //{
-
-        //}
     }
 }

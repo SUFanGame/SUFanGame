@@ -11,28 +11,19 @@ namespace SUGame.SUGameEditor.World.Inspector
     [CustomEditor(typeof(TiledMesh))]
     public class TiledMeshInspector : Editor
     {
-        SerializedProperty layerIDProp_;
-
         void OnEnable()
         {
-            //layerIDProp_ = serializedObject.FindProperty("sortingLayerID_");
+            
         }
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-
             var tar = target as TiledMesh;
 
             if (!tar.isActiveAndEnabled)
                 return;
-
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("Sorting Layer");
-            //layerIDProp_.intValue = CustomEditorGUI.DrawSortingLayersPopup(layerIDProp_.intValue);
-            tar.renderer_.sortingLayerID = CustomEditorGUI.DrawSortingLayersPopup(tar.renderer_.sortingLayerID);
-            EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.LabelField("Sorting Order", tar.renderer_.sortingOrder.ToString());
         }

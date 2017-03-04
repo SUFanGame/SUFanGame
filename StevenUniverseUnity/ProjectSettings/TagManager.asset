@@ -44,26 +44,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Water
-    uniqueID: 1766457561
-    locked: 0
-  - name: WaterOverlay
-    uniqueID: 777333237
-    locked: 0
-  - name: Ground
-    uniqueID: 1226597283
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: GroundOverlay
-    uniqueID: 653255853
-    locked: 0
-  - name: Main
-    uniqueID: 1990046331
-    locked: 0
-  - name: Character
-    uniqueID: 3795056241
+  - name: Overworld
+    uniqueID: 166219751
     locked: 0
   - name: Foreground
     uniqueID: 2898712733

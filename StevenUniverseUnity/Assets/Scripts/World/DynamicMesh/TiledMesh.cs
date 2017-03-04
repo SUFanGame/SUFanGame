@@ -13,11 +13,12 @@ namespace SUGame.World.DynamicMesh
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer)), ExecuteInEditMode]
     public class TiledMesh : MonoBehaviour
     {
+        [SerializeField]
+        private TileLayer tileLayer_;
         /// <summary>
         /// How many cells per row/column in the texture spritesheet.
         /// </summary>
         public static IntVector2 textureCellCount_ = new IntVector2(8, 8);
-
 
         // Mesh data. We want to avoid resizing these as much as possible since it
         // can cause a lot of unneccesary allocations. Sometimes it's necessary though.
@@ -89,10 +90,10 @@ namespace SUGame.World.DynamicMesh
 
         public bool showLayerOrder_ = false;
 
-        public SortingLayer SortingLayer_
+        public TileLayer TileLayer_
         {
-            get { return SortingLayerUtil.GetLayerFromID(renderer_.sortingLayerID); }
-            set { renderer_.sortingLayerID = value.id; }
+            get { return tileLayer_; }
+            set { tileLayer_ = value; }
         }
 
         protected virtual void Awake()
@@ -472,15 +473,6 @@ namespace SUGame.World.DynamicMesh
             {
                 vertsChanged_ = true;
             }
-
-            //if (renderer_.sortingLayerID != sortingLayerID_)
-            //{
-            //    renderer_.sortingLayerID = sortingLayerID_;
-            //}
-            //if (renderer_.sortingOrder != orderInLayer_)
-            //{
-            //    renderer_.sortingOrder = orderInLayer_;
-            //}
         }
 
         void MakeMesh()

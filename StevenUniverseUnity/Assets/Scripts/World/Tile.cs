@@ -49,17 +49,11 @@ namespace SUGame.World
         }
 
         /// <summary>
-        /// The default sorting layer for this tile. Note that tiles can be inserted
+        /// The default TileLayer for this tile. Note that tiles can be inserted
         /// in the map on ANY sorting layer, this is just the default if no layer is specified.
         /// </summary>
-        public TileLayer DefaultSortingLayer_
-        {
-            get
-            {
-                return tileLayer_;
-                    //SortingLayerUtil.GetLayerFromID(renderer_.sortingLayerID);
-            }
-        }
+        public TileLayer DefaultTileLayer_ { get { return tileLayer_; } }
+
         public enum Mode
         {
             // Normal tiles don't affect pathability

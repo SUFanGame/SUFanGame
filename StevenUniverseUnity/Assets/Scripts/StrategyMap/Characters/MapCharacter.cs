@@ -10,6 +10,8 @@ using SUGame.StrategyMap.Characters.Actions;
 using SUGame.Util.Common;
 using SUGame.Config;
 using UnityEngine.UI;
+using SUGame.World;
+using SUGame.Util.MapEditing;
 
 // Just a note about unity's built in Selection Handlers - they require that the camera have a "Physics Raycaster"
 // and that an "EventSystem" is in the scene (GameObject->UI->EventSystem). Any objects to be selected
@@ -285,7 +287,7 @@ namespace SUGame.StrategyMap
         /// </summary>
         public void UpdateSortingOrder()
         {
-            renderer_.sortingOrder = GridPosition.z * 100 + 90;
+            renderer_.sortingOrder = TileLayer.Character.GetSortingOrder((int)GridPosition.z);//GridPosition.z * 100 + 90;
         }
 
         public void UpdateSortingOrder(int newZ )

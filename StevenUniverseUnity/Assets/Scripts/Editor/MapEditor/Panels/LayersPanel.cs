@@ -15,7 +15,7 @@ namespace SUGame.SUGameEditor.MapEditing.Panels
         {
             get
             {
-                int lineCount = SortingLayer.layers.Length;
+                int lineCount = EnumUtil.GetEnumValues<TileLayer>().Count;
                 int w = 130;
                 int h = Foldout_ ? 18 + (lineCount * 15) + (4 * lineCount) : 22;
                 int x = Screen.width - w - 15;
@@ -40,9 +40,7 @@ namespace SUGame.SUGameEditor.MapEditing.Panels
 
         public LayersPanel( )
         {
-            //map_ = map;
-            var layers = SortingLayer.layers;
-            int layerCount = layers.Length;
+            int layerCount = EnumUtil.GetEnumValues<TileLayer>().Count;
 
             toggles_ = new bool[layerCount];
 
@@ -51,7 +49,6 @@ namespace SUGame.SUGameEditor.MapEditing.Panels
         
         protected override void OnPanelGUI( Map map )
         {
-            //var layers = SortingLayer.layers;
             var layers = EnumUtil.GetEnumValues<TileLayer>();
             int layerCount = layers.Count;
             for (int i = 0; i < layerCount; ++i)

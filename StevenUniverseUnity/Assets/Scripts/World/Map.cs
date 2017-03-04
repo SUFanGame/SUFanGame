@@ -70,7 +70,7 @@ namespace SUGame.World
         /// Visibility data for the sorting layers in this map.
         /// </summary>
         [SerializeField]
-        SortingLayerVisibility isLayerVisible_ = null;
+        TileLayerVisibility isLayerVisible_ = null;
 
         /// <summary>
         /// Optional way to hide and prevent access to all tiles above a certain height. 
@@ -105,8 +105,7 @@ namespace SUGame.World
 
         void Awake()
         {
-            isLayerVisible_ = new SortingLayerVisibility();
-            isLayerVisible_.Awake();
+            isLayerVisible_ = new TileLayerVisibility();
         }
 
         /// <summary>
