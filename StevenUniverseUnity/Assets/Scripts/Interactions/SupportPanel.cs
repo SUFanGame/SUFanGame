@@ -6,6 +6,7 @@ namespace SUGame.Interactions
 {
     public class SupportPanel : MonoBehaviour
     {
+        //TODO: make the canvas actually destroy on finish
 
         static SupportPanel instance_;
         public static SupportPanel Instance { get { return instance_; } }
@@ -67,7 +68,7 @@ namespace SUGame.Interactions
             {
                 instance_.canvas_ = Instantiate<SupportCanvas>(instance_.prefab);
                 instance_.canvas_.gameObject.SetActive(true);
-                Debug.Log("Canvas activated");
+                //Debug.Log("Canvas activated");
             }
 
             foreach (ScriptLine curDialog in Dialog)
@@ -90,7 +91,7 @@ namespace SUGame.Interactions
                 instance_.canvas_.gameObject.SetActive(false);
                 preservedCanvas = false;
 
-                Destroy(instance_.canvas_);
+                Destroy(instance_.canvas_); //For some reason it doesn't get destroyed?
             }
             else
             {
@@ -98,7 +99,7 @@ namespace SUGame.Interactions
                 DestroyOnEnd = true; //reset to default so we don't leave false by accident
                 preservedCanvas = true; //True if the canvas wasn't destroyed so we don't load twice
             }
-            Debug.Log("Dialog finished");
+            //Debug.Log("Dialog finished");
             Dialog = null;
         }
 

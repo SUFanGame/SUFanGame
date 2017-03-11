@@ -8,13 +8,13 @@
 			"charaAction": [{
 				"type": "Move",
 				"name": "Marth",
-				"newX": 40,
-				"newY": 60
+				"newX": 22,
+				"newY": -3
 			}, {
 				"type": "Move",
-				"name": "Archer",
-				"newX": 40,
-				"newY": 50
+				"name": "BlueArcher",
+				"newX": 20,
+				"newY": -3
 			}, {
 				"type": "EnterMap",
 				"name": "Pirate",
@@ -23,7 +23,7 @@
 			}],
 
 			"dialogFileName": "marth_rekts_pirate",
-			"destroyDialogOnEnd": false
+			"destroyDialogOnEnd": true
 		},
         
         {
@@ -37,8 +37,6 @@
 			"charaAction": [{
 				"type": "Attack",
 				"name": "Marth",
-				"newX": 50,
-				"newY": 60,
 				"target": "Pirate"
 			}]
 
@@ -53,9 +51,9 @@
             
 			"charaAction": [{
 				"type": "Move",
-				"name": "Archer",
-				"newX": 30,
-				"newY": 70
+				"name": "BlueArcher",
+				"newX": 23,
+				"newY": -4
 			}],
 
 			"dialogFileName": "archer_is_mad",

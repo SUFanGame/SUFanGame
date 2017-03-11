@@ -24,7 +24,7 @@ namespace SUGame.StrategyMap.Characters.Actions
         }
 
         // Test if a json file outputs correctly
-        public void cutsceneJsonLoadTest()
+        public static void cutsceneJsonLoadTest()
         {
             string cutsceneName = "TestScript1";
 
@@ -38,14 +38,14 @@ namespace SUGame.StrategyMap.Characters.Actions
         }
 
         //Tests if the scene executes
-        public void cutsceneFullTest()
+        public static void cutsceneFullTest()
         {
             string cutsceneName = "TestScript1";
 
             Scene[] parsedScenes = CutsceneLoader.ImportCutscene(cutsceneName);
 
-            cutsceneRunner.Cutscene = parsedScenes;
-            StartCoroutine(cutsceneRunner.execute());
+            CutscenePanel.Instance.Cutscene = parsedScenes;
+            CutscenePanel.Instance.StartCoroutine(CutscenePanel.Instance.execute());
         }
 
         

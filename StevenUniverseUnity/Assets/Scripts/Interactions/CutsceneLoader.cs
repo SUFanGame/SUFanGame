@@ -155,19 +155,19 @@ namespace SUGame.Interactions
     public class CutsceneCharacterAction
     {
         [SerializeField]
-        private actionType type; //needs to be validated as actionType
+        public actionType type { get; set; } //needs to be validated as actionType
         [SerializeField]
-        private string name; //Character that is doing the action
+        public string name { get; set; } //Character that is doing the action
         [SerializeField]
-        private string target; //Only ATTACK has a target. Must be an identifiable name and attackable
+        public string target { get; set; } //Only ATTACK has a target. Must be an identifiable name and attackable
         [SerializeField]
-        private int newX;
+        public int newX { get; set; }
         [SerializeField]
-        private int newY;
+        public int newY { get; set; }
         [SerializeField]
-        private int edgeX; //Only EXIT/ENTER has an edge point for despawn/spawn
+        public int edgeX { get; set; } //Only EXIT/ENTER has an edge point for despawn/spawn
         [SerializeField]
-        private int edgeY;
+        public int edgeY { get; set; }
 
         public CutsceneCharacterAction(actionType type, string name)
         {
@@ -175,32 +175,21 @@ namespace SUGame.Interactions
             this.name = name;
         }
 
+        public CutsceneCharacterAction(actionType type, string name, string Target) : this(type, name)
+        {
+            this.target = Target;
+        }
+
+        public CutsceneCharacterAction(actionType type, string name, int newX, int newY) : this(type, name)
+        {
+            this.newX = newX;
+            this.newY = newY;
+        }
+
         public override string ToString()
         {
             return name + type;
         }
-
-        public actionType ActType
-        {
-            get { return type; }
-            set { type = value; }
-        }
-
-        public string Target
-        {
-            get { return target; }
-            set { target = value; }
-        }
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-        //need to replace?
-        public int NewX { get; set; }
-        public int NewY { get; set; }
 
     }
 

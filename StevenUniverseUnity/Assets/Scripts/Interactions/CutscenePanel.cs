@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using SUGame.Util.Common;
+using SUGame.StrategyMap.Characters.Actions.UIStates;
+using SUGame.StrategyMap;
+using SUGame.Util.Logic.States;
+using SUGame.Util;
 
 namespace SUGame.Interactions
 {
@@ -12,26 +17,31 @@ namespace SUGame.Interactions
          * Add the character attack action
          */
 
-        public SupportPanel supportNode; //Set the support inside the editor, set canvas inside of this component
+        //public SupportPanel supportNode; 
+        //Set the support inside the editor, set canvas inside of this component
 
-        private Scene[] cutscene;
+        static CutscenePanel instance_;
+        public static CutscenePanel Instance { get { return instance_; } }
 
-        public Scene[] Cutscene
+        public Scene[] Cutscene { get; set; }
+
+        public void Awake()
         {
-            set { cutscene = value; }
+            //Debug.Log("Woke up");
+            Cutscene = null;
+            instance_ = this;
         }
-
 
         public IEnumerator execute()
         {
-            if (cutscene == null)
+            if (Cutscene == null)
             {
                 throw new UnityException("There's no cutscene set!");
             }
 
             //Debug.Log("CutsceneRunner enabled");
                         
-            foreach (Scene curScene in cutscene)
+            foreach (Scene curScene in Cutscene)
             {
                 //Execute each subroutine in order
                 if (curScene.CameraChange != null)
@@ -55,10 +65,10 @@ namespace SUGame.Interactions
                     yield return StartDialog(curScene);
                 }
 
-                Debug.Log("This scene finished");
+                //Debug.Log("This scene finished");
             }
 
-            cutscene = null; //Done with this cutscene, clear
+            Cutscene = null; //Done with this cutscene, clear
         }
 
 
@@ -81,22 +91,28 @@ namespace SUGame.Interactions
 
         public IEnumerator DoAction(CutsceneCharacterAction act)
         {
-                //In this set-up actions are done sequentially and cannot happen simultaneously
-                switch (act.ActType)
-                {
-                    case actionType.Attack:
-                        Debug.Log(act.Name + " attacked " + act.Target);
-                        break;
-                    case actionType.Move:
-                        Debug.Log(act.Name + " moved to " + act.NewX + "," + act.NewY);
-                        break;
-                    case actionType.ExitMap:
-                        Debug.Log(act.Name + " exited the map");
-                        break;
-                    case actionType.EnterMap:
-                        Debug.Log(act.Name + " entered the map");
-                        break;
-                }
+            MapCharacter actor_ = GameObject.Find(act.name).GetComponent<MapCharacter>();
+
+            //In this set-up actions are done sequentially and cannot happen simultaneously
+            switch (act.type)
+            {
+                case actionType.Attack:
+                    Debug.Log(act.name + " attacked " + act.target);
+                    MapCharacter target_ = GameObject.Find(act.target).GetComponent<MapCharacter>();
+                    var combat = new CombatUIState(actor_, target_);
+                    yield return combat.QuickCombat();
+                    break;
+                case actionType.Move:
+                    Debug.Log(act.name + " moved to " + act.newX + "," + act.newY);
+                    yield return CharacterUtility.MoveTo(actor_, new IntVector3(act.newX, act.newY, 0));
+                    break;
+                case actionType.ExitMap:
+                    Debug.Log(act.name + " exited the map");
+                    break;
+                case actionType.EnterMap:
+                    Debug.Log(act.name + " entered the map");
+                    break;
+            }
 
             yield return new WaitForSeconds(.8f);
         }

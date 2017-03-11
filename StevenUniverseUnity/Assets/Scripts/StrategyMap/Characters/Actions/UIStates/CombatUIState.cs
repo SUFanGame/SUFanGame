@@ -28,13 +28,8 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
             //actionCallback_ = actionCallback;
         }
 
-        public override void OnEnter()
+        private void InitializePanel()
         {
-            base.OnEnter();
-
-            //var cg = CombatPanel.Instance.GetComponent<CanvasGroup>();
-            //cg.alpha = 1;
-
             // TODO: Currently looks pretty as you just see the portraits slide away if the UI
             // initiates combat
             CombatPanel.Initialize(attacker_, defender_);
@@ -49,6 +44,25 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
 
             currentlyRunningCombat_ = new Combat(attacker_, defender_);
             currentlyRunningCombat_.SetUICallbacks(CombatPanel.Instance);
+        }
+
+        public IEnumerator QuickCombat()
+        {
+            InitializePanel();
+            yield return currentlyRunningCombat_.QuickResolve();
+
+            CombatPanel.OnAttackAnimsComplete_ -= OnAttacksComplete;
+            CombatPanel.Clear();
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            //var cg = CombatPanel.Instance.GetComponent<CanvasGroup>();
+            //cg.alpha = 1;
+
+            InitializePanel();
 
             // Not using the Combat Panel for any particular reason, we just need a gameobject to
             // run the coroutine.

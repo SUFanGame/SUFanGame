@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1735796807628304
 GameObject:
   m_ObjectHideFlags: 1
@@ -200,7 +200,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: RArcher
+  m_Text: Lefty
 --- !u!114 &114169648339441180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -308,7 +308,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Name
+  m_Text: Righty
 --- !u!114 &114491120204725980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -392,7 +392,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 04125e4472046824d99977645efa8af9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d8cf95d48ae14264f9d89d820eb3a0c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -419,7 +419,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 04125e4472046824d99977645efa8af9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7450db11c4a7c504fb58e010c8c4c45d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -459,9 +459,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'FEmPWF mewopae faeopf a p ewgjpoJEGW
-
-    oawgweoj ewgwp jpgwe awe wgewjgpj aemwogwmaoemgwao aiwemge waomeg wagmewa'
+  m_Text: It doesn't really matter. That's all for this dialog!
 --- !u!114 &114955817516148874
 MonoBehaviour:
   m_ObjectHideFlags: 1

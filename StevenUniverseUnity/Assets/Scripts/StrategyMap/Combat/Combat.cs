@@ -150,6 +150,55 @@ namespace SUGame.StrategyMap
             yield return null;
         }
 
+        /// <summary>
+        /// Insta-kills for use in cutscenes
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator QuickResolve()
+        {
+            
+            var defenderStats = defender_.Data.Stats_;
+
+            if (uiPlayAnimation_ == null && uiWaitForEvent_ != null ||
+                uiPlayAnimation_ != null && uiWaitForEvent_ == null)
+            {
+                Debug.LogErrorFormat("Error in combat routine, ui callbacks must either both be null or both be valid to function properly");
+            }
+
+
+            if (UIActive_)
+            {
+                // Play the attack animation and wait for our pre attack event
+                uiPlayAnimation_("Attack", 0);
+                yield return uiWaitForEvent_(CombatAnimEvent.PRE_ATTACK);
+            }
+
+            int damage = 80;
+
+            if (UIActive_)
+            {
+                // Wait for the attack hit event
+                yield return uiWaitForEvent_(CombatAnimEvent.ATTACK_HIT);
+            }
+            
+            Debug.Log("Instakill!");
+            defenderStats[Stats.PrimaryStat.HP].CurrentValue_ -= damage;
+            Debug.LogFormat("{0} was killed!", defender_.name);
+            
+            if (UIActive_)
+            {
+                uiPlayAnimation_("Killed", 1);
+            }
+
+            if (UIActive_)
+            {
+                // Wait for our attack animation to complete
+                yield return uiWaitForEvent_(CombatAnimEvent.ANIM_COMPLETE);
+            }
+
+            //yield return null;
+        }
+
         public static int GetDamage( MapCharacter att, MapCharacter defender, Weapon weapon )
         {
             int weaponDmg = weapon == null ? 0 : weapon.Damage_;
