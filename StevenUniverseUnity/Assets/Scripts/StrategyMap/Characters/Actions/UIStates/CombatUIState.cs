@@ -37,6 +37,8 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
 
             // TODO: Currently looks pretty as you just see the portraits slide away if the UI
             // initiates combat
+            CombatPanel.Initialize(attacker_, defender_);
+
             CombatPanel.HidePortraits();
 
             CombatPanel.ShowPanel();

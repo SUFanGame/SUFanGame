@@ -19,7 +19,7 @@ namespace SUGame.Interactions
             }
 
             ScriptLine[] parsedLines = JsonHelper.Deserialize<ScriptLine>(asset.text);
-
+            //Debug.Log("Successfully parsed lines");
             return parsedLines;
         }
     }

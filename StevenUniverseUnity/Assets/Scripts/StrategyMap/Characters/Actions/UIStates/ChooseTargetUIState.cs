@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using SUGame.Util.Logic.States;
 using SUGame.StrategyMap;
 using SUGame.StrategyMap.Players;
+using System;
 
 namespace SUGame.StrategyMap.Characters.Actions.UIStates
 {
@@ -14,7 +15,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         MapCharacter actor_;
         //public TargetType TargetType { get; private set; }
         public TargetProperties TargetProperties { get; private set; }
-        public CharacterAction Action_ { get; private set; }
+        //public CharacterAction Action_ { get; private set; }
         /// <summary>
         /// List of valid targets for this action (if any)
         /// </summary>
@@ -26,7 +27,8 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         /// <summary>
         /// Callback to execute the action once a target has been selected.
         /// </summary>
-        System.Func<MapCharacter, IEnumerator> ActionCallback_;
+        //System.Func<MapCharacter, IEnumerator> ActionCallback_;
+        public Type nextState_; //State type to be instantiated later
 
         /// <summary>
         /// State for choosing the target of an action. This will read the given AttackProperties
@@ -34,16 +36,18 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         /// </summary>
         public ChooseTargetUIState(
             MapCharacter actor,
-            CharacterAction action,
+            //CharacterAction action,
             TargetProperties targetProperties,
-            System.Func<MapCharacter, IEnumerator> actionCallback,
+            //System.Func<MapCharacter, IEnumerator> actionCallback,
+            Type nextState,
             IList<MapCharacter> validTargets = null)
         {
             actor_ = actor;
             TargetProperties = targetProperties;
-            Action_ = action;
+            //Action_ = action;
             ValidTargets_ = validTargets;
-            ActionCallback_ = actionCallback;
+            nextState_ = nextState;
+            //ActionCallback_ = actionCallback;
             //this.TargetType = targetType;
             if( actor == null )
             {
@@ -107,7 +111,9 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
             {
                 OnExit();
                 //Debug.LogFormat("Actor null when calling new ConfirmTarget from ChooseTarget {0}", actor_ == null);
-                Machine.Push(new ConfirmTargetUIState(actor_, Target_, ActionCallback_));
+                // This statement assumes that the only states that'll get passed only need actor and target as params
+                Machine.Push((State)System.Activator.CreateInstance(nextState_, new System.Object[] { actor_, Target_ }));
+                //Debug.Log("Passed along next state");
                 Target_ = null;
             }
 
@@ -130,7 +136,7 @@ namespace SUGame.StrategyMap.Characters.Actions.UIStates
         {
             if (ValidTargets_ == null)
             {
-                Debug.LogErrorFormat("Valid Targets was null, ensure action \"{0}\" is properly assigning ValidTargets array", Action_.UIName);
+                //Debug.LogErrorFormat("Valid Targets was null, ensure action \"{0}\" is properly assigning ValidTargets array", Action_.UIName);
             }
             if (ValidTargets_.Contains(target))
             {

@@ -13,16 +13,10 @@ public class SupportCanvas : MonoBehaviour
 
     [SerializeField]
     GameObject[] namePlates_;
-    Text[] namePlateTexts_;
 
-    void Awake()
-    {
-        namePlateTexts_ = new Text[2];
-        for( int i = 0; i < 2; ++i )
-        {
-            namePlateTexts_[i] = namePlates_[i].GetComponentInChildren<Text>();
-        }
-    }
+    [SerializeField]
+    Text[] namePlateTexts_;
+    
 
     public void SetPortrait( int side, Sprite sprite )
     {
@@ -31,10 +25,13 @@ public class SupportCanvas : MonoBehaviour
 
     public void SetDialogue(int side, string speaker, string dialogue)
     {
+
         namePlates_[1 - side].SetActive(false);
         namePlates_[side].SetActive(true);
+
         namePlateTexts_[side].text = speaker;
         spokenText_.text = dialogue;
+
     }
 
     public void SetPortraits( Sprite left, Sprite right )

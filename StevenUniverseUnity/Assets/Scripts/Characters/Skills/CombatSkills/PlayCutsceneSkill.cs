@@ -21,15 +21,14 @@ namespace SUGame.Characters.Skills
 
         public override IEnumerator UIRoutine(CombatPanelUnit uiPanel)
         {
-            var runner = new GameObject("SupportRunner", typeof(SupportRunner)).GetComponent<SupportRunner>();
-            var support = SupportLoader.ImportSupport(supportAsset_.name);
-            runner.Dialog = support;
+            //var runner = new GameObject("SupportRunner", typeof(SupportPanel)).GetComponent<SupportPanel>();
+            SupportPanel.Dialog = SupportLoader.ImportSupport(supportAsset_.name);
 
             CombatPanel.Pause();
-            var canvas = Instantiate(canvasPrefab_);
-            yield return runner.DoDialogueWithCanvas(canvas);
-            DestroyImmediate(runner.gameObject);
-            DestroyImmediate(canvas.gameObject);
+            //var canvas = Instantiate(canvasPrefab_);
+            yield return SupportPanel.DoDialogWithCanvas();
+            //DestroyImmediate(runner.gameObject);
+            //DestroyImmediate(canvas.gameObject);
             CombatPanel.Unpause();
 
         }

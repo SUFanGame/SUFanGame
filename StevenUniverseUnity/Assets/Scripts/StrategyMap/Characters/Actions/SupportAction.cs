@@ -22,7 +22,7 @@ namespace SUGame.StrategyMap.Characters.Actions
         // List<MapCharacter> allies_ = new List<MapCharacter>();
 
         // Set through the inspector
-        public SupportRunner supportCanvas_;
+        //public SupportPanel supportPanel;
 
 
         List<MapCharacter> validTargets_ = new List<MapCharacter>();
@@ -43,13 +43,15 @@ namespace SUGame.StrategyMap.Characters.Actions
         public IEnumerator Execute( string supportFileName )
         {
             //Debug.LogFormat("Running action {0}", supportFileName);
-            supportCanvas_.Dialog = SupportLoader.ImportSupport(supportFileName);
-            supportCanvas_.gameObject.SetActive(true);
-
-            yield return supportCanvas_.DoDialog();
-
-            actor_.Paused_ = true;
+            //supportCanvas_.Dialog = SupportLoader.ImportSupport(supportFileName);
+            //supportCanvas_.gameObject.SetActive(true);
+            //
+            //yield return supportCanvas_.DoDialog();
+            //
+            //actor_.Paused_ = true;
             //yield return base.Routine();
+
+            yield return null;
         }
 
         
@@ -79,9 +81,10 @@ namespace SUGame.StrategyMap.Characters.Actions
 
         public override State GetUIState()
         {
-            // Bind our callback to Execute where the file name is the actor's name and the target support's name separated by a hyphen
-            System.Func<MapCharacter, IEnumerator> cb = (c) => Execute(actor_.name + "-" + c.name);
-            var state = new ChooseTargetUIState(actor_, this, targetProperties_, cb, ValidTargetsReadOnly_);
+            // Bind our callback to Execute where the file name is the actor's name and the target support's name separated by a 
+            //System.Func<MapCharacter, IEnumerator> cb = (c) => Execute(actor_.name + "-" + c.name);
+            //Debug.Log("Passing along Support state");
+            var state = new ChooseTargetUIState(actor_,targetProperties_, typeof(SupportUIState), ValidTargetsReadOnly_);
             return state;
         }
     }

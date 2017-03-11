@@ -8,7 +8,7 @@ namespace SUGame.StrategyMap.Characters.Actions
     //DEBUGGING CLASS, hooks into Marth's "Start Drama" action
     class CutsceneAction : CharacterAction
     {
-        public CutsceneRunner cutsceneRunner = null;
+        public CutscenePanel cutsceneRunner = null;
 
         protected override void Awake()
         {

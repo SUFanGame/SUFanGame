@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace SUGame.Interactions
 {
-    public class CutsceneRunner : MonoBehaviour
+    public class CutscenePanel : MonoBehaviour
     {
         /* TODO:
          * Add the camera changes depending on the option
@@ -12,7 +12,7 @@ namespace SUGame.Interactions
          * Add the character attack action
          */
 
-        public SupportRunner supportNode; //Set the support inside the editor, set canvas inside of this component
+        public SupportPanel supportNode; //Set the support inside the editor, set canvas inside of this component
 
         private Scene[] cutscene;
 
@@ -106,10 +106,10 @@ namespace SUGame.Interactions
         {
             Debug.Log("Started dialog: " + curScene.DialogFileName);
 
-            supportNode.Dialog = SupportLoader.ImportSupport(curScene.DialogFileName);
-            supportNode.DestroyOnEnd = curScene.DestroyDialogOnEnd;
+            SupportPanel.Dialog = SupportLoader.ImportSupport(curScene.DialogFileName);
+            SupportPanel.DestroyOnEnd = curScene.DestroyDialogOnEnd;
 
-            yield return supportNode.DoDialog();
+            yield return SupportPanel.DoDialogWithCanvas();
         }
     }
 }

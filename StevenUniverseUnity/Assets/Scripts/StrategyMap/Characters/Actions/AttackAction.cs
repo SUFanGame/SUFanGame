@@ -83,7 +83,7 @@ namespace SUGame.StrategyMap.Characters.Actions
         public override State GetUIState()
         {
             //Debug.Log("Pushing choose target state from " + actor_.name);
-            var state = new ChooseTargetUIState(actor_, this, targetProperties_, Execute, ValidTargetsReadOnly_);
+            var state = new ChooseTargetUIState(actor_, targetProperties_, typeof(CombatUIState), ValidTargetsReadOnly_);
             return state;
         }
     }
