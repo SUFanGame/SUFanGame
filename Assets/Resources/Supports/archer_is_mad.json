@@ -1,0 +1,26 @@
+{"Items":[
+    {
+	"rightSpeaker": "RArcher",
+	"rightExpr":    "archerR1",
+	"leftSpeaker":  "RMarth",
+	"leftExpr":     "marth1",
+    "line":         "Marth!! How could you totally murder him?!",
+	"currentSpeaker": "RArcher"
+    },
+    {
+    "rightSpeaker": "RArcher",
+	"rightExpr":    "archerR2",
+	"leftSpeaker":  "RMarth",
+	"leftExpr":     "marth1",
+	"line":         "I do what I must, because I can.",
+	"currentSpeaker": "RMarth"
+    },
+    {
+    "rightSpeaker": "Pirate",
+	"rightExpr":    "pirate1",
+	"leftSpeaker":  "RMarth",
+	"leftExpr":     "marth2",
+	"line":         "Surprise, I am secretly his brother. Prepare to die.",
+	"currentSpeaker": "Pirate"
+    }
+]}

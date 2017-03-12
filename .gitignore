@@ -4,11 +4,12 @@
 [Tt]emp/
 [Oo]bj/
 [Bb]uild
-*/[Ll]ibrary/
+[Ll]ibrary/
 sysinfo.txt
 *.stackdump
 *.exe
 /*_Data/
+*.collabignore
  
 # ============================================= #
 # Visual Studio / MonoDevelop / Rider generated #
@@ -35,3 +36,4 @@ sysinfo.txt
 ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
+

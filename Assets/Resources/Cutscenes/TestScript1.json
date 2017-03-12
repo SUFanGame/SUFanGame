@@ -1,0 +1,63 @@
+{
+	"Items": [{
+			"CameraChange": {
+				"type": "Follow",
+				"target": "Marth"
+			},
+            
+			"CharaAction": [{
+				"type": "Move",
+				"name": "Marth",
+				"newX": 22,
+				"newY": -3
+			}, {
+				"type": "Move",
+				"name": "BlueArcher",
+				"newX": 20,
+				"newY": -3
+			}, {
+				"type": "EnterMap",
+				"name": "Pirate",
+				"newX": 60,
+				"newY": 60
+			}],
+
+			"DialogFileName": "marth_rekts_pirate",
+			"DestroyDialogOnEnd": true
+		},
+        
+        {
+			"CameraChange": {
+				"type": "Follow",
+				"target": "Marth"
+			}
+        },
+
+		{
+			"CharaAction": [{
+				"type": "Attack",
+				"name": "Marth",
+				"target": "Pirate"
+			}]
+
+		},
+
+		{
+			"CameraChange": {
+				"type": "Fixed",
+				"newX": 45,
+				"newY": 65
+			},
+            
+			"CharaAction": [{
+				"type": "Move",
+				"name": "BlueArcher",
+				"newX": 23,
+				"newY": -4
+			}],
+
+			"DialogFileName": "archer_is_mad",
+			"DestroyDialogOnEnd": true
+		}
+	]
+}
