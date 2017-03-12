@@ -31,45 +31,25 @@ namespace SUGame.Interactions
     public class Scene
     {
         [SerializeField]
-        private CameraChange cameraChange = null;
+        public CameraChange CameraChange { get; set; }
         [SerializeField]
-        private CutsceneCharacterAction[] charaAction = null;
+        public CutsceneCharacterAction[] CharaAction { get; set; }
         [SerializeField]
-        private string dialogFileName;
+        public string DialogFileName { get; set; }
         [SerializeField]
-        private bool destroyDialogOnEnd;
-
-        public CameraChange CameraChange
-        {
-            get { return cameraChange; }
-            set { cameraChange = value; }
-        }
-        public CutsceneCharacterAction[] CharaAction
-        {
-            get { return charaAction; }
-            set { charaAction = value; }
-        }
-        public string DialogFileName
-        {
-            get { return dialogFileName; }
-            set { dialogFileName = value; }
-        }
-        public bool DestroyDialogOnEnd
-        {
-            get { return destroyDialogOnEnd; }
-            set { destroyDialogOnEnd = value; }
-        }
+        public bool DestroyDialogOnEnd { get; set; }
+        
 
         public Scene(
             CameraChange camChange = null,
             CutsceneCharacterAction[] charaAction = null,
             string dialogFile = null,
-            bool destroyDialog = false)
+            bool destroyDialog = true)
         {
-            cameraChange = camChange;
-            this.charaAction = charaAction;
-            dialogFileName = dialogFile;
-            destroyDialogOnEnd = destroyDialog;
+            CameraChange = camChange;
+            CharaAction = charaAction;
+            DialogFileName = dialogFile;
+            DestroyDialogOnEnd = destroyDialog;
         }
 
         //For debugging purposes
@@ -77,20 +57,20 @@ namespace SUGame.Interactions
         {
             string s = "cam: ";
 
-            if (cameraChange != null) {
-                s += cameraChange;
+            if (CameraChange != null) {
+                s += CameraChange;
             }
 
             s += "\ndialog: ";
 
-            if (dialogFileName != null)
+            if (DialogFileName != null)
             {
-                s += dialogFileName;
+                s += DialogFileName;
             }
 
-            if (charaAction != null)
+            if (CharaAction != null)
             {
-                foreach (CutsceneCharacterAction act in charaAction)
+                foreach (CutsceneCharacterAction act in CharaAction)
                 {
                     s += "\naction: " + act;
                 }
@@ -106,41 +86,34 @@ namespace SUGame.Interactions
     public class CameraChange
     {
         [SerializeField]
-        private cameraType type; //Need to get json to cast to enum
+        public cameraType CameraType { get; set; } //Need to get json to cast to enum
         [SerializeField]
-        private string target; //Only FOLLOW has a target
+        public string Target { get; set; } //Only FOLLOW has a target
         [SerializeField]
-        private int newX; //Only FIXED has an x/y, will need to accomodate Sark's ToMove()
+        public int NewX { get; set; } //Only FIXED has an x/y, will need to accomodate Sark's ToMove()
         [SerializeField]
-        private int newY;
+        public int NewY { get; set; }
         
-        public CameraChange(cameraType type, string target = null)
+        public CameraChange(cameraType type)
         {
-            this.type = type;
-            this.target = target;
-            //newX newY needs to be changed
+            this.CameraType = type;
         }
+        public CameraChange(cameraType type, string target) : this (type)
+        {
+            Target = target;
+        }
+
+        public CameraChange(cameraType type, int newX, int newY) : this(type)
+        {
+            NewX = newX;
+            NewY = newY;
+        }
+
 
         public override string ToString()
         {
-            return type.ToString();
+            return CameraType.ToString();
         }
-
-        public cameraType CameraType
-        {
-            get { return type; }
-            set { type = value; }
-        }
-
-        public string Target
-        {
-            get { return target; }
-            set { target = value; }
-        }
-
-        // need to replace?
-        public int NewX { get; set; }
-        public int NewY { get; set; }
 
     }
 

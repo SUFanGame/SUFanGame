@@ -1,105 +1,86 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using SUGame.World;
+using SUGame.Util;
 using SUGame.Interactions;
+using System.IO;
 
 namespace SUGame.SUGameEditor.MapEditing
 {
 
-    public class CutsceneEditor : SceneEditorWindow
+    public class CutsceneEditor : EditorWindow
     {
 
         //This will need to be set, either as a new scene or imported one
-        Scene OpenScene_ = null;
-
-        //Map that the cutscene is operating on, will need to be set
-        Map SelectedMap_
-        {
-            get
-            {
-                var go = Selection.activeGameObject;
-                if (go == null)
-                    return null;
-                return go.GetComponent<Map>();
-            }
-        }
+        Scene[] OpenScene_ = new Scene[] { };
+        Vector2 scrollpos;
 
 
         [MenuItem("Tools/CutsceneEditor")]
-        static void OpenWindow()
+        public static void OpenWindow()
         {
-            EditorWindow.GetWindow<CutsceneEditor>();
+            GetWindow<CutsceneEditor>("Cutscene Editor");
+
         }
 
         //Opens up the editor window
-        protected override void OnGUI()
+        public void OnGUI()
         {
-            //base.OnGUI(); //calling SceneEditorWindow
-
-            var map = SelectedMap_;
-            var scene = OpenScene_;
-
-            if (scene == null)
+            EditorGUILayout.BeginHorizontal();
+            //GUILayout.FlexibleSpace();
+            if (GUILayout.Button("New"))
             {
-                GUILayout.Label("Open or create a new scene");
-                if (GUILayout.Button("Open Cutscne"))
+                //make a "are you sure?" box
+                OpenScene_ = new Scene[] { };
+            }
+            if (GUILayout.Button("Open"))
+            {
+                //open a pre-existing cutscene
+                string path = EditorUtility.OpenFilePanel("Open Cutscene", "/Resources/Cutscenes/", "json");
+                path = path.Substring(path.IndexOf("/Cutscenes/") + 11);
+                path = path.Substring(0, path.Length - 5); //I miss python
+                OpenScene_ = CutsceneLoader.ImportCutscene(path);
+                //Debug.Log("opened!");
+            }
+            if (GUILayout.Button("Save"))
+            {
+                //serialize and save the currently open scene
+                string path = EditorUtility.SaveFilePanel("Save Cutscene", "/Resources/Cutscenes/", "", "json");
+                string json = JsonHelper.Serialize<Scene>(typeof(Scene), OpenScene_);
+                File.WriteAllText(path, json);
+            }
+            if (GUILayout.Button("Play"))
+            {
+                //Launch the game in a limited state and test
+            }
+            EditorGUILayout.EndHorizontal();
+
+
+            //See the cutscene laid out
+            scrollpos = EditorGUILayout.BeginScrollView(scrollpos);
+            for (int i = 0; i < OpenScene_.Length; i++)
+            {
+                Scene frame = OpenScene_[i];
+                EditorGUILayout.LabelField("Scene" + i);
+                if (frame.CameraChange != null)
                 {
-                    Debug.Log("opened!");
+                    EditorGUILayout.SelectableLabel(frame.CameraChange.ToString());
                 }
-                if (GUILayout.Button("Create New Cutscne"))
+                if (frame.CharaAction != null)
                 {
-                    Debug.Log("created!");
+                    foreach (CutsceneCharacterAction act in frame.CharaAction)
+                    {
+                        EditorGUILayout.SelectableLabel(act.ToString());
+                    }
+                }
+                if (frame.DialogFileName != null)
+                {
+                    EditorGUILayout.SelectableLabel(frame.DialogFileName);
                 }
             }
+            EditorGUILayout.EndScrollView();
 
-            if (map == null)
-            {
-                GUILayout.Label("No map selected");
-                return;
-            }
-
-
-            // updating the current map label
-            GUI.enabled = false;
-            EditorGUILayout.ObjectField("Current Map", map, typeof(Map), true);
-            GUI.enabled = true;
-
-            
-
-            // We must process input after all gui calls to prevent unity's layout errors.
-            ProcessKeyboardInput();
+            //Add some new stuff
         }
-
-        // Entered edit mode
-        protected override void OnSceneGUI(SceneView view)
-        {
-            base.OnSceneGUI(view);
-
-            Repaint();
-
-            if (!SceneEditorUtil.EditMode_ || !mouseOverWindow == SceneView.currentDrawingSceneView || SelectedMap_ == null)
-                return;
-
-
-
-            //foreach (var panel in panels_)
-            //    panel.OnSceneGUI(SelectedMap_);
-            //
-            //if (!MouseIsOverPanels_)
-            //{
-            //    var mousePos = Event.current.mousePosition + Vector2.right * 10;
-            //    var mouseWorldPos = (IntVector3)HandleUtility.GUIPointToWorldRay(mousePos).origin;
-            //    mouseWorldPos.z = CursorHeight_;
-            //
-            //    Handles.BeginGUI();
-            //    EditorGUI.LabelField(new Rect(0, Screen.height - 65, 100f, 100f), mouseWorldPos.ToString("0"));
-            //    Handles.EndGUI();
-            //}
-            //
-            //
-            //SceneView.currentDrawingSceneView.Repaint();
-        }
-
     }
-
 }
